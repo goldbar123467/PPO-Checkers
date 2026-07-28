@@ -114,7 +114,7 @@ def test_c1_run_config_is_frozen_typed_and_derives_exact_batch_sizes() -> None:
         ({"exploitability_train_games": 3}, ValueError, "exploitability_train_games"),
         ({"amp_dtype": "float16"}, ValueError, "amp_dtype"),
         ({"include_opponent_value_loss": 1}, TypeError, "include_opponent_value_loss"),
-        ({"wandb_mode": "online"}, ValueError, "wandb_mode"),
+        ({"wandb_mode": "shared"}, ValueError, "wandb_mode"),
     ],
 )
 def test_c1_invalid_run_configuration_raises(
@@ -160,6 +160,12 @@ def test_practice_profile_has_exact_update_schedule_eval_and_checkpoint_contract
     assert config.periodic_every == PRACTICE_PERIODIC_EVERY
     assert config.periodic_games == PRACTICE_PERIODIC_GAMES
     assert config.checkpoint_every == PRACTICE_CHECKPOINT_EVERY
+    assert config.wandb_mode == "online"
+
+
+@pytest.mark.parametrize("mode", ("disabled", "offline", "online"))
+def test_wandb_modes_preserve_offline_and_allow_online(mode: str) -> None:
+    assert _config(wandb_mode=mode).wandb_mode == mode
 
 
 def test_schedule_horizon_is_independent_of_a_short_invocation_limit() -> None:

@@ -34,4 +34,4 @@ periodic_games: 432
 exploitability_train_games: 16
 amp_dtype: float32
 include_opponent_value_loss: false
-wandb_mode: offline
+wandb_mode: online

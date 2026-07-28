@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+import json
+import random
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pytest
+import torch
 
 from checkers.config import RunConfig
 from checkers.logging_wandb import (
@@ -43,6 +47,23 @@ class FakeRun:
 
     def log_artifact(self, artifact: object) -> None:
         self.artifacts.append(artifact)
+
+
+class FailingRun(FakeRun):
+    def log(self, data: dict[str, object], *, step: int, commit: bool) -> None:
+        del data, step, commit
+        random.random()
+        np.random.random()
+        torch.rand(1)
+        raise ConnectionError("simulated network failure")
+
+    def finish(self, *, exit_code: int = 0) -> None:
+        del exit_code
+        raise ConnectionError("simulated finish failure")
+
+    def log_artifact(self, artifact: object) -> None:
+        del artifact
+        raise ConnectionError("simulated artifact failure")
 
 
 def _config() -> RunConfig:
@@ -115,6 +136,30 @@ def test_w1_initialization_uses_exact_name_tags_config_and_provenance() -> None:
         "provenance/deterministic": True,
     }
     assert state.wandb_run_id == "offline-id"
+
+
+def test_environment_can_force_online_config_through_unchanged_offline_path(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("WANDB_MODE", "offline")
+    captured: dict[str, object] = {}
+
+    def factory(**kwargs: object) -> FakeRun:
+        captured.update(kwargs)
+        return FakeRun()
+
+    create_wandb_logger(
+        config=RunConfig(**{**asdict(_config()), "wandb_mode": "online"}),
+        state=TrainerState(),
+        metadata=_metadata(),
+        stamp="override",
+        directory=tmp_path,
+        run_factory=factory,
+    )
+
+    assert captured["mode"] == "offline"
+    assert "api_key" not in captured
 
 
 def test_w1_resume_uses_saved_id_and_monotonic_explicit_logging_steps() -> None:
@@ -291,3 +336,71 @@ def test_w1_versioned_artifact_contains_declared_local_files(tmp_path: Path) -> 
     assert artifact.name == "checkpoint-unit-update-000010"
     assert artifact.type == "model"
     assert len(artifact.manifest.entries) == ARTIFACT_FILE_COUNT
+
+
+def test_wandb_init_failure_records_locally_and_returns_a_noop_logger(tmp_path: Path) -> None:
+    state = TrainerState()
+
+    def fail_init(**_kwargs: object) -> object:
+        raise ConnectionError("simulated init failure")
+
+    logger = create_wandb_logger(
+        config=_config(),
+        state=state,
+        metadata=_metadata(),
+        stamp="failure",
+        directory=tmp_path,
+        run_factory=fail_init,
+    )
+    logger.log({"train/policy_loss": 1.0}, state=state)
+    logger.finish(exit_code=0)
+
+    records = [
+        json.loads(line)
+        for line in (tmp_path / "wandb_failures.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert [record["operation"] for record in records] == ["init"]
+    assert records[0]["error_type"] == "ConnectionError"
+    assert state.wandb_run_id.startswith("local-")
+    assert state.logging_step == 1
+
+
+def test_wandb_failures_never_propagate_and_logging_restores_all_global_rngs(
+    tmp_path: Path,
+) -> None:
+    random.seed(11)
+    np.random.seed(13)
+    torch.manual_seed(17)
+    python_before = random.getstate()
+    numpy_before = np.random.get_state()
+    torch_before = torch.get_rng_state().clone()
+    state = TrainerState()
+    logger = WandbLogger(
+        run=FailingRun(),
+        initial_logging_step=0,
+        failure_path=tmp_path / "wandb_failures.jsonl",
+    )
+    artifact_file = tmp_path / "checkpoint.pt"
+    artifact_file.write_bytes(b"checkpoint")
+
+    logger.log({"train/policy_loss": 1.0}, state=state)
+    logger.log_artifact(
+        name="failed-artifact",
+        artifact_type="model",
+        files=(artifact_file,),
+        metadata={"update_idx": 1},
+    )
+    logger.finish(exit_code=0)
+
+    assert random.getstate() == python_before
+    numpy_after = np.random.get_state()
+    assert numpy_after[0] == numpy_before[0]
+    assert np.array_equal(numpy_after[1], numpy_before[1])
+    assert numpy_after[2:] == numpy_before[2:]
+    assert torch.equal(torch.get_rng_state(), torch_before)
+    assert state.logging_step == 1
+    records = [
+        json.loads(line)
+        for line in (tmp_path / "wandb_failures.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert [record["operation"] for record in records] == ["log", "artifact", "finish"]

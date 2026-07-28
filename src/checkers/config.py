@@ -14,7 +14,7 @@ STAGES = frozenset({"A", "B", "C", "practice"})
 ARMS = frozenset({"A0", "A1", "A2", "A3"})
 DEVICES = frozenset({"cpu", "cuda"})
 AMP_DTYPES = frozenset({"float32", "bfloat16"})
-WANDB_MODES = frozenset({"offline", "disabled"})
+WANDB_MODES = frozenset({"offline", "online", "disabled"})
 MIN_POOL_CAPACITY = 2
 
 

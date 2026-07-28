@@ -1,4 +1,4 @@
-"""Offline command-line orchestration for reproducible Phase 7 training runs."""
+"""Local-authoritative orchestration for reproducible Phase 7 training runs."""
 
 from __future__ import annotations
 
@@ -14,12 +14,15 @@ from pathlib import Path
 import yaml
 
 from checkers.config import RunConfig, load_run_config
+from checkers.eval.ballots import BALLOT_COUNT, BallotSet, load_ballot_set
 from checkers.eval.baseline_run import atomic_write_bytes
 from checkers.eval.best_response import BestResponseResult, train_short_best_response
 from checkers.eval.policy_eval import (
     ExploitabilityEvidence,
     PolicyEvaluation,
+    PracticePolicyEvaluation,
     evaluate_development_policy,
+    evaluate_practice_policy,
     game_rows_from_matches,
 )
 from checkers.logging_wandb import (
@@ -31,6 +34,7 @@ from checkers.logging_wandb import (
     scan_repository_for_credentials,
 )
 from checkers.metric_history import MetricHistoryWriter
+from checkers.metrics import PRACTICE_REQUIRED_METRIC_KEYS
 from checkers.recovery import validate_recovery_resume_context
 from checkers.rl.determinism import derive_stream_seed
 from checkers.run_runtime import (
@@ -41,6 +45,11 @@ from checkers.run_runtime import (
 )
 from checkers.system_metrics import SystemTelemetrySampler
 from checkers.train import TrainingSession
+
+PRACTICE_APPROVAL_GATE_UPDATE = 1_024
+PRACTICE_HEARTBEAT_EVERY = 256
+PRACTICE_EXPECTED_GAMES = BALLOT_COUNT * 2
+PRACTICE_SCORE_SMOOTHING_POINTS = 3
 
 
 @dataclass(frozen=True, slots=True)
@@ -55,6 +64,15 @@ class TrainingRunResult:
     metrics_path: Path
     wandb_run_id: str
     logging_step: int
+
+
+@dataclass(frozen=True, slots=True)
+class PracticeEvaluationResult:
+    """One local-authoritative practice evaluation and its measured timing."""
+
+    path: Path
+    evaluation: PracticePolicyEvaluation
+    wall_seconds: float
 
 
 def _max_updates(value: object) -> int | None:
@@ -177,13 +195,13 @@ def _run_evaluation(  # noqa: PLR0913
     payload["eval/payoff_matrix"] = payoff_matrix_table(evaluation.payoff_rows)
     payload["eval/rendered_games"] = game_table(evaluation.game_rows)
     logging_step = session.state.logging_step
-    logger.log(payload, state=session.state)
     history.append(
         kind=f"{kind}_evaluation",
         metrics=evaluation.scalar_metrics,
         state=session.state,
         logging_step=logging_step,
     )
+    logger.log(payload, state=session.state)
     path = output_directory / "evaluations" / f"update-{session.state.update_idx:06d}-{kind}.json"
     atomic_write_bytes(
         path,
@@ -200,6 +218,176 @@ def _run_evaluation(  # noqa: PLR0913
     )
     session.check_evaluation_alerts(evaluation.scalar_metrics)
     return path
+
+
+def _practice_evaluation_record(  # noqa: PLR0913
+    *,
+    evaluation: PracticePolicyEvaluation,
+    ballot_set: BallotSet,
+    kind: str,
+    update_idx: int,
+    seed: int,
+    wall_seconds: float,
+) -> dict[str, object]:
+    return {
+        "schema": "CHECKERS_PRACTICE_EVALUATION_1",
+        "kind": kind,
+        "update_idx": update_idx,
+        "seed": seed,
+        "ballot_count": ballot_set.count,
+        "ballot_sha256": ballot_set.sha256,
+        "source_sequence_count": ballot_set.source_sequence_count,
+        "source_sequences_sha256": ballot_set.source_sequences_sha256,
+        "games_per_match": len(evaluation.random_match.records),
+        "total_games": len(evaluation.random_match.records)
+        + len(evaluation.minimax_match.records),
+        "wall_seconds": wall_seconds,
+        "metrics": evaluation.scalar_metrics,
+        "game_rows": evaluation.game_rows,
+    }
+
+
+def _compact_number(value: float) -> str:
+    if not math.isfinite(value):
+        raise ValueError("terminal metric must be finite")
+    return f"{value:.6g}"
+
+
+def _print_periodic_evaluation(
+    *,
+    session: TrainingSession,
+    training_metrics: dict[str, float],
+    evaluation_metrics: dict[str, float],
+    kind: str,
+) -> None:
+    fields = (
+        ("update", str(session.state.update_idx)),
+        ("transitions", str(session.state.global_step)),
+        ("elapsed", f"{session.state.elapsed_training_seconds:.1f}s"),
+        ("SPS", _compact_number(training_metrics["charts/SPS"])),
+        ("policy_loss", _compact_number(training_metrics["train/policy_loss"])),
+        ("approx_kl", _compact_number(training_metrics["train/approx_kl"])),
+        ("clipfrac", _compact_number(training_metrics["train/clipfrac"])),
+        (
+            "explained_variance",
+            _compact_number(training_metrics["train/explained_variance"]),
+        ),
+        (
+            "normalized_entropy",
+            _compact_number(training_metrics["policy/normalized_entropy"]),
+        ),
+        ("vs_minimax2", _compact_number(evaluation_metrics["eval/vs_minimax2"])),
+        ("draw_rate", _compact_number(training_metrics["env/draw_rate"])),
+    )
+    print(f"{kind} " + " ".join(f"{key}={value}" for key, value in fields), flush=True)
+
+
+def _print_checkpoint(*, session: TrainingSession, path: Path, sha256: str) -> None:
+    print(
+        "checkpoint "
+        f"update={session.state.update_idx} transitions={session.state.global_step} "
+        f"path={path} sha256={sha256}",
+        flush=True,
+    )
+
+
+def _print_heartbeat(*, session: TrainingSession, training_metrics: dict[str, float]) -> None:
+    print(
+        "heartbeat "
+        f"update={session.state.update_idx} transitions={session.state.global_step} "
+        f"elapsed={session.state.elapsed_training_seconds:.1f}s "
+        f"SPS={_compact_number(training_metrics['charts/SPS'])}",
+        flush=True,
+    )
+
+
+def _print_approval_gate(
+    *,
+    session: TrainingSession,
+    training_metrics: dict[str, float],
+    minimax_scores: list[float],
+) -> None:
+    points = minimax_scores[-PRACTICE_SCORE_SMOOTHING_POINTS:]
+    moving_average = sum(points) / len(points)
+    print(
+        "approval_gate status=PAUSED "
+        f"update={session.state.update_idx} "
+        f"eval/vs_minimax2={_compact_number(minimax_scores[-1])} "
+        f"eval/vs_minimax2_ma3={_compact_number(moving_average)} "
+        "policy/normalized_entropy="
+        f"{_compact_number(training_metrics['policy/normalized_entropy'])} "
+        f"env/draw_rate={_compact_number(training_metrics['env/draw_rate'])} "
+        "train/explained_variance="
+        f"{_compact_number(training_metrics['train/explained_variance'])}",
+        flush=True,
+    )
+
+
+def _run_practice_evaluation(  # noqa: PLR0913
+    *,
+    session: TrainingSession,
+    logger: WandbLogger,
+    history: MetricHistoryWriter,
+    output_directory: Path,
+    ballot_set: BallotSet,
+    training_metrics: dict[str, float],
+    kind: str,
+) -> PracticeEvaluationResult:
+    evaluation_seed = derive_stream_seed(
+        session.config.seed,
+        2_000_000 + session.state.update_idx,
+    )
+    started = time.perf_counter()
+    evaluation = evaluate_practice_policy(
+        network=session.network,
+        ballots=ballot_set.ballots,
+        seed=evaluation_seed,
+        max_plies=session.config.max_plies,
+        repetition_draws=session.config.repetition_draws,
+    )
+    wall_seconds = time.perf_counter() - started
+    if not math.isfinite(wall_seconds) or wall_seconds < 0.0:
+        raise RuntimeError("evaluation wall clock produced an invalid duration")
+    total_games = evaluation.random_match.games + evaluation.minimax_match.games
+    scalar_metrics = {
+        **evaluation.scalar_metrics,
+        "eval/wall_seconds": wall_seconds,
+        "eval/games_per_second": total_games / wall_seconds if wall_seconds > 0.0 else 0.0,
+    }
+    logging_step = session.state.logging_step
+    history.append(
+        kind=f"{kind}_evaluation",
+        metrics=scalar_metrics,
+        state=session.state,
+        logging_step=logging_step,
+    )
+    logger.log(scalar_metrics, state=session.state)
+    path = output_directory / "evaluations" / f"update-{session.state.update_idx:06d}-{kind}.json"
+    atomic_write_bytes(
+        path,
+        _manifest_bytes(
+            _practice_evaluation_record(
+                evaluation=evaluation,
+                ballot_set=ballot_set,
+                kind=kind,
+                update_idx=session.state.update_idx,
+                seed=evaluation_seed,
+                wall_seconds=wall_seconds,
+            )
+        ),
+    )
+    session.check_evaluation_alerts(evaluation.scalar_metrics)
+    _print_periodic_evaluation(
+        session=session,
+        training_metrics=training_metrics,
+        evaluation_metrics=evaluation.scalar_metrics,
+        kind=kind,
+    )
+    return PracticeEvaluationResult(
+        path=path,
+        evaluation=evaluation,
+        wall_seconds=wall_seconds,
+    )
 
 
 def run_training(  # noqa: PLR0912, PLR0915
@@ -221,6 +409,8 @@ def run_training(  # noqa: PLR0912, PLR0915
     config = load_run_config(config_path.read_text(encoding="utf-8"))
     repository = Path(__file__).resolve().parents[2]
     metadata = collect_run_metadata(config=config, repository=repository)
+    if config.stage == "practice" and metadata.git_dirty:
+        raise RuntimeError("practice runs require a clean Git worktree")
     credential_findings = scan_repository_for_credentials(repository)
     if credential_findings:
         reasons = sorted({finding.reason for finding in credential_findings})
@@ -247,6 +437,17 @@ def run_training(  # noqa: PLR0912, PLR0915
     update_limit = config.total_updates
     if checked_max_updates is not None:
         update_limit = min(update_limit, start_update + checked_max_updates)
+    approval_gate_boundary = (
+        config.stage == "practice"
+        and start_update < PRACTICE_APPROVAL_GATE_UPDATE <= update_limit
+    )
+    if approval_gate_boundary:
+        update_limit = PRACTICE_APPROVAL_GATE_UPDATE
+    ballot_set: BallotSet | None = None
+    if config.stage == "practice":
+        if config.periodic_games != PRACTICE_EXPECTED_GAMES:
+            raise ValueError("practice periodic_games must equal 216 ballots x 2 colours")
+        ballot_set = load_ballot_set(repository / "data" / "ballots_v1.json")
     metrics_path = output_directory / "metrics.jsonl"
     history = MetricHistoryWriter(
         path=metrics_path,
@@ -268,6 +469,8 @@ def run_training(  # noqa: PLR0912, PLR0915
     checkpoints = output_directory / "checkpoints"
     final_checkpoint = resume_path
     evaluation_path: Path | None = None
+    practice_scores: list[float] = []
+    latest_training_metrics: dict[str, float] | None = None
     artifact_name: str | None = None
     wall_started = time.perf_counter()
     status = "failed"
@@ -297,62 +500,148 @@ def run_training(  # noqa: PLR0912, PLR0915
             update = session.run_update()
             logged_metrics = dict(update.metrics)
             logged_metrics.update(telemetry.sample().scalar_metrics())
+            latest_training_metrics = dict(update.metrics)
             logging_step = session.state.logging_step
-            logger.log(logged_metrics, state=session.state)
             history.append(
                 kind="training",
                 metrics=logged_metrics,
                 state=session.state,
                 logging_step=logging_step,
             )
+            logger.log(logged_metrics, state=session.state)
             if session.state.update_idx % config.periodic_every == 0:
-                evaluation_path = _run_evaluation(
+                if ballot_set is None:
+                    evaluation_path = _run_evaluation(
+                        session=session,
+                        logger=logger,
+                        history=history,
+                        output_directory=output_directory,
+                        games=config.periodic_games,
+                        kind="periodic",
+                    )
+                else:
+                    evaluation_kind = (
+                        "final" if session.state.update_idx == config.total_updates else "periodic"
+                    )
+                    practice_result = _run_practice_evaluation(
+                        session=session,
+                        logger=logger,
+                        history=history,
+                        output_directory=output_directory,
+                        ballot_set=ballot_set,
+                        training_metrics=latest_training_metrics,
+                        kind=evaluation_kind,
+                    )
+                    evaluation_path = practice_result.path
+                    practice_scores.append(
+                        practice_result.evaluation.scalar_metrics["eval/vs_minimax2"]
+                    )
+            if (
+                approval_gate_boundary
+                and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE
+            ):
+                if ballot_set is None:
+                    raise RuntimeError("approval gate requires the practice ballot set")
+                gate_result = _run_practice_evaluation(
                     session=session,
                     logger=logger,
                     history=history,
                     output_directory=output_directory,
-                    games=config.periodic_games,
-                    kind="periodic",
+                    ballot_set=ballot_set,
+                    training_metrics=latest_training_metrics,
+                    kind="approval_gate",
+                )
+                evaluation_path = gate_result.path
+                practice_scores.append(
+                    gate_result.evaluation.scalar_metrics["eval/vs_minimax2"]
                 )
             if (
                 session.state.update_idx % config.checkpoint_every == 0
                 or session.state.update_idx == update_limit
             ):
                 final_checkpoint = checkpoints / f"update-{session.state.update_idx:06d}.pt"
-                session.save_checkpoint(
+                checkpoint_evidence = session.save_checkpoint(
                     final_checkpoint,
                     git_sha=metadata.git_sha,
                     git_dirty=metadata.git_dirty,
                 )
+                _print_checkpoint(
+                    session=session,
+                    path=final_checkpoint,
+                    sha256=checkpoint_evidence.sha256,
+                )
+            if session.state.update_idx % PRACTICE_HEARTBEAT_EVERY == 0:
+                _print_heartbeat(
+                    session=session,
+                    training_metrics=latest_training_metrics,
+                )
+            if (
+                approval_gate_boundary
+                and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE
+            ):
+                _print_approval_gate(
+                    session=session,
+                    training_metrics=latest_training_metrics,
+                    minimax_scores=practice_scores,
+                )
         if final_checkpoint is None:
             raise RuntimeError("training invocation produced no checkpoint")
-        if not final_checkpoint.is_file() or session.state.update_idx != start_update:
-            final_checkpoint = checkpoints / f"update-{session.state.update_idx:06d}.pt"
-            session.save_checkpoint(
+        expected_checkpoint = checkpoints / f"update-{session.state.update_idx:06d}.pt"
+        if final_checkpoint != expected_checkpoint or not final_checkpoint.is_file():
+            final_checkpoint = expected_checkpoint
+            checkpoint_evidence = session.save_checkpoint(
                 final_checkpoint,
                 git_sha=metadata.git_sha,
                 git_dirty=metadata.git_dirty,
+            )
+            _print_checkpoint(
+                session=session,
+                path=final_checkpoint,
+                sha256=checkpoint_evidence.sha256,
             )
         scientific_final = session.state.update_idx >= config.total_updates or (
             config.duration_seconds is not None
             and session.state.elapsed_training_seconds >= config.duration_seconds
         )
         if scientific_final:
-            final_evaluation_path = _run_evaluation(
-                session=session,
-                logger=logger,
-                history=history,
-                output_directory=output_directory,
-                games=config.eval_games,
-                kind="final",
-            )
-            evaluation_path = final_evaluation_path
-            logger.assert_complete()
-            session.save_checkpoint(
-                final_checkpoint,
-                git_sha=metadata.git_sha,
-                git_dirty=metadata.git_dirty,
-            )
+            evaluation_logged_after_checkpoint = False
+            if ballot_set is None:
+                final_evaluation_path = _run_evaluation(
+                    session=session,
+                    logger=logger,
+                    history=history,
+                    output_directory=output_directory,
+                    games=config.eval_games,
+                    kind="final",
+                )
+                evaluation_path = final_evaluation_path
+                logger.assert_complete()
+                evaluation_logged_after_checkpoint = True
+            else:
+                if evaluation_path is None or not evaluation_path.name.endswith("-final.json"):
+                    if latest_training_metrics is None:
+                        raise RuntimeError("practice final evaluation requires training metrics")
+                    final_result = _run_practice_evaluation(
+                        session=session,
+                        logger=logger,
+                        history=history,
+                        output_directory=output_directory,
+                        ballot_set=ballot_set,
+                        training_metrics=latest_training_metrics,
+                        kind="final",
+                    )
+                    evaluation_path = final_result.path
+                    evaluation_logged_after_checkpoint = True
+                logger.assert_complete(PRACTICE_REQUIRED_METRIC_KEYS)
+            if evaluation_path is None:
+                raise RuntimeError("scientific final is missing its evaluation artifact")
+            final_evaluation_path = evaluation_path
+            if evaluation_logged_after_checkpoint:
+                session.save_checkpoint(
+                    final_checkpoint,
+                    git_sha=metadata.git_sha,
+                    git_dirty=metadata.git_dirty,
+                )
             resolved_config = output_directory / "config.resolved.yaml"
             files = [
                 final_checkpoint,
@@ -369,6 +658,13 @@ def run_training(  # noqa: PLR0912, PLR0915
                 files.append(diff)
             if recovery_context is not None:
                 files.extend(recovery_context.artifact_files)
+            if ballot_set is not None:
+                files.extend(
+                    (
+                        repository / "data" / "ballot_sequences_v1.json",
+                        repository / "data" / "ballots_v1.json",
+                    )
+                )
             artifact_name = (
                 f"checkpoint-{config.experiment_id}-update-{session.state.update_idx:06d}"
             )
@@ -417,9 +713,12 @@ def run_training(  # noqa: PLR0912, PLR0915
     wall_seconds = time.perf_counter() - wall_started
     if not math.isfinite(wall_seconds) or wall_seconds < 0.0:
         raise RuntimeError("wall clock produced an invalid elapsed duration")
+    paused_for_approval = (
+        approval_gate_boundary and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE
+    )
     manifest = {
         "schema": "CHECKERS_TRAINING_RUN_1",
-        "status": status,
+        "status": "paused_for_approval" if paused_for_approval else status,
         "experiment_id": config.experiment_id,
         "seed": config.seed,
         "phase": config.phase,
@@ -438,9 +737,17 @@ def run_training(  # noqa: PLR0912, PLR0915
         "logging_step": session.state.logging_step,
         "checkpoint": str(final_checkpoint),
         "evaluation": None if evaluation_path is None else str(evaluation_path),
-        "evaluation_games": config.eval_games if scientific_final else None,
+        "evaluation_games": (
+            None
+            if evaluation_path is None
+            else (PRACTICE_EXPECTED_GAMES if ballot_set is not None else config.eval_games)
+        ),
         "metrics_history": str(metrics_path),
+        "wandb_failures": str(output_directory / "wandb_failures.jsonl"),
         "wandb_artifact": artifact_name,
+        "approval_gate_update": (
+            PRACTICE_APPROVAL_GATE_UPDATE if paused_for_approval else None
+        ),
         "resume_from": None if resume_path is None else str(resume_path),
         "recovery": (
             None
