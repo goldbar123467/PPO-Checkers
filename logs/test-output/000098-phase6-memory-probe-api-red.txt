@@ -1,0 +1,11 @@
+2026-07-28T03:31:14-04:00
+NVIDIA GeForce RTX 5070, 12227 MiB, 1428 MiB, 10516 MiB
+/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/memory.py", line 396, in reset_peak_memory_stats
+    return torch._C._cuda_resetPeakMemoryStats(device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Invalid device argument 
+NVIDIA GeForce RTX 5070, 12227 MiB, 1428 MiB, 10516 MiB

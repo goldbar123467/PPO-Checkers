@@ -95,7 +95,7 @@ and the restored suite passes exactly (`000097-*`).
 
 - Any all-false mask row raises before a distribution is constructed.
 - Replacing the first hand-oracle `sigma=+1` with `-1` changes the expected recursion.
-- Filtering opponent rows before GAE will break the future T8 adjacency oracle.
+- Filtering opponent rows before GAE breaks the T8 adjacency oracle.
 - Recomputing masks during PPO update will fail a stored-mask mutation test.
 - Introducing BatchNorm will fail both structural inspection and batch-composition invariance.
 - Omitting either `sigma` occurrence will fail the hand calculation, colour-swap, or forced-mate

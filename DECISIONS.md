@@ -434,3 +434,20 @@
 - Sensitivity: temporarily omitting the recursive `sigma` produces all-positive targets and fails
   all three numerical fixtures. The tracked source is restored byte-for-byte afterward.
 - Evidence: `tests/rl/test_forced_mate_targets.py` and `logs/test-output/000096-*`/`000097-*`.
+
+## ADR-029 — Accept Gate 6 without making a learning claim
+
+- Status: Accepted; Gate 6 GREEN.
+- Authority: `GOAL.md` §14 Phase 6 and the frozen `docs/PHASE6_TEST_MATRIX.md`.
+- Decision: accept the RL core because T1–T8, A2–A6, N2–N7, and D1–D3 all pass and the complete
+  repository gate remains green. Classify T1/T2 as capacity checks, T3/T4/T6–T8 as mathematical or
+  directional checks, and D2/D3 as same-stack engineering reproducibility. Do not translate any of
+  them into a playing-strength or convergence claim.
+- Result: 760/760 tests plus eight property tests pass; Ruff/format/strict mypy pass; all 3,842
+  Checkers statements and 1,358 branches are covered. The ten-update CUDA fixture peaks at 73.125
+  MiB allocated and 94.000 MiB reserved on the 12,227 MiB RTX 5070.
+- Integrity: gate, determinism-stack, and memory transcripts have SHA-256 values
+  `3a0abe5e…824e14`, `a3639365…09905`, and `61027290…c0017`. Initial failed memory instrumentation
+  calls are retained separately and are not acceptance evidence.
+- Evidence: `reports/phase6_rl_core_analysis.md`, `logs/gates/phase-6.txt`, and
+  `logs/gates/phase-6-memory.txt`.

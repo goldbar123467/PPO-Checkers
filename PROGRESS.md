@@ -2,22 +2,22 @@
 
 ## Current Phase
 
-Phase 6 — RL core, verified offline (IN PROGRESS)
+Phase 7 — self-play loop and W&B (IN PROGRESS)
 
 Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001 through BLOCK-006.
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
-source-correct portion of Phase 6. Phase 5 is GREEN.
+source-correct portion. Phases 5 and 6 are GREEN.
 
-Work label: offline RL-core verification.
+Work label: Phase 7 setup validation before an end-to-end self-play smoke.
 
-Engineering objective: implement masked categorical sampling, two-player perspective-aware GAE,
-the rollout buffer, GroupNorm residual network, and PPO update so every T1–T8 numerical oracle and
-D2/D3 determinism requirement passes offline without exceeding the 12 GB local VRAM envelope.
+Engineering objective: implement the resumable self-play/league/trainer/W&B path, then prove it
+with small end-to-end validation before any 30-minute smoke or powered learned-policy evaluation.
 
 ## In Flight
 
-1. Run the consolidated Gate 6 static, coverage, CPU, and RTX checks.
-2. Publish the source-bounded Phase 6 analysis and advance state only if the full gate is green.
+1. Re-read and freeze the Phase 7 trainer, checkpoint, logging, league, and metric contracts.
+2. Inventory existing repository entrypoints/configuration and write the Phase 7 test matrix.
+3. Implement the smallest resume-complete self-play slice under tests.
 
 ## Gate Evidence
 
@@ -149,11 +149,14 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   actor-frame targets. A distinct R6.2 ending and terminal four-jump sequence are covered. Removing
   recursive `sigma` makes all three fail; restored code passes all four focused tests. Evidence
   `logs/test-output/000092-*` through `000097-*`.
+- Gate 6 GREEN: complete `make check` passed formatting, Ruff, strict mypy, 760/760 tests, eight
+  property tests, and 100% of 3,842 statements/1,358 branches. D2/D3 ran on the recorded RTX stack.
+  A ten-update CUDA probe used 73.125 MiB peak allocated and 94.000 MiB peak reserved. Evidence
+  `reports/phase6_rl_core_analysis.md`, `logs/gates/phase-6.txt`, and
+  `logs/gates/phase-6-memory.txt`.
 
 ## Last Five Iterations
 
-- 000020: implemented full-chronology lockstep rollout storage, proved trainable filtering occurs
-  only after GAE, and completed T8 at 100% focused statement/branch coverage.
 - 000021: implemented and structurally verified the exact GroupNorm network, passed T1/T2/T5 and
   N7, and resolved the phase-order-only BLOCK-006 with the real logit regression.
 - 000022: implemented stored-mask PPO-Clip, matched the literal T3 oracle to 1e-12, passed T4
@@ -162,6 +165,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   same-RTX tolerance and native BF16 masking against a fully recorded reference stack.
 - 000024: froze three uniquely forced 3/5/7-step engine trajectories, proved exact actor-frame T7
   targets, and killed a deliberately injected missing-recursive-sign defect.
+- 000025: passed the consolidated 760+8-test Gate 6 at 100% coverage, measured the CUDA memory
+  envelope, published the primary-source-bounded analysis, and advanced Phase 6 to GREEN.
 
 ## Open Risks
 
@@ -182,5 +187,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Run the consolidated Gate 6 check over the complete repository, including strict static gates,
-branch coverage, property tests, and the real CPU/RTX determinism paths.
+Re-read the Phase 7 normative sections, freeze an evidence matrix, and implement only the first
+test-driven self-play/checkpoint slice before attempting a timed smoke.

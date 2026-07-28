@@ -24,7 +24,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 | 3 — Terminal/hash | R6, §5.3, §14 Phase 3 | Boundary/key/property tests and committed termination proof. | BLOCKED by BLOCK-001/005 wording; feasible technical gate proven with 188 tests, all R6 boundaries, complete/narrow key separation, and 50k incremental/recomputed checks. |
 | 4 — Environment | §§5.2, 6, §14 Phase 4 | 5M-step fuzz, zero mask failures, canonical/aliasing/illegal-action/restore tests. | BLOCKED by inherited BLOCK-001/002/003/005 wording. Feasible technical gate PROVEN: 5M steps, all three failure counters zero, exact scalar/vector restore, and 100% environment coverage. BLOCK-006 is resolved by the Phase 6 N7 network regression. |
 | 5 — Baselines/arena | §11.2–11.4, §14 Phase 5 | Power-justified balanced matches and hand-worked Elo/payoff validation. | PROVEN: 4,704 powered colour-balanced games, exact six-checkpoint resume, hand-tested Elo/payoff code, sourced limitations, and consolidated `logs/gates/phase-5.txt`. |
-| 6 — RL core | §§7–9, §12.6–12.7, §14 Phase 6; PPO/GAE primary papers | T1–T8, dtype masking, CPU/GPU determinism. | IN PROGRESS: every focused T1–T8/masking/D1–D3 oracle is GREEN; only the consolidated gate and analysis remain. |
+| 6 — RL core | §§7–9, §12.6–12.7, §14 Phase 6; PPO/GAE primary papers | T1–T8, dtype masking, CPU/GPU determinism. | PROVEN: every oracle GREEN; consolidated 760+8-test gate, strict static checks, and 100% statement/branch coverage pass. See `reports/phase6_rl_core_analysis.md`. |
 | 7 — Self-play/W&B | §§10, 12.8, 13, §14 Phase 7 | Three 30-minute smokes, all metrics, zero mask failures, powered random score ≥0.90, exact resume evidence. | OPEN. |
 | 8 — Ablations/full runs | §§8.5, 10.2, 11.5, 14 Phase 8 | Stage A/B/C evidence, three full seeds, all Tier 1/2 rows proven. | OPEN. |
 | 9 — Optional | §14 Phase 9 | Only after Gate 8; prior gates rerun after protected changes. | NOT REQUIRED. |
@@ -50,8 +50,8 @@ claimed. Internally generated agreement is never promoted to external correctnes
 | ID | Requirement from §19 | Authoritative proof | Status |
 |---|---|---|---|
 | E1 | Clean-clone `make check` with egress blocked. | Fresh clone/namespace transcript after dependency install. | OPEN. |
-| E2 | ≥400 passing, none skipped/xfail; coverage and mutation thresholds. | Collection report, coverage JSON, mutation report. | PARTIAL: Phase 5 consolidated 608 tests plus eight property tests with none skipped/xfailed; new Phase 6 focused suites add 148 passing tests. Current modules have focused 100% coverage and rules mutation is 95.76%; final consolidated rerun remains. |
-| E3 | Strict mypy and Ruff lint/format clean. | Final `make check` log over full checkers scope. | PROVEN through Phase 4 at `logs/gates/phase-4.txt`; final rerun remains required. |
+| E2 | ≥400 passing, none skipped/xfail; coverage and mutation thresholds. | Collection report, coverage JSON, mutation report. | PROVEN through Gate 6: 760 tests plus eight property tests, none skipped/xfailed, 100% Checkers statement/branch coverage, and 95.76% conservative rules mutation. Final clean-clone replay remains E1. |
+| E3 | Strict mypy and Ruff lint/format clean. | Final `make check` log over full checkers scope. | PROVEN through Phase 6 at `logs/gates/phase-6.txt`; final acceptance rerun remains required. |
 | E4 | Every R1.1–R7.3 traced and passing; variants labelled everywhere. | `docs/RULES.md` plus node-ID audit. | OPEN. |
 | E5 | R4.5 delayed-removal divergence. | Primary clause, golden fixture, fast/oracle passing tests. | BLOCKED by BLOCK-002; exact pending occupancy/no-repeat tests and parity impossibility proof pass. |
 | E6 | State/position key separation. | Dedicated passing tests. | PROVEN: boundary-only `position_key`, counter/ply/sequence separation, frozen known keys, and 50k incremental/recomputed/undo checks at `logs/gates/phase-3.txt`. |
