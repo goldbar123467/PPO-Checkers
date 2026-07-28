@@ -1,0 +1,61 @@
+unformatted: File would be reformatted
+   --> src/checkers/rl/buffer.py:1:1
+    |
+273 |                 raise TypeError(f"{name} must be floating")
+    -         if not (
+    -             step.behaviour_logprob.dtype == step.value.dtype == step.reward.dtype
+    -         ):
+274 +         if not (step.behaviour_logprob.dtype == step.value.dtype == step.reward.dtype):
+275 |             raise ValueError("behaviour_logprob, value, and reward must share a dtype")
+    |
+
+1 file would be reformatted, 1 file already formatted
+PLR0915 Too many statements (52 > 50)
+   --> src/checkers/rl/buffer.py:240:9
+    |
+238 |                 raise ValueError(f"{name} shape must be {expected_vector}")
+239 |
+240 |     def _validate_step(self, step: RolloutStep) -> None:  # noqa: PLR0912
+    |         ^^^^^^^^^^^^^^
+241 |         fields = (
+242 |             (step.obs, "obs"),
+    |
+
+PLR0913 Too many arguments in function definition (6 > 5)
+  --> tests/rl/test_buffer.py:13:5
+   |
+13 | def _step(
+   |     ^^^^^
+14 |     *,
+15 |     values: tuple[float, float] = (0.0, 0.0),
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `6` with a constant variable
+  --> tests/rl/test_buffer.py:77:33
+   |
+75 |     )
+76 |
+77 |     assert batch.transitions == 6
+   |                                 ^
+78 |     assert torch.equal(batch.env_id, torch.tensor([0, 1, 0, 1, 0, 1]))
+79 |     assert torch.equal(batch.advantages, torch.tensor([1.0, 1.0, -1.0, -1.0, 1.0, -1.0]))
+   |
+
+Found 3 errors.
+tests/rl/test_buffer.py:230: error: Argument 2 to "replace" of "RolloutStep" has incompatible type "**dict[str, object]"; expected "Tensor"  [arg-type]
+tests/rl/test_buffer.py:230: error: Argument 2 to "replace" of "RolloutStep" has incompatible type "**dict[str, object]"; expected "tuple[str, ...]"  [arg-type]
+Found 2 errors in 1 file (checked 2 source files)
+.........................................                                [100%]
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+41 passed, 1 warning in 2.06s
+Name                        Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------
+src/checkers/rl/buffer.py     211      7     96      7    95%   125, 149, 162, 277, 281, 287, 394
+-----------------------------------------------------------------------
+TOTAL                         211      7     96      7    95%
+Coverage failure: total of 95 is less than fail-under=100

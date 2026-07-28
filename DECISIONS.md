@@ -347,3 +347,21 @@
   zeros, a four-transition hand oracle with both signs, terminal/truncation boundaries, colour-swap
   negation, batched lanes, and bitwise single-agent equivalence. Both modules are at 100%
   statement/branch coverage in `logs/test-output/000069-phase6-mask-gae-quality-final.txt`.
+
+## ADR-024 — Store rollouts as complete lockstep chronology
+
+- Status: Accepted; T8 GREEN.
+- Authority: `GOAL.md` §§7.4–7.5 and the project-derived signed recursion of §7.3.
+- Decision: append exactly one complete row containing every stable environment lane; clone and
+  detach every field, including the legal mask; compute GAE on the resulting `(time, env)` tensors;
+  flatten only afterward; and derive policy/value optimization views from the stored `trainable`
+  flags. Default value loss is trainable-only, while the declared opponent-state ablation requires
+  an explicit `include_nontrainable=True` view.
+- Invariants: environment IDs equal stable lane order on every row, selected actions are legal under
+  the stored masks, actor/sign/reward domains are exact, capacity cannot overflow, and a rollout is
+  finalized only once. These constraints make filtered-pre-GAE data and accidental replay fail
+  loudly.
+- Evidence: the two-lane hand oracle retains a non-trainable middle step that changes a later
+  trainable advantage; policy source indices are exactly `[0,3,4]`. A separate mid-capture boundary
+  uses a positive sign and a 0.75 bootstrap to produce value target 0.75. Fifty tests cover all 211
+  statements and 96 branches in `logs/test-output/000074-phase6-buffer-quality-final.txt`.

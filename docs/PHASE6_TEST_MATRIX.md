@@ -31,7 +31,7 @@ implementation formula in the assertion is insufficient.
 | T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | Distribution probe GREEN; network/PPO pending |
 | T6 | Minimal conventional GAE loop with no perspective transform | all `sigma=+1` results bitwise equal | GREEN |
 | T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | Pending |
-| T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | Pending |
+| T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | GREEN |
 | N2–N7 | Structural module inspection plus equal-state batch-invariance probes | exact GroupNorm residual architecture, output shapes/ranges, no BatchNorm, aliasing logits differ | Pending |
 | D2 | Run a frozen ten-update fixture twice from full reseeding | CPU loss/action tensors bitwise equal | Pending |
 | D3 | Run the same ten-update fixture twice on the RTX 5070 | actions identical; losses `atol=1e-5`, `rtol=1e-4`; BF16 autocast path included if enabled | Pending |
@@ -47,6 +47,12 @@ The signed hand oracle uses `gamma=0.9`, `lambda=0.8`, rewards `[0,0,0,1]`, valu
 `[0.2,-0.1,0.3,0.4]`, and signs `[+1,-1,-1,+1]`. Its independently calculated advantages are
 `[0.1536928,0.61624,-1.092,0.6]` and returns are
 `[0.3536928,0.51624,-0.792,1.0]`.
+
+The T8 oracle interleaves two stable environment lanes over three vector steps, including a
+non-trainable middle transition. Full-chronology advantages are computed before filtering; the
+policy view contains exact flattened source indices `[0,3,4]`. A separate rollout ending during a
+capture sequence proves that `sigma=+1` transforms the stored bootstrap in the actor's unchanged
+frame. The buffer has 100% statement/branch coverage in `logs/test-output/000074-*`.
 
 ## Negative controls retained
 

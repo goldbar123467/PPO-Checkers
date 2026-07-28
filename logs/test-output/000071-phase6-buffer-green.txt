@@ -1,0 +1,114 @@
+F...................F....................                                [100%]
+=================================== FAILURES ===================================
+________ test_t8_full_chronology_drives_gae_before_trainable_filtering _________
+
+    def test_t8_full_chronology_drives_gae_before_trainable_filtering() -> None:
+        buffer = RolloutBuffer(
+            num_envs=2,
+            num_steps=3,
+            observation_shape=(2,),
+            action_count=4,
+        )
+        buffer.append(_step(trainable=(True, False), time_marker=0.0))
+        buffer.append(
+            _step(
+                sigmas=(-1, 1),
+                trainable=(False, True),
+                time_marker=1.0,
+            )
+        )
+        buffer.append(
+            _step(
+                rewards=(1.0, -1.0),
+                dones=(True, True),
+                sigmas=(1, 1),
+                trainable=(True, False),
+                time_marker=2.0,
+            )
+        )
+    
+        batch = buffer.finalize(
+            bootstrap_value=torch.tensor([99.0, -99.0]),
+            gamma=1.0,
+            gae_lambda=1.0,
+        )
+    
+        assert batch.transitions == 6
+        assert torch.equal(batch.env_id, torch.tensor([0, 1, 0, 1, 0, 1]))
+>       assert torch.equal(batch.advantages, torch.tensor([1.0, 1.0, -1.0, 1.0, 1.0, -1.0]))
+E       assert False
+E        +  where False = <built-in method equal of type object at 0x7b1f78d9ff20>(tensor([ 1.,  1., -1., -1.,  1., -1.]), tensor([ 1.,  1., -1.,  1.,  1., -1.]))
+E        +    where <built-in method equal of type object at 0x7b1f78d9ff20> = torch.equal
+E        +    and   tensor([ 1.,  1., -1., -1.,  1., -1.]) = RolloutBatch(obs=tensor([[0., 0.],\n        [0., 1.],\n        [1., 0.],\n        [1., 1.],\n        [2., 0.],\n        [2.... True, True, True]), advantages=tensor([ 1.,  1., -1., -1.,  1., -1.]), returns=tensor([ 1.,  1., -1., -1.,  1., -1.])).advantages
+E        +    and   tensor([ 1.,  1., -1.,  1.,  1., -1.]) = <built-in method tensor of type object at 0x7b1f78d9ff20>([1.0, 1.0, -1.0, 1.0, 1.0, -1.0])
+E        +      where <built-in method tensor of type object at 0x7b1f78d9ff20> = torch.tensor
+
+tests/rl/test_buffer.py:79: AssertionError
+_ test_invalid_rollout_step_raises[value-value10-TypeError-value must be floating] _
+
+field = 'value', value = tensor([0, 0]), error = <class 'TypeError'>
+message = 'value must be floating'
+
+    @pytest.mark.parametrize(
+        ("field", "value", "error", "message"),
+        [
+            ("obs", torch.zeros(2, 3), ValueError, "obs shape"),
+            ("obs", torch.zeros(2, 2, dtype=torch.int64), TypeError, "obs must be floating"),
+            ("obs", torch.tensor([[0.0, float("nan")], [0.0, 1.0]]), ValueError, "obs must be finite"),
+            ("legal_mask", torch.ones(2, 4), TypeError, "legal_mask must have dtype bool"),
+            ("legal_mask", torch.ones(2, 3, dtype=torch.bool), ValueError, "legal_mask shape"),
+            ("action", torch.tensor([0.0, 1.0]), TypeError, "action must have dtype int64"),
+            ("action", torch.tensor([0, 4]), ValueError, "action must be in"),
+            ("action", torch.tensor([0, 0]), ValueError, "action must be legal"),
+            ("behaviour_logprob", torch.tensor([0.0]), ValueError, "behaviour_logprob shape"),
+            (
+                "behaviour_logprob",
+                torch.tensor([0.0, float("inf")]),
+                ValueError,
+                "behaviour_logprob must be finite",
+            ),
+            ("value", torch.tensor([0, 0]), TypeError, "value must be floating"),
+            ("value", torch.tensor([0.0, float("nan")]), ValueError, "value must be finite"),
+            ("reward", torch.tensor([0.0]), ValueError, "reward shape"),
+            ("reward", torch.tensor([0.0, 0.5]), ValueError, "reward must contain only"),
+            ("done", torch.tensor([0, 0]), TypeError, "done must have dtype bool"),
+            ("actor", torch.tensor([0, 2]), ValueError, "actor must contain only"),
+            ("sigma", torch.tensor([1, 1]), TypeError, "sigma must have dtype int8"),
+            ("sigma", torch.tensor([1, 0], dtype=torch.int8), ValueError, "sigma must contain only"),
+            ("trainable", torch.tensor([1, 0]), TypeError, "trainable must have dtype bool"),
+            ("policy_id", ("current",), ValueError, "policy_id length"),
+            ("policy_id", ("current", ""), ValueError, "policy_id entries"),
+            ("policy_id", ("current", 3), TypeError, "policy_id entries"),
+            ("env_id", torch.tensor([1, 0]), ValueError, "env_id must equal"),
+            ("move_completed", torch.tensor([1, 1]), TypeError, "move_completed must have dtype bool"),
+        ],
+    )
+    def test_invalid_rollout_step_raises(
+        field: str,
+        value: object,
+        error: type[Exception],
+        message: str,
+    ) -> None:
+        buffer = RolloutBuffer(
+            num_envs=2,
+            num_steps=1,
+            observation_shape=(2,),
+            action_count=4,
+        )
+        step = replace(_step(), **{field: value})
+>       with pytest.raises(error, match=message):
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'value must be floating'
+E         Actual message: 'behaviour_logprob, value, and reward must be floating'
+
+tests/rl/test_buffer.py:231: AssertionError
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/rl/test_buffer.py::test_t8_full_chronology_drives_gae_before_trainable_filtering
+FAILED tests/rl/test_buffer.py::test_invalid_rollout_step_raises[value-value10-TypeError-value must be floating]
+2 failed, 39 passed, 1 warning in 2.23s

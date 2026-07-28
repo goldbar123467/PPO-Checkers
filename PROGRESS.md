@@ -16,9 +16,9 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Implement the full-chronology rollout buffer and its T8 RED oracles.
-2. Implement the exact GroupNorm residual policy/value network and N7 logit regression.
-3. Add PPO objectives only after buffer and network gates are independently green.
+1. Implement the exact GroupNorm residual policy/value network and N7 logit regression.
+2. Prove T1/T2 supervised capacity and T5 per-module gradient reachability.
+3. Add PPO objectives only after the network gate is independently green.
 
 ## Gate Evidence
 
@@ -119,11 +119,15 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   logits receive exact-zero gradient, and the sigma-degenerate path is bitwise equal to a separate
   conventional GAE loop. Evidence: `docs/PHASE6_TEST_MATRIX.md` and
   `logs/test-output/000066-*` through `000069-*`.
+- Phase 6 chronological buffer: T8 computes signed GAE over complete time-major vector lanes before
+  exposing trainable-only policy/value views. Stored masks and observations are cloned/detached;
+  stable environment IDs are enforced; a rollout ending mid-capture bootstraps with positive
+  perspective sign; finalization is one-use. The initial GREEN attempt caught and corrected a hand-
+  oracle sign and a mislabeled trainable fixture. The final gate passed 50 tests with all 211
+  statements and 96 branches covered. Evidence `logs/test-output/000070-*` through `000074-*`.
 
 ## Last Five Iterations
 
-- 000015: completed and fully branch-tested the powered Phase 5 evaluation stack and crash-safe
-  runner; corrected cross-match seed overlap before execution; `make check` passed 606+8 tests.
 - 000016: rejected a technically passing but semantically contradictory baseline report, isolated
   tactical tie-breaks per case, and made the depth-2 horizon regression explicit and diagnosed.
 - 000017: audited primary statistical sources, promoted five material limitations into the tested
@@ -132,6 +136,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   resume, published the sourced claim-bounded analysis, and completed the Phase 5 gate.
 - 000019: froze the Phase 6 oracle matrix and made masked sampling plus signed GAE green under 41
   focused tests at 100% statement/branch coverage.
+- 000020: implemented full-chronology lockstep rollout storage, proved trainable filtering occurs
+  only after GAE, and completed T8 at 100% focused statement/branch coverage.
 
 ## Open Risks
 
@@ -152,5 +158,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Write T8-first RED tests for chronological rollout storage, per-environment GAE adjacency,
-trainable-only optimization views, and correct mid-capture rollout-boundary bootstrapping.
+Write architecture-structural, batch-composition, N7 aliasing, output-range, orthogonal-init, and
+gradient-reachability RED tests for the exact GroupNorm residual policy/value network.
