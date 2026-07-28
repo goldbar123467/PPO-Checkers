@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/eval/test_statistics.py ________________
+ImportError while importing test module '/home/thecl/ml-lab/tests/eval/test_statistics.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/eval/test_statistics.py:11: in <module>
+    from checkers.eval.elo import EloEstimate, elo_difference, elo_estimate, expected_score
+E   ModuleNotFoundError: No module named 'checkers.eval.elo'
+=========================== short test summary info ============================
+ERROR tests/eval/test_statistics.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.13s
