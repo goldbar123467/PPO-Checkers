@@ -1,0 +1,87 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ml-lab"
+version = "0.1.0"
+description = "Reproducible single-GPU and ephemeral-cloud ML research laboratory"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "accelerate==1.14.0",
+  "bitsandbytes==0.50.0",
+  "datasets==5.0.0",
+  "evaluate==0.4.6",
+  "gymnasium==1.3.0",
+  "huggingface-hub==1.25.1",
+  "ipykernel==7.3.0",
+  "jupyterlab==4.6.2",
+  "kaggle==2.2.4",
+  "kagglehub==1.0.2",
+  "numpy==2.5.1",
+  "pandas==3.0.5",
+  "peft==0.19.1",
+  "protobuf==7.35.1",
+  "psutil==7.2.2",
+  "pynvml==13.0.1",
+  "pyyaml==6.0.3",
+  "rich==15.0.0",
+  "safetensors==0.8.0",
+  "scikit-learn==1.9.0",
+  "scipy==1.18.0",
+  "sentencepiece==0.2.2",
+  "tensorboard==2.21.0",
+  "tokenizers==0.22.2",
+  "torch==2.13.0",
+  "torchaudio==2.11.0",
+  "torchvision==0.28.0",
+  "transformers==5.14.1",
+  "trl==1.9.1",
+  "wandb==0.28.1",
+]
+
+[project.optional-dependencies]
+deepspeed = ["deepspeed==0.19.3"]
+
+[dependency-groups]
+dev = [
+  "hypothesis==6.161.8",
+  "mutmut==3.6.0",
+  "mypy==2.3.0",
+  "pre-commit==4.6.1",
+  "pytest==9.1.1",
+  "pytest-cov==7.1.0",
+  "pytest-xdist==3.8.0",
+  "ruff==0.16.0",
+  "types-psutil==7.2.2.20260518",
+  "types-PyYAML==6.0.12.20260724",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/checkers", "src/ml_lab"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = [".venv-train", ".venv-vllm", "cache", "models", "runs"]
+
+[tool.ruff.lint]
+select = ["ANN", "ARG", "B", "E", "ERA", "F", "I", "N", "PL", "PTH", "RET", "SIM", "UP", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-config --strict-markers --cov=checkers --cov-branch --cov-report=term-missing --cov-fail-under=92"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+exclude = "(^|/)(\\.venv-train|\\.venv-vllm|cache|models|runs)/"
+
+[tool.coverage.run]
+branch = true
+source = ["checkers"]
+
+[tool.coverage.report]
+fail_under = 92
+show_missing = true

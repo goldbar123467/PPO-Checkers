@@ -1,0 +1,20 @@
+Script started on 2026-07-27 22:27:42-04:00 [COMMAND="make lint" <not executed on terminal>]
+F401 [*] `os` imported but unused
+ --> src/checkers/_gate0_lint_probe.py:3:8
+  |
+1 | """Deliberate Gate 0 lint probe; removed immediately after evidence capture."""
+2 |
+3 | import os
+  |        ^^
+  |
+help: Remove unused import: `os`
+  |
+2 |
+  - import os
+  |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.
+make: *** [Makefile:31: lint] Error 1
+
+Script done on 2026-07-27 22:27:42-04:00 [COMMAND_EXIT_CODE="2"]

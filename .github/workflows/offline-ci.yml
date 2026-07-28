@@ -1,0 +1,37 @@
+name: Offline checkers gate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    env:
+      UV_PROJECT_ENVIRONMENT: .venv-train
+      WANDB_MODE: offline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.32"
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.3"
+      - name: Install locked dependencies before isolation
+        run: uv sync --locked --all-groups
+      - name: Run the gate inside an egress-blocked network namespace
+        run: |
+          sudo ip netns add checkers-offline
+          sudo ip netns exec checkers-offline ip link set lo up
+          sudo ip netns exec checkers-offline iptables -P OUTPUT DROP
+          sudo ip netns exec checkers-offline env \
+            PATH="$PATH" PYTHONPATH="$GITHUB_WORKSPACE/src" WANDB_MODE=offline make check
+      - name: Remove isolated namespace
+        if: always()
+        run: sudo ip netns delete checkers-offline || true

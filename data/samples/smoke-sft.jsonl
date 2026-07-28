@@ -1,0 +1,8 @@
+{"text":"Question: Why use a fixed random seed in an experiment?\nAnswer: A fixed seed makes randomized operations reproducible so repeated runs can be compared fairly."}
+{"text":"Question: What is a validation set?\nAnswer: It is held-out data used to tune choices without training on the final test set."}
+{"text":"Question: What does overfitting mean?\nAnswer: Overfitting means a model memorizes training patterns but generalizes poorly to new examples."}
+{"text":"Question: Why save a model checkpoint?\nAnswer: A checkpoint preserves training state so work can be inspected or resumed later."}
+{"text":"Question: What is gradient accumulation?\nAnswer: It combines gradients from several small batches before an optimizer step to simulate a larger batch."}
+{"text":"Question: What is LoRA?\nAnswer: LoRA trains small low-rank adapter matrices while keeping the base model weights frozen."}
+{"text":"Question: What is QLoRA?\nAnswer: QLoRA trains LoRA adapters while the frozen base model is loaded in low-bit quantized form."}
+{"text":"Question: Why keep a test set separate?\nAnswer: A separate test set provides a less biased estimate of performance after development decisions are complete."}

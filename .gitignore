@@ -1,0 +1,54 @@
+# Secrets (defense in depth)
+.env
+.env.*
+!.env.example
+.secrets/
+**/kaggle.json
+**/vast_api_key
+**/vast-api-key
+**/*vast*api*key*
+
+# Environments and Python output
+.venv/
+.venv-train/
+.venv-vllm/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+
+# Large or generated ML artifacts
+cache/
+data/raw/
+data/processed/
+models/base/
+models/merged/
+models/gguf/
+models/adapters/*
+!models/adapters/.gitkeep
+!models/adapters/smoke-test/
+models/adapters/smoke-test/*
+runs/checkpoints/
+runs/logs/
+runs/tensorboard/
+runs/remote/logs/
+runs/remote/recovered/
+wandb/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# Runtime state and editor files
+runs/
+runs/*.pid
+runs/*.log
+.DS_Store
+.idea/
+.vscode/

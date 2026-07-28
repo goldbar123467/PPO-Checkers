@@ -1,0 +1,1 @@
+"""Gymnasium-style checkers environments."""

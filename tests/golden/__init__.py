@@ -1,0 +1,1 @@
+"""Hand-verified golden fixtures."""

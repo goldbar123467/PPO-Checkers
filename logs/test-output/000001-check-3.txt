@@ -1,0 +1,7 @@
+Script started on 2026-07-27 22:26:58-04:00 [COMMAND="make check" <not executed on terminal>]
+7 files already formatted
+All checks passed!
+There are no .py[i] files in directory 'tests/rules'
+make: *** [Makefile:34: types] Error 2
+
+Script done on 2026-07-27 22:26:58-04:00 [COMMAND_EXIT_CODE="2"]

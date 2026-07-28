@@ -1,0 +1,11 @@
+# The remote worker runs the same src/ml_lab package as the local machine.
+run_kind: smoke
+profile: 4b-qlora-24gb
+training_config: configs/smoke-train.yaml
+accelerate_config: cloud/vast/accelerate/single-gpu.yaml
+remote_code_path: /workspace/ml-lab
+remote_data_path: /workspace/data
+remote_output_path: /workspace/runs/REPLACE_WITH_RUN_ID
+checkpoint_sync: manual
+require_local_smoke_pass: true
+require_remote_smoke_before_full: true

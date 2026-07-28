@@ -1,0 +1,44 @@
+model_name_or_path: HuggingFaceTB/SmolLM2-135M
+model_revision: main
+dataset: data/samples/smoke-sft.jsonl
+dataset_split: train
+mode: qlora
+load_in_4bit: true
+quant_type: nf4
+double_quant: true
+compute_dtype: bfloat16
+max_seq_length: 96
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules: all-linear
+learning_rate: 0.0002
+num_train_epochs: 1
+max_steps: 3
+warmup_ratio: 0.0
+weight_decay: 0.0
+logging_steps: 1
+eval_steps: 3
+save_steps: 3
+save_total_limit: 2
+optimizer: paged_adamw_8bit
+lr_scheduler_type: linear
+seed: 42
+validation_fraction: 0.0
+packing: false
+report_to:
+  - tensorboard
+run_name: smoke-qlora
+adapter_output_dir: models/adapters/smoke-test
+attn_implementation: sdpa
+verify_adapter_after_train: true
+generation_prompt: "Explain fixed random seeds in one sentence."
+generation_max_new_tokens: 12
+require_reviewed_data: false
+require_provenance: false
+distributed_backend: none
+

@@ -1,0 +1,36 @@
+Script started on 2026-07-27 22:26:40-04:00 [COMMAND="make check" <not executed on terminal>]
+unformatted: File would be reformatted
+   --> tests/test_phase0_scaffold.py:1:1
+    |
+75  |     }
+    -     missing = {target for target in targets if not re.search(rf"(?m)^{re.escape(target)}:", makefile)}
+76  +     missing = {
+77  +         target for target in targets if not re.search(rf"(?m)^{re.escape(target)}:", makefile)
+78  +     }
+79  |     assert not missing
+--------------------------------------------------------------------------------
+89  |     assert config["tool"]["mypy"]["strict"] is True
+    -     expected_lint = {"ANN", "ARG", "B", "E", "ERA", "F", "I", "N", "PL", "PTH", "RET", "SIM", "UP", "W"}
+90  +     expected_lint = {
+91  +         "ANN",
+92  +         "ARG",
+93  +         "B",
+94  +         "E",
+95  +         "ERA",
+96  +         "F",
+97  +         "I",
+98  +         "N",
+99  +         "PL",
+100 +         "PTH",
+101 +         "RET",
+102 +         "SIM",
+103 +         "UP",
+104 +         "W",
+105 +     }
+106 |     assert expected_lint <= set(config["tool"]["ruff"]["lint"]["select"])
+    |
+
+1 file would be reformatted, 6 files already formatted
+make: *** [Makefile:28: format-check] Error 1
+
+Script done on 2026-07-27 22:26:40-04:00 [COMMAND_EXIT_CODE="2"]

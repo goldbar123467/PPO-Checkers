@@ -1,0 +1,97 @@
+Script started on 2026-07-27 22:28:10-04:00 [COMMAND="make doctor" <not executed on terminal>]
+/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "bitsandbytes_smoke": {
+    "gradient_finite": true,
+    "operation": "Linear4bit NF4 forward/backward",
+    "output_device": "cuda:0",
+    "passed": true,
+    "version": "0.50.0"
+  },
+  "checks": {
+    "bf16": true,
+    "bitsandbytes": true,
+    "cuda": true,
+    "sm_120": true
+  },
+  "cuda_smoke": {
+    "backward_succeeded": true,
+    "bf16": {
+      "passed": true,
+      "tested": true
+    },
+    "gradients_finite": true,
+    "output_device": "cuda:0",
+    "passed": true,
+    "peak_allocated_bytes": 95420928,
+    "peak_reserved_bytes": 113246208
+  },
+  "disk": {
+    "filesystem_free_bytes": 973080928256,
+    "filesystem_total_bytes": 1081101176832,
+    "lab_usage_bytes": 15230616397
+  },
+  "lab_path": "/home/thecl/ml-lab",
+  "ollama": {
+    "available": true,
+    "exit_code": 0,
+    "version": "Warning: could not connect to a running Ollama instance"
+  },
+  "overall_passed": true,
+  "packages": {
+    "accelerate": "1.14.0",
+    "bitsandbytes": "0.50.0",
+    "datasets": "5.0.0",
+    "huggingface-hub": "1.25.1",
+    "kaggle": "2.2.4",
+    "kagglehub": "1.0.2",
+    "peft": "0.19.1",
+    "torch": "2.13.0",
+    "torchaudio": "2.11.0",
+    "torchvision": "0.28.0",
+    "transformers": "5.14.1",
+    "trl": "1.9.1"
+  },
+  "python": {
+    "executable": "/home/thecl/ml-lab/.venv-train/bin/python",
+    "version": "3.12.3"
+  },
+  "pytorch": {
+    "available": true,
+    "cuda_available": true,
+    "cuda_runtime": "13.0",
+    "cudnn_version": 92000,
+    "gpu": {
+      "bf16_supported": true,
+      "compiled_architectures": [
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_90",
+        "sm_100",
+        "sm_120"
+      ],
+      "compute_capability": [
+        12,
+        0
+      ],
+      "free_vram_bytes": 11552161792,
+      "name": "NVIDIA GeForce RTX 5070",
+      "total_vram_bytes": 12820480000
+    },
+    "tf32": {
+      "cudnn_allow_tf32": true,
+      "matmul_allow_tf32": false
+    },
+    "version": "2.13.0+cu130"
+  },
+  "timestamp": "2026-07-28T02:28:10+00:00",
+  "vllm": {
+    "available": true,
+    "exit_code": 0,
+    "version": "0.26.0"
+  }
+}
+
+Script done on 2026-07-27 22:28:16-04:00 [COMMAND_EXIT_CODE="0"]

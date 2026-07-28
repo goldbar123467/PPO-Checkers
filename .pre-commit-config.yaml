@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: make lint
+        language: system
+        pass_filenames: false
+      - id: ruff-format-check
+        name: ruff format check
+        entry: make format-check
+        language: system
+        pass_filenames: false
+      - id: checkers-types
+        name: checkers mypy strict
+        entry: make types
+        language: system
+        pass_filenames: false
+      - id: checkers-tests
+        name: checkers test suite
+        entry: make test
+        language: system
+        pass_filenames: false

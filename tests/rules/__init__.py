@@ -1,0 +1,1 @@
+"""American Checkers rules tests."""

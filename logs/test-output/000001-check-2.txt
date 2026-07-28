@@ -1,0 +1,28 @@
+Script started on 2026-07-27 22:26:48-04:00 [COMMAND="make check" <not executed on terminal>]
+7 files already formatted
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_phase0_scaffold.py:3:1
+  |
+1 |   """Phase 0 scaffold contract derived from GOAL.md §§0.3, 12.9-12.11, and 14."""
+2 |
+3 | / from __future__ import annotations
+4 | |
+5 | | import hashlib
+6 | | import importlib
+7 | | import re
+8 | | import tomllib
+9 | | from pathlib import Path
+  | |________________________^
+  |
+help: Organize imports
+   |
+10 |
+   -
+11 | ROOT = Path(__file__).resolve().parents[1]
+   |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.
+make: *** [Makefile:31: lint] Error 1
+
+Script done on 2026-07-27 22:26:48-04:00 [COMMAND_EXIT_CODE="2"]

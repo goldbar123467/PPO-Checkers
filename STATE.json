@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "goal_sha256": "dab54331c088a201c1e43e0743866e1780aa84e3b0868b0b7cce34271c17660f",
+  "iteration": 1,
+  "current_phase": 1,
+  "git_sha": null,
+  "updated_at": "2026-07-27T22:28:45-04:00",
+  "phases": {
+    "0": {"name": "Scaffolding", "status": "GREEN", "gate_log": "logs/gates/phase-0.txt", "gate_exit_code": 0},
+    "1": {"name": "Rules verification", "status": "IN_PROGRESS", "gate_log": null, "gate_exit_code": null},
+    "2": {"name": "State model, board, move generation", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "3": {"name": "Terminal conditions and hashing", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "4": {"name": "Environment, encoding, masking", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "5": {"name": "Baselines and arena", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "6": {"name": "RL core, verified offline", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "7": {"name": "Self-play loop and W&B", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "8": {"name": "Ablations and full runs", "status": "PENDING", "gate_log": null, "gate_exit_code": null},
+    "9": {"name": "Optional post-acceptance work", "status": "PENDING", "gate_log": null, "gate_exit_code": null}
+  }
+}

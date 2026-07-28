@@ -1,0 +1,8 @@
+# Example constraints only. This file is never submitted directly and creates nothing.
+profile: 4b-qlora-24gb
+offer_id: REPLACE_WITH_OFFER_ID
+maximum_hourly_usd: 0.75
+maximum_runtime_hours: 2
+accept_cost: false
+execute: false
+notes: Review host reliability, network, CUDA, storage, and GPU details before accepting cost.
