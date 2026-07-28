@@ -36,6 +36,11 @@
   paths complete T7 and kill the missing-recursive-sign negative control. The consolidated gate
   passes 760 tests plus eight properties with 100% of 3,842 statements/1,358 branches. See
   `reports/phase6_rl_core_analysis.md` and `logs/gates/phase-6.txt`.
+- Gate 7 focused engineering is GREEN; the timed three-seed rows remain pending. Same-stack CUDA
+  resume, real W&B offline persistence, append-only JSONL, learned-policy anchors/payoff tables,
+  trained best-response measurement, versioned artifacts, and checkpoint reload all have tests.
+  A five-minute CUDA setup validation completed 49 updates without a hard alert. The pre-timed
+  `make check` passed 889 tests at 93.88% total coverage; see `000114`–`000119`.
 
 ## Known Failures and Root Causes
 
@@ -59,6 +64,7 @@
 ## Open Risks
 
 - Total acceptance volume exceeded 400 at Gate 5; a final consolidated count remains required.
-- Training, self-play, W&B, and full-budget ablations remain unrun and must not be described as
-  completed. The powered fixed-agent baseline arena is complete.
+- Three 1,800-second Phase 7 seeds and every Phase 8 ablation/full-budget experiment remain unrun
+  and must not be described as completed. The fixed-agent arena and five-minute setup smoke are
+  complete.
 - Clean-clone egress-blocked verification remains a final acceptance item.

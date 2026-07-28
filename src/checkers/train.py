@@ -484,3 +484,11 @@ class TrainingSession:
             learning_rate=self._last_learning_rate,
             entropy_coefficient=self._last_entropy_coefficient,
         )
+
+    def check_evaluation_alerts(self, metrics: dict[str, float]) -> None:
+        """Apply evaluation-only hard alerts at the current schedule boundary."""
+
+        self._alerts.check_evaluation(
+            metrics=metrics,
+            progress=schedule_progress(self.config, self.state),
+        )

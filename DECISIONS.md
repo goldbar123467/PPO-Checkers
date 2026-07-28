@@ -490,3 +490,30 @@
   95.26% total coverage; CUDA resume and real W&B offline evidence remain pending.
 - Evidence: `tests/integration/test_resume_training.py`, `tests/test_checkpoint.py`, and
   `logs/test-output/000105-*` through `000113-*`.
+
+## ADR-032 — Keep evaluation RNG-neutral and make exploitability a trained measurement
+
+- Status: Accepted Phase 7 instrumentation; timed evidence pending.
+- Authority: `GOAL.md` §§11.2–11.5 and 13; Huang et al. 2022 is Tier B for PPO implementation
+  details, while the short-budget proxy budget is a documented project operational choice.
+- Decision: run a private two-game diagnostic at each `eval_every` boundary and reserve the
+  predeclared 364-game colour-balanced schedule for final inference. Evaluation deep-copies the
+  pinned initial network without constructing random weights and uses private per-agent generators,
+  so it does not advance training RNG streams. Periodic exploitability is explicitly numeric `-1`
+  with status `NOT_EVALUATED`, never a heuristic substitute.
+- Best response: at final evaluation, deep-copy the frozen candidate, alternate which colour the
+  clone controls for 16 complete games, and update only the clone with terminal-only REINFORCE,
+  gamma one, no shaping, Adam at the run learning rate, and global norm clipping. Hash the frozen
+  model before/after, then measure greedy clone versus frozen policy in a separate powered balanced
+  match. Report score, CI, decisions, optimizer steps, and both hashes; do not call this an exact
+  game-theoretic exploitability value.
+- Logging: mirror every scalar record append-only to fsync-backed JSONL, keep W&B offline steps
+  monotonic across periodic-evaluation checkpoints, and log the final checkpoint/sidecar/config/
+  evaluation/history/checklist as a versioned W&B artifact. Preserve replayable ACF moves and raw
+  action IDs in game tables.
+- Validation: CPU and CUDA evaluation preserve the candidate weights/mode and global Torch RNG. A
+  CUDA setup proxy used 16 games, 654 candidate decisions, 14 optimizer steps, and left the frozen
+  digest unchanged. The five-minute end-to-end smoke and 889-test gate pass; powered seed results
+  remain pending.
+- Evidence: `tests/eval/test_best_response.py`, `tests/eval/test_policy_eval.py`,
+  `tests/integration/test_train_cli.py`, `docs/PPO_CHECKLIST.md`, and logs `000114`–`000119`.

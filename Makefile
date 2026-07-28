@@ -5,11 +5,12 @@ LAB := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 TRAIN_PY := $(LAB)/.venv-train/bin/python
 TRAIN_BIN := $(LAB)/.venv-train/bin
 VLLM_BIN := $(LAB)/.venv-vllm/bin
-CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/rules tests/env \
+CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/test_checkpoint.py \
+	tests/test_logging_wandb.py tests/test_metric_history.py tests/rules tests/env tests/agents \
 	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
 	scripts/build_published_transcripts.py scripts/differential_rules.py \
 	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py \
-	scripts/evaluate_baselines.py
+	scripts/evaluate_baselines.py scripts/train.py
 MODEL ?=
 PORT ?= 8000
 export PYTHONPATH := $(LAB)/src

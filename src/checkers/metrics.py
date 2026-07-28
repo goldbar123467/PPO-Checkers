@@ -461,3 +461,19 @@ class TrainingAlertMonitor:
             and self._metric(metrics, "eval/vs_random") < RANDOM_SCORE_FLOOR
         ):
             raise TrainingHaltError("eval/vs_random fell below 0.6 after 20% of training")
+
+    def check_evaluation(self, *, metrics: Mapping[str, float], progress: float) -> None:
+        """Apply evaluation-only alerts without double-counting update-health streaks."""
+
+        if not isinstance(metrics, Mapping):
+            raise TypeError("metrics must be a mapping")
+        if isinstance(progress, bool) or not isinstance(progress, (int, float)):
+            raise TypeError("progress must be numeric")
+        checked_progress = float(progress)
+        if not math.isfinite(checked_progress) or not 0.0 <= checked_progress <= 1.0:
+            raise ValueError("progress must be finite and in [0, 1]")
+        if (
+            checked_progress > RANDOM_ALERT_START_FRACTION
+            and self._metric(metrics, "eval/vs_random") < RANDOM_SCORE_FLOOR
+        ):
+            raise TrainingHaltError("eval/vs_random fell below 0.6 after 20% of training")

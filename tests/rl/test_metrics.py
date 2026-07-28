@@ -223,6 +223,19 @@ def test_m2_alert_threshold_boundaries_do_not_halt() -> None:
     assert monitor.negative_explained_variance_streak == 0
 
 
+def test_m2_evaluation_alert_does_not_double_count_value_streak() -> None:
+    monitor = TrainingAlertMonitor(target_kl=0.02)
+    metrics = _healthy_metrics()
+    metrics["train/explained_variance"] = -0.1
+    monitor.check(metrics=metrics, progress=0.21)
+
+    monitor.check_evaluation(metrics={"eval/vs_random": 0.6}, progress=0.21)
+
+    assert monitor.negative_explained_variance_streak == 1
+    with pytest.raises(TrainingHaltError, match="vs_random"):
+        monitor.check_evaluation(metrics={"eval/vs_random": 0.599}, progress=0.21)
+
+
 def test_m2_entropy_alert_ignores_batches_with_no_choice_states() -> None:
     monitor = TrainingAlertMonitor(target_kl=0.02)
     metrics = _healthy_metrics()

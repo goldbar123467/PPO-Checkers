@@ -115,6 +115,8 @@ class RunConfig:
     eval_every: int = 10
     checkpoint_every: int = 10
     eval_games: int = 364
+    periodic_eval_games: int = 2
+    exploitability_train_games: int = 16
     amp_dtype: str = "float32"
     include_opponent_value_loss: bool = False
     wandb_mode: str = "offline"
@@ -197,6 +199,14 @@ class RunConfig:
         eval_games = _positive_integer(self.eval_games, "eval_games")
         if eval_games % 2:
             raise ValueError("eval_games must be even for colour balance")
+        periodic_eval_games = _positive_integer(self.periodic_eval_games, "periodic_eval_games")
+        if periodic_eval_games % 2:
+            raise ValueError("periodic_eval_games must be even for colour balance")
+        exploitability_train_games = _positive_integer(
+            self.exploitability_train_games, "exploitability_train_games"
+        )
+        if exploitability_train_games % 2:
+            raise ValueError("exploitability_train_games must be even for colour balance")
         _choice(self.amp_dtype, "amp_dtype", AMP_DTYPES)
         if not isinstance(self.include_opponent_value_loss, bool):
             raise TypeError("include_opponent_value_loss must be bool")

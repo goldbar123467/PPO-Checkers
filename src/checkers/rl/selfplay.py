@@ -260,8 +260,8 @@ class SelfPlayCollector:
         if config.arm != "A0":
             raise NotImplementedError("SelfPlayCollector currently implements the Phase 7 A0 arm")
         self._config = config
-        self._device = torch.device(config.device)
-        self._network = network.to(self._device)
+        self._network = network.to(torch.device(config.device))
+        self._device = next(self._network.parameters()).device
         self._vector_env = CheckersVectorEnv(
             config.num_envs,
             max_plies=config.max_plies,
@@ -372,8 +372,8 @@ class SelfPlayCollector:
 
         instance = cls.__new__(cls)
         instance._config = config
-        instance._device = torch.device(config.device)
-        instance._network = network.to(instance._device)
+        instance._network = network.to(torch.device(config.device))
+        instance._device = next(instance._network.parameters()).device
         instance._vector_env = vector_env
         instance._episode_indices = episode_indices
         instance._active_games = active_games

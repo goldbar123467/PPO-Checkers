@@ -8,16 +8,16 @@ Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
 source-correct portion. Phases 5 and 6 are GREEN.
 
-Work label: Phase 7 baseline implementation before an end-to-end offline smoke.
+Work label: Phase 7 timed three-seed baseline after successful CUDA setup validation.
 
-Engineering objective: implement the resumable self-play/league/trainer/W&B path, then prove it
-with small end-to-end validation before any 30-minute smoke or powered learned-policy evaluation.
+Engineering objective: run three independently seeded A0 baselines for at least 1,800 measured
+training seconds each, then audit the powered evaluations and checkpoint reloads against Gate 7.
 
 ## In Flight
 
-1. Complete real offline W&B integration and the tiny CPU/CUDA CLI smoke.
-2. Prove same-stack CUDA resume tolerance and close new-module validation branches.
-3. Implement learned-policy dev evaluation, then run the three timed seeds.
+1. Commit the fully green Phase 7 runner and immutable seed configurations.
+2. Run seeds 0, 1, and 2 sequentially on the single RTX 5070 without changing A0.
+3. Consolidate 364-game results, mask counters, metric completeness, and artifact reload evidence.
 
 ## Gate Evidence
 
@@ -170,11 +170,26 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   tracked-file credential scan are green; the real offline run remains pending. The intermediate
   full suite passes 872 tests at 95.26% total coverage. Evidence `logs/test-output/000105-*`
   through `000113-*`.
+- Phase 7 CUDA/offline completion: the first RTX resume run found a `cuda` versus `cuda:0` tensor-
+  ownership defect; the permanent test then passed CPU bitwise and same-stack CUDA tolerance over
+  updates 2–11. A real offline W&B run records all 55 keys. The CLI now mirrors scalars to an
+  fsync-backed monotonic JSONL history, writes periodic/final evaluation JSON, records literal
+  payoff and replayable ACF game tables, trains a 16-game alternating-colour no-shaping best
+  response against the frozen final checkpoint, and logs a versioned final artifact. Evidence
+  `logs/test-output/000114-*` through `000117-*`.
+- Phase 7 CUDA setup validation: 49 updates / 401,408 transitions, 305.202 training seconds,
+  316.890 wall seconds, exit 0. Checkpoints and periodic evaluations persisted at updates
+  10/20/30/40; all 55 metrics were observed; final game rows included win/loss/draw; the SHA sidecar
+  matched and a clean reload selected a legal opening action. The two-game anchor is explicitly
+  unpowered and not Gate-7 performance evidence. Evidence `logs/test-output/000118-*` and
+  `000120-phase7-setup-artifact-reload.txt`; this legacy setup artifact predates the final
+  exploitability-budget config field and is not a resumable timed-seed checkpoint.
+- Phase 7 pre-timed consolidated gate: `make check`, exit 0; 889 passed, none skipped/xfailed;
+  Ruff format/lint and strict mypy clean; total coverage 93.88%; eight property/fuzz tests pass.
+  Evidence `logs/test-output/000119-phase7-full-check-first.txt`.
 
 ## Last Five Iterations
 
-- 000023: unified deterministic seeding and proved ten-update D2 CPU bitwise reproduction plus D3
-  same-RTX tolerance and native BF16 masking against a fully recorded reference stack.
 - 000024: froze three uniquely forced 3/5/7-step engine trajectories, proved exact actor-frame T7
   targets, and killed a deliberately injected missing-recursive-sign defect.
 - 000025: passed the consolidated 760+8-test Gate 6 at 100% coverage, measured the CUDA memory
@@ -184,6 +199,9 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
 - 000027: implemented self-play, all metric/alert formulas, exact PPO epoch consumption, offline
   logging contracts, atomic weights-only checkpoints, and bitwise 10-update CPU resume from a
   mid-capture lane; the first full integration run passed 872 tests.
+- 000028: fixed the CUDA device-identity defect; proved same-stack resume; completed real offline
+  W&B, learned-policy evaluation, frozen-opponent best response, JSONL history, artifact logging,
+  a five-minute CUDA smoke, and the 889-test pre-timed gate.
 
 ## Open Risks
 
@@ -197,11 +215,12 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   sequence origin, both counters, and ply.
 - BLOCK-006 is resolved: the earlier phase-order defect remains documented and the Phase 6 N7
   different-logits test now passes against the exact implemented network.
-- Exploitability-proxy evidence correctly remains unavailable until a trained Phase 7 best response
-  exists; Phase 5 reports `NOT_EVALUATED` rather than substituting a heuristic.
+- The best-response proxy is now genuinely trained and measured at final evaluation; periodic
+  diagnostics retain the explicit `NOT_EVALUATED=-1` sentinel. No proxy score exists yet for the
+  three timed seeds.
 - Test volume is 608 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
   276 substantive rules/environment tests exceed that category's ≥250 requirement.
 
 ## Next Step
 
-Run the same-stack CUDA resume oracle, then connect the real offline W&B run and tiny CLI smoke.
+Commit the clean runner, then execute the three 1,800-second seed configurations sequentially.

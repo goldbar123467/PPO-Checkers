@@ -38,6 +38,8 @@ def _config(**overrides: object) -> RunConfig:
         "num_minibatches": 4,
         "update_epochs": 2,
         "eval_games": 364,
+        "periodic_eval_games": 2,
+        "exploitability_train_games": 16,
     }
     values.update(overrides)
     return RunConfig(**values)  # type: ignore[arg-type]
@@ -93,6 +95,8 @@ def test_c1_run_config_is_frozen_typed_and_derives_exact_batch_sizes() -> None:
         ({"eval_every": 0}, ValueError, "eval_every"),
         ({"checkpoint_every": 0}, ValueError, "checkpoint_every"),
         ({"eval_games": 363}, ValueError, "eval_games"),
+        ({"periodic_eval_games": 3}, ValueError, "periodic_eval_games"),
+        ({"exploitability_train_games": 3}, ValueError, "exploitability_train_games"),
         ({"amp_dtype": "float16"}, ValueError, "amp_dtype"),
         ({"include_opponent_value_loss": 1}, TypeError, "include_opponent_value_loss"),
         ({"wandb_mode": "online"}, ValueError, "wandb_mode"),

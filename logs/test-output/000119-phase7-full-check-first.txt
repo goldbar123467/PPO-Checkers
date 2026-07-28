@@ -1,0 +1,139 @@
+116 files already formatted
+All checks passed!
+Success: no issues found in 116 source files
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/thecl/ml-lab
+configfile: pyproject.toml
+testpaths: tests
+plugins: xdist-3.8.0, hypothesis-6.161.8, cov-7.1.0, anyio-4.14.2
+collected 889 items
+
+tests/agents/test_policy_agent.py ....                                   [  0%]
+tests/env/test_actions.py ......................                         [  2%]
+tests/env/test_encoding.py ..........                                    [  4%]
+tests/env/test_environment.py ..........................                 [  6%]
+tests/env/test_fuzz_harness.py ........                                  [  7%]
+tests/env/test_serialization.py .....................................    [ 12%]
+tests/env/test_vec_env.py ...............................                [ 15%]
+tests/eval/test_agents.py .........................                      [ 18%]
+tests/eval/test_arena.py .............................................   [ 23%]
+tests/eval/test_baseline_cli.py ....                                     [ 23%]
+tests/eval/test_baseline_eval.py ....................................... [ 28%]
+.....................                                                    [ 30%]
+tests/eval/test_baseline_run.py ...................                      [ 32%]
+tests/eval/test_best_response.py .                                       [ 32%]
+tests/eval/test_policy_eval.py .                                         [ 32%]
+tests/eval/test_population.py .......................................... [ 37%]
+...........                                                              [ 38%]
+tests/eval/test_statistics.py .......................................    [ 43%]
+tests/eval/test_suites.py ...............................                [ 46%]
+tests/eval/test_tactical_generator.py ..........                         [ 47%]
+tests/golden/test_external_perft.py .                                    [ 48%]
+tests/golden/test_published_transcripts.py .....................         [ 50%]
+tests/integration/test_resume_training.py ..                             [ 50%]
+tests/integration/test_rule_mutation_challenges.py .                     [ 50%]
+tests/integration/test_train_cli.py .                                    [ 50%]
+tests/metamorphic/test_rules_symmetry.py ..                              [ 51%]
+tests/property/test_rules_properties.py ..                               [ 51%]
+tests/rl/test_buffer.py ................................................ [ 56%]
+..                                                                       [ 56%]
+tests/rl/test_determinism.py .............                               [ 58%]
+tests/rl/test_forced_mate_targets.py ....                                [ 58%]
+tests/rl/test_gae.py ...........................                         [ 61%]
+tests/rl/test_league.py ...........................                      [ 64%]
+tests/rl/test_masked_categorical.py ..............                       [ 66%]
+tests/rl/test_metrics.py .................                               [ 68%]
+tests/rl/test_networks.py .............                                  [ 69%]
+tests/rl/test_ppo.py ...............................                     [ 73%]
+tests/rl/test_selfplay.py ...                                            [ 73%]
+tests/rl/test_train.py ...                                               [ 74%]
+tests/rl/test_training_config.py ....................................... [ 78%]
+...................                                                      [ 80%]
+tests/rules/test_board.py ..........                                     [ 81%]
+tests/rules/test_captures.py ..........                                  [ 82%]
+tests/rules/test_differential.py .........                               [ 83%]
+tests/rules/test_moves.py .............                                  [ 85%]
+tests/rules/test_notation.py .............................               [ 88%]
+tests/rules/test_oracle.py ........                                      [ 89%]
+tests/rules/test_promotion.py ...                                        [ 89%]
+tests/rules/test_rule_traceability.py .....                              [ 90%]
+tests/rules/test_state.py .........................                      [ 93%]
+tests/rules/test_terminal.py ...................                         [ 95%]
+tests/rules/test_zobrist.py ...........                                  [ 96%]
+tests/test_checkpoint.py ....                                            [ 96%]
+tests/test_config.py ...                                                 [ 97%]
+tests/test_gsm8k_eval.py .                                               [ 97%]
+tests/test_logging_wandb.py .......                                      [ 98%]
+tests/test_metric_history.py .                                           [ 98%]
+tests/test_phase0_scaffold.py ......                                     [ 98%]
+tests/test_run_metadata.py .                                             [ 99%]
+tests/test_synthgsm8k.py ........                                        [100%]
+
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                                    Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------------
+src/checkers/__init__.py                    1      0      0      0   100%
+src/checkers/agents/__init__.py             0      0      0      0   100%
+src/checkers/agents/base.py                16      0      4      0   100%
+src/checkers/agents/greedy_agent.py        33      0      4      0   100%
+src/checkers/agents/minimax_agent.py      107      0     24      0   100%
+src/checkers/agents/policy_agent.py        45      2     14      2    93%   40, 42
+src/checkers/agents/random_agent.py        14      0      2      0   100%
+src/checkers/checkpoint.py                283     53    122     51    74%   102, 104, 110, 113, 150, 176, 179, 181, 183, 205, 207, 277, 279, 281, 283, 285, 287, 289, 307, 310, 319, 322, 327, 333, 338, 342, 345, 369, 373, 375, 378, 381, 406, 410, 416, 422, 426, 429, 435, 439-440, 444, 453, 471, 473, 475, 477, 481, 483, 492, 497, 499, 507
+src/checkers/config.py                    185      0     54      0   100%
+src/checkers/env/__init__.py                0      0      0      0   100%
+src/checkers/env/checkers_env.py          182      0     46      0   100%
+src/checkers/env/encoding.py               44      0     12      0   100%
+src/checkers/env/masking.py                71      0     20      0   100%
+src/checkers/env/serialize.py             124      0     68      0   100%
+src/checkers/env/vec_env.py               135      0     46      0   100%
+src/checkers/eval/__init__.py               0      0      0      0   100%
+src/checkers/eval/arena.py                245      0     84      0   100%
+src/checkers/eval/baseline_eval.py        391      0    140      0   100%
+src/checkers/eval/baseline_run.py         164      0     66      0   100%
+src/checkers/eval/best_response.py        128     15     40     15    82%   43, 45, 51, 54, 60, 62, 145, 194, 201, 203, 205, 208, 210, 238, 267
+src/checkers/eval/elo.py                   53      0     30      0   100%
+src/checkers/eval/policy_eval.py          116     13     40     13    83%   38, 40, 43, 46, 49, 55, 203, 205, 207, 209, 211, 213, 215
+src/checkers/eval/population.py           361      0    140      0   100%
+src/checkers/eval/power.py                119      0     32      0   100%
+src/checkers/eval/suites.py               412      0    164      0   100%
+src/checkers/logging_wandb.py             180     31     78     29    77%   120, 122, 127, 129, 160, 162, 189, 191, 193, 208, 210, 213, 215, 241, 243, 245, 247, 255, 257, 265, 281, 283, 285, 287, 289, 311, 314, 336, 338, 346-347
+src/checkers/metric_history.py             66     14     32     12    73%   20, 23-24, 26, 35, 44, 46, 48, 55, 73, 75, 77, 79, 81
+src/checkers/metrics.py                   244     44    122     44    76%   106, 108, 110, 112, 125, 127, 146, 148, 150, 152, 154, 174, 176, 207, 209, 246, 248, 250, 252, 254, 256, 258, 266, 268, 308, 310, 312, 320, 322, 324, 327, 329, 353, 361, 407, 410, 416, 419, 426, 428, 431, 469, 471, 474
+src/checkers/rl/__init__.py                 0      0      0      0   100%
+src/checkers/rl/buffer.py                 211      0     96      0   100%
+src/checkers/rl/determinism.py             68      0     16      0   100%
+src/checkers/rl/gae.py                     65      0     34      0   100%
+src/checkers/rl/league.py                 173      0     90      0   100%
+src/checkers/rl/masked_categorical.py      45      0     18      0   100%
+src/checkers/rl/networks.py               103      0     12      0   100%
+src/checkers/rl/ppo.py                    164      0     56      0   100%
+src/checkers/rl/selfplay.py               311     47    116     45    78%   82, 84, 90, 94, 97, 104, 107, 113, 125, 128, 132, 135, 138-139, 156, 174, 177, 180, 204, 207, 212, 214, 216, 257, 259, 261, 272, 326, 328, 330, 332, 335, 337, 340, 343, 349, 353, 356, 359, 361, 365, 371, 405, 418, 495, 527, 564
+src/checkers/rules/__init__.py              0      0      0      0   100%
+src/checkers/rules/board.py                32      0      8      0   100%
+src/checkers/rules/differential.py        109      0     26      0   100%
+src/checkers/rules/moves.py               153      0     42      0   100%
+src/checkers/rules/notation.py             65      0     22      0   100%
+src/checkers/rules/oracle.py               74      0     30      0   100%
+src/checkers/rules/state.py               115      0     42      0   100%
+src/checkers/rules/terminal.py             62      0     32      0   100%
+src/checkers/rules/zobrist.py             104      0     42      0   100%
+src/checkers/schedules.py                  22      0      6      0   100%
+src/checkers/train.py                     197     18     46     17    86%   72, 75, 105, 107, 109, 111, 134, 148, 178, 186, 302, 355, 375, 407, 412, 419, 435, 491
+src/checkers/trainer_state.py              82      0     30      0   100%
+src/checkers/training_cli.py              156     22     42     16    81%   56, 58, 65, 80, 207, 209, 211, 218-219, 256, 266->275, 275->251, 286, 287->294, 323->325, 326->328, 350, 394-407, 413-433
+-----------------------------------------------------------------------------------
+TOTAL                                    6030    259   2190    244    94%
+Required test coverage of 92% reached. Total coverage: 93.88%
+================== 889 passed, 1 warning in 141.25s (0:02:21) ==================
+........                                                                 [100%]
+8 passed in 7.90s

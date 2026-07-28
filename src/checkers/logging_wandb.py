@@ -22,6 +22,32 @@ from checkers.trainer_state import TrainerState
 
 PROJECT_NAME = "checkers-ppo"
 PROVENANCE_PREFIX = "provenance/"
+PAYOFF_TABLE_COLUMNS = (
+    "row_agent",
+    "column_agent",
+    "wins",
+    "draws",
+    "losses",
+    "games",
+    "score",
+)
+GAME_TABLE_COLUMNS = (
+    "match",
+    "game_index",
+    "perspective_agent",
+    "perspective_result",
+    "red_agent",
+    "white_agent",
+    "winner",
+    "termination_reason",
+    "steps",
+    "completed_moves",
+    "moves",
+    "actions",
+    "red_seed",
+    "white_seed",
+    "environment_seed",
+)
 CREDENTIAL_FILENAMES = frozenset(
     {
         ".env",
@@ -52,6 +78,8 @@ class _Run(Protocol):
 
     def finish(self, *, exit_code: int = 0) -> None: ...
 
+    def log_artifact(self, artifact: wandb.Artifact) -> object: ...
+
 
 @dataclass(frozen=True, slots=True)
 class RunMetadata:
@@ -80,6 +108,39 @@ class CredentialFinding:
 
     path: Path
     reason: str
+
+
+def _table(
+    rows: tuple[dict[str, object], ...],
+    *,
+    columns: tuple[str, ...],
+    name: str,
+) -> wandb.Table:
+    if not isinstance(rows, tuple):
+        raise TypeError(f"{name} rows must be a tuple")
+    if not rows:
+        raise ValueError(f"{name} rows must not be empty")
+    data: list[list[object]] = []
+    expected = set(columns)
+    for row in rows:
+        if not isinstance(row, dict):
+            raise TypeError(f"{name} rows must contain mappings")
+        if set(row) != expected:
+            raise ValueError(f"{name} row fields are invalid")
+        data.append([row[column] for column in columns])
+    return wandb.Table(columns=list(columns), data=data)
+
+
+def payoff_matrix_table(rows: tuple[dict[str, object], ...]) -> wandb.Table:
+    """Build a literal W/D/L payoff table without reducing its cells to scalar Elo."""
+
+    return _table(rows, columns=PAYOFF_TABLE_COLUMNS, name="payoff matrix")
+
+
+def game_table(rows: tuple[dict[str, object], ...]) -> wandb.Table:
+    """Build a replayable human-readable table of ACF moves and action IDs."""
+
+    return _table(rows, columns=GAME_TABLE_COLUMNS, name="game")
 
 
 def _git_output(repository: Path, *arguments: str) -> str:
@@ -166,6 +227,37 @@ class WandbLogger:
         if missing:
             raise RuntimeError(f"missing required metrics: {sorted(missing)}")
 
+    def log_artifact(
+        self,
+        *,
+        name: str,
+        artifact_type: str,
+        files: tuple[Path, ...],
+        metadata: Mapping[str, object],
+    ) -> None:
+        """Log one immutable versioned offline artifact from explicit existing files."""
+
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("artifact name must be non-empty text")
+        if not isinstance(artifact_type, str) or not artifact_type.strip():
+            raise ValueError("artifact_type must be non-empty text")
+        if not isinstance(files, tuple) or not files:
+            raise ValueError("artifact files must be a non-empty tuple")
+        if not isinstance(metadata, Mapping):
+            raise TypeError("artifact metadata must be a mapping")
+        artifact = wandb.Artifact(
+            name=name.strip(),
+            type=artifact_type.strip(),
+            metadata=dict(metadata),
+        )
+        for path in files:
+            if not isinstance(path, Path):
+                raise TypeError("artifact files must contain Paths")
+            if not path.is_file():
+                raise ValueError(f"artifact file does not exist: {path}")
+            artifact.add_file(str(path), name=path.name)
+        self._run.log_artifact(artifact)
+
     def finish(self, *, exit_code: int) -> None:
         """Finish the local/offline W&B run with its actual process outcome."""
 
@@ -174,12 +266,13 @@ class WandbLogger:
         self._run.finish(exit_code=exit_code)
 
 
-def create_wandb_logger(
+def create_wandb_logger(  # noqa: PLR0913
     *,
     config: RunConfig,
     state: TrainerState,
     metadata: RunMetadata,
     stamp: str,
+    directory: Path | None = None,
     run_factory: Callable[..., object] | None = None,
 ) -> WandbLogger:
     """Initialize an offline-capable run with exact naming, tags, config, and resume ID."""
@@ -192,6 +285,8 @@ def create_wandb_logger(
         raise TypeError("metadata must be RunMetadata")
     if not isinstance(stamp, str) or not stamp:
         raise ValueError("stamp must be non-empty text")
+    if directory is not None and not isinstance(directory, Path):
+        raise TypeError("directory must be a Path or None")
     factory = cast(Callable[..., object], wandb.init) if run_factory is None else run_factory
     arguments: dict[str, object] = {
         "project": PROJECT_NAME,
@@ -208,6 +303,9 @@ def create_wandb_logger(
     if state.wandb_run_id:
         arguments["id"] = state.wandb_run_id
         arguments["resume"] = "allow"
+    if directory is not None:
+        directory.mkdir(parents=True, exist_ok=True)
+        arguments["dir"] = str(directory)
     result = factory(**arguments)
     if result is None:
         raise RuntimeError("wandb.init did not return a run")

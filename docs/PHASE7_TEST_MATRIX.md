@@ -32,12 +32,12 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 | U2 | Directional integration | one complete collect/update changes parameters and increments exact global/update counters | GREEN |
 | M1 | Hand metric tables | every §13.2 formula/range/name, including mean per-state normalized entropy and binned calibration | GREEN |
 | M2 | Injected fault table | each §13.3 hard alert halts; sustained-alert windows fire only at exact boundaries | GREEN |
-| W1 | Fake run plus real offline smoke | exact project/name/tags/config/metadata; monotonic logging steps; every §13.2 key observed | PARTIAL — fake contract GREEN; real offline pending |
+| W1 | Fake run plus real offline smoke | exact project/name/tags/config/metadata; monotonic logging steps; every §13.2 key observed | GREEN |
 | W2 | Repository byte scan | no committed API-key-shaped string or credential file | GREEN |
 | R1 | Checkpoint schema audit | all §12.8 fields present; update-boundary-only atomic save; corrupt/mismatched/untrusted input rejected | GREEN |
 | R2 | Forked execution oracle | CPU interrupted/resumed updates `k+1…k+10` bitwise equal, including a serialized mid-capture lane | GREEN |
-| R3 | Same-stack RTX fork | actions equal and losses meet `atol=1e-5, rtol=1e-4`; W&B/log counters do not duplicate | Pending |
-| E1 | Tiny offline CLI run | config → collection → PPO → checkpoint reload → local W&B artifact is end-to-end and rerunnable | Pending |
+| R3 | Same-stack RTX fork | actions equal and losses meet `atol=1e-5, rtol=1e-4`; W&B/log counters do not duplicate | GREEN |
+| E1 | Tiny offline CLI run | config → collection → PPO → checkpoint reload → local W&B artifact is end-to-end and rerunnable | GREEN |
 
 ## Timed Gate 7 matrix
 
@@ -47,7 +47,7 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 | G2 | Metric-completeness audit over all three histories | every §13.2 key logged; all three masking fault counters exactly zero | Pending |
 | G3 | Three 364-game colour-balanced random matches | each score at least 0.90 with W/D/L, game count, and 95% interval reported | Pending |
 | G4 | Load validation and resume transcript | final checkpoints load/use; R2/R3 exact-resume evidence remains green | Pending |
-| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | Pending |
+| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | PRELIMINARY GREEN — rerun after timed seeds/report |
 
 ## Primary implementation sources
 
@@ -104,3 +104,21 @@ schemas, and an untrusted pickle global. R2 checkpoints after the first jump of 
 move; actions, epoch ledgers, every scalar metric, collector state, model tensors, and all RNG
 families reproduce bitwise for updates 2–11 (`000113`). A repository-wide intermediate run passed
 872 tests at 95.26% total coverage (`000111`); validation-branch closure remains before Gate 7.
+
+The same fork now passes on the RTX 5070 with identical actions and the declared numeric tolerance;
+the first run exposed and permanently fixed a real `cuda` versus `cuda:0` ownership bug (`000114`,
+`000115`). A real W&B SDK offline run persists all 55 required names (`000116`). The tiny CLI test
+crosses a periodic-evaluation checkpoint boundary, resumes with one W&B ID and exact monotonic W&B
+and JSONL counters, performs a measured short-budget best response, emits payoff/rendered-game
+tables, logs a versioned artifact, reloads the final checkpoint, and is rerunnable (`000117` and
+the consolidated suite).
+
+The five-minute CUDA setup validation completed 49 updates / 401,408 transitions and 305.202
+measured training seconds in 316.890 wall seconds. It wrote checkpoints/evaluations every ten
+updates, observed all required metrics, retained win/loss/draw game rows, verified its final SHA-256,
+and reloaded the checkpoint to select a legal opening action (`000118`). Its two-game final anchor
+is a diagnostic only, not powered Gate-7 evidence; `000120` repeats the digest/model/action audit
+and labels the setup checkpoint as predating the final exploitability config field. The
+post-implementation `make check` passes
+format, Ruff, strict mypy, 889 tests with no skips/xfails, 93.88% total line/branch coverage, and the
+eight-property fuzz target (`000119`).

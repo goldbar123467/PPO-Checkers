@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import numpy as np
+import pytest
 import torch
 
 from checkers.config import RunConfig
@@ -13,6 +14,7 @@ from checkers.train import TrainingSession
 
 TOTAL_UPDATES = 11
 POST_CHECKPOINT_UPDATES = 10
+RESUMED_LOGGING_STEP = 7
 
 
 def _mask(*acf_squares: int) -> int:
@@ -27,11 +29,11 @@ def _multijump_state() -> State:
     )
 
 
-def _config() -> RunConfig:
+def _config(*, device: str = "cpu") -> RunConfig:
     return RunConfig(
         experiment_id="resume-cpu-bitwise",
         seed=59,
-        device="cpu",
+        device=device,
         total_timesteps=TOTAL_UPDATES,
         duration_seconds=None,
         num_envs=1,
@@ -108,3 +110,53 @@ def test_r2_ten_updates_after_midsequence_resume_are_cpu_bitwise_equal(
     assert resumed.league.snapshot_ids == uninterrupted.league.snapshot_ids
     for name, expected_tensor in uninterrupted.network.state_dict().items():
         assert torch.equal(resumed.network.state_dict()[name], expected_tensor)
+
+
+def test_r3_ten_updates_after_cuda_resume_match_declared_same_stack_tolerance(
+    tmp_path: Path,
+) -> None:
+    assert torch.cuda.is_available(), "R3 requires the declared local CUDA GPU"
+    config = _config(device="cuda")
+    uninterrupted = TrainingSession.create(
+        config=config,
+        initial_states=(_multijump_state(),),
+    )
+    uninterrupted.state.wandb_run_id = "cuda-resume-id"
+    uninterrupted.state.logging_step = RESUMED_LOGGING_STEP
+    uninterrupted.run_update(elapsed_seconds=0.0)
+    checkpoint = tmp_path / "cuda-update-000001.pt"
+    uninterrupted.save_checkpoint(
+        checkpoint,
+        git_sha="0123456789abcdef",
+        git_dirty=True,
+    )
+    expected = tuple(
+        uninterrupted.run_update(elapsed_seconds=0.0) for _ in range(POST_CHECKPOINT_UPDATES)
+    )
+
+    resumed = TrainingSession.resume(config=config, checkpoint_path=checkpoint)
+    assert resumed.state.wandb_run_id == "cuda-resume-id"
+    assert resumed.state.logging_step == RESUMED_LOGGING_STEP
+    actual = tuple(resumed.run_update(elapsed_seconds=0.0) for _ in range(POST_CHECKPOINT_UPDATES))
+
+    for expected_update, actual_update in zip(expected, actual, strict=True):
+        assert actual_update.actions == expected_update.actions
+        assert actual_update.epochs == expected_update.epochs
+        assert actual_update.metrics.keys() == expected_update.metrics.keys()
+        torch.testing.assert_close(
+            torch.tensor(tuple(actual_update.metrics.values())),
+            torch.tensor(tuple(expected_update.metrics.values())),
+            atol=1e-5,
+            rtol=1e-4,
+        )
+    assert resumed.state.logging_step == RESUMED_LOGGING_STEP
+    for name, expected_tensor in uninterrupted.network.state_dict().items():
+        torch.testing.assert_close(
+            resumed.network.state_dict()[name],
+            expected_tensor,
+            atol=1e-5,
+            rtol=1e-4,
+        )
+    assert resumed.collector.to_record() == uninterrupted.collector.to_record()
+    assert resumed.state.update_idx == TOTAL_UPDATES
+    assert resumed.state.schedule_phase == pytest.approx(1.0)
