@@ -20,6 +20,7 @@ from checkers.eval.arena import (
     MatchResult,
     play_balanced_match,
     play_ballot_match,
+    play_batched_ballot_match,
     play_game,
 )
 from checkers.eval.ballots import BALLOT_COUNT, load_ballot_set
@@ -409,6 +410,23 @@ def test_all_ballots_play_once_per_colour_with_position_seeded_tie_breaks() -> N
     assert position_seeds == [ballot.position_key for ballot in ballots for _colour in range(2)]
     assert len({record.game_hash for record in result.records[::2]}) == BALLOT_COUNT
     assert len({record.game_hash for record in result.records}) == BALLOT_COUNT * 2
+
+    batched = play_batched_ballot_match(
+        first=_first_spec("first"),
+        second=AgentSpec(
+            name="second",
+            factory=lambda _seed: FirstLegalAgent("second"),
+            position_seeded=True,
+        ),
+        ballots=ballots,
+        seed=20260728,
+        first_selector=lambda states: tuple(
+            next(iter(legal_action_map(state))) for state in states
+        ),
+        max_plies=4,
+    )
+
+    assert batched == result
 
 
 @pytest.mark.parametrize(

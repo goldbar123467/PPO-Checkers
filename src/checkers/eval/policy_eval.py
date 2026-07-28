@@ -7,16 +7,28 @@ from collections.abc import Mapping
 from copy import deepcopy
 from dataclasses import dataclass
 
+import numpy as np
 import torch
 
 from checkers.agents.greedy_agent import GreedyAgent
 from checkers.agents.minimax_agent import MinimaxAgent
 from checkers.agents.policy_agent import PolicyAgent, PolicyMode
 from checkers.agents.random_agent import RandomAgent
-from checkers.eval.arena import AgentSpec, GameRecord, MatchResult, play_balanced_match
+from checkers.env.encoding import encode_observation
+from checkers.env.masking import legal_action_mask
+from checkers.eval.arena import (
+    AgentSpec,
+    BatchActionSelector,
+    GameRecord,
+    MatchResult,
+    play_balanced_match,
+    play_batched_ballot_match,
+)
+from checkers.eval.ballots import OpeningBallot
 from checkers.eval.population import PayoffMatrix, league_elo, three_cycles
 from checkers.eval.suites import evaluate_tactical, load_dev_tactical_suite
 from checkers.rl.determinism import derive_stream_seed
+from checkers.rl.masked_categorical import MaskedCategorical
 from checkers.rl.networks import CheckersNetwork
 from checkers.rules.state import State
 
@@ -82,6 +94,16 @@ class PolicyEvaluation:
     sampled_random_match: MatchResult
     population_match: MatchResult
     exploitability_status: str
+
+
+@dataclass(frozen=True, slots=True)
+class PracticePolicyEvaluation:
+    """Powered practice metrics and replay rows for the two allowed anchors."""
+
+    scalar_metrics: dict[str, float]
+    game_rows: tuple[dict[str, object], ...]
+    random_match: MatchResult
+    minimax_match: MatchResult
 
 
 def _policy_spec(
@@ -175,6 +197,110 @@ def game_rows_from_matches(
                 }
             )
     return tuple(rows)
+
+
+def _batched_greedy_selector(
+    network: CheckersNetwork,
+    *,
+    max_plies: int,
+) -> BatchActionSelector:
+    """Return a no-RNG selector that performs one shared inference per state batch."""
+
+    device = next(network.parameters()).device
+
+    def select(states: tuple[State, ...]) -> tuple[int, ...]:
+        observations = torch.as_tensor(
+            np.stack(
+                [encode_observation(state, max_plies=max_plies) for state in states],
+                axis=0,
+            ),
+            dtype=torch.float32,
+            device=device,
+        )
+        masks = torch.as_tensor(
+            np.stack([legal_action_mask(state) for state in states], axis=0),
+            dtype=torch.bool,
+            device=device,
+        )
+        was_training = network.training
+        try:
+            network.eval()
+            with torch.no_grad():
+                output = network(observations)
+                actions = MaskedCategorical(
+                    logits=output.logits,
+                    legal_mask=masks,
+                ).probs.argmax(dim=-1)
+        finally:
+            network.train(was_training)
+        return tuple(int(action) for action in actions.tolist())
+
+    return select
+
+
+def evaluate_practice_policy(  # noqa: PLR0913
+    *,
+    network: CheckersNetwork,
+    ballots: tuple[OpeningBallot, ...],
+    seed: int,
+    max_plies: int,
+    repetition_draws: bool,
+) -> PracticePolicyEvaluation:
+    """Evaluate greedy current play on paired ballots against allowed anchors only."""
+
+    if not isinstance(network, CheckersNetwork):
+        raise TypeError("network must be a CheckersNetwork")
+    if not isinstance(ballots, tuple) or not ballots:
+        raise ValueError("ballots must be a non-empty tuple")
+    if any(not isinstance(ballot, OpeningBallot) for ballot in ballots):
+        raise TypeError("ballots must contain OpeningBallot values")
+    if isinstance(max_plies, bool) or not isinstance(max_plies, int):
+        raise TypeError("max_plies must be an integer")
+    if max_plies < 1:
+        raise ValueError("max_plies must be positive")
+    if not isinstance(repetition_draws, bool):
+        raise TypeError("repetition_draws must be bool")
+
+    current = _policy_spec(network=network, mode="greedy", name="current")
+    selector = _batched_greedy_selector(network, max_plies=max_plies)
+    random_match = play_batched_ballot_match(
+        first=current,
+        second=AgentSpec(name="random", factory=lambda value: RandomAgent(seed=value)),
+        ballots=ballots,
+        seed=derive_stream_seed(seed, 0),
+        first_selector=selector,
+        max_plies=max_plies,
+        repetition_draws=repetition_draws,
+    )
+    minimax_match = play_batched_ballot_match(
+        first=current,
+        second=AgentSpec(
+            name="minimax(2)",
+            factory=lambda value: MinimaxAgent(
+                depth=2,
+                seed=value,
+                max_plies=max_plies,
+            ),
+            position_seeded=True,
+        ),
+        ballots=ballots,
+        seed=derive_stream_seed(seed, 1),
+        first_selector=selector,
+        max_plies=max_plies,
+        repetition_draws=repetition_draws,
+    )
+    scalar_metrics = {
+        **_match_metrics("eval/vs_random", random_match),
+        **_match_metrics("eval/vs_minimax2", minimax_match),
+    }
+    return PracticePolicyEvaluation(
+        scalar_metrics=scalar_metrics,
+        game_rows=game_rows_from_matches(
+            (("vs_random", random_match), ("vs_minimax2", minimax_match))
+        ),
+        random_match=random_match,
+        minimax_match=minimax_match,
+    )
 
 
 def _clone_network(

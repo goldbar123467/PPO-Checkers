@@ -2,15 +2,23 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import torch
 
-from checkers.eval.policy_eval import ExploitabilityEvidence, evaluate_development_policy
+from checkers.eval.ballots import load_ballot_set
+from checkers.eval.policy_eval import (
+    ExploitabilityEvidence,
+    evaluate_development_policy,
+    evaluate_practice_policy,
+)
 from checkers.metrics import EVALUATION_METRIC_KEYS
 from checkers.rl.networks import CheckersNetwork
 from checkers.rules.state import PlayerId, State
 
 SMOKE_GAMES = 2
 PAYOFF_CELLS = 4
+PRACTICE_BALLOTS = 2
 
 
 def _mask(*acf_squares: int) -> int:
@@ -76,5 +84,33 @@ def test_learned_policy_eval_reports_every_scalar_and_literal_payoff_rows() -> N
         "loss",
     }
     assert all(isinstance(row["moves"], str) for row in result.game_rows)
+    assert network.training
+    assert torch.equal(torch.random.get_rng_state(), rng_before)
+
+
+def test_practice_eval_only_runs_random_and_minimax_on_paired_ballots() -> None:
+    torch.manual_seed(97)
+    network = CheckersNetwork()
+    network.train()
+    rng_before = torch.random.get_rng_state().clone()
+    ballots = load_ballot_set(Path("data/ballots_v1.json")).ballots[:PRACTICE_BALLOTS]
+
+    result = evaluate_practice_policy(
+        network=network,
+        ballots=ballots,
+        seed=103,
+        max_plies=4,
+        repetition_draws=True,
+    )
+
+    assert set(result.scalar_metrics) == {
+        f"eval/vs_{anchor}{suffix}"
+        for anchor in ("random", "minimax2")
+        for suffix in ("", "_ci_low", "_ci_high", "_games")
+    }
+    assert result.scalar_metrics["eval/vs_random_games"] == PRACTICE_BALLOTS * 2
+    assert result.scalar_metrics["eval/vs_minimax2_games"] == PRACTICE_BALLOTS * 2
+    assert len(result.game_rows) == PRACTICE_BALLOTS * 4
+    assert {row["match"] for row in result.game_rows} == {"vs_random", "vs_minimax2"}
     assert network.training
     assert torch.equal(torch.random.get_rng_state(), rng_before)

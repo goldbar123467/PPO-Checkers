@@ -25,6 +25,7 @@ SPLITMIX_MULTIPLIER_1 = 0xBF58476D1CE4E5B9
 SPLITMIX_MULTIPLIER_2 = 0x94D049BB133111EB
 
 AgentFactory = Callable[[int], Agent]
+BatchActionSelector = Callable[[tuple[State, ...]], tuple[int, ...]]
 
 
 def _name(value: object, field_name: str) -> str:
@@ -653,6 +654,200 @@ def play_ballot_match(  # noqa: PLR0913
         repetition_draws=repetition_draws,
         confidence=checked_confidence,
         records=tuple(records),
+        score=score_interval(
+            wins=wins,
+            draws=draws,
+            losses=losses,
+            confidence=checked_confidence,
+        ),
+        ballots=ballots,
+        position_seeded_agents=tuple(spec.name for spec in (first, second) if spec.position_seeded),
+    )
+
+
+@dataclass(slots=True)
+class _BatchedBallotGame:
+    """Mutable execution state for one game in a batched ballot schedule."""
+
+    ballot: OpeningBallot
+    environment: CheckersEnv
+    red_agent: str
+    white_agent: str
+    red_seed: int
+    white_seed: int
+    environment_seed: int
+    opponent: Agent
+    actions: list[int] = field(default_factory=list)
+    moves: list[str] = field(default_factory=list)
+
+
+def play_batched_ballot_match(  # noqa: PLR0912, PLR0913, PLR0914, PLR0915
+    *,
+    first: AgentSpec,
+    second: AgentSpec,
+    ballots: tuple[OpeningBallot, ...],
+    seed: int,
+    first_selector: BatchActionSelector,
+    max_plies: int = DEFAULT_MAX_PLIES,
+    repetition_draws: bool = True,
+    confidence: float = 0.95,
+) -> MatchResult:
+    """Play a paired-colour ballot match while batching the first policy's turns.
+
+    The opponent policies retain independent deterministic instances. The batching
+    changes only how actions for ``first`` are computed; colour and seed scheduling
+    are identical to :func:`play_ballot_match`.
+    """
+
+    if not isinstance(first, AgentSpec):
+        raise TypeError("first must be an AgentSpec")
+    if not isinstance(second, AgentSpec):
+        raise TypeError("second must be an AgentSpec")
+    if first.name == second.name:
+        raise ValueError("match agent names must be distinct")
+    if not isinstance(ballots, tuple):
+        raise TypeError("ballots must be a tuple")
+    if not ballots:
+        raise ValueError("ballots must not be empty")
+    if any(not isinstance(ballot, OpeningBallot) for ballot in ballots):
+        raise TypeError("ballots must contain OpeningBallot values")
+    if not callable(first_selector):
+        raise TypeError("first_selector must be callable")
+    games = len(ballots) * 2
+    if games > (UINT64_MASK + 1) // STREAMS_PER_GAME:
+        raise ValueError("ballot count exceeds the unique seed-stream capacity")
+    root_seed = _seed(seed, "seed")
+    checked_confidence = _confidence(confidence)
+
+    scheduled: list[_BatchedBallotGame] = []
+    try:
+        for ballot_index, ballot in enumerate(ballots):
+            for colour_index in range(2):
+                game_index = ballot_index * 2 + colour_index
+                first_is_red = colour_index == 0
+                first_seed = _derived_seed(root_seed, game_index, 0)
+                second_seed = _derived_seed(root_seed, game_index, 1)
+                scheduled_red_seed = first_seed if first_is_red else second_seed
+                scheduled_white_seed = second_seed if first_is_red else first_seed
+                red_seed = (
+                    ballot.position_key
+                    if (first if first_is_red else second).position_seeded
+                    else scheduled_red_seed
+                )
+                white_seed = (
+                    ballot.position_key
+                    if (second if first_is_red else first).position_seeded
+                    else scheduled_white_seed
+                )
+                environment_seed = _derived_seed(root_seed, game_index, 2)
+                environment = CheckersEnv(
+                    max_plies=max_plies,
+                    repetition_draws=repetition_draws,
+                    initial_state=ballot.state,
+                )
+                environment.reset(seed=environment_seed)
+                scheduled.append(
+                    _BatchedBallotGame(
+                        ballot=ballot,
+                        environment=environment,
+                        red_agent=first.name if first_is_red else second.name,
+                        white_agent=second.name if first_is_red else first.name,
+                        red_seed=red_seed,
+                        white_seed=white_seed,
+                        environment_seed=environment_seed,
+                        opponent=second.build(white_seed if first_is_red else red_seed),
+                    )
+                )
+
+        while any(not game.environment.terminated for game in scheduled):
+            first_indices = tuple(
+                index
+                for index, game in enumerate(scheduled)
+                if not game.environment.terminated
+                and (
+                    game.red_agent
+                    if game.environment.state.side_to_move is PlayerId.RED
+                    else game.white_agent
+                )
+                == first.name
+            )
+            selected_actions = (
+                first_selector(
+                    tuple(scheduled[index].environment.state for index in first_indices)
+                )
+                if first_indices
+                else ()
+            )
+            if not isinstance(selected_actions, tuple):
+                raise TypeError("first_selector must return a tuple")
+            if len(selected_actions) != len(first_indices):
+                raise ValueError("first_selector returned the wrong number of actions")
+            first_actions = dict(zip(first_indices, selected_actions, strict=True))
+
+            for index, game in enumerate(scheduled):
+                if game.environment.terminated:
+                    continue
+                side = game.environment.state.side_to_move
+                acting_name = game.red_agent if side is PlayerId.RED else game.white_agent
+                action = (
+                    first_actions[index]
+                    if acting_name == first.name
+                    else game.opponent.select_action(game.environment.state)
+                )
+                try:
+                    _observation, _reward, _terminated, truncated, info = (
+                        game.environment.step(action)
+                    )
+                except IllegalActionError as error:
+                    raise AgentActionError(
+                        agent_name=acting_name,
+                        side=side,
+                        action=action,
+                    ) from error
+                if truncated:
+                    raise RuntimeError("checkers environment unexpectedly truncated a game")
+                game.actions.append(action)
+                notation = info["checkers_move_san"]
+                if notation is not None:
+                    if not isinstance(notation, str):
+                        raise RuntimeError("environment returned non-string move notation")
+                    game.moves.append(notation)
+
+        records: list[GameRecord] = []
+        for game in scheduled:
+            outcome = game.environment.outcome
+            if outcome is None:
+                raise RuntimeError("terminated game is missing an outcome")
+            records.append(
+                GameRecord(
+                    red_agent=game.red_agent,
+                    white_agent=game.white_agent,
+                    red_seed=game.red_seed,
+                    white_seed=game.white_seed,
+                    environment_seed=game.environment_seed,
+                    initial_state=game.ballot.state,
+                    outcome=outcome,
+                    actions=tuple(game.actions),
+                    moves=tuple(game.moves),
+                    opening_actions=game.ballot.actions,
+                    ballot_id=game.ballot.ballot_id,
+                )
+            )
+    finally:
+        for game in scheduled:
+            game.environment.close()
+
+    checked_records = tuple(records)
+    wins, draws, losses = _result_counts(checked_records, first.name)
+    return MatchResult(
+        first_agent=first.name,
+        second_agent=second.name,
+        seed=root_seed,
+        initial_state=State.initial(),
+        max_plies=max_plies,
+        repetition_draws=repetition_draws,
+        confidence=checked_confidence,
+        records=checked_records,
         score=score_interval(
             wins=wins,
             draws=draws,
