@@ -78,16 +78,76 @@ def test_r2_2_multijump_is_one_move_and_many_environment_steps() -> None:
     )
 
     first = apply_step(state, _step(9, 18, 14))
-    assert not first.move_completed
+    assert first.before == state
+    assert first.step == _step(9, 18, 14)
+    assert first.move_completed is False
     assert first.after.side_to_move is PlayerId.RED
     assert first.after.no_progress == (7, 9)
     assert first.after.ply == 1
 
     second = apply_step(first.after, _step(18, 25, 22))
+    assert second.before == first.after
+    assert second.step == _step(18, 25, 22)
     assert second.move_completed
     assert second.after.side_to_move is PlayerId.WHITE
     assert second.after.no_progress == (0, 9)
     assert second.after.ply == TWO_ENVIRONMENT_STEPS
+
+
+def test_completed_man_moves_reset_only_the_actors_counter_and_increment_ply() -> None:
+    red = State(
+        men=(_mask(9), _mask(24)),
+        kings=(0, 0),
+        side_to_move=PlayerId.RED,
+        no_progress=(5, 9),
+        ply=7,
+    )
+    red_step = _step(9, 13)
+    red_transition = apply_step(red, red_step)
+    assert red_transition == Transition(
+        before=red,
+        after=State(
+            men=(_mask(13), _mask(24)),
+            kings=(0, 0),
+            side_to_move=PlayerId.WHITE,
+            no_progress=(0, 9),
+            ply=8,
+        ),
+        step=red_step,
+        move_completed=True,
+    )
+
+    white = State(
+        men=(_mask(9), _mask(24)),
+        kings=(0, 0),
+        side_to_move=PlayerId.WHITE,
+        no_progress=(5, 9),
+        ply=7,
+    )
+    white_step = _step(24, 20)
+    white_transition = apply_step(white, white_step)
+    assert white_transition.after.no_progress == (5, 0)
+    assert white_transition.after.ply == white.ply + 1
+    assert white_transition.step == white_step
+
+
+def test_completed_king_move_increments_only_the_actors_counter_once() -> None:
+    state = State(
+        men=(0, _mask(24)),
+        kings=(_mask(14), 0),
+        side_to_move=PlayerId.RED,
+        no_progress=(5, 9),
+        ply=7,
+    )
+    step = _step(14, 17)
+
+    transition = apply_step(state, step)
+
+    assert transition.before == state
+    assert transition.step == step
+    assert transition.move_completed is True
+    assert transition.after.no_progress == (6, 9)
+    assert transition.after.ply == state.ply + 1
 
 
 def test_r3_1_man_simple_moves_are_forward_only() -> None:
@@ -152,7 +212,7 @@ def test_step_rejects_aliased_square_fields(
 
 def test_public_transition_functions_reject_wrong_object_types() -> None:
     state = State.initial()
-    with pytest.raises(TypeError, match="Step"):
+    with pytest.raises(TypeError, match="^step must be a Step$"):
         apply_step(state, cast(Step, 0))
-    with pytest.raises(TypeError, match="Transition"):
+    with pytest.raises(TypeError, match="^transition must be a Transition$"):
         undo_step(cast(Transition, state))

@@ -1,0 +1,2632 @@
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__iter_squares__mutmut_7
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__iter_squares__mutmut_8
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__capture_steps_from__mutmut_21
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__step_sort_key__mutmut_1
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__step_sort_key__mutmut_2
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__step_sort_key__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__step_sort_key__mutmut_4
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x_legal_steps__mutmut_4
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__finish_capture__mutmut_18
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__finish_capture__mutmut_31
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__finish_capture__mutmut_34
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_2
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_36
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_38
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_48
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_50
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_51
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_57
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_capture__mutmut_59
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_32
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_35
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_37
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_47
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_48
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_49
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_52
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x__apply_simple__mutmut_55
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x_apply_step__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x_apply_step__mutmut_9
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.moves.x_undo_step__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x__validate_square__mutmut_4
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x__validate_square__mutmut_11
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x_is_playable_coord__mutmut_10
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x_acf_number__mutmut_7
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x_acf_number__mutmut_13
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.board.x_double_corner__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__grid_from_state__mutmut_15
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__piece_at__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__oracle_simple_from__mutmut_12
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__sort_key__mutmut_1
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__sort_key__mutmut_2
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x__sort_key__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.oracle.x_oracle_legal_steps__mutmut_9
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.xǁDifferentialMismatchErrorǁ__init____mutmut_2
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.xǁDifferentialMismatchErrorǁ__init____mutmut_4
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__compare__mutmut_6
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__compare__mutmut_8
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__run_bfs__mutmut_8
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__run_bfs__mutmut_23
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__digest_state__mutmut_34
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__digest_state__mutmut_36
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x__digest_state__mutmut_40
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_11
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_13
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_15
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_17
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_19
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_21
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_26
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_27
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_32
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_33
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_34
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_35
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_36
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_41
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_43
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_45
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_50
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_51
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_60
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_62
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_63
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_64
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_66
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_67
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_69
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_70
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_80
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_81
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.differential.x_run_differential__mutmut_82
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.state.x__validate_uint32__mutmut_7
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.state.x__validate_pair__mutmut_6
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.state.x__validate_pair__mutmut_11
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.state.x__validate_square_or_none__mutmut_8
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_format_move__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_move__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_move__mutmut_8
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_move__mutmut_9
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_serialize_state__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_state__mutmut_3
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_state__mutmut_9
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_state__mutmut_53
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/bin/mutmut", line 10, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1970, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1291, in show
+    print(get_diff_for_mutant(mutant_name))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1261, in get_diff_for_mutant
+    m = find_mutant(mutant_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 1252, in find_mutant
+    raise FileNotFoundError(f"Could not find mutant {mutant_name}")
+FileNotFoundError: Could not find mutant     checkers.rules.notation.x_parse_state__mutmut_56

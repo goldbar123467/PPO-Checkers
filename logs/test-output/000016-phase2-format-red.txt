@@ -1,0 +1,12 @@
+unformatted: File would be reformatted
+  --> tests/golden/test_external_perft.py:1:1
+   |
+34 |     assert {
+   -         depth: _completed_move_perft(State.initial(), depth)
+   -         for depth in range(gate_depth + 1)
+35 +         depth: _completed_move_perft(State.initial(), depth) for depth in range(gate_depth + 1)
+36 |     } == {depth: expected[depth] for depth in range(gate_depth + 1)}
+   |
+
+1 file would be reformatted, 37 files already formatted
+make: *** [Makefile:30: format-check] Error 1

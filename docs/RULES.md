@@ -52,6 +52,20 @@ legality. The records contain 11 `0-1` and nine `1-0` source results, but all st
 remain (resignation or published analysis cutoff). Those result tags are preserved exactly, not
 misrepresented as board-derived outcomes; BLOCK-004 records the Gate 2 wording conflict.
 
+## External Perft Provenance
+
+Aart J. C. Bik's peer-reviewed paper, [*Computing Deep Perft and Divide Numbers for
+Checkers*](https://doi.org/10.3233/ICG-2012-35403), ICGA Journal 35(4), 206–213 (2012), publishes
+American-checkers perft and divide counts through depth 28. The author's earlier
+[start-position table](https://aartbik.blogspot.com/2009/02/perft-for-checkers.html) reports the
+first 12 depths and states that two independent engines, Cake and Checkers for Android, agreed.
+
+The offline fixture `tests/golden/data/external_perft.json` records counts, retrieval metadata,
+and source hashes. `tests/golden/test_external_perft.py` compares the production transition engine
+at depths 0–7, decrementing depth only when a complete checkers move ends so multi-jump environment
+steps remain one move. All eight counts match exactly: `1, 7, 49, 302, 1469, 7361, 36768,
+179740`. These are external correctness evidence, not an internally generated regression baseline.
+
 ## FROZEN ACF 1–32 orientation
 
 Convention: the first player is `PlayerId.RED`, matching WCDF 1.9 and 1.13. Red occupies 1–12,

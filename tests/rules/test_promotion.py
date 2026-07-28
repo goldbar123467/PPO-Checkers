@@ -31,7 +31,7 @@ def test_r5_1_man_promotes_at_a_completed_move() -> None:
 def test_r5_2_promotion_ends_jump_sequence_before_a_new_king_jump() -> None:
     state = State(
         men=(_mask(21), _mask(25, 26)),
-        kings=(0, 0),
+        kings=(_mask(1), 0),
         side_to_move=PlayerId.RED,
     )
 
@@ -39,7 +39,9 @@ def test_r5_2_promotion_ends_jump_sequence_before_a_new_king_jump() -> None:
 
     assert transition.move_completed
     assert transition.after.side_to_move is PlayerId.WHITE
-    assert transition.after.kings[PlayerId.RED] == _mask(30)
+    assert transition.before == state
+    assert transition.step == _step(21, 30, 25)
+    assert transition.after.kings[PlayerId.RED] == _mask(1, 30)
     assert transition.after.men[PlayerId.WHITE] == _mask(26)
     assert transition.after.captured_pending == 0
     assert _step(30, 23, 26) not in legal_steps(transition.after)

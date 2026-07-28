@@ -136,3 +136,31 @@
 - Evidence: `logs/test-output/000011-mutmut-probe-8.txt` kills all 15 selected `coord()`
   mutants; `logs/test-output/000011-check.txt` proves 148 repository tests plus eight property
   tests pass with 100% statement/branch coverage over `src/checkers/rules`.
+
+## ADR-011 — Score mutation testing conservatively and challenge exact semantic defects
+
+- Status: Accepted.
+- Authority: `GOAL.md` §12.4 C and Tier B mutation-testing practice.
+- Evidence stage: Correctness baseline.
+- Decision: Use all 968 generated rules mutants as the denominator and count only explicit kills
+  toward the reported score. Do not remove equivalent mutants or count timeouts to reach the gate.
+  In addition, apply the five exact semantic defects named by the goal in isolated temporary trees,
+  because syntactic mutation generation does not faithfully construct all five.
+- Result: 927/968 killed-only (95.76%), 39 survivors disclosed, two infinite-loop timeouts, and all
+  five exact semantic challenges killed after an unmodified baseline passes.
+- Evidence: `reports/phase2_mutation_analysis.md`, `reports/phase2_mutation_stats.json`, and
+  `reports/phase2_rule_mutation_challenges.json`.
+
+## ADR-012 — Count external perft in completed checkers moves
+
+- Status: Accepted.
+- Authority: Aart J. C. Bik, *Computing Deep Perft and Divide Numbers for Checkers*, ICGA Journal
+  35(4), 206–213 (2012), DOI `10.3233/ICG-2012-35403`.
+- Evidence stage: External-anchor validation.
+- Decision: Compare start-position perft by decrementing depth only on `move_completed=True`.
+  Capture continuations are separate environment steps in this project but one move in the
+  published perft definition.
+- Result: Published leaf counts match exactly through depth 7 (179,740 leaves); deeper published
+  values remain pinned but are not redundantly run in every repository gate.
+- Evidence: `tests/golden/data/external_perft.json`,
+  `tests/golden/test_external_perft.py`, and `logs/test-output/000016-external-perft.txt`.

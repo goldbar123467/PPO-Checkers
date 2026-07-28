@@ -1,0 +1,20 @@
+⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠴ Generating mutants⠴ Generating mutants⠦ Generating mutants⠦ Generating mutants⠴ Generating mutants⠦ Generating mutants⠴ Generating mutants⠦ Generating mutants⠴ Generating mutants⠦ Generating mutants⠴ Generating mutants⠦ Generating mutants
+    done in 23ms (0 files mutated, 0 ignored, 7 unmodified)
+⠴ Listing all tests ⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests⠏ Listing all tests⠋ Listing all tests⠙ Listing all tests⠹ Listing all tests⠸ Listing all tests⠼ Listing all tests⠴ Listing all tests⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests⠏ Listing all tests⠋ Listing all tests⠙ Listing all tests⠹ Listing all tests⠸ Listing all tests⠼ Listing all tests⠴ Listing all tests⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests
+Found 1 new tests, rerunning stats collection
+⠏ Running stats    ⠋ Running stats⠙ Running stats⠹ Running stats
+    done
+⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests
+    done
+⠧ Running forced fail test⠇ Running forced fail test⠏ Running forced fail test⠋ Running forced fail test⠙ Running forced fail test⠹ Running forced fail test⠸ Running forced fail test⠼ Running forced fail test⠴ Running forced fail test⠦ Running forced fail test⠧ Running forced fail test⠇ Running forced fail test⠏ Running forced fail test⠋ Running forced fail test
+    done
+Running mutation testing
+⠙ 0/968  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠹ 0/968  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠸ 0/968  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠼ 3/968  🎉 3 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+57.65 mutations/second
+
+Mutant results
+--------------
+🎉 checkers.rules.differential.x__digest_state__mutmut_36
+🎉 checkers.rules.differential.x__digest_state__mutmut_40
+🎉 checkers.rules.moves.x__apply_capture__mutmut_51
+

@@ -133,6 +133,17 @@ def test_r7_3_white_boundary_state_round_trips_exactly() -> None:
     assert parse_state(encoded) == state
 
 
+def test_r7_3_hexadecimal_king_fields_accept_alpha_digits() -> None:
+    state = State(
+        men=(0, 0),
+        kings=(0x00ABCDEF, 0),
+        side_to_move=PlayerId.RED,
+    )
+    encoded = serialize_state(state)
+    assert "RK=00abcdef" in encoded
+    assert parse_state(encoded) == state
+
+
 @pytest.mark.parametrize(
     "text",
     [

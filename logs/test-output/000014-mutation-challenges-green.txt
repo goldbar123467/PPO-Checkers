@@ -1,0 +1,51 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_five_mandatory_rule_mutations_are_killed _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-thecl/pytest-28/test_five_mandatory_rule_mutat0')
+
+    def test_five_mandatory_rule_mutations_are_killed(tmp_path: Path) -> None:
+        report_path = tmp_path / "mutation-challenges.json"
+        repository = Path(__file__).resolve().parents[2]
+    
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(repository / "scripts" / "run_rule_mutation_challenges.py"),
+                "--output",
+                str(report_path),
+            ],
+            cwd=repository,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+    
+>       assert completed.returncode == 0, completed.stdout + completed.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 301, in <module>
+E             raise SystemExit(main())
+E                              ^^^^^^
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 294, in main
+E             succeeded = run(arguments.output)
+E                         ^^^^^^^^^^^^^^^^^^^^^
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 265, in run
+E             results = tuple(_run_challenge(challenge, source) for challenge in CHALLENGES)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 265, in <genexpr>
+E             results = tuple(_run_challenge(challenge, source) for challenge in CHALLENGES)
+E                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 238, in _run_challenge
+E             mutated = _mutate(source, challenge)
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/home/thecl/ml-lab/scripts/run_rule_mutation_challenges.py", line 204, in _mutate
+E             raise RuntimeError(
+E         RuntimeError: remove_captured_pieces_immediately: expected one source marker, found 2
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/home/thecl/ml-lab/.venv-train/bin/python', '/home/thecl/ml-lab/scripts/run_rule_mutation_chal...ate\n    raise RuntimeError(\nRuntimeError: remove_captured_pieces_immediately: expected one source marker, found 2\n').returncode
+
+tests/integration/test_rule_mutation_challenges.py:28: AssertionError
+=========================== short test summary info ============================
+FAILED tests/integration/test_rule_mutation_challenges.py::test_five_mandatory_rule_mutations_are_killed
+1 failed in 0.89s

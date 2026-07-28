@@ -2,22 +2,22 @@
 
 ## Current Phase
 
-Phase 2 — State model, board, and move generation (IN PROGRESS)
+Phase 3 — Terminal conditions and hashing (IN PROGRESS)
 
-Phase 1 is BLOCKED by P1 BLOCK-001, so §0.1 directs work to the next non-blocked phase.
+Phases 1 and 2 are formally BLOCKED by specification defects recorded as BLOCK-001 through
+BLOCK-004. Their technically feasible work and gates are complete, so §0.1 directs work to the
+next unaffected phase.
 
-Work label: correctness baseline.
+Work label: terminal/hash baseline.
 
-Falsifiable objective: a typed immutable state and two independently structured legal-step
-generators agree on R1–R5/R7, including exact delayed-removal state. BLOCK-002 records the proof
-that the specification's requested legal-continuation divergence cannot exist under short-jump
-geometry.
+Falsifiable objective: implement source-classified R6 terminal decisions and separate full-state
+and move-boundary hash keys, with every Gate 3 boundary and incremental/recomputed property green.
 
 ## In Flight
 
-1. Configure and run mutation analysis over `rules/`; add targeted killing tests as needed.
-2. Run the final Phase 2 technical gate and mark its formal status with all P1 blockers.
-3. Advance to unaffected Phase 3 terminal conditions and hashing per `GOAL.md` §0.1.
+1. Write failing Gate 3 boundary tests for R6.1–R6.6 and the two-key contract.
+2. Implement `terminal.py` and `zobrist.py` with source-labelled variants.
+3. Run the Phase 3 property suite and consolidated gate.
 
 ## Gate Evidence
 
@@ -51,11 +51,20 @@ geometry.
   controls, and killed all 15 `coord()` mutants. The repository gate remains at 100% rules
   statement/branch coverage with 148 plus eight tests. Evidence
   `logs/test-output/000011-mutmut-probe-8.txt` and `000011-check.txt`.
+- Full mutation gate: 927 of 968 mutants killed (95.76% killed-only), 39 survivors disclosed, two
+  infinite-loop timeouts, and zero untested/skipped mutants. All five exact §12.4 C semantic
+  challenges fail their permanent tests after a green unmodified baseline. Evidence
+  `reports/phase2_mutation_analysis.md`, `reports/phase2_mutation_stats.json`, and
+  `reports/phase2_rule_mutation_challenges.json`.
+- External perft: Aart Bik's published American-checkers counts match exactly through completed-
+  move depth 7 (179,740 leaves). Evidence `tests/golden/data/external_perft.json` and
+  `logs/test-output/000016-external-perft.txt`.
+- Phase 2 consolidated technical gate: `make check`, exit 0; 158 tests plus eight property tests,
+  strict typing/lint/format, and 100% statement/branch rules coverage. Evidence
+  `logs/gates/phase-2.txt`. Formal status is BLOCKED only by BLOCK-002/003/004.
 
 ## Last Five Iterations
 
-- 000007: 50k deterministic fuzz, Hypothesis trajectories, and valid combined symmetry pass;
-  BLOCK-003 records why separate mirror/colour/rotation claims are false.
 - 000008: added a deterministic, metadata-bearing 5M differential CLI; its 1,000-position smoke
   and 125-test repository gate pass at 100% rules coverage.
 - 000009: full 5M plus BFS-depth-7 differential completed in 396.35 seconds with zero disagreements;
@@ -64,6 +73,9 @@ geometry.
   publisher results from outcomes that cannot be inferred from nonterminal boards.
 - 000011: made the pinned Mutmut 3.6 harness isolation-safe, preserved each configuration failure,
   and killed a 15-mutant production probe before authorizing the full 968-mutant run.
+- 000012: strengthened survivor assertions, killed 927/968 generated mutants conservatively,
+  killed all five mandated semantic mutations in isolation, matched published perft, and completed
+  the Phase 2 technical gate.
 
 ## Open Risks
 
@@ -73,9 +85,10 @@ geometry.
 - BLOCK-003 prevents separate mirror/colour/rotation metamorphisms; the only valid nontrivial
   composition is fully transition-tested.
 - BLOCK-004 prevents claiming publisher resignation/adjudication results were board-derived.
-- Phase 2 mutation ≥85% and its final consolidated technical gate remain.
+- Total suite volume remains below the final ≥400-test acceptance requirement; later environment,
+  RL, evaluation, and integration phases must add substantive tests rather than padding.
 
 ## Next Step
 
-Run all 968 generated rules mutants, add targeted killing tests for actionable survivors, and
-export a structured mutation-score report.
+Write the Phase 3 terminal and key-separation tests first, preserving BLOCK-001's explicit R6.6
+ENGINE VARIANT classification without claiming the read-only goal text is corrected.

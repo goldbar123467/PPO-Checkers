@@ -97,6 +97,39 @@ def test_r4_5_marked_piece_remains_occupied_and_cannot_be_jumped_twice() -> None
     assert _step(10, 1, 6) not in legal_steps(first.after)
 
 
+def test_r4_5_pending_direction_does_not_hide_a_later_legal_jump() -> None:
+    state = State(
+        men=(0, _mask(17, 18)),
+        kings=(_mask(14), 0),
+        side_to_move=PlayerId.RED,
+        capture_in_progress=True,
+        moving_square=13,
+        sequence_origin=4,
+        captured_pending=_mask(18),
+    )
+
+    assert legal_steps(state) == (_step(14, 21, 17),)
+
+
+def test_completed_white_capture_preserves_the_opponents_counter() -> None:
+    state = State(
+        men=(_mask(19), _mask(24)),
+        kings=(0, 0),
+        side_to_move=PlayerId.WHITE,
+        no_progress=(7, 9),
+        ply=3,
+    )
+    step = _step(24, 15, 19)
+
+    transition = apply_step(state, step)
+
+    assert transition.before == state
+    assert transition.step == step
+    assert transition.move_completed is True
+    assert transition.after.no_progress == (7, 0)
+    assert transition.after.ply == state.ply + 1
+
+
 def test_r4_5_landing_on_a_pending_square_is_geometrically_impossible() -> None:
     """Prove the short-jump parity fact behind BLOCK-002 exhaustively."""
 

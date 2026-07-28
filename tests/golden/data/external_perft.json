@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "classification": "EXTERNAL CORRECTNESS EVIDENCE",
+  "game": "American checkers from the standard 12-vs-12 start position",
+  "unit": "distinct completed-move sequences after depth moves",
+  "duplicate_capture_routes": "counted separately",
+  "source": {
+    "author": "Aart J. C. Bik",
+    "article": "Computing Deep Perft and Divide Numbers for Checkers",
+    "journal": "ICGA Journal 35(4), 206-213 (2012)",
+    "doi": "10.3233/ICG-2012-35403",
+    "paper_url": "https://doi.org/10.3233/ICG-2012-35403",
+    "author_table_url": "https://aartbik.blogspot.com/2009/02/perft-for-checkers.html",
+    "retrieved_at": "2026-07-28T00:09:26-04:00",
+    "retrieved_html_bytes": 135307,
+    "retrieved_html_sha256": "71a64908c7ce7b2e1e1da1e90f248fb5c39709e2707e8ce37c56b7a1c9caca25"
+  },
+  "leaf_nodes": {
+    "0": 1,
+    "1": 7,
+    "2": 49,
+    "3": 302,
+    "4": 1469,
+    "5": 7361,
+    "6": 36768,
+    "7": 179740,
+    "8": 845931,
+    "9": 3963680,
+    "10": 18391564,
+    "11": 85242128,
+    "12": 388623673
+  },
+  "gate_depth": 7
+}

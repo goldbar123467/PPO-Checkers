@@ -38,6 +38,15 @@ def test_state_is_frozen() -> None:
         setattr(state, field_name, 1)
 
 
+def test_uint32_maximum_is_an_accepted_bitboard_boundary() -> None:
+    state = State(
+        men=((1 << 32) - 1, 0),
+        kings=(0, 0),
+        side_to_move=PlayerId.RED,
+    )
+    assert state.men[0] == (1 << 32) - 1
+
+
 def test_state_rejects_unknown_runtime_fields() -> None:
     constructor = cast(Callable[..., State], State)
     with pytest.raises(TypeError, match=r"unexpected State field\(s\): surprise"):

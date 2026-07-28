@@ -2,9 +2,10 @@
 
 ## Active Work
 
-- Phase 2 — State model, board, and move generation: IN PROGRESS.
+- Phase 3 — terminal conditions and hashing: IN PROGRESS.
 - Phase 1 remains formally BLOCKED by the read-only R6.6 classification defect in BLOCK-001;
   unaffected work proceeds under `GOAL.md` §0.1.
+- Phase 2's feasible technical gate is complete but formally BLOCKED by BLOCK-002/003/004.
 
 ## Completed Gates
 
@@ -12,6 +13,9 @@
   doctor. See `logs/gates/phase-0.txt` and `logs/gates/phase-0-gpu-doctor.txt`.
 - Gate 1 technical checks pass, but formal status is BLOCKED by BLOCK-001. See
   `logs/gates/phase-1.txt`.
+- Gate 2 technical checks pass: 5M differential, published transcripts/perft, exact semantic
+  mutation challenges, 95.76% killed-only mutation score, and 100% rules coverage. See
+  `logs/gates/phase-2.txt` and `reports/phase2_mutation_analysis.md`.
 
 ## Known Failures and Root Causes
 
@@ -30,9 +34,7 @@
 
 ## Open Risks
 
-- The independent grid oracle agrees across 5,000,000 playout positions plus BFS depth 7; 20
-  external scores replay legally. Mutmut 3.6 isolation and sensitivity are validated; the full
-  968-mutant score run remains.
-- Gate 2's completed large differential, transcript, metamorphic, and coverage evidence is
-  preserved; only the full mutation score and consolidated status record remain technically open.
+- Total acceptance volume remains below 400 tests; substantive Phase 3–8 suites are still needed.
+- Training, self-play, W&B, powered arenas, and full-budget ablations remain entirely unrun and
+  must not be described as completed.
 - Clean-clone egress-blocked verification remains a final acceptance item.
