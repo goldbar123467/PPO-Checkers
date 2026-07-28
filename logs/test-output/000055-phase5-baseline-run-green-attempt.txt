@@ -1,0 +1,53 @@
+.....F....F..                                                            [100%]
+=================================== FAILURES ===================================
+____________ test_checkpoint_rejects_corruption[<lambda>-identity] _____________
+
+mutate = <function <lambda> at 0x7aa1adfa1440>, message = 'identity'
+
+    @pytest.mark.parametrize(
+        ("mutate", "message"),
+        [
+            (lambda record: [], "mapping"),
+            (lambda record: {**record, "schema_version": 2}, "schema_version"),
+            (lambda record: {**record, "git_commit": "d" * 40}, "identity"),
+            (lambda record: {**record, "comparison_index": 1}, "comparison_index"),
+            (lambda record: {**record, "elapsed_seconds": -1.0}, "elapsed"),
+            (
+                lambda record: {**record, "records_sha256": "0" * 64},
+                "summary",
+            ),
+        ],
+    )
+    def test_checkpoint_rejects_corruption(mutate: object, message: str) -> None:
+        match = _match()
+        record = build_checkpoint(
+            identity=_identity(),
+            comparison_index=0,
+            match=match,
+            summary=summarize_match(match, elapsed_seconds=0.25),
+        )
+        mutation = cast(Callable[[dict[str, object]], object], mutate)
+    
+>       with pytest.raises((TypeError, ValueError), match=message):
+E       Failed: DID NOT RAISE any of (TypeError, ValueError)
+
+tests/eval/test_baseline_run.py:130: Failed
+___________ test_raw_archive_rejects_identity_and_payload_corruption ___________
+
+    def test_raw_archive_rejects_identity_and_payload_corruption() -> None:
+        archive = build_raw_archive(identity=_identity(), matches=(_match(),))
+        document = cast(dict[str, object], json.loads(gzip.decompress(archive)))
+        document["git_commit"] = "d" * 40
+        corrupted = gzip.compress(
+            json.dumps(document, sort_keys=True, separators=(",", ":")).encode(),
+            mtime=0,
+        )
+    
+>       with pytest.raises(ValueError, match="identity"):
+E       Failed: DID NOT RAISE ValueError
+
+tests/eval/test_baseline_run.py:176: Failed
+=========================== short test summary info ============================
+FAILED tests/eval/test_baseline_run.py::test_checkpoint_rejects_corruption[<lambda>-identity]
+FAILED tests/eval/test_baseline_run.py::test_raw_archive_rejects_identity_and_payload_corruption
+2 failed, 11 passed in 0.20s

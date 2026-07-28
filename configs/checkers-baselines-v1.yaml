@@ -1,0 +1,25 @@
+schema_version: 1
+experiment_id: checkers-baselines-v1
+experiment_label: baseline
+seed: 20260728
+games_per_match: 784
+confidence: 0.95
+smallest_effect: 0.05
+null_score: 0.50
+alpha: 0.05
+target_power: 0.80
+max_plies: 512
+repetition_draws: true
+agents:
+  - random
+  - greedy
+  - minimax(1)
+  - minimax(2)
+comparisons:
+  - [greedy, random]
+  - [minimax(1), random]
+  - [minimax(2), random]
+  - [minimax(1), greedy]
+  - [minimax(2), greedy]
+  - [minimax(2), minimax(1)]
+tactical_depths: [1, 2, 3]

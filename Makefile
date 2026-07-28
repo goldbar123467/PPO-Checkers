@@ -8,7 +8,8 @@ VLLM_BIN := $(LAB)/.venv-vllm/bin
 CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/rules tests/env \
 	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
 	scripts/build_published_transcripts.py scripts/differential_rules.py \
-	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py
+	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py \
+	scripts/evaluate_baselines.py
 MODEL ?=
 PORT ?= 8000
 export PYTHONPATH := $(LAB)/src
@@ -71,7 +72,7 @@ train:
 	@cd $(LAB) && WANDB_MODE=offline $(TRAIN_PY) scripts/train.py
 
 eval:
-	@cd $(LAB) && WANDB_MODE=offline $(TRAIN_PY) scripts/evaluate.py
+	@cd $(LAB) && WANDB_MODE=offline $(TRAIN_PY) scripts/evaluate_baselines.py
 
 ruff: lint
 

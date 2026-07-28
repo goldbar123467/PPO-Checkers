@@ -8,17 +8,18 @@ Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
 source-correct portion of Phase 5.
 
-Work label: deterministic baseline-agent and powered-arena baseline.
+Work label: deterministic, powered, replay-complete baseline evaluation.
 
-Falsifiable objective: implement random, greedy, and depth-limited minimax agents plus colour-
-balanced arena, Elo/payoff/population statistics, and power analysis that reproduce hand-worked
-examples before any performance claim.
+Falsifiable objective: over every pair in the frozen four-agent population, run 784 colour-
+balanced games (the predeclared two-sided 0.05-effect, alpha=.05, power=.80 budget), retain every
+seed/action/outcome, and pass Gate 5 only if minimax(2) scores at least 0.40 versus minimax(1) and
+the exact dev-tactical depth gate passes.
 
 ## In Flight
 
-1. Write failing deterministic-agent and tactical-superset tests.
-2. Implement colour-balanced match scheduling and hand-worked score/Elo/payoff fixtures.
-3. Derive the minimum game count before running any baseline comparison.
+1. Commit the green, resumable baseline runner from an exact clean source tree.
+2. Execute or resume all six powered comparisons (4,704 games total) and load-validate artifacts.
+3. Diagnose results, source the report, run the consolidated Phase 5 gate, and update phase state.
 
 ## Gate Evidence
 
@@ -75,11 +76,19 @@ examples before any performance claim.
   violations, mask disagreements, and empty nonterminal masks. Report SHA-256
   `1472e4ea…0f479ed`; evidence `reports/phase4_environment_fuzz_5m_seed20260728.json` and
   `logs/gates/phase-4-fuzz-5m.txt`.
+- Phase 5 deterministic layers: random/greedy/minimax agents, alternating-colour arena, powered
+  score intervals, Elo transforms, full payoff/population diagnostics, and exact tactical suite
+  are committed through `757f826`; the tactical artifact reproduces byte-for-byte with 50/50
+  depth-3 versus 15/50 depth-1 solves.
+- Phase 5 runner preflight: frozen six-edge YAML; lossless action/seed/outcome checkpoints;
+  deterministic gzip archive; exact identity checks; disjoint 2,352-stream blocks per matchup;
+  no sealed-suite query; explicit unavailable/proxy labels. Focused new modules have 100%
+  statement/branch coverage. Full `make check` exit 0: 606 tests plus eight property tests, strict
+  static gates, all 3,162 Checkers statements and 1,120 branches covered. Evidence
+  `logs/test-output/000060-phase5-baseline-runner-final-check.txt`.
 
 ## Last Five Iterations
 
-- 000010: 20 published PDN games replayed all 515 moves legally; BLOCK-004 separates preserved
-  publisher results from outcomes that cannot be inferred from nonterminal boards.
 - 000011: made the pinned Mutmut 3.6 harness isolation-safe, preserved each configuration failure,
   and killed a 15-mutant production probe before authorizing the full 968-mutant run.
 - 000012: strengthened survivor assertions, killed 927/968 generated mutants conservatively,
@@ -91,6 +100,8 @@ examples before any performance claim.
 - 000014: implemented canonical scalar/vector environments and exact mid-sequence resume, passed
   322 tests at 100% current checkers coverage, completed the 5M environment gate with all failure
   counters zero, and filed BLOCK-006 for the premature N7-logit requirement.
+- 000015: completed and fully branch-tested the powered Phase 5 evaluation stack and crash-safe
+  runner; corrected cross-match seed overlap before execution; `make check` passed 606+8 tests.
 
 ## Open Risks
 
@@ -104,10 +115,13 @@ examples before any performance claim.
   sequence origin, both counters, and ply.
 - BLOCK-006 prevents a Phase 4 claim about logits before the Phase 6 network exists; the distinct-
   observation regression passes now and the actual logit test remains scheduled for Phase 6.
-- Total suite volume is 322, still below the final ≥400-test acceptance requirement; 276 substantive
-  rules/environment tests already exceed that category's ≥250 requirement.
+- Exploitability-proxy evidence correctly remains unavailable until a trained Phase 7 best response
+  exists; Phase 5 reports `NOT_EVALUATED` rather than substituting a heuristic.
+- Test volume is 606 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
+  276 substantive rules/environment tests exceed that category's ≥250 requirement.
 
 ## Next Step
 
-Write Phase 5 baseline-agent tests first, beginning with deterministic random/greedy behavior and
-depth-limited minimax tactical supersets before implementing match statistics.
+Commit the green runner, then execute
+`.venv-train/bin/python scripts/evaluate_baselines.py --progress-log logs/gates/phase-5-baseline-run.txt`
+from that clean commit. Preserve and load-validate all checkpoints, raw games, and the final report.

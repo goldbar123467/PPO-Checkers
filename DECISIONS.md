@@ -250,3 +250,24 @@
   `1472e4ea1da80f591ee248748d066fdb05bea72cc78f3a0f5f9aecebb0f479ed`.
 - Limitation: Agreement with recomputation and randomized coverage is strong regression evidence,
   not exhaustive proof or independent external rules correctness.
+
+## ADR-019 — Power and preserve the complete fixed-baseline population
+
+- Status: Accepted for the Phase 5 baseline experiment.
+- Authority: `GOAL.md` §§11.1, 11.3–11.4; NIST/SEMATECH sample-size derivation;
+  Wilson (1927), DOI `10.1080/01621459.1927.10502953`; Bradley & Terry (1952), DOI
+  `10.1093/biomet/39.3-4.324`; official FIDE rating regulations.
+- Evidence stage: Baseline, before any learned policy exists.
+- Decision: Freeze random, greedy, minimax(1), and minimax(2); evaluate all six unordered pairs at
+  784 alternating-colour games. This is the even ceiling above the NIST normal-approximation result
+  of 783 games for a two-sided score change of 0.05 from 0.50, alpha .05, and power .80.
+- Statistics: retain W/D/L and Wilson-style fractional-score intervals; label draw coverage and
+  league-Elo delta-method CIs approximate; report residuals and directed 3-cycles rather than
+  treating scalar Elo as ground truth.
+- Reproducibility: assign each comparison a disjoint contiguous block of `3 × 784` SplitMix64
+  inputs, checkpoint every complete match atomically, and retain every game seed/action/outcome in
+  a deterministic gzip archive bound to Git/config/goal hashes.
+- Limitations: do not query the sealed suite; report external anchor `NOT_AVAILABLE` and the
+  Phase-7-trained best-response proxy `NOT_EVALUATED` until those inputs genuinely exist.
+- Evidence: `configs/checkers-baselines-v1.yaml`, `tests/eval/test_baseline_*.py`, and
+  `logs/test-output/000060-phase5-baseline-runner-final-check.txt`.
