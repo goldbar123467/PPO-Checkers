@@ -306,3 +306,26 @@
   selected for depth-3 success and is not an unbiased or sealed sample.
 - Evidence: primary URLs embedded in `reports/phase5_baseline_report_v1.json`; permanent caveat
   assertions in `tests/eval/test_baseline_eval.py`; `logs/test-output/000065-*.txt`.
+
+## ADR-022 — Accept the replay-complete Phase 5 baseline
+
+- Status: Accepted; Gate 5 GREEN.
+- Evidence stage: Final powered baseline at source revision
+  `6deefb959cc995517b5bbe3c452610e99058adc8`.
+- Decision: Accept the frozen six-pair, 784-game-per-pair population as the Phase 5 engineering
+  baseline. Minimax(2) scored 0.9968 [0.9898, 0.9990] against minimax(1), above the 0.40
+  catastrophic-inversion floor. Tactical depths 1/2/3 solved 15/9/50; depth 3 is a strict
+  superset of depth 1, while the depth-2 regression remains explicit.
+- Population scope: zero strict three-cycles were observed. League Elo is conditional on the
+  checked approximate-transitivity model; the 92.33-Elo maximum residual is below, but close to,
+  the project-defined 100-Elo diagnostic. The trained-best-response exploitability proxy remains
+  `NOT_EVALUATED`, the external anchor `NOT_AVAILABLE`, and sealed evaluation `NOT_EVALUATED`.
+- Reproducibility: the raw archive SHA-256 is
+  `c5ca9d1d446a4462932b80bcc8570b5a0a778c38261f3faa46f08751d19d00b4`; the machine-report
+  SHA-256 is `2a866255e9ed86b771d130bb8e9a728ce0289d94c7f9a6fb4a1bb543594504c4`.
+  A second invocation resumed all six identity-bound checkpoints and regenerated both artifacts
+  byte-for-byte. The consolidated gate independently parsed all 4,704 replay records and passed
+  608 tests plus eight property tests at 100% Checkers statement/branch coverage.
+- Evidence: `reports/phase5_baseline_analysis.md`, `reports/phase5_baseline_report_v1.json`,
+  `reports/phase5_baseline_games_v1.json.gz`, `logs/gates/phase-5-baseline-run.txt`,
+  `logs/gates/phase-5-baseline-run-resume.txt`, and `logs/gates/phase-5.txt`.
