@@ -22,8 +22,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--output-dir",
         type=Path,
         default=Path(
-            Path("runs")
-            / f"practice-preflight-{datetime.now().astimezone():%Y%m%dT%H%M%S%z}"
+            Path("runs") / f"practice-preflight-{datetime.now().astimezone():%Y%m%dT%H%M%S%z}"
         ),
     )
     return parser

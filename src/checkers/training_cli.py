@@ -239,8 +239,7 @@ def _practice_evaluation_record(  # noqa: PLR0913
         "source_sequence_count": ballot_set.source_sequence_count,
         "source_sequences_sha256": ballot_set.source_sequences_sha256,
         "games_per_match": len(evaluation.random_match.records),
-        "total_games": len(evaluation.random_match.records)
-        + len(evaluation.minimax_match.records),
+        "total_games": len(evaluation.random_match.records) + len(evaluation.minimax_match.records),
         "wall_seconds": wall_seconds,
         "metrics": evaluation.scalar_metrics,
         "game_rows": evaluation.game_rows,
@@ -438,8 +437,7 @@ def run_training(  # noqa: PLR0912, PLR0915
     if checked_max_updates is not None:
         update_limit = min(update_limit, start_update + checked_max_updates)
     approval_gate_boundary = (
-        config.stage == "practice"
-        and start_update < PRACTICE_APPROVAL_GATE_UPDATE <= update_limit
+        config.stage == "practice" and start_update < PRACTICE_APPROVAL_GATE_UPDATE <= update_limit
     )
     if approval_gate_boundary:
         update_limit = PRACTICE_APPROVAL_GATE_UPDATE
@@ -536,10 +534,7 @@ def run_training(  # noqa: PLR0912, PLR0915
                     practice_scores.append(
                         practice_result.evaluation.scalar_metrics["eval/vs_minimax2"]
                     )
-            if (
-                approval_gate_boundary
-                and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE
-            ):
+            if approval_gate_boundary and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE:
                 if ballot_set is None:
                     raise RuntimeError("approval gate requires the practice ballot set")
                 gate_result = _run_practice_evaluation(
@@ -552,9 +547,7 @@ def run_training(  # noqa: PLR0912, PLR0915
                     kind="approval_gate",
                 )
                 evaluation_path = gate_result.path
-                practice_scores.append(
-                    gate_result.evaluation.scalar_metrics["eval/vs_minimax2"]
-                )
+                practice_scores.append(gate_result.evaluation.scalar_metrics["eval/vs_minimax2"])
             if (
                 session.state.update_idx % config.checkpoint_every == 0
                 or session.state.update_idx == update_limit
@@ -575,10 +568,7 @@ def run_training(  # noqa: PLR0912, PLR0915
                     session=session,
                     training_metrics=latest_training_metrics,
                 )
-            if (
-                approval_gate_boundary
-                and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE
-            ):
+            if approval_gate_boundary and session.state.update_idx == PRACTICE_APPROVAL_GATE_UPDATE:
                 _print_approval_gate(
                     session=session,
                     training_metrics=latest_training_metrics,
@@ -745,9 +735,7 @@ def run_training(  # noqa: PLR0912, PLR0915
         "metrics_history": str(metrics_path),
         "wandb_failures": str(output_directory / "wandb_failures.jsonl"),
         "wandb_artifact": artifact_name,
-        "approval_gate_update": (
-            PRACTICE_APPROVAL_GATE_UPDATE if paused_for_approval else None
-        ),
+        "approval_gate_update": (PRACTICE_APPROVAL_GATE_UPDATE if paused_for_approval else None),
         "resume_from": None if resume_path is None else str(resume_path),
         "recovery": (
             None

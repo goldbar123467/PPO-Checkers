@@ -772,9 +772,7 @@ def play_batched_ballot_match(  # noqa: PLR0912, PLR0913, PLR0914, PLR0915
                 == first.name
             )
             selected_actions = (
-                first_selector(
-                    tuple(scheduled[index].environment.state for index in first_indices)
-                )
+                first_selector(tuple(scheduled[index].environment.state for index in first_indices))
                 if first_indices
                 else ()
             )
@@ -795,8 +793,8 @@ def play_batched_ballot_match(  # noqa: PLR0912, PLR0913, PLR0914, PLR0915
                     else game.opponent.select_action(game.environment.state)
                 )
                 try:
-                    _observation, _reward, _terminated, truncated, info = (
-                        game.environment.step(action)
+                    _observation, _reward, _terminated, truncated, info = game.environment.step(
+                        action
                     )
                 except IllegalActionError as error:
                     raise AgentActionError(

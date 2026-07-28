@@ -91,8 +91,7 @@ def _run_child(  # noqa: PLR0913
     _atomic_text(output_directory / f"preflight-{end_update:06d}.stderr.log", completed.stderr)
     if completed.returncode != 0:
         raise RuntimeError(
-            f"{mode} child run failed with exit code {completed.returncode}; "
-            f"see {output_directory}"
+            f"{mode} child run failed with exit code {completed.returncode}; see {output_directory}"
         )
     manifest_path = output_directory / f"manifest-{end_update:06d}.json"
     manifest_value = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -123,9 +122,7 @@ def _training_metrics(path: Path) -> dict[int, dict[str, float]]:
             raise ValueError("training history update_idx must be an integer")
         if not isinstance(metrics, dict):
             raise ValueError("training history metrics must be a mapping")
-        result[update_idx] = {
-            str(key): float(metric) for key, metric in metrics.items()
-        }
+        result[update_idx] = {str(key): float(metric) for key, metric in metrics.items()}
     return result
 
 
@@ -147,9 +144,7 @@ def loss_equivalence(
             if not math.isfinite(first_value) or not math.isfinite(second_value):
                 raise ValueError("loss histories must contain finite values")
             compared += 1
-            mismatches += int(
-                struct.pack("!d", first_value) != struct.pack("!d", second_value)
-            )
+            mismatches += int(struct.pack("!d", first_value) != struct.pack("!d", second_value))
             max_absolute_delta = max(max_absolute_delta, abs(first_value - second_value))
     return compared, mismatches, max_absolute_delta
 
