@@ -38,11 +38,12 @@ geometry.
   deterministic 50,000-step invariant/oracle fuzz and 200 Hypothesis trajectories pass. The valid
   composed rotation/colour-swap relation commutes with transitions through BFS depth 4. Evidence
   `logs/test-output/000006-check-3.txt`.
+- Differential runner validation: `make check`, exit 0; 125 passed; rules coverage 100%; a
+  1,000-position CLI smoke report loaded successfully and reproduced digest
+  `c74d17b…c0b35`. Evidence `logs/test-output/000008-check.txt`.
 
 ## Last Five Iterations
 
-- 000003: corrected mirrored ACF geometry before move code; immutable state and board primitives
-  passed the repository gate at 100% coverage.
 - 000004: implemented mandatory captures, continuation, delayed removal, promotion, counters, and
   O(1) immutable undo; filed BLOCK-002 after exhaustive parity proof.
 - 000005: independent object-grid oracle agrees with the bitboard path on hand fixtures and 3,811
@@ -51,6 +52,8 @@ geometry.
   mid-sequence round-trip tests; repository gate remains at 100% rules coverage.
 - 000007: 50k deterministic fuzz, Hypothesis trajectories, and valid combined symmetry pass;
   BLOCK-003 records why separate mirror/colour/rotation claims are false.
+- 000008: added a deterministic, metadata-bearing 5M differential CLI; its 1,000-position smoke
+  and 125-test repository gate pass at 100% rules coverage.
 
 ## Open Risks
 

@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+______________ ERROR collecting tests/rules/test_differential.py _______________
+ImportError while importing test module '/home/thecl/ml-lab/tests/rules/test_differential.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/rules/test_differential.py:7: in <module>
+    from checkers.rules.differential import DifferentialConfig, run_differential
+E   ModuleNotFoundError: No module named 'checkers.rules.differential'
+=========================== short test summary info ============================
+ERROR tests/rules/test_differential.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.12s

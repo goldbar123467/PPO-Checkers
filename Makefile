@@ -6,7 +6,8 @@ TRAIN_PY := $(LAB)/.venv-train/bin/python
 TRAIN_BIN := $(LAB)/.venv-train/bin
 VLLM_BIN := $(LAB)/.venv-vllm/bin
 CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/rules tests/env \
-	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden
+	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
+	scripts/differential_rules.py
 MODEL ?=
 PORT ?= 8000
 export PYTHONPATH := $(LAB)/src
