@@ -1,0 +1,10 @@
+Name                               Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------------------------
+src/checkers/env/__init__.py           0      0      0      0   100%
+src/checkers/env/checkers_env.py     182      4     46      4    96%   61, 189, 395, 399
+src/checkers/env/encoding.py          44      0     12      0   100%
+src/checkers/env/masking.py           71      0     20      0   100%
+src/checkers/env/serialize.py        124     22     68     20    78%   35, 43, 45, 75, 77, 79, 88, 94, 97, 99, 102, 107, 111, 121, 123, 157, 161, 164, 172, 194-195, 197
+------------------------------------------------------------------------------
+TOTAL                                421     26    146     24    91%
+Coverage failure: total of 91 is less than fail-under=98
