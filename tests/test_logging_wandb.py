@@ -6,7 +6,7 @@ import json
 import random
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import pytest
@@ -372,7 +372,7 @@ def test_wandb_failures_never_propagate_and_logging_restores_all_global_rngs(
     np.random.seed(13)
     torch.manual_seed(17)
     python_before = random.getstate()
-    numpy_before = np.random.get_state()
+    numpy_before = cast(tuple[Any, ...], np.random.get_state())
     torch_before = torch.get_rng_state().clone()
     state = TrainerState()
     logger = WandbLogger(
@@ -393,7 +393,7 @@ def test_wandb_failures_never_propagate_and_logging_restores_all_global_rngs(
     logger.finish(exit_code=0)
 
     assert random.getstate() == python_before
-    numpy_after = np.random.get_state()
+    numpy_after = cast(tuple[Any, ...], np.random.get_state())
     assert numpy_after[0] == numpy_before[0]
     assert np.array_equal(numpy_after[1], numpy_before[1])
     assert numpy_after[2:] == numpy_before[2:]
