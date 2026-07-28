@@ -27,7 +27,8 @@ def _config() -> RunConfig:
         experiment_id="offline-cli-unit",
         seed=71,
         device="cpu",
-        total_timesteps=2,
+        total_updates=2,
+        schedule_horizon_updates=2,
         duration_seconds=None,
         num_envs=1,
         num_steps=1,
@@ -35,7 +36,7 @@ def _config() -> RunConfig:
         update_epochs=1,
         target_kl=100.0,
         checkpoint_every=1,
-        eval_every=1,
+        periodic_every=1,
         eval_games=2,
         exploitability_train_games=TINY_BEST_RESPONSE_GAMES,
     )

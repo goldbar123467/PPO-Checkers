@@ -5,7 +5,8 @@ stage: A
 arm: A0
 device: cuda
 deterministic: true
-total_timesteps: 50331648
+total_updates: 6144
+schedule_horizon_updates: 6144
 duration_seconds: 1800.0
 num_envs: 64
 num_steps: 128
@@ -26,10 +27,10 @@ max_plies: 512
 repetition_draws: true
 snapshot_every: 20
 pool_capacity: 20
-eval_every: 10
+periodic_every: 10
 checkpoint_every: 10
 eval_games: 364
-periodic_eval_games: 2
+periodic_games: 2
 exploitability_train_games: 16
 amp_dtype: float32
 include_opponent_value_loss: false

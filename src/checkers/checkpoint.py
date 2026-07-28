@@ -174,7 +174,7 @@ def _validate_boundary(
         raise ValueError("checkpoint must be written at a complete update boundary")
     if state.update_idx > config.total_updates:
         raise ValueError("trainer update index exceeds configured budget")
-    expected_phase = min(1.0, state.global_step / config.total_timesteps)
+    expected_phase = min(1.0, state.global_step / config.schedule_horizon_timesteps)
     if state.schedule_phase != expected_phase:
         raise ValueError("trainer schedule phase disagrees with update boundary")
     if state.env_episode_indices != collector.episode_indices:

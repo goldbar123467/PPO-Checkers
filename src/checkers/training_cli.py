@@ -305,13 +305,13 @@ def run_training(  # noqa: PLR0912, PLR0915
                 state=session.state,
                 logging_step=logging_step,
             )
-            if session.state.update_idx % config.eval_every == 0:
+            if session.state.update_idx % config.periodic_every == 0:
                 evaluation_path = _run_evaluation(
                     session=session,
                     logger=logger,
                     history=history,
                     output_directory=output_directory,
-                    games=config.periodic_eval_games,
+                    games=config.periodic_games,
                     kind="periodic",
                 )
             if (

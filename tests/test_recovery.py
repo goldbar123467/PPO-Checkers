@@ -61,7 +61,8 @@ def _config() -> RunConfig:
         experiment_id="recovery-unit",
         seed=137,
         device="cpu",
-        total_timesteps=400,
+        total_updates=400,
+        schedule_horizon_updates=400,
         duration_seconds=None,
         num_envs=1,
         num_steps=1,
@@ -69,7 +70,7 @@ def _config() -> RunConfig:
         update_epochs=1,
         target_kl=100.0,
         checkpoint_every=1,
-        eval_every=200,
+        periodic_every=200,
         eval_games=2,
         exploitability_train_games=2,
     )
@@ -115,7 +116,7 @@ def _source_fixture(
     session = TrainingSession.create(config=config)
     session.state.update_idx = CHECKPOINT_UPDATE
     session.state.global_step = CHECKPOINT_GLOBAL_STEP
-    session.state.schedule_phase = CHECKPOINT_GLOBAL_STEP / config.total_timesteps
+    session.state.schedule_phase = CHECKPOINT_GLOBAL_STEP / config.schedule_horizon_timesteps
     session.state.elapsed_training_seconds = CHECKPOINT_ELAPSED_SECONDS
     session.state.logging_step = CHECKPOINT_LOGGING_STEP
     session.state.wandb_run_id = "recovery-unit-wandb-id"
