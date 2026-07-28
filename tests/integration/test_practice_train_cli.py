@@ -15,13 +15,15 @@ from checkers import training_cli
 from checkers.config import RunConfig
 from checkers.eval.ballots import BallotSet
 from checkers.eval.policy_eval import PracticePolicyEvaluation
-from checkers.logging_wandb import RunMetadata
+from checkers.logging_wandb import CredentialFinding, RunMetadata
 from checkers.metric_history import MetricHistoryWriter
 from checkers.train import TrainingSession
 from checkers.trainer_state import TrainerState
 from checkers.training_cli import (
     PRACTICE_APPROVAL_GATE_UPDATE,
     PracticeEvaluationResult,
+    _compact_number,
+    _max_updates,
     _print_approval_gate,
     _print_heartbeat,
     _print_periodic_evaluation,
@@ -386,3 +388,69 @@ def test_fresh_long_invocation_stops_at_the_update_1024_approval_gate(
     assert "heartbeat update=1024" in output
     assert "approval_gate status=PAUSED update=1024" in output
     assert "eval/vs_minimax2_ma3=0.25" in output
+
+
+def test_training_cli_rejects_invalid_boundaries_dirty_tree_and_credentials(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    assert _max_updates(None) is None
+    with pytest.raises(TypeError, match="max_updates"):
+        _max_updates(True)
+    with pytest.raises(ValueError, match="positive"):
+        _max_updates(0)
+    with pytest.raises(ValueError, match="finite"):
+        _compact_number(float("inf"))
+    with pytest.raises(TypeError, match="config_path"):
+        run_training(
+            config_path=cast(Path, "bad"),
+            output_directory=tmp_path,
+            resume_path=None,
+            max_updates=1,
+        )
+    with pytest.raises(TypeError, match="output_directory"):
+        run_training(
+            config_path=tmp_path / "missing",
+            output_directory=cast(Path, "bad"),
+            resume_path=None,
+            max_updates=1,
+        )
+    with pytest.raises(TypeError, match="resume_path"):
+        run_training(
+            config_path=tmp_path / "missing",
+            output_directory=tmp_path,
+            resume_path=cast(Path, "bad"),
+            max_updates=1,
+        )
+
+    config_path = tmp_path / "practice.yaml"
+    config_path.write_text(
+        yaml.safe_dump(asdict(_config()), sort_keys=False),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        training_cli,
+        "collect_run_metadata",
+        lambda **_kwargs: RunMetadata(**{**asdict(_metadata()), "git_dirty": True}),
+    )
+    with pytest.raises(RuntimeError, match="clean Git"):
+        run_training(
+            config_path=config_path,
+            output_directory=tmp_path / "dirty",
+            resume_path=None,
+            max_updates=1,
+        )
+
+    monkeypatch.setattr(training_cli, "collect_run_metadata", lambda **_kwargs: _metadata())
+    monkeypatch.setattr(
+        training_cli,
+        "scan_repository_for_credentials",
+        lambda _path: (CredentialFinding(path=tmp_path / "credential", reason="unit"),),
+    )
+    with pytest.raises(RuntimeError, match="credential scan"):
+        run_training(
+            config_path=config_path,
+            output_directory=tmp_path / "credential",
+            resume_path=None,
+            max_updates=1,
+        )

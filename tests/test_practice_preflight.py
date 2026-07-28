@@ -21,6 +21,7 @@ from checkers.eval.policy_eval import PracticePolicyEvaluation
 from checkers.practice_preflight import (
     ChildRun,
     _run_child,
+    _training_metrics,
     loss_equivalence,
     run_preflight,
 )
@@ -140,11 +141,13 @@ def test_run_child_keeps_key_out_of_arguments_and_preserves_logs(
         mode="online",
         max_updates=20,
         end_update=20,
+        resume=tmp_path / "resume.pt",
     )
 
     assert result.checkpoint == checkpoint
     assert cast(dict[str, str], captured["environment"])["WANDB_MODE"] == "online"
     assert all("API_KEY" not in argument for argument in cast(list[str], captured["command"]))
+    assert "--resume" in cast(list[str], captured["command"])
     assert (output / "preflight-000020.stdout.log").read_text(encoding="utf-8") == "done\n"
 
 
@@ -307,4 +310,64 @@ def test_preflight_rejects_missing_key_nonempty_output_and_wrong_profile(
             repository=tmp_path,
             config_path=config_path,
             output_directory=tmp_path / "wrong-profile",
+        )
+
+
+def test_child_and_metric_parsers_reject_failed_or_malformed_local_evidence(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    failed = subprocess.CompletedProcess[str]([], 7, stdout="", stderr="failure")
+    monkeypatch.setattr(subprocess, "run", lambda *_args, **_kwargs: failed)
+    with pytest.raises(RuntimeError, match="exit code 7"):
+        _run_child(
+            repository=tmp_path,
+            config_path=tmp_path / "config",
+            output_directory=tmp_path / "failed",
+            mode="offline",
+            max_updates=1,
+            end_update=1,
+        )
+
+    output = tmp_path / "malformed"
+
+    def malformed(*_args: object, **_kwargs: object) -> subprocess.CompletedProcess[str]:
+        output.mkdir(parents=True, exist_ok=True)
+        (output / "manifest-000001.json").write_text("[]\n", encoding="utf-8")
+        return subprocess.CompletedProcess([], 0, stdout="", stderr="")
+
+    monkeypatch.setattr(subprocess, "run", malformed)
+    with pytest.raises(ValueError, match="mapping"):
+        _run_child(
+            repository=tmp_path,
+            config_path=tmp_path / "config",
+            output_directory=output,
+            mode="offline",
+            max_updates=1,
+            end_update=1,
+        )
+
+    history = tmp_path / "history.jsonl"
+    history.write_text(
+        "\n".join(
+            (
+                json.dumps({"kind": "periodic_evaluation"}),
+                json.dumps({"kind": "training", "update_idx": True, "metrics": {}}),
+            )
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="update_idx"):
+        _training_metrics(history)
+    history.write_text(
+        json.dumps({"kind": "training", "update_idx": 1, "metrics": []}) + "\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="metrics"):
+        _training_metrics(history)
+    with pytest.raises(ValueError, match="finite"):
+        loss_equivalence(
+            _history(float("nan"), 1.0),
+            _history(float("nan"), 1.0),
         )
