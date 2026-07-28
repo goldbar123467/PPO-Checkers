@@ -547,3 +547,19 @@
   `src/checkers/system_metrics.py`, `tests/test_recovery.py`, `tests/test_monitor.py`,
   `tests/test_run_runtime.py`, `tests/test_system_metrics.py`, and
   `docs/PHASE7_RECOVERY.md`. The real RTX smoke, recovered Seed 0, and timed gate passed.
+
+## ADR-034 — Enter human-directed PPO Practice mode
+
+- Date: 2026-07-28
+- Status: Accepted human-authored scope change.
+- Authority: Direct human instruction; supersedes conflicting acceptance language in `GOAL.md`.
+- Context: The project objective has changed from ablation science to PPO implementation and
+  training practice. The acceptance bar is being moved intentionally, not because the existing
+  evidence established that the original multi-seed or ablation requirements were unnecessary.
+- Decision: Suspend the Stage-A and Stage-B requirements and all multi-seed requirements while
+  Practice mode is active, and replace §19 Tier 2 with one full-budget run completing with clean
+  instrumentation.
+- Integrity retained: fixed transition budgets, zero illegal-action counters, determinism, resume,
+  and randomized evaluation openings remain binding.
+- Consequence: Practice-mode completion does not support a multi-seed learning, ablation, or
+  comparative-strength claim. The reduced bar and its human origin must remain visible in reports.
