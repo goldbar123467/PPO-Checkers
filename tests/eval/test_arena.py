@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import replace
+from pathlib import Path
 from typing import Any, cast
 
 import pytest
@@ -18,8 +19,10 @@ from checkers.eval.arena import (
     GameRecord,
     MatchResult,
     play_balanced_match,
+    play_ballot_match,
     play_game,
 )
+from checkers.eval.ballots import BALLOT_COUNT, load_ballot_set
 from checkers.eval.power import MatchScore, score_interval
 from checkers.rules.moves import Step
 from checkers.rules.state import PlayerId, State
@@ -31,6 +34,8 @@ MAX_SEED = (1 << 64) - 1
 TWO_JUMP_STEPS = 2
 COLOUR_BALANCED_HALF = MATCH_GAMES // 2
 TOO_MANY_GAMES = ((1 << 64) // 3) + 1
+BALLOT_PATH = Path("data/ballots_v1.json")
+EXPECTED_PAIRED_BALLOT_GAMES = 432
 
 
 def _mask(*acf_squares: int) -> int:
@@ -135,6 +140,7 @@ def _valid_game_record() -> GameRecord:
         red_seed=1,
         white_seed=2,
         environment_seed=3,
+        initial_state=_forced_red_win_state(),
         outcome=Outcome(
             winner=PlayerId.RED,
             reason=TerminationReason.NO_PIECES,
@@ -187,6 +193,14 @@ def test_agent_spec_passes_exact_seed_and_checks_runtime_name() -> None:
         (lambda: _first_spec("x").build(cast(int, True)), "seed"),
         (lambda: _first_spec("x").build(-1), "seed"),
         (lambda: _first_spec("x").build(MAX_SEED + 1), "seed"),
+        (
+            lambda: AgentSpec(
+                name="x",
+                factory=lambda _seed: FirstLegalAgent("x"),
+                position_seeded=cast(bool, 1),
+            ),
+            "position_seeded",
+        ),
     ],
 )
 def test_agent_spec_rejects_ambiguous_or_invalid_factories(
@@ -356,6 +370,45 @@ def test_balanced_match_uses_independent_reproducible_seed_streams() -> None:
     }
     assert len(all_seeds) == MATCH_GAMES * 3
     assert _test_match(games=MATCH_GAMES, seed=100) != first
+
+
+def test_all_ballots_play_once_per_colour_with_position_seeded_tie_breaks() -> None:
+    ballots = load_ballot_set(BALLOT_PATH).ballots
+    position_seeds: list[int] = []
+
+    def position_seeded_factory(seed: int) -> FirstLegalAgent:
+        position_seeds.append(seed)
+        return FirstLegalAgent("second")
+
+    result = play_ballot_match(
+        first=_first_spec("first"),
+        second=AgentSpec(
+            name="second",
+            factory=position_seeded_factory,
+            position_seeded=True,
+        ),
+        ballots=ballots,
+        seed=20260728,
+        max_plies=4,
+    )
+
+    assert result.games == BALLOT_COUNT * 2 == EXPECTED_PAIRED_BALLOT_GAMES
+    assert result.first_as_red_games == BALLOT_COUNT
+    for ballot_index, ballot in enumerate(ballots):
+        first_as_red = result.records[ballot_index * 2]
+        first_as_white = result.records[ballot_index * 2 + 1]
+        assert first_as_red.red_agent == "first"
+        assert first_as_white.white_agent == "first"
+        assert first_as_red.initial_state == ballot.state
+        assert first_as_white.initial_state == ballot.state
+        assert first_as_red.opening_actions == ballot.actions
+        assert first_as_white.opening_actions == ballot.actions
+        assert first_as_red.ballot_id == ballot.ballot_id
+        assert first_as_white.ballot_id == ballot.ballot_id
+
+    assert position_seeds == [ballot.position_key for ballot in ballots for _colour in range(2)]
+    assert len({record.game_hash for record in result.records[::2]}) == BALLOT_COUNT
+    assert len({record.game_hash for record in result.records}) == BALLOT_COUNT * 2
 
 
 @pytest.mark.parametrize(
