@@ -71,6 +71,7 @@ select = ["ANN", "ARG", "B", "E", "ERA", "F", "I", "N", "PL", "PTH", "RET", "SIM
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = [".", "src"]
 addopts = "-ra --strict-config --strict-markers --cov=checkers --cov-branch --cov-report=term-missing --cov-fail-under=92"
 
 [tool.mypy]

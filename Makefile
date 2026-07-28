@@ -8,13 +8,14 @@ VLLM_BIN := $(LAB)/.venv-vllm/bin
 CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/rules tests/env \
 	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
 	scripts/build_published_transcripts.py scripts/differential_rules.py \
-	scripts/run_rule_mutation_challenges.py
+	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py
 MODEL ?=
 PORT ?= 8000
 export PYTHONPATH := $(LAB)/src
 export WANDB_MODE ?= offline
 
-.PHONY: help format format-check lint types test mutate fuzz-ci fuzz perft check smoke train eval \
+.PHONY: help format format-check lint types test mutate fuzz-ci fuzz fuzz-env fuzz-env-gate perft \
+	check smoke train eval \
 	doctor ruff mypy smoke-train disk jupyter tensorboard hf-login kaggle-test serve-vllm \
 	test-vllm ollama-start ollama-stop ollama-test clean-dry-run
 
@@ -49,6 +50,14 @@ fuzz-ci:
 
 fuzz:
 	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/property tests/metamorphic
+
+fuzz-env:
+	@cd $(LAB) && $(TRAIN_PY) scripts/fuzz_environment.py --steps 50000 \
+		--output reports/phase4_environment_fuzz_50k_seed20260728.json
+
+fuzz-env-gate:
+	@cd $(LAB) && $(TRAIN_PY) scripts/fuzz_environment.py --steps 5000000 \
+		--output reports/phase4_environment_fuzz_5m_seed20260728.json
 
 perft:
 	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/rules -k 'perft or differential'
