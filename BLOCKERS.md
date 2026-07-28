@@ -78,3 +78,31 @@ rotation-only claims.
 
 Status: OPEN (the valid combined symmetry is tested through BFS depth 4; Phase 2 cannot honestly
 be labelled GREEN while the impossible separate requirements remain binding).
+
+### BLOCK-004 [P1] Gate 2 — recorded results cannot generally be derived in Phase 2
+
+Claim in GOAL.md: Gate 2 requires at least 20 published transcripts replayed end to end with every
+move legal and "the recorded result reproduced," while Phase 3 is the first phase allowed to
+implement terminal conditions. The specification also removes agreement draws in R6.6.
+
+Why literal result derivation is unavailable: published checkers scores routinely end at
+resignation, adjudication, or draw agreement while legal moves remain. None of the selected 20
+decisive published records ends in a no-piece/no-legal-move board; all result tags therefore come
+from the publisher, not a result function derivable from the move list. Phase 2 cannot implement
+R6 out of order, and even Phase 3 cannot infer a resignation or agreement from board state that
+does not encode it.
+
+Evidence: the hash-pinned source and deterministic extraction are documented in `docs/RULES.md`;
+`tests/golden/test_published_transcripts.py` replays 515 complete moves as 561 legal environment
+steps with unique compressed-capture resolution. The final-state audit found legal moves in all
+20 final positions. WCDF 1.31–1.32 separately recognize resignation and agreement.
+
+Phases affected: 2 and 3.
+
+Proposed correction: Gate 2 should require every published move to replay legally and the source
+result tag to be preserved exactly. Gate 3 should additionally derive results only for transcripts
+that actually end in an engine-observable terminal position; resignation/agreement/adjudication
+must remain explicitly source-recorded outcomes.
+
+Status: OPEN (20 move-legality replays and exact result-tag preservation pass; no claim of
+board-derived outcomes is made).

@@ -1,0 +1,46 @@
+{
+  "classification": "INDEPENDENT AGREEMENT \u2014 CORROBORATION, NOT EXTERNAL CORRECTNESS",
+  "config": {
+    "bfs_depth": 7,
+    "digest_interval": 1024,
+    "max_plies": 512,
+    "positions": 5000000,
+    "seed": 20260727
+  },
+  "elapsed_seconds": 396.3068022910011,
+  "finished_at": "2026-07-27T23:17:13.934405-04:00",
+  "metadata": {
+    "git_dirty": false,
+    "git_sha": "5b93fd71d5d2c9bf8446b7b866f5027ef2878438",
+    "goal_sha256": "dab54331c088a201c1e43e0743866e1780aa84e3b0868b0b7cce34271c17660f",
+    "hardware": {
+      "gpu": "NVIDIA GeForce RTX 5070",
+      "logical_cpu_count": 12,
+      "machine": "x86_64",
+      "processor": "x86_64",
+      "release": "6.18.33.2-microsoft-standard-WSL2",
+      "system": "Linux"
+    },
+    "packages": {
+      "hypothesis": "6.161.8",
+      "ml-lab": "0.1.0",
+      "pytest": "9.1.1"
+    },
+    "python": "3.12.3"
+  },
+  "result": {
+    "bfs_positions": 40801,
+    "capture_steps": 1296570,
+    "continuation_steps": 153429,
+    "digest_samples": 4883,
+    "disagreements": 0,
+    "games_started": 67598,
+    "max_pending_captures": 5,
+    "playout_positions": 5000000,
+    "state_digest_sha256": "e91ca91ea51a2435a38a5d98f84573c2d7eeb739539a2895e5ede751e2a3e35f",
+    "steps_applied": 4932403,
+    "unique_bfs_states": 123632
+  },
+  "schema_version": 1,
+  "started_at": "2026-07-27T23:10:37.627616-04:00"
+}

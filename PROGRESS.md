@@ -15,9 +15,9 @@ geometry.
 
 ## In Flight
 
-1. Add the 5M-position differential runner and phase-gate report.
-2. Replay at least 20 published WCDF transcripts with source/result provenance.
-3. Run mutation analysis over `rules/` and add targeted mutation-killing tests as needed.
+1. Configure and run mutation analysis over `rules/`; add targeted killing tests as needed.
+2. Run the final Phase 2 technical gate and mark its formal status with all P1 blockers.
+3. Advance to unaffected Phase 3 terminal conditions and hashing per `GOAL.md` §0.1.
 
 ## Gate Evidence
 
@@ -41,19 +41,25 @@ geometry.
 - Differential runner validation: `make check`, exit 0; 125 passed; rules coverage 100%; a
   1,000-position CLI smoke report loaded successfully and reproduced digest
   `c74d17b…c0b35`. Evidence `logs/test-output/000008-check.txt`.
+- Phase 2 large differential: 5,000,000 playout positions and 40,801 BFS positions compared at
+  depth 7; 123,632 unique BFS states discovered; zero disagreements; exit 0. Report SHA-256
+  `af0c85dd…9e7b5dbe`; evidence `reports/phase2_differential_5m_seed20260727.json` and
+  `logs/gates/phase-2-differential.txt`.
+- Published transcripts: 20 hash-pinned external scores, 515 completed moves / 561 steps, all legal
+  with unique resolution; 21 tests pass. Evidence `logs/test-output/000010-transcripts.txt`.
 
 ## Last Five Iterations
 
-- 000004: implemented mandatory captures, continuation, delayed removal, promotion, counters, and
-  O(1) immutable undo; filed BLOCK-002 after exhaustive parity proof.
-- 000005: independent object-grid oracle agrees with the bitboard path on hand fixtures and 3,811
-  BFS states through depth 5; repository gate is 86 tests at 100% rules coverage.
 - 000006: strict ACF move grammar and CHK1 complete-state format pass canonical, invalid, and exact
   mid-sequence round-trip tests; repository gate remains at 100% rules coverage.
 - 000007: 50k deterministic fuzz, Hypothesis trajectories, and valid combined symmetry pass;
   BLOCK-003 records why separate mirror/colour/rotation claims are false.
 - 000008: added a deterministic, metadata-bearing 5M differential CLI; its 1,000-position smoke
   and 125-test repository gate pass at 100% rules coverage.
+- 000009: full 5M plus BFS-depth-7 differential completed in 396.35 seconds with zero disagreements;
+  independent report validation passed after one expected-SHA typo was caught.
+- 000010: 20 published PDN games replayed all 515 moves legally; BLOCK-004 separates preserved
+  publisher results from outcomes that cannot be inferred from nonterminal boards.
 
 ## Open Risks
 
@@ -62,8 +68,9 @@ geometry.
   coordinate-parity proof exist instead.
 - BLOCK-003 prevents separate mirror/colour/rotation metamorphisms; the only valid nontrivial
   composition is fully transition-tested.
-- Phase 2's 5M differential, published transcripts, mutation, and coverage gates are not yet run.
+- BLOCK-004 prevents claiming publisher resignation/adjudication results were board-derived.
+- Phase 2 mutation ≥85% and its final consolidated technical gate remain.
 
 ## Next Step
 
-Implement and run the saved 5M-position fast/oracle differential gate.
+Configure Mutmut 3.6 from its primary documentation and run the full rules mutation gate.

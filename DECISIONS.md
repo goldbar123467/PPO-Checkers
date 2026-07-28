@@ -101,3 +101,15 @@
   generation and state transition. Do not assert mirror-only, colour-only, or rotation-only
   invariance.
 - Evidence: `tests/metamorphic/test_rules_symmetry.py` and BLOCK-003.
+
+## ADR-009 — Separate transcript legality from publisher-adjudicated results
+
+- Status: Accepted evidence classification; BLOCK-004 remains open against Gate 2 wording.
+- Authority: Tier A move legality from WCDF; external published game records for move/result data.
+- Evidence stage: External-anchor validation.
+- Decision: Treat legal replay of every recorded move as rules correctness evidence. Preserve the
+  publisher's result tag and verify it against the pinned extraction, but call it board-derived
+  only when the final state itself has no legal move. Resignation, agreement, and adjudication are
+  not inferred from a nonterminal board.
+- Evidence: `tests/golden/test_published_transcripts.py`, fixture SHA-256
+  `1ab2a5b530d2ff44d5595e0d7674ec521db12e99fed21cbe13c64f8790974311`, and BLOCK-004.

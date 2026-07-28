@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<stdin>", line 22, in <module>
+AssertionError
+
+Root cause: the validator hard-coded an incorrect expected full Git SHA. The report contained
+`5b93fd71d5d2c9bf8446b7b866f5027ef2878438`, which exactly matched `git rev-parse HEAD`.

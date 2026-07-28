@@ -25,11 +25,13 @@
   proof replaces any fabricated fixture.
 - BLOCK-003: separate mirror, colour-only, and rotation-only transforms are not game symmetries.
   The valid 180° rotation plus player swap is tested as an involutive transition symmetry.
+- BLOCK-004: published scores generally end by resignation/adjudication with legal moves remaining,
+  so result tags are preserved but not falsely called board-derived.
 
 ## Open Risks
 
-- The independent grid oracle agrees through BFS depth 5 and the PR fuzz tier covers 50,000
-  deterministic steps; the 5M phase-gate differential remains.
+- The independent grid oracle agrees across 5,000,000 playout positions plus BFS depth 7; 20
+  external scores replay legally. Phase 2 mutation analysis remains.
 - Gate 2 still requires 5M differential positions, breadth-first depth evidence, published
   transcript replay, mutation ≥85%, and rules coverage ≥98%.
 - Clean-clone egress-blocked verification remains a final acceptance item.

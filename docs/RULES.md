@@ -29,6 +29,29 @@ which use `-` for simple moves and `x` for captures:
 Tests and runtime code never fetch these URLs. The clause mapping and hashes in this committed file
 are the offline build output. A fresh source audit can download the same URLs and compare hashes.
 
+## Published Transcript Provenance
+
+Twenty external game scores are selected deterministically from Bob Newell's
+[*PDN Downloads*](https://www.bobnewell.net/checkers/pdn/pdndownloads.html) publication page,
+which identifies *Tricks, Traps and Shots of the Checkerboard* as Willie Ryan material converted to
+PDN by Bob Murr. The pinned archive is
+[`tts.zip`](https://www.bobnewell.net/checkers/pdn/tts.zip):
+
+- Retrieved: 2026-07-27 America/New_York; size 19,681 bytes.
+- Archive SHA-256: `d1c2eb648e46827cf7eb2441f4ab22964329aa013896a0681932d837bd6de662`.
+- Member: `Tricks traps and shots.pdn`.
+- Selection: the first 20 non-setup entries named `TTS Game 1` through `TTS Game 20`.
+- Generated fixture SHA-256:
+  `1ab2a5b530d2ff44d5595e0d7674ec521db12e99fed21cbe13c64f8790974311`.
+- License: not stated on the source page. The small fixture contains only factual move/result
+  records, is used solely for tests, and is excluded from training data.
+
+The 20 scores contain 515 completed moves, expanding to 561 step-wise environment transitions.
+Every move has exactly one legal interpretation; this is external correctness evidence for move
+legality. The records contain 11 `0-1` and nine `1-0` source results, but all stop while legal moves
+remain (resignation or published analysis cutoff). Those result tags are preserved exactly, not
+misrepresented as board-derived outcomes; BLOCK-004 records the Gate 2 wording conflict.
+
 ## FROZEN ACF 1–32 orientation
 
 Convention: the first player is `PlayerId.RED`, matching WCDF 1.9 and 1.13. Red occupies 1–12,
