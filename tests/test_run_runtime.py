@@ -18,6 +18,7 @@ from checkers.run_runtime import (
     attach_runtime_run_id,
     finish_runtime_state,
     new_runtime_state,
+    read_process_start_ticks,
     read_runtime_state,
     write_runtime_state,
 )
@@ -38,6 +39,7 @@ def test_runtime_identity_uses_the_os_process_creation_time() -> None:
     state = _state()
 
     assert state.pid == os.getpid()
+    assert state.process_start_ticks == read_process_start_ticks(state.pid)
     assert datetime.fromisoformat(state.started_at).timestamp() == pytest.approx(
         psutil.Process(state.pid).create_time(),
         abs=1e-6,
@@ -126,3 +128,17 @@ def test_runtime_round_trip_and_reader_failures(tmp_path: Path) -> None:
     path.write_text(json.dumps(invalid_counter), encoding="utf-8")
     with pytest.raises(ValueError, match="counters"):
         read_runtime_state(path)
+    invalid_token = asdict(replace(state, process_start_ticks=0))
+    path.write_text(json.dumps(invalid_token), encoding="utf-8")
+    with pytest.raises(ValueError, match="start token"):
+        read_runtime_state(path)
+
+
+@pytest.mark.parametrize("pid", [0, -1, True])
+def test_process_start_ticks_rejects_invalid_pid(pid: int) -> None:
+    with pytest.raises(ValueError, match="pid"):
+        read_process_start_ticks(pid)
+
+
+def test_process_start_ticks_returns_none_for_missing_process() -> None:
+    assert read_process_start_ticks(2**31 - 1) is None

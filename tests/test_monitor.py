@@ -214,6 +214,11 @@ def test_monitor_status_distinguishes_running_idle_crashed_finished_and_stopped(
     idle_gpu = replace(cast(GpuTelemetry, telemetry.gpu), utilization_percent=0.0)
     idle_telemetry = replace(telemetry, process_cpu_percent=0.0, gpu=idle_gpu)
 
+    assert monitor_module._process_alive(runtime)
+    assert not monitor_module._process_alive(
+        replace(runtime, process_start_ticks=cast(int, runtime.process_start_ticks) + 1)
+    )
+
     assert (
         monitor_module._run_status(
             runtime=runtime,

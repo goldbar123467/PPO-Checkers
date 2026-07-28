@@ -520,7 +520,7 @@
 
 ## ADR-033 — Recover interrupted runs by immutable prefix proof
 
-- Status: Accepted recovery engineering; Seed 0 timed evidence pending.
+- Status: Accepted recovery engineering and Seed 0 timed recovery; Seeds 1 and 2 pending.
 - Authority: append-only metric/checkpoint contracts in ADR-031, the Seed 0 recovery objective, and
   the prohibition on treating metrics as reconstructable trainer state.
 - Decision: never resume into the interrupted source directory. Verify the source checkpoint with
@@ -541,7 +541,8 @@
   cannot contaminate the baseline.
 - Observability: write an atomic runtime lifecycle record, append psutil/NVIDIA telemetry to local
   JSONL and W&B, retain the source W&B ID with recovery provenance, and provide a polling monitor
-  that is strictly read only and labels periodic evaluations as diagnostic.
+  that is strictly read only and labels periodic evaluations as diagnostic. Bind new runtime PIDs
+  to Linux boot-relative process start ticks rather than wall-clock epochs, which can shift on WSL.
 - Evidence: `src/checkers/recovery.py`, `src/checkers/monitor.py`,
   `src/checkers/system_metrics.py`, `tests/test_recovery.py`, `tests/test_monitor.py`,
   `tests/test_run_runtime.py`, `tests/test_system_metrics.py`, and

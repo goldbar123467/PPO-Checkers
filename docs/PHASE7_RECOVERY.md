@@ -79,6 +79,9 @@ It reads atomic local artifacts and process/NVIDIA telemetry, tolerates a partia
 requires both checkpoint and sidecar before calling a checkpoint durable, labels periodic
 evaluations `DIAGNOSTIC_ONLY`, and distinguishes running, idle/waiting, stopped, crashed, and
 finished lifecycle states. Unsupported sensors and unrecorded reward mean are displayed as `N/A`.
+New lifecycle records bind a PID to its exact Linux boot-relative process start tick from `/proc`,
+so wall-clock corrections cannot create a false crash or accidentally match a reused PID. Legacy
+records fall back to a narrow timestamp comparison.
 
 Training appends CPU, RAM, process, disk, GPU utilization/memory/temperature/power/clock telemetry
 to both local JSONL and the stable offline W&B continuation. Recovery hashes, commits, update, and
@@ -91,3 +94,8 @@ A prepared directory is not a resumed run. A passing smoke is not a timed baseli
 incomplete until 1,800 measured training seconds, final checkpoint/reload, powered 364-game
 evaluation, best-response proxy, manifest, W&B artifact, local reconciliation, and repository-wide
 quality gate all pass. Seeds 1 and 2 remain prohibited until that Seed 0 boundary is documented.
+
+Seed 0 met this boundary in `phase7-a0-seed0-c8207ca-recovery-001`: update 264, 2,162,688
+transitions, 1,804.556 measured seconds, final checkpoint SHA-256
+`32c147481d3a8507ee4d0e10b643eeb038e2eeb861385e1de7038afed703dbf0`, and six complete
+364-game final match groups. RC8 is accepted; this does not by itself complete the three-seed gate.

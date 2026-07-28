@@ -83,7 +83,7 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 | RC5 | One-update CPU continuation/audit | update/logging steps contiguous, no duplicates, full reload and RNG restore | GREEN |
 | RC6 | Read-only monitor fixtures | partial-tail tolerance, diagnostic labels, lifecycle distinctions, source hashes unchanged | GREEN |
 | RC7 | One-update RTX 5070 recovery smoke | optimizer/device, collector, league, RNG, masks, telemetry, time counters pass | GREEN |
-| RC8 | Production Seed 0 recovery | 1,800 seconds, powered final evaluation, reload, artifacts, reconciliation | Pending |
+| RC8 | Production Seed 0 recovery | 1,800 seconds, powered final evaluation, reload, artifacts, reconciliation | GREEN |
 
 The recovery design and commands are frozen in `docs/PHASE7_RECOVERY.md`. RC1–RC6 are engineering
 evidence only; they make no policy-strength claim and do not satisfy G1–G5.
@@ -94,6 +94,13 @@ step 1,400,832 with contiguous logging step 188. The live monitor observed `RUNN
 `FINISHED`; the post-run audit records 66 CUDA parameters, 132 CUDA Adam moments, 66 finite CPU
 scalar steps, restored RNG/full state, stable W&B ID, finite telemetry/metrics, and zero mask
 faults. It remains bounded setup evidence only.
+
+RC8 uses the separately prepared `phase7-a0-seed0-c8207ca-recovery-001` run at training commit
+`7c9f4dcc0780dece342406fc645b53d4ebd10419`. It completed update 264, 2,162,688 transitions,
+1,804.556 measured training seconds, 291 contiguous records, a digest-verified/full-state-reloaded
+checkpoint, six 364-game final match groups, measured best response, W&B offline artifact, and zero
+aggregate legality/oracle faults. The original source hashes remain unchanged. Seeds 1 and 2 are
+still required before the three-seed Gate 7 conclusion.
 
 ## Foundation evidence
 

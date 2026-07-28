@@ -15,13 +15,13 @@ from typing import cast
 import psutil
 
 from checkers.config import RunConfig, load_run_config
-from checkers.run_runtime import RuntimeState, read_runtime_state
+from checkers.run_runtime import RuntimeState, read_process_start_ticks, read_runtime_state
 from checkers.system_metrics import SystemTelemetry, SystemTelemetrySampler
 
 CHECKPOINT_PATTERN = re.compile(r"^update-(\d{6})\.pt$")
 STALE_SECONDS = 30.0
 IDLE_SECONDS = 60.0
-PROCESS_START_TOLERANCE_SECONDS = 5.0
+LEGACY_PROCESS_START_TOLERANCE_SECONDS = 30.0
 IDLE_GPU_UTILIZATION_PERCENT = 5.0
 
 
@@ -218,8 +218,10 @@ def _process_alive(runtime: RuntimeState | None) -> bool:
         process = psutil.Process(runtime.pid)
         if not process.is_running() or process.status() == psutil.STATUS_ZOMBIE:
             return False
+        if runtime.process_start_ticks is not None:
+            return read_process_start_ticks(runtime.pid) == runtime.process_start_ticks
         started = datetime.fromisoformat(runtime.started_at).timestamp()
-        return abs(process.create_time() - started) < PROCESS_START_TOLERANCE_SECONDS
+        return abs(process.create_time() - started) < LEGACY_PROCESS_START_TOLERANCE_SECONDS
     except (ValueError, psutil.NoSuchProcess, psutil.AccessDenied):
         return False
 

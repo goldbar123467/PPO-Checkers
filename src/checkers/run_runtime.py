@@ -33,6 +33,30 @@ class RuntimeState:
     resume_from: str | None
     latest_warning: str | None
     latest_error: str | None
+    process_start_ticks: int | None = None
+
+
+def read_process_start_ticks(pid: int) -> int | None:
+    """Return Linux's boot-relative process start token, or None when unavailable."""
+
+    if isinstance(pid, bool) or not isinstance(pid, int) or pid < 1:
+        raise ValueError("pid must be a positive integer")
+    try:
+        stat = Path(f"/proc/{pid}/stat").read_text(encoding="ascii")
+    except (OSError, UnicodeError):
+        return None
+    command_end = stat.rfind(")")
+    if command_end < 0:
+        return None
+    fields_after_command = stat[command_end + 1 :].split()
+    start_time_index = 19  # field 22, after removing PID and parenthesized command fields
+    if len(fields_after_command) <= start_time_index:
+        return None
+    try:
+        start_ticks = int(fields_after_command[start_time_index])
+    except ValueError:
+        return None
+    return start_ticks if start_ticks > 0 else None
 
 
 def new_runtime_state(  # noqa: PLR0913
@@ -61,6 +85,9 @@ def new_runtime_state(  # noqa: PLR0913
     pid = os.getpid()
     now = datetime.now(UTC).isoformat()
     started_at = datetime.fromtimestamp(psutil.Process(pid).create_time(), UTC).isoformat()
+    process_start_ticks = read_process_start_ticks(pid)
+    if process_start_ticks is None:
+        raise RuntimeError("operating-system process start token is unavailable")
     return RuntimeState(
         schema=RUNTIME_SCHEMA,
         status="RUNNING",
@@ -75,6 +102,7 @@ def new_runtime_state(  # noqa: PLR0913
         resume_from=None if resume_from is None else str(resume_from),
         latest_warning=None,
         latest_error=None,
+        process_start_ticks=process_start_ticks,
     )
 
 
@@ -106,6 +134,7 @@ def finish_runtime_state(
         resume_from=state.resume_from,
         latest_warning=state.latest_warning,
         latest_error=latest_error,
+        process_start_ticks=state.process_start_ticks,
     )
 
 
@@ -132,6 +161,7 @@ def attach_runtime_run_id(state: RuntimeState, *, run_id: str) -> RuntimeState:
         resume_from=state.resume_from,
         latest_warning=state.latest_warning,
         latest_error=state.latest_error,
+        process_start_ticks=state.process_start_ticks,
     )
 
 
@@ -167,4 +197,6 @@ def read_runtime_state(path: Path) -> RuntimeState | None:
         raise ValueError("runtime state schema or status is invalid")
     if state.pid < 1 or state.start_update < 0:
         raise ValueError("runtime state counters are invalid")
+    if state.process_start_ticks is not None and state.process_start_ticks < 1:
+        raise ValueError("runtime process start token is invalid")
     return state

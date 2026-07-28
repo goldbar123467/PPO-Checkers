@@ -15,9 +15,9 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
 
 ## In Flight
 
-1. Commit the fully green Phase 7 runner and immutable seed configurations.
-2. Run seeds 0, 1, and 2 sequentially on the single RTX 5070 without changing A0.
-3. Consolidate 364-game results, mask counters, metric completeness, and artifact reload evidence.
+1. Preserve the accepted recovered Seed 0 run and its immutable source/orphan evidence.
+2. Run Seeds 1 and 2 sequentially on the single RTX 5070 without changing A0.
+3. Consolidate all three 364-game results, mask counters, metric completeness, and reload evidence.
 
 ## Gate Evidence
 
@@ -187,21 +187,33 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
 - Phase 7 pre-timed consolidated gate: `make check`, exit 0; 889 passed, none skipped/xfailed;
   Ruff format/lint and strict mypy clean; total coverage 93.88%; eight property/fuzz tests pass.
   Evidence `logs/test-output/000119-phase7-full-check-first.txt`.
+- Phase 7 recovery engineering: immutable update-170 prefix proof preserved the two uncheckpointed
+  update-171/172 records separately; the corrected one-update RTX 5070 smoke passed full-state/RNG
+  reload, CUDA optimizer placement, telemetry, and live/terminal monitoring. The repository gate
+  passed 926 tests at 92.35% coverage plus eight property tests. Evidence
+  `docs/PHASE7_RECOVERY.md` and logs `000029`–`000030`.
+- Phase 7 timed Seed 0: the independent production recovery completed update 264, 2,162,688
+  transitions, and 1,804.556 measured training seconds. Its 291-record history is contiguous and
+  finite with zero aggregate legality/oracle faults; the SHA-verified checkpoint reloads full
+  trainer/collector/league/RNG state on CUDA. All six final match groups contain 364 games. Scores
+  were 0.9973 vs random, 0.9986 vs greedy, 0.6731 vs minimax-2, and 0.25 for the trained
+  best-response proxy. The post-observability-fix gate passed 930 tests at 92.27% plus eight
+  property tests. Evidence `logs/iterations/000031.md` and the recovered run directory.
 
 ## Last Five Iterations
 
-- 000024: froze three uniquely forced 3/5/7-step engine trajectories, proved exact actor-frame T7
-  targets, and killed a deliberately injected missing-recursive-sign defect.
-- 000025: passed the consolidated 760+8-test Gate 6 at 100% coverage, measured the CUDA memory
-  envelope, published the primary-source-bounded analysis, and advanced Phase 6 to GREEN.
-- 000026: froze the stricter Phase 7 gate and implemented immutable config/pure schedules, complete
-  RNG snapshots, mutable trainer counters, and the pinned FIFO league at 100% focused coverage.
 - 000027: implemented self-play, all metric/alert formulas, exact PPO epoch consumption, offline
   logging contracts, atomic weights-only checkpoints, and bitwise 10-update CPU resume from a
   mid-capture lane; the first full integration run passed 872 tests.
 - 000028: fixed the CUDA device-identity defect; proved same-stack resume; completed real offline
   W&B, learned-policy evaluation, frozen-opponent best response, JSONL history, artifact logging,
   a five-minute CUDA smoke, and the 889-test pre-timed gate.
+- 000029: implemented immutable-prefix recovery, atomic sibling materialization, W&B provenance,
+  system telemetry, lifecycle state, a read-only monitor, and adversarial recovery tests.
+- 000030: preserved and rejected the first CUDA recovery smoke, corrected its two audit defects,
+  and accepted a fresh one-update CUDA smoke with full machine evidence.
+- 000031: completed and audited the recovered timed Seed 0, then replaced clock-sensitive PID
+  identity with exact boot-relative process start tokens before allowing Seed 1.
 
 ## Open Risks
 
@@ -215,12 +227,12 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
   sequence origin, both counters, and ply.
 - BLOCK-006 is resolved: the earlier phase-order defect remains documented and the Phase 6 N7
   different-logits test now passes against the exact implemented network.
-- The best-response proxy is now genuinely trained and measured at final evaluation; periodic
-  diagnostics retain the explicit `NOT_EVALUATED=-1` sentinel. No proxy score exists yet for the
-  three timed seeds.
+- The best-response proxy is genuinely trained and measured at final evaluation; periodic
+  diagnostics retain the explicit `NOT_EVALUATED=-1` sentinel. Seed 0 scored 0.25, but Seeds 1 and
+  2 remain required before reporting a three-seed result.
 - Test volume is 608 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
   276 substantive rules/environment tests exceed that category's ≥250 requirement.
 
 ## Next Step
 
-Commit the clean runner, then execute the three 1,800-second seed configurations sequentially.
+Commit the Seed 0 audit and exact monitor identity, then execute Seeds 1 and 2 sequentially.
