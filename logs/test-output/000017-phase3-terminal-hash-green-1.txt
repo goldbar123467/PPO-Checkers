@@ -1,0 +1,15 @@
+...................F                                                     [100%]
+=================================== FAILURES ===================================
+_______________ test_frozen_zobrist_schema_has_stable_known_keys _______________
+
+    def test_frozen_zobrist_schema_has_stable_known_keys() -> None:
+>       assert state_key(State.initial()) == 0x0
+E       assert 16566867023123409963 == 0
+E        +  where 16566867023123409963 = state_key(State(men=(4095, 4293918720), kings=(0, 0), side_to_move=<PlayerId.RED: 0>, capture_in_progress=False, moving_square=None, sequence_origin=None, captured_pending=0, no_progress=(0, 0), ply=0))
+E        +    where State(men=(4095, 4293918720), kings=(0, 0), side_to_move=<PlayerId.RED: 0>, capture_in_progress=False, moving_square=None, sequence_origin=None, captured_pending=0, no_progress=(0, 0), ply=0) = initial()
+E        +      where initial = State.initial
+
+tests/rules/test_zobrist.py:131: AssertionError
+=========================== short test summary info ============================
+FAILED tests/rules/test_zobrist.py::test_frozen_zobrist_schema_has_stable_known_keys
+1 failed, 19 passed in 0.10s

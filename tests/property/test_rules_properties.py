@@ -12,6 +12,7 @@ from checkers.rules.moves import apply_step, legal_steps, undo_step
 from checkers.rules.notation import parse_state, serialize_state
 from checkers.rules.oracle import oracle_legal_steps
 from checkers.rules.state import State
+from checkers.rules.zobrist import incremental_state_key, state_key
 
 FUZZ_SEED = 20_260_727
 PR_FUZZ_STEPS = 50_000
@@ -51,10 +52,14 @@ def _assert_step_invariants(state: State, choice: int) -> State:
     opponent = int(state.side_to_move.opponent)
     was_man = bool(state.men[actor] & bit(step.origin))
     was_king = bool(state.kings[actor] & bit(step.origin))
+    before_key = state_key(state)
     transition = apply_step(state, step)
     after = transition.after
 
     assert undo_step(transition) == state
+    after_key = incremental_state_key(before_key, state, after)
+    assert after_key == state_key(after)
+    assert incremental_state_key(after_key, after, undo_step(transition)) == before_key
     assert after.ply == state.ply + 1
     assert parse_state(serialize_state(after)) == after
 

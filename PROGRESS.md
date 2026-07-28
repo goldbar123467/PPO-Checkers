@@ -2,22 +2,22 @@
 
 ## Current Phase
 
-Phase 3 — Terminal conditions and hashing (IN PROGRESS)
+Phase 4 — Environment, encoding, and masking (IN PROGRESS)
 
-Phases 1 and 2 are formally BLOCKED by specification defects recorded as BLOCK-001 through
-BLOCK-004. Their technically feasible work and gates are complete, so §0.1 directs work to the
-next unaffected phase.
+Phases 1–3 are formally BLOCKED by specification defects recorded as BLOCK-001 through BLOCK-005.
+Their technically feasible work and gates are complete, so §0.1 directs work to the next
+source-correct portion of Phase 4.
 
-Work label: terminal/hash baseline.
+Work label: environment contract baseline.
 
-Falsifiable objective: implement source-classified R6 terminal decisions and separate full-state
-and move-boundary hash keys, with every Gate 3 boundary and incremental/recomputed property green.
+Falsifiable objective: implement the Gymnasium environment, canonical eight-plane encoding,
+128-action bijection, stored legal masks, and exact mid-sequence restore before the 5M-step gate.
 
 ## In Flight
 
-1. Write failing Gate 3 boundary tests for R6.1–R6.6 and the two-key contract.
-2. Implement `terminal.py` and `zobrist.py` with source-labelled variants.
-3. Run the Phase 3 property suite and consolidated gate.
+1. Write failing action-encoding, canonical-observation, and alias-regression tests.
+2. Implement encoding, masking, serialization, `CheckersEnv`, and deterministic vector wrappers.
+3. Smoke the complete reset/step/terminal/reward path, then build the Phase 4 fuzz runner.
 
 ## Gate Evidence
 
@@ -62,11 +62,13 @@ and move-boundary hash keys, with every Gate 3 boundary and incremental/recomput
 - Phase 2 consolidated technical gate: `make check`, exit 0; 158 tests plus eight property tests,
   strict typing/lint/format, and 100% statement/branch rules coverage. Evidence
   `logs/gates/phase-2.txt`. Formal status is BLOCKED only by BLOCK-002/003/004.
+- Phase 3 consolidated technical gate: `make check`, exit 0; 188 tests plus eight property tests;
+  R6 boundary fixtures, narrow/full key separation, and 50k incremental/recomputed/undo checks;
+  all eight rules modules at 100% statement/branch coverage. Evidence `logs/gates/phase-3.txt`.
+  Formal status is BLOCKED only by BLOCK-001/005.
 
 ## Last Five Iterations
 
-- 000008: added a deterministic, metadata-bearing 5M differential CLI; its 1,000-position smoke
-  and 125-test repository gate pass at 100% rules coverage.
 - 000009: full 5M plus BFS-depth-7 differential completed in 396.35 seconds with zero disagreements;
   independent report validation passed after one expected-SHA typo was caught.
 - 000010: 20 published PDN games replayed all 515 moves legally; BLOCK-004 separates preserved
@@ -76,6 +78,9 @@ and move-boundary hash keys, with every Gate 3 boundary and incremental/recomput
 - 000012: strengthened survivor assertions, killed 927/968 generated mutants conservatively,
   killed all five mandated semantic mutations in isolation, matched published perft, and completed
   the Phase 2 technical gate.
+- 000013: filed BLOCK-005, implemented source-correct R6 outcomes and complete/narrow Zobrist keys,
+  proved incremental equivalence through 50k reachable steps, and completed the Phase 3 technical
+  gate.
 
 ## Open Risks
 
@@ -85,10 +90,12 @@ and move-boundary hash keys, with every Gate 3 boundary and incremental/recomput
 - BLOCK-003 prevents separate mirror/colour/rotation metamorphisms; the only valid nontrivial
   composition is fully transition-tested.
 - BLOCK-004 prevents claiming publisher resignation/adjudication results were board-derived.
+- BLOCK-005 prevents the incomplete §5.3 state-key field list; source-correct code includes
+  sequence origin, both counters, and ply.
 - Total suite volume remains below the final ≥400-test acceptance requirement; later environment,
   RL, evaluation, and integration phases must add substantive tests rather than padding.
 
 ## Next Step
 
-Write the Phase 3 terminal and key-separation tests first, preserving BLOCK-001's explicit R6.6
-ENGINE VARIANT classification without claiming the read-only goal text is corrected.
+Write Phase 4 action/observation/alias tests first, using the corrected complete key and only the
+valid composed rotation-plus-player-swap symmetry.

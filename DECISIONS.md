@@ -164,3 +164,31 @@
   values remain pinned but are not redundantly run in every repository gate.
 - Evidence: `tests/golden/data/external_perft.json`,
   `tests/golden/test_external_perft.py`, and `logs/test-output/000016-external-perft.txt`.
+
+## ADR-013 — Use a complete transition key and a narrow repetition key
+
+- Status: Accepted implementation; BLOCK-005 remains open against the contradictory §5.3 list.
+- Authority: Project Markov-state contract plus Albert L. Zobrist, *A New Hashing Method With
+  Application for Game Playing*, University of Wisconsin Technical Report 88 (1970),
+  <https://minds.wisconsin.edu/handle/1793/57624>.
+- Evidence stage: Terminal/hash baseline.
+- Decision: `position_key` hashes placement and side only and raises during a capture sequence.
+  `state_key` hashes every field that changes a future complete state or terminal transition,
+  including `sequence_origin`, both no-progress counters, and ply. Freeze the 64-bit expansion
+  scheme and verify XOR incremental updates against full recomputation and reverse updates.
+- Rationale: Counter 39/40 and ply 511/512 pairs are deterministic semantic collisions under the
+  goal's explicit incomplete field list. A transposition or dedup key cannot merge them safely.
+- Evidence: `tests/rules/test_zobrist.py`, the 50,000-step reachable-state property in
+  `tests/property/test_rules_properties.py`, and `logs/gates/phase-3.txt`.
+
+## ADR-014 — Resolve coincident terminal boundaries loss-first
+
+- Status: Accepted.
+- Authority: Tier A WCDF 1.30 for no-piece/no-move losses; project-defined R6.3–R6.5 draws.
+- Evidence stage: Terminal/hash baseline.
+- Decision: Evaluate no-piece and no-legal-move loss before automatic no-progress, repetition, or
+  ply-cap draws. Treat `ply >= max_plies` as the draw boundary because Gate 3 explicitly requires
+  511 versus 512 fixtures despite R6.5's prose saying "exceeding."
+- Consequence: A training-only draw rule cannot rescue a player who already lost under WCDF. The
+  boundary behavior is deterministic and permanently tested.
+- Evidence: `tests/rules/test_terminal.py` and `logs/gates/phase-3.txt`.

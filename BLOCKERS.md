@@ -106,3 +106,27 @@ must remain explicitly source-recorded outcomes.
 
 Status: OPEN (20 move-legality replays and exact result-tag preservation pass; no claim of
 board-derived outcomes is made).
+
+### BLOCK-005 [P1] §5.3 — state key omits fields that change terminal transitions
+
+Claim in GOAL.md: `state_key` is Zobrist over everything in §5.1 that affects legal transitions,
+but its explicit field list contains placement, side, `capture_in_progress`, `moving_square`, and
+`captured_pending` only.
+
+Why the explicit list is wrong: R6.3 makes `no_progress` determine whether a state draws, and R6.5
+makes `ply` determine whether it draws. Two otherwise identical states at counter 39 versus 40 or
+ply 511 versus 512 therefore have different terminal transitions but collide deterministically
+under the listed key. `sequence_origin` is also propagated into subsequent full states during a
+capture continuation, so omitting it prevents the key from identifying the complete §5.1 state.
+This contradicts §5.3's own no-semantic-collision objective and the Markov-state rationale.
+
+Evidence: `GOAL.md` R6.3, R6.5, §5.1, and §5.3; the Phase 3 key-separation tests construct the
+counter and ply collisions directly.
+
+Phases affected: 3, 4, 5, and every cache/checkpoint consumer.
+
+Proposed correction: include `sequence_origin`, both `no_progress` counters, and `ply` in
+`state_key`; retain the narrower placement-plus-side `position_key` solely for boundary repetition.
+
+Status: OPEN (the implementation will use the source-correct complete key; Phase 3 cannot be
+labelled GREEN until the read-only field list is amended).

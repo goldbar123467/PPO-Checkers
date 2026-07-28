@@ -66,6 +66,27 @@ at depths 0–7, decrementing depth only when a complete checkers move ends so m
 steps remain one move. All eight counts match exactly: `1, 7, 49, 302, 1469, 7361, 36768,
 179740`. These are external correctness evidence, not an internally generated regression baseline.
 
+## Terminal and Hashing Adjudication
+
+Terminal losses follow WCDF 1.30. Automatic no-progress, optional automatic repetition, and the
+512-step cap are the declared R6.3–R6.5 ENGINE VARIANTS above. R6.6 is also labelled ENGINE VARIANT
+in implementation and documentation because autonomous agents cannot negotiate, although the
+read-only goal omitted that label (BLOCK-001). If a loss and an engine-variant draw boundary
+coincide, the loss is evaluated first; this prevents a side with no pieces or no move from escaping
+WCDF 1.30 through a training rule.
+
+The Zobrist construction follows Albert L. Zobrist's University of Wisconsin Technical Report 88,
+[*A New Hashing Method With Application for Game
+Playing*](https://minds.wisconsin.edu/handle/1793/57624) (1970): independent feature values are
+combined with XOR, permitting changes to be XORed out and in. This repository freezes a schema
+version, master seed, feature indices, and SplitMix64 expansion constants in `zobrist.py`; known
+initial keys are permanent tests.
+
+`position_key` follows the narrow §5.3 repetition contract: placement plus side, and only at a move
+boundary. The complete `state_key` additionally includes capture state, `sequence_origin`, both
+`no_progress` counters, and `ply`. The latter three correct BLOCK-005: omitting counter 40 or ply
+512 would give identical cache keys to states with different terminal transitions.
+
 ## FROZEN ACF 1–32 orientation
 
 Convention: the first player is `PlayerId.RED`, matching WCDF 1.9 and 1.13. Red occupies 1–12,
@@ -159,12 +180,12 @@ not a claim that the test already passes; gate evidence records actual execution
 | R5.1 | WCDF 1.16 — man crowns on reaching the far row and turn completes | `tests/rules/test_promotion.py::test_r5_1_man_promotes_at_a_completed_move` Phase 2 |
 | R5.2 | WCDF 1.16, 1.19, and 1.25.7 — crowning ends capture turn | `tests/rules/test_promotion.py::test_r5_2_promotion_ends_jump_sequence_before_a_new_king_jump` Phase 2 |
 | R5.3 | DERIVED from WCDF 1.16–1.17 — king is a persistent crowned state unless captured | `tests/rules/test_promotion.py::test_r5_3_king_is_never_demoted` Phase 2 |
-| R6.1 | WCDF 1.30 — player with no pieces has no move and loses | `tests/rules/test_terminal.py::test_R6_1_no_pieces_loses` Phase 3 |
-| R6.2 | WCDF 1.30 — blocked player with no legal move loses | `tests/rules/test_terminal.py::test_R6_2_stalemate_is_loss` Phase 3 |
-| R6.3 | ENGINE VARIANT from WCDF 1.32.2 — automatic per-player no-progress counters | `tests/rules/test_terminal.py::test_R6_3_per_player_40_move_boundary` Phase 3 |
-| R6.4 | ENGINE VARIANT from WCDF 1.32.1 — optional automatic arena repetition only | `tests/rules/test_terminal.py::test_R6_4_repetition_only_at_move_boundaries` Phase 3 |
-| R6.5 | ENGINE VARIANT — 512-step cap is an explicit training-MDP rule | `tests/rules/test_terminal.py::test_R6_5_511_vs_512_step_boundary` Phase 3 |
-| R6.6 | ENGINE VARIANT departing from WCDF 1.32 — autonomous agents cannot agree a draw | `tests/rules/test_terminal.py::test_R6_6_no_draw_by_agreement_api` Phase 3 |
+| R6.1 | WCDF 1.30 — player with no pieces has no move and loses | `tests/rules/test_terminal.py::test_r6_1_no_pieces_loses` Phase 3 |
+| R6.2 | WCDF 1.30 — blocked player with no legal move loses | `tests/rules/test_terminal.py::test_r6_2_stalemate_is_loss` Phase 3 |
+| R6.3 | ENGINE VARIANT from WCDF 1.32.2 — automatic per-player no-progress counters | `tests/rules/test_terminal.py::test_r6_3_per_player_40_move_boundary` Phase 3 |
+| R6.4 | ENGINE VARIANT from WCDF 1.32.1 — optional automatic arena repetition only | `tests/rules/test_terminal.py::test_r6_4_repetition_only_at_move_boundaries` Phase 3 |
+| R6.5 | ENGINE VARIANT — 512-step cap is an explicit training-MDP rule | `tests/rules/test_terminal.py::test_r6_5_511_vs_512_step_boundary` Phase 3 |
+| R6.6 | ENGINE VARIANT departing from WCDF 1.32 — autonomous agents cannot agree a draw | `tests/rules/test_terminal.py::test_r6_6_no_draw_by_agreement_api` Phase 3 |
 | R6.7 | DERIVED finite-resource termination bound below | `tests/rules/test_rule_traceability.py::test_r6_7_termination_bound_is_derived_and_above_ply_cap` Phase 1 |
 | R7.1 | WCDF 1.5 plus WCDF 2017 published scores — 1–32 notation with `-` and `x` | `tests/rules/test_notation.py::TestMoveExamples::test_r7_1_acf_simple_jump_and_multijump_examples` Phase 2 |
 | R7.2 | PROJECT CONTRACT derived from R7.1 — parse and format round trip | `tests/rules/test_notation.py::test_r7_2_move_notation_round_trip` Phase 2 |
