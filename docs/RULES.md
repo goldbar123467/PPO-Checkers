@@ -63,8 +63,17 @@ WCDF 1.18 describes removal after a single jump, while the more specific multi-j
 places removal of all captured pieces at the end of the sequence. WCDF 1.20 additionally forbids a
 piece from being jumped twice in that sequence. For multi-jumps, 1.19 is the controlling specific
 clause: jumped pieces remain physically present until the complete move ends. They therefore still
-occupy their squares, cannot be jumped again, and can block a later landing. This interpretation is
-implemented as `captured_pending` and must be tested against immediate-removal divergence fixtures.
+occupy their squares and cannot be jumped again. This interpretation is implemented as
+`captured_pending` and tested against the complete mid-sequence state.
+
+The narrower claim in `GOAL.md` that a marked piece can block a later *landing* is geometrically
+impossible for American Checkers. Every short jump changes row and column by ±2, so the moving
+piece stays in one coordinate-parity class for its whole sequence. Every jumped midpoint belongs
+to the opposite class. A midpoint can never be a later landing. If a captured piece is removed
+immediately it is not jumpable; if retained and marked, WCDF 1.20 forbids jumping it again. Hence
+removal timing changes the required mid-sequence state and observation, but cannot change the
+legal continuation set when the no-repeat rule is honored. BLOCK-002 records the contradiction
+between this proof fallback in R4.5 and later gate language demanding a divergence fixture.
 
 ### Draw departures
 
@@ -100,7 +109,7 @@ not a claim that the test already passes; gate evidence records actual execution
 | R4.3.1 | WCDF 1.21 — king captures forward or backward | `tests/rules/test_captures.py::test_R4_3_1_king_jumps_both_directions` Phase 2 |
 | R4.3.2 | WCDF 1.18 and 1.25.4 — uncrowned man never captures backward | `tests/rules/test_captures.py::test_R4_3_2_man_never_jumps_backward` Phase 2 |
 | R4.4 | WCDF 1.19–1.20 — same-piece continuation through the final jump | `tests/rules/test_captures.py::test_R4_4_continuation_is_mandatory` Phase 2 |
-| R4.5 | WCDF 1.19–1.20 — sequence-end removal and no repeat jump | `tests/golden/test_delayed_removal.py::test_R4_5_marked_piece_still_blocks_landing` Phase 2 |
+| R4.5 | WCDF 1.19–1.20 — sequence-end removal and no repeat jump; BLOCK-002 parity correction | `tests/rules/test_captures.py::test_r4_5_marked_piece_remains_occupied_and_cannot_be_jumped_twice` Phase 2 |
 | R4.6 | WCDF 1.20 — player may choose any available jump route | `tests/rules/test_captures.py::test_R4_6_no_majority_capture_rule` Phase 2 |
 | R5.1 | WCDF 1.16 — man crowns on reaching the far row and turn completes | `tests/rules/test_promotion.py::test_R5_1_man_promotes_at_completed_move` Phase 2 |
 | R5.2 | WCDF 1.16, 1.19, and 1.25.7 — crowning ends capture turn | `tests/golden/test_promotion.py::test_R5_2_promotion_ends_jump_sequence` Phase 2 |

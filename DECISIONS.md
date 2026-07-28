@@ -75,3 +75,18 @@
 - Evidence: `docs/RULES.md`, `tests/rules/test_board.py`, and
   `logs/test-output/000003-check-4.txt`. The defect was found before move-generation code existed,
   so no trained artifacts or transcripts were invalidated.
+
+## ADR-007 — Delayed removal is state-significant but not move-set divergent
+
+- Status: Accepted implementation; BLOCK-002 remains open against the contradictory gate text.
+- Authority: Tier A WCDF 1.18–1.21 plus a derived coordinate-parity proof.
+- Evidence stage: Correctness baseline.
+- Decision: Retain captured pieces in opponent bitboards and mark them in `captured_pending` until
+  the complete sequence ends. Exclude marked pieces as future jump midpoints. Do not fabricate a
+  legal-set divergence fixture: short jumps keep the mover in one coordinate-parity class and all
+  captured midpoints in the other, so a captured square can never be a later landing.
+- Consequence: Mid-sequence state, serialization, observation, and mutation tests can distinguish
+  correct delayed removal from immediate removal. Legal continuation sets cannot distinguish them
+  when WCDF's no-repeat rule is honored.
+- Evidence: BLOCK-002, `docs/RULES.md`, and the two R4.5 tests in
+  `tests/rules/test_captures.py`.

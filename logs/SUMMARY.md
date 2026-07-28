@@ -20,11 +20,14 @@
 - The first Phase 2 full check exposed a harness interaction: fuzz-only pytest reran global
   coverage over six scaffold tests and reported new rules modules at 0%. Fuzz/perft targets now
   use `--no-cov`; the mandatory full suite remains the single coverage authority.
+- BLOCK-002: the requested R4.5 landing-block divergence is impossible under American Checkers'
+  ±2 short-jump geometry. Exact delayed occupancy is implemented and tested; the coordinate-parity
+  proof replaces any fabricated fixture.
 
 ## Open Risks
 
-- Delayed-removal semantics still require a hand-adjudicated divergence fixture and independent
-  oracle agreement.
+- The independent grid oracle agrees with the bitboard generator through BFS depth 5; the 5M
+  phase-gate differential and metamorphic suite remain.
 - Gate 2 still requires 5M differential positions, breadth-first depth evidence, published
   transcript replay, mutation ≥85%, and rules coverage ≥98%.
 - Clean-clone egress-blocked verification remains a final acceptance item.
