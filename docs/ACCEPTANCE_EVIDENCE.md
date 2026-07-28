@@ -20,7 +20,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 |---|---|---|---|
 | 0 — Scaffolding | `GOAL.md` §14 Phase 0 | Exact pins, required layout/state, quality tools, offline CI, green `make check`, injected lint/test failures. | PROVEN: `logs/gates/phase-0.txt` exit 0; injected-red logs; `logs/gates/phase-0-gpu-doctor.txt`. |
 | 1 — Rules verification | §3.1, §4, §14 Phase 1; primary WCDF/ACF rules | Per-rule primary clause or ENGINE VARIANT label, tests, R6.7 proof, P1 for unavailable text. | BLOCKED by BLOCK-001; technical gate exit 0 at `logs/gates/phase-1.txt`. |
-| 2 — State/moves | §§4–5, §§12.2–12.5, §14 Phase 2 | Fast/oracle generators, R4.5 divergence, 5M differential, BFS, metamorphic, 20 published transcripts, mutation ≥85%, rules coverage ≥98%. | IN PROGRESS; fast/oracle depth-5 BFS and 100% rules coverage proven; BLOCK-002 shows required R4.5 legal-set divergence is impossible. |
+| 2 — State/moves | §§4–5, §§12.2–12.5, §14 Phase 2 | Fast/oracle generators, R4.5 divergence, 5M differential, BFS, metamorphic, 20 published transcripts, mutation ≥85%, rules coverage ≥98%. | IN PROGRESS; depth-5 BFS, 50k fuzz, valid composed metamorphism, and 100% rules coverage proven; BLOCK-002/003 cover impossible divergence and separate-symmetry wording. |
 | 3 — Terminal/hash | R6, §5.3, §14 Phase 3 | Boundary/key/property tests and committed termination proof. | OPEN. |
 | 4 — Environment | §§5.2, 6, §14 Phase 4 | 5M-step fuzz, zero mask failures, canonical/aliasing/illegal-action/restore tests. | OPEN. |
 | 5 — Baselines/arena | §11.2–11.4, §14 Phase 5 | Power-justified balanced matches and hand-worked Elo/payoff validation. | OPEN. |

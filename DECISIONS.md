@@ -90,3 +90,14 @@
   when WCDF's no-repeat rule is honored.
 - Evidence: BLOCK-002, `docs/RULES.md`, and the two R4.5 tests in
   `tests/rules/test_captures.py`.
+
+## ADR-008 — Use only the valid composed board symmetry
+
+- Status: Accepted implementation; BLOCK-003 remains open against the gate wording.
+- Authority: Tier A WCDF board/movement clauses plus an exhaustive D4 geometry audit.
+- Evidence stage: Metamorphic verification.
+- Decision: Treat 180° board rotation composed with `PlayerId`/colour swap as the single
+  nontrivial rank-preserving symmetry. Require it to be an involution and to commute with legal
+  generation and state transition. Do not assert mirror-only, colour-only, or rotation-only
+  invariance.
+- Evidence: `tests/metamorphic/test_rules_symmetry.py` and BLOCK-003.

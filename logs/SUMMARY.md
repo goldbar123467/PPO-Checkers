@@ -23,11 +23,13 @@
 - BLOCK-002: the requested R4.5 landing-block divergence is impossible under American Checkers'
   ±2 short-jump geometry. Exact delayed occupancy is implemented and tested; the coordinate-parity
   proof replaces any fabricated fixture.
+- BLOCK-003: separate mirror, colour-only, and rotation-only transforms are not game symmetries.
+  The valid 180° rotation plus player swap is tested as an involutive transition symmetry.
 
 ## Open Risks
 
-- The independent grid oracle agrees with the bitboard generator through BFS depth 5; the 5M
-  phase-gate differential and metamorphic suite remain.
+- The independent grid oracle agrees through BFS depth 5 and the PR fuzz tier covers 50,000
+  deterministic steps; the 5M phase-gate differential remains.
 - Gate 2 still requires 5M differential positions, breadth-first depth evidence, published
   transcript replay, mutation ≥85%, and rules coverage ≥98%.
 - Clean-clone egress-blocked verification remains a final acceptance item.

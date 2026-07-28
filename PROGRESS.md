@@ -15,9 +15,9 @@ geometry.
 
 ## In Flight
 
-1. Implement R7 notation and complete-state serialization with exact mid-sequence round trips.
-2. Add reachable-state property/metamorphic suites and the 5M-position differential runner.
-3. Replay at least 20 published WCDF transcripts and run mutation analysis over `rules/`.
+1. Add the 5M-position differential runner and phase-gate report.
+2. Replay at least 20 published WCDF transcripts with source/result provenance.
+3. Run mutation analysis over `rules/` and add targeted mutation-killing tests as needed.
 
 ## Gate Evidence
 
@@ -34,25 +34,33 @@ geometry.
 - Phase 2 moves/oracle increment: `make check`, exit 0; 86 passed; all four rules modules at 100%
   statement/branch coverage; depth-5 BFS compared 3,811 unique frontier states and discovered
   12,916 states with zero disagreements. Evidence `logs/test-output/000005-check-2.txt`.
+- Phase 2 notation/fuzz increment: `make check`, exit 0; 118 passed; rules coverage 100%;
+  deterministic 50,000-step invariant/oracle fuzz and 200 Hypothesis trajectories pass. The valid
+  composed rotation/colour-swap relation commutes with transitions through BFS depth 4. Evidence
+  `logs/test-output/000006-check-3.txt`.
 
 ## Last Five Iterations
 
-- 000001: Gate 0 GREEN; injected lint/test failures detected; CUDA/BF16/NF4 doctor passed.
-- 000002: WCDF source hash-pinned; 30-rule matrix and R6.7 proof pass; R6.6 label defect filed.
-- 000003: corrected mirrored ACF diagram before move code; immutable uint32 state and board mapping
-  pass 33 focused tests and the 57-test repository gate at 100% checkers coverage.
+- 000003: corrected mirrored ACF geometry before move code; immutable state and board primitives
+  passed the repository gate at 100% coverage.
 - 000004: implemented mandatory captures, continuation, delayed removal, promotion, counters, and
   O(1) immutable undo; filed BLOCK-002 after exhaustive parity proof.
 - 000005: independent object-grid oracle agrees with the bitboard path on hand fixtures and 3,811
   BFS states through depth 5; repository gate is 86 tests at 100% rules coverage.
+- 000006: strict ACF move grammar and CHK1 complete-state format pass canonical, invalid, and exact
+  mid-sequence round-trip tests; repository gate remains at 100% rules coverage.
+- 000007: 50k deterministic fuzz, Hypothesis trajectories, and valid combined symmetry pass;
+  BLOCK-003 records why separate mirror/colour/rotation claims are false.
 
 ## Open Risks
 
 - BLOCK-001 prevents Phase 1 from being marked GREEN until a human accepts the R6.6 erratum.
 - BLOCK-002 prevents the impossible R4.5 landing-divergence fixture; exact delayed state and a
   coordinate-parity proof exist instead.
+- BLOCK-003 prevents separate mirror/colour/rotation metamorphisms; the only valid nontrivial
+  composition is fully transition-tested.
 - Phase 2's 5M differential, published transcripts, mutation, and coverage gates are not yet run.
 
 ## Next Step
 
-Write failing R7 notation and full-state serialization round-trip tests.
+Implement and run the saved 5M-position fast/oracle differential gate.

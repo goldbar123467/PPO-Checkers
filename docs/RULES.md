@@ -87,6 +87,14 @@ specification defect. Code and documentation conservatively label it ENGINE VARI
 An environment step, parser API, and FEN-like full-state serialization are software contracts, not
 over-the-board WCDF rules. They are marked PROJECT CONTRACT rather than attributed to WCDF.
 
+### Symmetry adjudication
+
+The valid nontrivial game symmetry is 180° rotation *combined with* Red/White identity swap.
+Horizontal and vertical mirrors map playable squares to light squares; diagonal mirrors map king
+rows to columns. Colour-only and rotation-only transforms reverse man direction without applying
+the corresponding player-role change. BLOCK-003 records why §12.4 D's separate symmetry wording
+cannot be implemented truthfully.
+
 ## Rule-to-Source-to-Test Matrix
 
 Test names are the permanent Phase 2/3 targets. A listed future test is a traceability commitment,
@@ -94,26 +102,26 @@ not a claim that the test already passes; gate evidence records actual execution
 
 | Rule ID | Authority and derivation | Covering test |
 |---|---|---|
-| R1.1 | WCDF 1.1 and 1.5 — 8×8 board and 32 playable squares | `tests/rules/test_board.py::test_R1_1_board_has_32_dark_squares` Phase 2 |
-| R1.2 | WCDF 1.4–1.5 — orientation and official 1–32 references | `tests/rules/test_board.py::test_R1_2_acf_mapping_matches_frozen_diagram` Phase 2 |
-| R1.3 | WCDF 1.4 — single and double corners | `tests/rules/test_board.py::test_R1_3_double_corner_is_on_each_players_right` Phase 2 |
-| R1.4 | WCDF 1.8 and 1.11 — twelve men per side on 1–12 and 21–32 | `tests/rules/test_state.py::test_R1_4_initial_position_exact` Phase 2 |
-| R1.5 | WCDF 1.9 and 1.13 — Red convention and first move | `tests/rules/test_state.py::test_R1_5_red_is_explicit_first_player` Phase 2 |
-| R2.1 | WCDF 1.13 — turns alternate | `tests/rules/test_moves.py::test_R2_1_completed_moves_alternate_players` Phase 2 |
-| R2.2 | WCDF 1.14–1.21 plus PROJECT CONTRACT §5.2 — full move versus step | `tests/rules/test_moves.py::test_R2_2_multijump_is_one_move_and_many_steps` Phase 2 |
-| R3.1 | WCDF 1.15 — men move one vacant diagonal forward | `tests/rules/test_moves.py::test_R3_1_man_simple_moves_are_forward_only` Phase 2 |
-| R3.2 | WCDF 1.17 — kings move one vacant diagonal either way | `tests/rules/test_moves.py::test_R3_2_king_simple_moves_both_directions` Phase 2 |
-| R3.3 | WCDF 1.15 and 1.17 — adjacent vacant destination, hence no flying king | `tests/rules/test_moves.py::test_R3_3_no_flying_or_occupied_destination` Phase 2 |
-| R4.1 | WCDF 1.18 and 1.21 — short jump over adjacent enemy to vacant beyond | `tests/rules/test_captures.py::test_R4_1_jump_geometry_and_occupancy` Phase 2 |
-| R4.2 | WCDF 1.20 and 1.25.1 — capture and completion are compulsory | `tests/rules/test_captures.py::test_R4_2_capture_is_mandatory_per_player` Phase 2 |
-| R4.3.1 | WCDF 1.21 — king captures forward or backward | `tests/rules/test_captures.py::test_R4_3_1_king_jumps_both_directions` Phase 2 |
-| R4.3.2 | WCDF 1.18 and 1.25.4 — uncrowned man never captures backward | `tests/rules/test_captures.py::test_R4_3_2_man_never_jumps_backward` Phase 2 |
-| R4.4 | WCDF 1.19–1.20 — same-piece continuation through the final jump | `tests/rules/test_captures.py::test_R4_4_continuation_is_mandatory` Phase 2 |
+| R1.1 | WCDF 1.1 and 1.5 — 8×8 board and 32 playable squares | `tests/rules/test_board.py::test_r1_1_board_has_exactly_32_playable_dark_squares` Phase 2 |
+| R1.2 | WCDF 1.4–1.5 — orientation and official 1–32 references | `tests/rules/test_board.py::test_r1_2_acf_mapping_matches_frozen_unmirrored_diagram` Phase 2 |
+| R1.3 | WCDF 1.4 — single and double corners | `tests/rules/test_board.py::test_r1_3_double_corner_is_on_each_players_right` Phase 2 |
+| R1.4 | WCDF 1.8 and 1.11 — twelve men per side on 1–12 and 21–32 | `tests/rules/test_state.py::test_r1_4_initial_position_is_exact_and_contains_only_men` Phase 2 |
+| R1.5 | WCDF 1.9 and 1.13 — Red convention and first move | `tests/rules/test_state.py::test_r1_5_red_is_explicit_first_player` Phase 2 |
+| R2.1 | WCDF 1.13 — turns alternate | `tests/rules/test_moves.py::test_r2_1_completed_moves_alternate_players` Phase 2 |
+| R2.2 | WCDF 1.14–1.21 plus PROJECT CONTRACT §5.2 — full move versus step | `tests/rules/test_moves.py::test_r2_2_multijump_is_one_move_and_many_environment_steps` Phase 2 |
+| R3.1 | WCDF 1.15 — men move one vacant diagonal forward | `tests/rules/test_moves.py::test_r3_1_man_simple_moves_are_forward_only` Phase 2 |
+| R3.2 | WCDF 1.17 — kings move one vacant diagonal either way | `tests/rules/test_moves.py::test_r3_2_king_simple_moves_forward_and_backward` Phase 2 |
+| R3.3 | WCDF 1.15 and 1.17 — adjacent vacant destination, hence no flying king | `tests/rules/test_moves.py::test_r3_3_no_flying_king_or_occupied_destination` Phase 2 |
+| R4.1 | WCDF 1.18 and 1.21 — short jump over adjacent enemy to vacant beyond | `tests/rules/test_captures.py::test_r4_1_jump_geometry_and_landing_occupancy` Phase 2 |
+| R4.2 | WCDF 1.20 and 1.25.1 — capture and completion are compulsory | `tests/rules/test_captures.py::test_r4_2_capture_is_mandatory_across_the_whole_player` Phase 2 |
+| R4.3.1 | WCDF 1.21 — king captures forward or backward | `tests/rules/test_captures.py::test_r4_3_1_king_jumps_forward_and_backward` Phase 2 |
+| R4.3.2 | WCDF 1.18 and 1.25.4 — uncrowned man never captures backward | `tests/rules/test_captures.py::test_r4_3_2_man_never_jumps_backward` Phase 2 |
+| R4.4 | WCDF 1.19–1.20 — same-piece continuation through the final jump | `tests/rules/test_captures.py::test_r4_4_continuation_is_mandatory_for_the_same_piece` Phase 2 |
 | R4.5 | WCDF 1.19–1.20 — sequence-end removal and no repeat jump; BLOCK-002 parity correction | `tests/rules/test_captures.py::test_r4_5_marked_piece_remains_occupied_and_cannot_be_jumped_twice` Phase 2 |
-| R4.6 | WCDF 1.20 — player may choose any available jump route | `tests/rules/test_captures.py::test_R4_6_no_majority_capture_rule` Phase 2 |
-| R5.1 | WCDF 1.16 — man crowns on reaching the far row and turn completes | `tests/rules/test_promotion.py::test_R5_1_man_promotes_at_completed_move` Phase 2 |
-| R5.2 | WCDF 1.16, 1.19, and 1.25.7 — crowning ends capture turn | `tests/golden/test_promotion.py::test_R5_2_promotion_ends_jump_sequence` Phase 2 |
-| R5.3 | DERIVED from WCDF 1.16–1.17 — king is a persistent crowned state unless captured | `tests/rules/test_promotion.py::test_R5_3_king_is_never_demoted` Phase 2 |
+| R4.6 | WCDF 1.20 — player may choose any available jump route | `tests/rules/test_captures.py::test_r4_6_no_majority_capture_rule` Phase 2 |
+| R5.1 | WCDF 1.16 — man crowns on reaching the far row and turn completes | `tests/rules/test_promotion.py::test_r5_1_man_promotes_at_a_completed_move` Phase 2 |
+| R5.2 | WCDF 1.16, 1.19, and 1.25.7 — crowning ends capture turn | `tests/rules/test_promotion.py::test_r5_2_promotion_ends_jump_sequence_before_a_new_king_jump` Phase 2 |
+| R5.3 | DERIVED from WCDF 1.16–1.17 — king is a persistent crowned state unless captured | `tests/rules/test_promotion.py::test_r5_3_king_is_never_demoted` Phase 2 |
 | R6.1 | WCDF 1.30 — player with no pieces has no move and loses | `tests/rules/test_terminal.py::test_R6_1_no_pieces_loses` Phase 3 |
 | R6.2 | WCDF 1.30 — blocked player with no legal move loses | `tests/rules/test_terminal.py::test_R6_2_stalemate_is_loss` Phase 3 |
 | R6.3 | ENGINE VARIANT from WCDF 1.32.2 — automatic per-player no-progress counters | `tests/rules/test_terminal.py::test_R6_3_per_player_40_move_boundary` Phase 3 |
@@ -121,9 +129,9 @@ not a claim that the test already passes; gate evidence records actual execution
 | R6.5 | ENGINE VARIANT — 512-step cap is an explicit training-MDP rule | `tests/rules/test_terminal.py::test_R6_5_511_vs_512_step_boundary` Phase 3 |
 | R6.6 | ENGINE VARIANT departing from WCDF 1.32 — autonomous agents cannot agree a draw | `tests/rules/test_terminal.py::test_R6_6_no_draw_by_agreement_api` Phase 3 |
 | R6.7 | DERIVED finite-resource termination bound below | `tests/rules/test_rule_traceability.py::test_r6_7_termination_bound_is_derived_and_above_ply_cap` Phase 1 |
-| R7.1 | WCDF 1.5 plus WCDF 2017 published scores — 1–32 notation with `-` and `x` | `tests/rules/test_notation.py::test_R7_1_acf_simple_jump_and_multijump_examples` Phase 2 |
-| R7.2 | PROJECT CONTRACT derived from R7.1 — parse and format round trip | `tests/rules/test_notation.py::test_R7_2_notation_round_trip` Phase 2 |
-| R7.3 | PROJECT CONTRACT §5.1 — FEN-like format serializes the complete state | `tests/rules/test_notation.py::test_R7_3_full_and_midsequence_state_round_trip` Phase 2 |
+| R7.1 | WCDF 1.5 plus WCDF 2017 published scores — 1–32 notation with `-` and `x` | `tests/rules/test_notation.py::TestMoveExamples::test_r7_1_acf_simple_jump_and_multijump_examples` Phase 2 |
+| R7.2 | PROJECT CONTRACT derived from R7.1 — parse and format round trip | `tests/rules/test_notation.py::test_r7_2_move_notation_round_trip` Phase 2 |
+| R7.3 | PROJECT CONTRACT §5.1 — FEN-like format serializes the complete state | `tests/rules/test_notation.py::test_r7_3_full_midsequence_state_round_trips_exactly` Phase 2 |
 
 ## R6.7 Termination Proof Sketch
 
