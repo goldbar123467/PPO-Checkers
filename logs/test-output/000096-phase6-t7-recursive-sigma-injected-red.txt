@@ -1,0 +1,210 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/thecl/ml-lab/.venv-train/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/thecl/ml-lab
+configfile: pyproject.toml
+plugins: xdist-3.8.0, hypothesis-6.161.8, cov-7.1.0, anyio-4.14.2
+collecting ... collected 4 items
+
+tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-3-r6.2] FAILED [ 25%]
+tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-5-terminal-multijump] FAILED [ 50%]
+tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-7-forced-win] FAILED [ 75%]
+tests/rl/test_forced_mate_targets.py::test_t7_fixture_set_covers_distinct_terminal_multijump_and_r6_2_paths PASSED [100%]
+
+=================================== FAILURES ===================================
+___ test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-3-r6.2] ____
+
+fixture = _ForcedWin(name='length-3-r6.2', initial=State(men=(2147487744, 33554432), kings=(512, 268435520), side_to_move=<Playe....0, -1.0, 1.0), outcome=Outcome(winner=<PlayerId.WHITE: 1>, reason=<TerminationReason.NO_LEGAL_MOVE: 'no_legal_move'>))
+
+    @pytest.mark.parametrize("fixture", FORCED_WINS, ids=lambda fixture: fixture.name)
+    def test_t7_forced_win_targets_are_exact_in_each_actor_frame(fixture: _ForcedWin) -> None:
+        env = CheckersEnv(initial_state=fixture.initial)
+        rewards: list[float] = []
+        dones: list[bool] = []
+        observed_sigmas: list[int] = []
+        observed_actors: list[PlayerId] = []
+        observed_completion: list[bool] = []
+    
+        assert not env.terminated
+        for expected_step, expected_actor in zip(fixture.steps, fixture.actors, strict=True):
+            assert legal_steps(env.state) == (expected_step,)
+            actor = env.state.side_to_move
+            _, reward, terminated, truncated, info = env.step(step_to_action(env.state, expected_step))
+            observed_actors.append(actor)
+            rewards.append(reward)
+            dones.append(terminated)
+            observed_sigmas.append(1 if env.state.side_to_move is actor else -1)
+            observed_completion.append(bool(info["move_completed"]))
+    
+            assert actor is expected_actor
+            assert info["actor"] is expected_actor
+            assert truncated is False
+    
+        expected_rewards = (0.0,) * (len(fixture.steps) - 1) + (1.0,)
+        expected_dones = (False,) * (len(fixture.steps) - 1) + (True,)
+        assert tuple(observed_actors) == fixture.actors
+        assert tuple(observed_completion) == fixture.move_completed
+        assert tuple(observed_sigmas) == fixture.sigmas
+        assert tuple(rewards) == expected_rewards
+        assert tuple(dones) == expected_dones
+        assert env.outcome == fixture.outcome
+        assert fixture.expected_targets == tuple(
+            float(fixture.outcome.score_for(actor)) for actor in fixture.actors
+        )
+    
+        output = compute_two_player_gae(
+            rewards=torch.tensor(rewards, dtype=torch.float64),
+            values=torch.zeros(len(fixture.steps), dtype=torch.float64),
+            dones=torch.tensor(dones),
+            sigmas=torch.tensor(observed_sigmas, dtype=torch.int8),
+            bootstrap_value=torch.tensor(0.0, dtype=torch.float64),
+            gamma=1.0,
+            gae_lambda=1.0,
+        )
+        expected = torch.tensor(fixture.expected_targets, dtype=torch.float64)
+    
+>       assert torch.equal(output.advantages, expected)
+E       assert False
+E        +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1.], dtype=torch.float64), tensor([ 1., -1.,  1.], dtype=torch.float64))
+E        +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+E        +    and   tensor([1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1.], dtype=torch.float64)).advantages
+
+tests/rl/test_forced_mate_targets.py:169: AssertionError
+_ test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-5-terminal-multijump] _
+
+fixture = _ForcedWin(name='length-5-terminal-multijump', initial=State(men=(0, 0), kings=(536870944, 33686529), side_to_move=<Pl...1.0, 1.0, 1.0, 1.0, 1.0), outcome=Outcome(winner=<PlayerId.RED: 0>, reason=<TerminationReason.NO_PIECES: 'no_pieces'>))
+
+    @pytest.mark.parametrize("fixture", FORCED_WINS, ids=lambda fixture: fixture.name)
+    def test_t7_forced_win_targets_are_exact_in_each_actor_frame(fixture: _ForcedWin) -> None:
+        env = CheckersEnv(initial_state=fixture.initial)
+        rewards: list[float] = []
+        dones: list[bool] = []
+        observed_sigmas: list[int] = []
+        observed_actors: list[PlayerId] = []
+        observed_completion: list[bool] = []
+    
+        assert not env.terminated
+        for expected_step, expected_actor in zip(fixture.steps, fixture.actors, strict=True):
+            assert legal_steps(env.state) == (expected_step,)
+            actor = env.state.side_to_move
+            _, reward, terminated, truncated, info = env.step(step_to_action(env.state, expected_step))
+            observed_actors.append(actor)
+            rewards.append(reward)
+            dones.append(terminated)
+            observed_sigmas.append(1 if env.state.side_to_move is actor else -1)
+            observed_completion.append(bool(info["move_completed"]))
+    
+            assert actor is expected_actor
+            assert info["actor"] is expected_actor
+            assert truncated is False
+    
+        expected_rewards = (0.0,) * (len(fixture.steps) - 1) + (1.0,)
+        expected_dones = (False,) * (len(fixture.steps) - 1) + (True,)
+        assert tuple(observed_actors) == fixture.actors
+        assert tuple(observed_completion) == fixture.move_completed
+        assert tuple(observed_sigmas) == fixture.sigmas
+        assert tuple(rewards) == expected_rewards
+        assert tuple(dones) == expected_dones
+        assert env.outcome == fixture.outcome
+        assert fixture.expected_targets == tuple(
+            float(fixture.outcome.score_for(actor)) for actor in fixture.actors
+        )
+    
+        output = compute_two_player_gae(
+            rewards=torch.tensor(rewards, dtype=torch.float64),
+            values=torch.zeros(len(fixture.steps), dtype=torch.float64),
+            dones=torch.tensor(dones),
+            sigmas=torch.tensor(observed_sigmas, dtype=torch.int8),
+            bootstrap_value=torch.tensor(0.0, dtype=torch.float64),
+            gamma=1.0,
+            gae_lambda=1.0,
+        )
+        expected = torch.tensor(fixture.expected_targets, dtype=torch.float64)
+    
+>       assert torch.equal(output.advantages, expected)
+E       assert False
+E        +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1., 1., 1.], dtype=torch.float64), tensor([-1.,  1.,  1.,  1.,  1.], dtype=torch.float64))
+E        +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+E        +    and   tensor([1., 1., 1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1., 1., 1.], dtype=torch.float64)).advantages
+
+tests/rl/test_forced_mate_targets.py:169: AssertionError
+_ test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-7-forced-win] _
+
+fixture = _ForcedWin(name='length-7-forced-win', initial=State(men=(1552, 32), kings=(1, 1081344), side_to_move=<PlayerId.WHITE:... -1.0, 1.0, -1.0, 1.0), outcome=Outcome(winner=<PlayerId.WHITE: 1>, reason=<TerminationReason.NO_PIECES: 'no_pieces'>))
+
+    @pytest.mark.parametrize("fixture", FORCED_WINS, ids=lambda fixture: fixture.name)
+    def test_t7_forced_win_targets_are_exact_in_each_actor_frame(fixture: _ForcedWin) -> None:
+        env = CheckersEnv(initial_state=fixture.initial)
+        rewards: list[float] = []
+        dones: list[bool] = []
+        observed_sigmas: list[int] = []
+        observed_actors: list[PlayerId] = []
+        observed_completion: list[bool] = []
+    
+        assert not env.terminated
+        for expected_step, expected_actor in zip(fixture.steps, fixture.actors, strict=True):
+            assert legal_steps(env.state) == (expected_step,)
+            actor = env.state.side_to_move
+            _, reward, terminated, truncated, info = env.step(step_to_action(env.state, expected_step))
+            observed_actors.append(actor)
+            rewards.append(reward)
+            dones.append(terminated)
+            observed_sigmas.append(1 if env.state.side_to_move is actor else -1)
+            observed_completion.append(bool(info["move_completed"]))
+    
+            assert actor is expected_actor
+            assert info["actor"] is expected_actor
+            assert truncated is False
+    
+        expected_rewards = (0.0,) * (len(fixture.steps) - 1) + (1.0,)
+        expected_dones = (False,) * (len(fixture.steps) - 1) + (True,)
+        assert tuple(observed_actors) == fixture.actors
+        assert tuple(observed_completion) == fixture.move_completed
+        assert tuple(observed_sigmas) == fixture.sigmas
+        assert tuple(rewards) == expected_rewards
+        assert tuple(dones) == expected_dones
+        assert env.outcome == fixture.outcome
+        assert fixture.expected_targets == tuple(
+            float(fixture.outcome.score_for(actor)) for actor in fixture.actors
+        )
+    
+        output = compute_two_player_gae(
+            rewards=torch.tensor(rewards, dtype=torch.float64),
+            values=torch.zeros(len(fixture.steps), dtype=torch.float64),
+            dones=torch.tensor(dones),
+            sigmas=torch.tensor(observed_sigmas, dtype=torch.int8),
+            bootstrap_value=torch.tensor(0.0, dtype=torch.float64),
+            gamma=1.0,
+            gae_lambda=1.0,
+        )
+        expected = torch.tensor(fixture.expected_targets, dtype=torch.float64)
+    
+>       assert torch.equal(output.advantages, expected)
+E       assert False
+E        +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64), tensor([ 1.,  1., -1., -1.,  1., -1.,  1.], dtype=torch.float64))
+E        +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+E        +    and   tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64)).advantages
+
+tests/rl/test_forced_mate_targets.py:169: AssertionError
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-3-r6.2] - assert False
+ +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1.], dtype=torch.float64), tensor([ 1., -1.,  1.], dtype=torch.float64))
+ +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+ +    and   tensor([1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1.], dtype=torch.float64)).advantages
+FAILED tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-5-terminal-multijump] - assert False
+ +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1., 1., 1.], dtype=torch.float64), tensor([-1.,  1.,  1.,  1.,  1.], dtype=torch.float64))
+ +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+ +    and   tensor([1., 1., 1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1., 1., 1.], dtype=torch.float64)).advantages
+FAILED tests/rl/test_forced_mate_targets.py::test_t7_forced_win_targets_are_exact_in_each_actor_frame[length-7-forced-win] - assert False
+ +  where False = <built-in method equal of type object at 0x70fd98b9ff20>(tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64), tensor([ 1.,  1., -1., -1.,  1., -1.,  1.], dtype=torch.float64))
+ +    where <built-in method equal of type object at 0x70fd98b9ff20> = torch.equal
+ +    and   tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64) = GAEOutput(advantages=tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64), returns=tensor([1., 1., 1., 1., 1., 1., 1.], dtype=torch.float64)).advantages
+==================== 3 failed, 1 passed, 1 warning in 0.95s ====================
+injected_exit_code=1

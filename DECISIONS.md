@@ -417,3 +417,20 @@
   and finite, with exact-zero illegal gradients.
 - Evidence: `tests/rl/test_determinism.py`, `logs/gates/phase-6-determinism.txt`, and
   `logs/test-output/000091-phase6-determinism-quality-final.txt`.
+
+## ADR-028 — Make forced-win targets literal actor-relative outcomes
+
+- Status: Accepted; T7 GREEN.
+- Authority: `GOAL.md` §§6.4, 7.1–7.3, and 12.6 T7; production WCDF rules engine for trajectory
+  legality and terminal classification.
+- Decision: use deterministic-search-discovered boundary states only as frozen test inputs. During
+  every test, require that the production rules engine returns exactly the one expected ACF step;
+  take actors, rewards, continuation signs, and terminal outcomes through `CheckersEnv`. With zero
+  values and `gamma=lambda=1`, freeze the independently hand-derived target as the final winner's
+  `+1/-1` outcome in each transition actor's frame.
+- Coverage: exact path lengths are 3, 5, and 7. The length-3 path ends by R6.2 no legal move; the
+  distinct length-5 path terminates on the fourth jump by the same actor. Thus one fixture cannot
+  accidentally satisfy both special-case obligations.
+- Sensitivity: temporarily omitting the recursive `sigma` produces all-positive targets and fails
+  all three numerical fixtures. The tracked source is restored byte-for-byte afterward.
+- Evidence: `tests/rl/test_forced_mate_targets.py` and `logs/test-output/000096-*`/`000097-*`.

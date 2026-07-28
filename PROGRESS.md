@@ -16,8 +16,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Complete T7 with scripted length-3/5/7 forced terminal trajectories.
-2. Run the consolidated Gate 6 static, coverage, CPU, and RTX checks.
+1. Run the consolidated Gate 6 static, coverage, CPU, and RTX checks.
+2. Publish the source-bounded Phase 6 analysis and advance state only if the full gate is green.
 
 ## Gate Evidence
 
@@ -145,11 +145,13 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   gradients. The hardware/software/BLAS stack and deterministic flags are pinned in
   `logs/gates/phase-6-determinism.txt`; 13 tests and the 68-statement/16-branch module are at 100%
   focused coverage in `logs/test-output/000091-*`.
+- Phase 6 T7: real rules/environment trajectories of exactly 3/5/7 forced steps produce literal
+  actor-frame targets. A distinct R6.2 ending and terminal four-jump sequence are covered. Removing
+  recursive `sigma` makes all three fail; restored code passes all four focused tests. Evidence
+  `logs/test-output/000092-*` through `000097-*`.
 
 ## Last Five Iterations
 
-- 000019: froze the Phase 6 oracle matrix and made masked sampling plus signed GAE green under 41
-  focused tests at 100% statement/branch coverage.
 - 000020: implemented full-chronology lockstep rollout storage, proved trainable filtering occurs
   only after GAE, and completed T8 at 100% focused statement/branch coverage.
 - 000021: implemented and structurally verified the exact GroupNorm network, passed T1/T2/T5 and
@@ -158,6 +160,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   directional clipping, and covered the module completely.
 - 000023: unified deterministic seeding and proved ten-update D2 CPU bitwise reproduction plus D3
   same-RTX tolerance and native BF16 masking against a fully recorded reference stack.
+- 000024: froze three uniquely forced 3/5/7-step engine trajectories, proved exact actor-frame T7
+  targets, and killed a deliberately injected missing-recursive-sign defect.
 
 ## Open Risks
 
@@ -178,5 +182,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Derive three independent rule-engine forced terminal trajectories, freeze their exact actor-frame
-targets as T7 oracles, then run the consolidated Gate 6 check.
+Run the consolidated Gate 6 check over the complete repository, including strict static gates,
+branch coverage, property tests, and the real CPU/RTX determinism paths.

@@ -30,7 +30,7 @@ implementation formula in the assertion is insufficient.
 | T4 | Stored old probabilities plus sign-labelled advantages | selected probabilities monotone in the required direction until clipping; clip fraction at exact bounds | GREEN |
 | T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | GREEN |
 | T6 | Minimal conventional GAE loop with no perspective transform | all `sigma=+1` results bitwise equal | GREEN |
-| T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | Pending |
+| T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | GREEN |
 | T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | GREEN |
 | N2–N7 | Structural module inspection plus equal-state batch-invariance probes | exact GroupNorm residual architecture, output shapes/ranges, no BatchNorm, aliasing logits differ | GREEN |
 | D2 | Run a frozen ten-update fixture twice from full reseeding | CPU loss/action tensors bitwise equal | GREEN (exact tuple equality) |
@@ -80,6 +80,16 @@ bitwise identical; same-machine RTX 5070 action traces are identical and all los
 and exact-zero illegal gradients. The transcript pins Python 3.12.3, PyTorch 2.13.0+cu130, CUDA
 13.0, cuDNN 9.20, MKL, driver 610.74, GPU UUID/model, and enabled deterministic flags in
 `logs/gates/phase-6-determinism.txt`; focused strict coverage is 100% in `000091-*`.
+
+T7 freezes three states discovered by deterministic search, then relies only on the production
+rules/environment path during the test. At every state, the next expected ACF step is the engine's
+entire one-element legal set. The length-3 path has actors `W,R,W`, signs `-,-,-`, ends by R6.2,
+and has exact targets `[+1,-1,+1]`. The distinct length-5 path has actors `W,R,R,R,R`, signs
+`-,+,+,+,-`, and its final four steps are one terminal capture sequence; targets are
+`[-1,+1,+1,+1,+1]`. The length-7 path has signs `+,-,+,-,-,-,-` and targets
+`[+1,+1,-1,-1,+1,-1,+1]`. These are literal actor-relative outcomes with zero baselines and
+`gamma=lambda=1`. Removing the recursive `sigma` makes all three target tests fail (`000096-*`),
+and the restored suite passes exactly (`000097-*`).
 
 ## Negative controls retained
 

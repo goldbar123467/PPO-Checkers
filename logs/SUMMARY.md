@@ -2,7 +2,8 @@
 
 ## Active Work
 
-- Phase 6 — offline RL core: IN PROGRESS; only T7 and the consolidated gate remain.
+- Phase 6 — offline RL core: IN PROGRESS; every focused oracle is green and only the consolidated
+  gate/report remain.
 - Phase 1 remains formally BLOCKED by the read-only R6.6 classification defect in BLOCK-001;
   unaffected work proceeds under `GOAL.md` §0.1.
 - Phase 2's feasible technical gate is complete but formally BLOCKED by BLOCK-002/003/004.
@@ -30,9 +31,11 @@
 - Gate 5 GREEN: all 4,704 powered games, six exact checkpoint resumes, source-audited statistical
   caveats, and 608 tests plus eight property tests pass. See `reports/phase5_baseline_analysis.md`
   and `logs/gates/phase-5.txt`.
-- Phase 6 focused work through D3 is green: masked sampling, signed GAE, chronological buffer,
+- Phase 6 focused work through T8/D3 is green: masked sampling, signed GAE, chronological buffer,
   exact GroupNorm network, PPO-Clip, and ten-update CPU/GPU determinism all have independent
-  oracles and 100% focused statement/branch coverage. T7 and the consolidated gate remain.
+  oracles and 100% focused statement/branch coverage. Three uniquely forced 3/5/7-step engine
+  paths complete T7 and kill the missing-recursive-sign negative control. The consolidated gate
+  remains.
 
 ## Known Failures and Root Causes
 
