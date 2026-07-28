@@ -20,6 +20,7 @@ from checkers.metric_history import MetricHistoryWriter
 from checkers.train import TrainingSession
 from checkers.trainer_state import TrainerState
 from checkers.training_cli import (
+    PRACTICE_APPROVAL_GATE_UPDATE,
     PracticeEvaluationResult,
     _print_approval_gate,
     _print_heartbeat,
@@ -281,3 +282,107 @@ def test_practice_evaluation_writes_timing_scalars_and_replay_manifest(
     assert history_record["metrics"]["eval/wall_seconds"] >= 0.0
     assert history_record["metrics"]["eval/games_per_second"] >= 0.0
     assert alerts == [scalar_metrics]
+
+
+def test_fresh_long_invocation_stops_at_the_update_1024_approval_gate(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    config = RunConfig(
+        **{
+            **asdict(_config()),
+            "total_updates": 6_144,
+            "periodic_every": 96,
+            "checkpoint_every": 256,
+        }
+    )
+    config_path = tmp_path / "practice.yaml"
+    config_path.write_text(yaml.safe_dump(asdict(config), sort_keys=False), encoding="utf-8")
+    state = TrainerState(
+        global_step=(PRACTICE_APPROVAL_GATE_UPDATE - 1) * config.batch_size,
+        update_idx=PRACTICE_APPROVAL_GATE_UPDATE - 1,
+        elapsed_training_seconds=10.0,
+    )
+    metrics = {
+        "charts/SPS": 100.0,
+        "train/policy_loss": 0.1,
+        "train/value_loss": 0.2,
+        "train/approx_kl": 0.01,
+        "train/clipfrac": 0.02,
+        "train/explained_variance": 0.3,
+        "policy/normalized_entropy": 0.4,
+        "env/draw_rate": 0.5,
+    }
+
+    class GateSession:
+        def __init__(self) -> None:
+            self.config = config
+            self.state = state
+
+        def run_update(self) -> SimpleNamespace:
+            self.state.advance_update(config, elapsed_seconds=1.0)
+            return SimpleNamespace(metrics=metrics)
+
+        def save_checkpoint(self, path: Path, **_kwargs: object) -> SimpleNamespace:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"gate-checkpoint")
+            path.with_suffix(".pt.sha256").write_text("c" * 64 + "\n", encoding="ascii")
+            return SimpleNamespace(sha256="c" * 64)
+
+    gate_session = cast(TrainingSession, GateSession())
+    evaluation = cast(
+        PracticePolicyEvaluation,
+        SimpleNamespace(scalar_metrics={"eval/vs_minimax2": 0.25}),
+    )
+
+    def create_logger(**kwargs: object) -> _Logger:
+        cast(TrainerState, kwargs["state"]).wandb_run_id = "gate-run"
+        return _Logger()
+
+    def gate_evaluation(**kwargs: object) -> PracticeEvaluationResult:
+        session = cast(TrainingSession, kwargs["session"])
+        logger = cast(_Logger, kwargs["logger"])
+        history = cast(MetricHistoryWriter, kwargs["history"])
+        output = cast(Path, kwargs["output_directory"])
+        logging_step = session.state.logging_step
+        scalar = {"eval/vs_minimax2": 0.25}
+        history.append(
+            kind="approval_gate_evaluation",
+            metrics=scalar,
+            state=session.state,
+            logging_step=logging_step,
+        )
+        logger.log(scalar, state=session.state)
+        path = output / "evaluations" / "update-001024-approval_gate.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("{}\n", encoding="utf-8")
+        return PracticeEvaluationResult(path=path, evaluation=evaluation, wall_seconds=1.0)
+
+    monkeypatch.setattr(training_cli, "collect_run_metadata", lambda **_kwargs: _metadata())
+    monkeypatch.setattr(training_cli, "scan_repository_for_credentials", lambda _path: ())
+    monkeypatch.setattr(TrainingSession, "create", lambda **_kwargs: gate_session)
+    monkeypatch.setattr(training_cli, "create_wandb_logger", create_logger)
+    monkeypatch.setattr(
+        training_cli,
+        "load_ballot_set",
+        lambda _path: cast(BallotSet, object()),
+    )
+    monkeypatch.setattr(training_cli, "_run_practice_evaluation", gate_evaluation)
+
+    result = run_training(
+        config_path=config_path,
+        output_directory=tmp_path / "run",
+        resume_path=None,
+        max_updates=None,
+    )
+
+    assert result.end_update == PRACTICE_APPROVAL_GATE_UPDATE
+    manifest = json.loads(result.manifest_path.read_text(encoding="utf-8"))
+    assert manifest["status"] == "paused_for_approval"
+    assert manifest["approval_gate_update"] == PRACTICE_APPROVAL_GATE_UPDATE
+    output = capsys.readouterr().out
+    assert "checkpoint update=1024" in output
+    assert "heartbeat update=1024" in output
+    assert "approval_gate status=PAUSED update=1024" in output
+    assert "eval/vs_minimax2_ma3=0.25" in output
