@@ -1,0 +1,22 @@
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/rl/test_networks.py __________________
+ImportError while importing test module '/home/thecl/ml-lab/tests/rl/test_networks.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/rl/test_networks.py:14: in <module>
+    from checkers.rl.networks import (
+E   ModuleNotFoundError: No module named 'checkers.rl.networks'
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/rl/test_networks.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 warning, 1 error in 0.97s

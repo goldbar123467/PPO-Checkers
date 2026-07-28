@@ -152,5 +152,7 @@ Proposed correction: Gate 4 should require different observations plus different
 the boundary/mid-sequence pair. Gate 6 should require the N7 different-logits regression once the
 network exists.
 
-Status: OPEN (the representation-level regression passes; Phase 4 cannot honestly be labelled
-GREEN until the gate is retargeted or Phase 6 supplies the logit test).
+Status: RESOLVED BY PHASE 6 IMPLEMENTATION. The representation-level regression remains green and
+`tests/rl/test_networks.py::test_n7_pending_and_moving_planes_change_policy_logits` now proves the
+implemented N1–N6 network maps the two observations to different logits. The original phase-order
+defect remains documented, but it no longer blocks a technical gate.

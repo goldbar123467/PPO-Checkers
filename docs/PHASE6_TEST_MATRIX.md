@@ -24,15 +24,15 @@ implementation formula in the assertion is insufficient.
 | ID | Independent oracle or falsifier | Required scope | Status |
 |---|---|---|---|
 | A2–A6 | Legal-set membership, exact illegal-gradient zeros, direct restricted softmax | float32, BF16, `k=1`, all-masked failure, used autocast modes | Foundation GREEN |
-| T1 | Fixed 64-state labels generated independently of optimizer/model | policy accuracy >0.99; proves capacity, not PPO | Pending |
-| T2 | Fixed 64-state scalar targets | value MSE <1e-3; proves capacity, not PPO | Pending |
+| T1 | Fixed 64-state labels generated independently of optimizer/model | policy accuracy >0.99; proves capacity, not PPO | GREEN (1.0000) |
+| T2 | Fixed 64-state scalar targets | value MSE <1e-3; proves capacity, not PPO | GREEN (4.69e-14) |
 | T3 | Literal four-row hand table | both sigma signs, deltas, advantages, returns, ratios, clipped objective, total loss within 1e-6 | GAE half GREEN; PPO half pending |
 | T4 | Stored old probabilities plus sign-labelled advantages | selected probabilities monotone in the required direction until clipping; clip fraction at exact bounds | Pending |
-| T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | Distribution probe GREEN; network/PPO pending |
+| T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | GREEN for distribution/network; PPO pending |
 | T6 | Minimal conventional GAE loop with no perspective transform | all `sigma=+1` results bitwise equal | GREEN |
 | T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | Pending |
 | T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | GREEN |
-| N2–N7 | Structural module inspection plus equal-state batch-invariance probes | exact GroupNorm residual architecture, output shapes/ranges, no BatchNorm, aliasing logits differ | Pending |
+| N2–N7 | Structural module inspection plus equal-state batch-invariance probes | exact GroupNorm residual architecture, output shapes/ranges, no BatchNorm, aliasing logits differ | GREEN |
 | D2 | Run a frozen ten-update fixture twice from full reseeding | CPU loss/action tensors bitwise equal | Pending |
 | D3 | Run the same ten-update fixture twice on the RTX 5070 | actions identical; losses `atol=1e-5`, `rtol=1e-4`; BF16 autocast path included if enabled | Pending |
 
@@ -53,6 +53,16 @@ non-trainable middle transition. Full-chronology advantages are computed before 
 policy view contains exact flattened source indices `[0,3,4]`. A separate rollout ending during a
 capture sequence proves that `sigma=+1` transforms the stored bootstrap in the actor's unchanged
 frame. The buffer has 100% statement/branch coverage in `logs/test-output/000074-*`.
+
+The exact network contains 470,410 parameters (1.794 MiB of FP32 weights). With frozen trunk
+features, its policy head reaches 64/64 fixed-action accuracy and its value head reaches MSE
+`4.69e-14` on 64 fixed scalar targets. These are capacity checks, not PPO evidence. All parameters
+are graph-connected, every stem/block/head has nonzero aggregate gradient on the T5 batch, and
+masked logits retain exact-zero gradients. Evidence is `logs/test-output/000080-*` and `000081-*`.
+
+GroupNorm has no cross-sample statistics, but a convolution applied at batch size 1 versus 4 can
+use a different accumulation order. Batch-composition outputs are therefore checked at D3's
+`atol=1e-5, rtol=1e-4`, while train versus eval mode on the identical input is bitwise equal.
 
 ## Negative controls retained
 

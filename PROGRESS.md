@@ -16,9 +16,9 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Implement the exact GroupNorm residual policy/value network and N7 logit regression.
-2. Prove T1/T2 supervised capacity and T5 per-module gradient reachability.
-3. Add PPO objectives only after the network gate is independently green.
+1. Write a literal T3 PPO-loss oracle and T4 clipping-direction RED tests.
+2. Implement loss metrics and one deterministic PPO minibatch update with stored masks.
+3. Build the ten-update D2/D3 fixture only after the one-update numerical oracle is green.
 
 ## Gate Evidence
 
@@ -125,11 +125,16 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   perspective sign; finalization is one-use. The initial GREEN attempt caught and corrected a hand-
   oracle sign and a mislabeled trainable fixture. The final gate passed 50 tests with all 211
   statements and 96 branches covered. Evidence `logs/test-output/000070-*` through `000074-*`.
+- Phase 6 network: the exact six-block shared GroupNorm trunk and separate policy/value heads have
+  470,410 parameters (1.794 MiB FP32). Structural tests prohibit BatchNorm and pin every layer,
+  group count, output shape/range, and orthogonal gain. T1 policy accuracy is 1.0 on 64 fixed
+  states; T2 value MSE is `4.69e-14`; T5 reaches every parameter and gives every major module a
+  nonzero aggregate gradient. The deferred N7 state pair now produces different logits, resolving
+  BLOCK-006. Focused strict gates pass 13 tests at 100% statement/branch coverage. Evidence:
+  `logs/test-output/000075-*` through `000081-*`.
 
 ## Last Five Iterations
 
-- 000016: rejected a technically passing but semantically contradictory baseline report, isolated
-  tactical tie-breaks per case, and made the depth-2 horizon regression explicit and diagnosed.
 - 000017: audited primary statistical sources, promoted five material limitations into the tested
   machine report, and retained 100% statement/branch coverage across the full Checkers package.
 - 000018: executed the final 4,704-game powered baseline, proved byte-identical six-checkpoint
@@ -138,6 +143,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   focused tests at 100% statement/branch coverage.
 - 000020: implemented full-chronology lockstep rollout storage, proved trainable filtering occurs
   only after GAE, and completed T8 at 100% focused statement/branch coverage.
+- 000021: implemented and structurally verified the exact GroupNorm network, passed T1/T2/T5 and
+  N7, and resolved the phase-order-only BLOCK-006 with the real logit regression.
 
 ## Open Risks
 
@@ -149,8 +156,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 - BLOCK-004 prevents claiming publisher resignation/adjudication results were board-derived.
 - BLOCK-005 prevents the incomplete §5.3 state-key field list; source-correct code includes
   sequence origin, both counters, and ply.
-- BLOCK-006 prevents a Phase 4 claim about logits before the Phase 6 network exists; the distinct-
-  observation regression passes now and the actual logit test remains scheduled for Phase 6.
+- BLOCK-006 is resolved: the earlier phase-order defect remains documented and the Phase 6 N7
+  different-logits test now passes against the exact implemented network.
 - Exploitability-proxy evidence correctly remains unavailable until a trained Phase 7 best response
   exists; Phase 5 reports `NOT_EVALUATED` rather than substituting a heuristic.
 - Test volume is 608 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
@@ -158,5 +165,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Write architecture-structural, batch-composition, N7 aliasing, output-range, orthogonal-init, and
-gradient-reachability RED tests for the exact GroupNorm residual policy/value network.
+Write a four-transition literal T3 loss oracle and T4 directional/clipping RED tests before adding
+the PPO loss/update module.

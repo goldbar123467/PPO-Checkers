@@ -365,3 +365,20 @@
   trainable advantage; policy source indices are exactly `[0,3,4]`. A separate mid-capture boundary
   uses a positive sign and a 0.75 bootstrap to produce value target 0.75. Fifty tests cover all 211
   statements and 96 branches in `logs/test-output/000074-phase6-buffer-quality-final.txt`.
+
+## ADR-025 — Use the exact GroupNorm network and scope invariance numerically
+
+- Status: Accepted; T1, T2, network portion of T5, and N2–N7 GREEN.
+- Authority: `GOAL.md` §9; the project's GroupNorm choice is a correctness design for PPO ratios,
+  while the supervised tests establish capacity rather than learning quality.
+- Decision: implement the exact 8→64 stem, six two-convolution residual blocks, 2-channel policy
+  head, and 1-channel bounded value head. Use GroupNorm(8,64) in the trunk, GroupNorm(1,2/1) in
+  heads, orthogonal gains `sqrt(2)/0.01/1.0`, and zero biases. BatchNorm is structurally forbidden.
+- Invariance scope: train/eval output for the identical tensor is bitwise equal. A sample evaluated
+  in batch sizes 1 and 4 is checked at `atol=1e-5, rtol=1e-4` because convolution kernels may use
+  different floating-point accumulation order even though GroupNorm has no batch statistics.
+- Result: 470,410 parameters (1.794 MiB FP32); T1 accuracy 1.0; T2 MSE `4.69e-14`; every parameter
+  graph-connected and every major module's aggregate gradient nonzero. The real N7 mid-sequence
+  versus boundary pair yields different logits, resolving BLOCK-006.
+- Evidence: `tests/rl/test_networks.py`, `logs/test-output/000080-phase6-networks-quality-final.txt`,
+  and `000081-phase6-supervised-metrics.txt`.
