@@ -218,6 +218,14 @@ def test_final_report_has_sources_hashes_assumptions_and_gate_verdicts() -> None
     assert sources
     assert all(cast(str, source["url"]).startswith("https://") for source in sources)
     assert assumptions
+    assumption_text = " ".join(cast(str, assumption) for assumption in assumptions)
+    limitations = cast(list[str], report["limitations"])
+    limitation_text = " ".join(limitations)
+    assert "statistical independence is an explicit modeling assumption" in assumption_text
+    assert "continuity correction is not applied" in assumption_text
+    assert "standard initial position" in limitation_text
+    assert "100-Elo residual threshold" in limitation_text
+    assert "selected for depth-3 success" in limitation_text
     assert non_monotonicity["any_point_estimate_non_monotonicity"] is True
     assert tactical_depths[0]["shallower_depth"] == 1
     assert tactical_depths[0]["deeper_depth"] == INTERMEDIATE_DEPTH

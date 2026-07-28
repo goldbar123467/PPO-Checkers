@@ -289,3 +289,20 @@
   The predeclared depth-1 versus depth-3 tactical decision remains unchanged.
 - Evidence: `logs/test-output/000061-phase5-report-semantic-red.json`,
   `000062-phase5-tactical-report-red.txt`, and `000063-phase5-tactical-report-fix-check.txt`.
+
+## ADR-021 — Scope statistical claims to the sourced approximation
+
+- Status: Accepted after primary-source audit.
+- Authority: NIST/SEMATECH §7.2.4.2; Wilson (1927); Bradley & Terry (1952); official FIDE rating
+  regulations. Evidence stage: final baseline-report audit.
+- Decision: retain 784 games because it attains .80074 power under the explicitly declared
+  uncorrected two-sided normal approximation (raw ceiling 783), but state that NIST's separately
+  recommended continuity correction was not applied. Do not silently imply exact power.
+- Seed scope: describe SplitMix64-derived streams as distinct pseudorandom seeds. Statistical
+  independence and representativeness of that seed schedule remain model assumptions, not facts
+  established by injectivity.
+- Evaluation scope: state that every game starts at the standard opening; label the 100-Elo
+  transitivity residual threshold project-defined; disclose that the dev tactical suite was
+  selected for depth-3 success and is not an unbiased or sealed sample.
+- Evidence: primary URLs embedded in `reports/phase5_baseline_report_v1.json`; permanent caveat
+  assertions in `tests/eval/test_baseline_eval.py`; `logs/test-output/000065-*.txt`.

@@ -1135,12 +1135,17 @@ def build_evaluation_report(  # noqa: PLR0913
         },
         "statistical_assumptions": [
             (
-                "Games use independent injective PRNG streams and exact alternating colours; "
-                "policy observations remain dependent within each game."
+                "Each game receives distinct injectively derived pseudorandom seed streams and "
+                "colours alternate exactly; statistical independence is an explicit modeling "
+                "assumption, not a consequence proved by seed uniqueness."
             ),
             (
                 "The game-count calculation treats bounded scores 0/0.5/1 as Bernoulli, which "
                 "upper-bounds their variance at a fixed mean under the stated model."
+            ),
+            (
+                "The NIST continuity correction is not applied; power_justified refers only to "
+                "the explicitly declared uncorrected two-sided normal approximation."
             ),
             (
                 "Wilson-style intervals apply the score formula to fractional draw points; "
@@ -1157,11 +1162,22 @@ def build_evaluation_report(  # noqa: PLR0913
         ],
         "sources": _source_records(),
         "limitations": [
-            "The development tactical suite is programmatically verified but pending human review.",
+            (
+                "The development tactical suite is programmatically verified, pending human "
+                "review, and selected for depth-3 success; it is not an unbiased tactical sample."
+            ),
             "No sealed-suite result, trained best response, or external engine anchor is claimed.",
             (
                 "Match scores measure these fixed seeded implementations under declared "
                 "engine variants."
+            ),
+            (
+                "Every match starts from the standard initial position; no opening-ballot "
+                "distribution was evaluated."
+            ),
+            (
+                "The 100-Elo residual threshold for approximate transitivity is a declared "
+                "project diagnostic, not an externally calibrated cutoff."
             ),
         ],
     }
