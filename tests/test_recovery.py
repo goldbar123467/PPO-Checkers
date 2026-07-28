@@ -47,6 +47,15 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _assert_optimizer_device_evidence(path: Path, *, expected_device: str) -> None:
+    audit_evidence = json.loads(path.read_text(encoding="utf-8"))
+    optimizer_evidence = audit_evidence["optimizer_device"]
+    assert optimizer_evidence["parameter_and_moment_device"] == expected_device
+    assert optimizer_evidence["parameter_count"] > 0
+    assert optimizer_evidence["moment_tensor_count"] > 0
+    assert optimizer_evidence["scalar_step_devices"] == ["cpu"]
+
+
 def _config() -> RunConfig:
     return RunConfig(
         experiment_id="recovery-unit",
@@ -256,8 +265,8 @@ def test_known_update_170_case_preserves_orphans_and_resumes_without_duplicates(
     audit = audit_recovery_smoke(run_directory=recovered, expected_updates=1)
     assert audit.status == "PASS"
     assert audit.end_update == CHECKPOINT_UPDATE + 1
-    assert audit.audit_path.is_file()
-    assert audit.report_path.is_file()
+    assert audit.audit_path.is_file() and audit.report_path.is_file()
+    _assert_optimizer_device_evidence(audit.audit_path, expected_device="cpu")
 
 
 def test_no_orphan_case_copies_the_identical_aligned_history(tmp_path: Path) -> None:

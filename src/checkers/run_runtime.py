@@ -8,6 +8,8 @@ from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+import psutil
+
 from checkers.eval.baseline_run import atomic_write_bytes
 
 RUNTIME_SCHEMA = "CHECKERS_TRAINING_RUNTIME_1"
@@ -56,12 +58,14 @@ def new_runtime_state(  # noqa: PLR0913
         raise ValueError("git_sha must be non-empty text")
     if run_id is not None and (not isinstance(run_id, str) or not run_id):
         raise ValueError("run_id must be non-empty text or None")
+    pid = os.getpid()
     now = datetime.now(UTC).isoformat()
+    started_at = datetime.fromtimestamp(psutil.Process(pid).create_time(), UTC).isoformat()
     return RuntimeState(
         schema=RUNTIME_SCHEMA,
         status="RUNNING",
-        pid=os.getpid(),
-        started_at=now,
+        pid=pid,
+        started_at=started_at,
         updated_at=now,
         start_update=start_update,
         experiment_id=experiment_id,

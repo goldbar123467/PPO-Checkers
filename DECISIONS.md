@@ -535,7 +535,8 @@
   non-contiguous, duplicate, non-finite, or changed sources fail closed.
 - Validation: use a separate one-update recovery directory for bounded CUDA validation, then audit
   prefix identity, next update/logging step, transition/time monotonicity, full checkpoint/RNG
-  reload, optimizer device, collector/league/trainer consistency, finite metrics, and zero mask
+  reload, optimizer parameter/moment device, finite scalar Adam step state (which may remain on
+  CPU for non-capturable Adam), collector/league/trainer consistency, finite metrics, and zero mask
   faults. Prepare production independently from the immutable update-170 source so smoke work
   cannot contaminate the baseline.
 - Observability: write an atomic runtime lifecycle record, append psutil/NVIDIA telemetry to local

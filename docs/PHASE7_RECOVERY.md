@@ -52,9 +52,14 @@ source. It runs exactly one update, then:
 
 The audit requires a byte-identical aligned prefix, update 171, contiguous logging step 187, a
 monotonic transition/time boundary, same W&B ID, a fully reloadable checkpoint, restored RNG,
-collector/league/trainer agreement, optimizer tensors on the configured device, finite metrics,
-host/GPU telemetry, and zero legality/oracle faults. Its output is explicitly classified as a
-bounded recovery smoke and is never merged into the production recovery run.
+collector/league/trainer agreement, optimizer parameters and moment tensors on the configured
+device, finite metrics, host/GPU telemetry, and zero legality/oracle faults. Its output is
+explicitly classified as a bounded recovery smoke and is never merged into the production
+recovery run.
+
+For standard non-capturable Adam, parameters plus first/second-moment tensors must be on the
+configured training device, while each finite scalar `step` tensor may remain on CPU according to
+PyTorch's optimizer-state placement policy. The audit records both classes and their devices.
 
 After smoke acceptance, production is prepared again from the original update-170 inputs and
 resumed without `--max-updates`. The trainer revalidates source hashes, commit/working-tree state,

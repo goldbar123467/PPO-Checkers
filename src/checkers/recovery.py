@@ -983,14 +983,53 @@ def prepare_recovery(
     return materialize_recovery(plan, recovery_command=command)
 
 
-def _nested_tensors(value: object) -> tuple[torch.Tensor, ...]:
-    if isinstance(value, torch.Tensor):
-        return (value,)
-    if isinstance(value, Mapping):
-        return tuple(tensor for item in value.values() for tensor in _nested_tensors(item))
-    if isinstance(value, (list, tuple)):
-        return tuple(tensor for item in value for tensor in _nested_tensors(item))
-    return ()
+def _validate_optimizer_devices(
+    optimizer: torch.optim.Optimizer,
+    *,
+    expected_device_type: str,
+) -> dict[str, object]:
+    """Validate Adam parameter/moment placement while allowing host scalar steps."""
+
+    if not optimizer.state:
+        raise RecoveryError("smoke optimizer state is empty")
+    parameter_count = 0
+    moment_tensor_count = 0
+    scalar_step_count = 0
+    scalar_step_devices: set[str] = set()
+    for parameter, raw_state in optimizer.state.items():
+        if parameter.device.type != expected_device_type:
+            raise RecoveryError("smoke optimizer parameter is not on the configured device")
+        parameter_count += 1
+        if not isinstance(raw_state, Mapping):
+            raise RecoveryError("smoke optimizer parameter state is not a mapping")
+        for name, value in raw_state.items():
+            if not isinstance(value, torch.Tensor):
+                raise RecoveryError("smoke optimizer state contains a non-tensor value")
+            if not bool(torch.isfinite(value).all().item()):
+                raise RecoveryError("smoke optimizer state contains a non-finite tensor")
+            if name == "step":
+                if value.numel() != 1:
+                    raise RecoveryError("smoke optimizer step state is not scalar")
+                scalar_step_count += 1
+                scalar_step_devices.add(str(value.device))
+            else:
+                if value.device.type != expected_device_type:
+                    raise RecoveryError(
+                        "smoke optimizer moment state is not on the configured device"
+                    )
+                moment_tensor_count += 1
+    if parameter_count < 1 or moment_tensor_count < 1 or scalar_step_count < 1:
+        raise RecoveryError("smoke optimizer state is incomplete")
+    return {
+        "parameter_and_moment_device": expected_device_type,
+        "parameter_count": parameter_count,
+        "moment_tensor_count": moment_tensor_count,
+        "scalar_step_count": scalar_step_count,
+        "scalar_step_devices": sorted(scalar_step_devices),
+        "scalar_step_policy": (
+            "finite scalar Adam steps may remain on CPU when capturable/fused mode is disabled"
+        ),
+    }
 
 
 def _latest_checkpoint_path(run_directory: Path) -> Path:
@@ -1113,11 +1152,10 @@ def audit_recovery_smoke(  # noqa: PLR0912, PLR0915
     if loaded.state.wandb_run_id != _required_manifest_text(manifest, "wandb_run_id"):
         raise RecoveryError("smoke checkpoint changed the stable W&B run identity")
     expected_device_type = torch.device(config.device).type
-    optimizer_tensors = _nested_tensors(optimizer.state)
-    if not optimizer_tensors or any(
-        tensor.device.type != expected_device_type for tensor in optimizer_tensors
-    ):
-        raise RecoveryError("smoke optimizer state is not on the configured device")
+    optimizer_device_evidence = _validate_optimizer_devices(
+        optimizer,
+        expected_device_type=expected_device_type,
+    )
     restored = TrainingSession.resume(config=config, checkpoint_path=latest_checkpoint)
     if restored.state.rng_states is None or restored.state.update_idx != expected_end_update:
         raise RecoveryError("smoke checkpoint did not restore trainer and RNG state")
@@ -1174,7 +1212,7 @@ def audit_recovery_smoke(  # noqa: PLR0912, PLR0915
         "new_training_record_count": len(new_training_records),
         "duplicate_logging_steps": False,
         "duplicate_logical_update_records": False,
-        "optimizer_device": expected_device_type,
+        "optimizer_device": optimizer_device_evidence,
         "collector_league_trainer_checkpoint_validation": "PASS",
         "rng_restore": "PASS",
         "sample_legality_violations": metrics["mask/sample_legality_violations"],

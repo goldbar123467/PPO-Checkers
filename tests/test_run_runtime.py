@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import asdict, replace
+from datetime import datetime
 from pathlib import Path
 from typing import cast
 
+import psutil
 import pytest
 
 from checkers.run_runtime import (
@@ -28,6 +31,16 @@ def _state() -> RuntimeState:
         git_sha="abcdef",
         run_id=None,
         resume_from=Path("checkpoint.pt"),
+    )
+
+
+def test_runtime_identity_uses_the_os_process_creation_time() -> None:
+    state = _state()
+
+    assert state.pid == os.getpid()
+    assert datetime.fromisoformat(state.started_at).timestamp() == pytest.approx(
+        psutil.Process(state.pid).create_time(),
+        abs=1e-6,
     )
 
 
