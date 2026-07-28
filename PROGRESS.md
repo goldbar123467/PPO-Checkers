@@ -17,9 +17,9 @@ the exact dev-tactical depth gate passes.
 
 ## In Flight
 
-1. Commit the green, resumable baseline runner from an exact clean source tree.
-2. Execute or resume all six powered comparisons (4,704 games total) and load-validate artifacts.
-3. Diagnose results, source the report, run the consolidated Phase 5 gate, and update phase state.
+1. Commit the green tactical-isolation and non-monotonicity-reporting correction.
+2. Rerun all six powered comparisons from the corrected clean source SHA.
+3. Validate hashes/results, write the sourced conclusion, and run the consolidated Phase 5 gate.
 
 ## Gate Evidence
 
@@ -86,11 +86,19 @@ the exact dev-tactical depth gate passes.
   statement/branch coverage. Full `make check` exit 0: 606 tests plus eight property tests, strict
   static gates, all 3,162 Checkers statements and 1,120 branches covered. Evidence
   `logs/test-output/000060-phase5-baseline-runner-final-check.txt`.
+- First powered run completed all 4,704 games and persisted valid raw actions, but report audit
+  rejected its conclusion: depth-2 solved 10/50 versus depth-1's 16/50 while the aggregate flag
+  said no non-monotonicity. The audit also found suite-order dependence from a shared tie-break RNG.
+  The failed report/run are preserved in `logs/test-output/000061-*`; they are not Gate 5 evidence.
+- Tactical-report correction: each case now receives a fresh same-seed policy, matching the suite
+  generator and making results order-independent (depths 1/2/3 solve 15/9/50). The 1→2 regression
+  is explicitly diagnosed as a non-quiescent material-evaluator horizon effect, while the
+  predeclared 1→3 gate remains green. `make check` exit 0: 608 tests plus eight property tests and
+  100% statement/branch Checkers coverage. Evidence
+  `logs/test-output/000063-phase5-tactical-report-fix-check.txt`.
 
 ## Last Five Iterations
 
-- 000011: made the pinned Mutmut 3.6 harness isolation-safe, preserved each configuration failure,
-  and killed a 15-mutant production probe before authorizing the full 968-mutant run.
 - 000012: strengthened survivor assertions, killed 927/968 generated mutants conservatively,
   killed all five mandated semantic mutations in isolation, matched published perft, and completed
   the Phase 2 technical gate.
@@ -102,6 +110,8 @@ the exact dev-tactical depth gate passes.
   counters zero, and filed BLOCK-006 for the premature N7-logit requirement.
 - 000015: completed and fully branch-tested the powered Phase 5 evaluation stack and crash-safe
   runner; corrected cross-match seed overlap before execution; `make check` passed 606+8 tests.
+- 000016: rejected a technically passing but semantically contradictory baseline report, isolated
+  tactical tie-breaks per case, and made the depth-2 horizon regression explicit and diagnosed.
 
 ## Open Risks
 
@@ -122,6 +132,6 @@ the exact dev-tactical depth gate passes.
 
 ## Next Step
 
-Commit the green runner, then execute
+Commit the green reporting correction, archive the rejected run's ignored checkpoints, then execute
 `.venv-train/bin/python scripts/evaluate_baselines.py --progress-log logs/gates/phase-5-baseline-run.txt`
-from that clean commit. Preserve and load-validate all checkpoints, raw games, and the final report.
+from the corrected clean commit. Preserve and load-validate all checkpoints, raw games, and report.

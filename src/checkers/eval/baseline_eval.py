@@ -25,6 +25,8 @@ from checkers.eval.population import (
 )
 from checkers.eval.power import MatchScore, PowerPlan, plan_score_test
 from checkers.eval.suites import (
+    TacticalCase,
+    TacticalEvaluation,
     compare_tactical,
     evaluate_tactical,
     load_dev_tactical_suite,
@@ -759,6 +761,31 @@ def build_population_report(matches: tuple[MatchResult, ...]) -> dict[str, objec
     }
 
 
+def _evaluate_minimax_tactical(
+    *,
+    depth: int,
+    seed: int,
+    cases: tuple[TacticalCase, ...],
+) -> TacticalEvaluation:
+    checked_depth = _positive_integer(depth, "depth")
+    checked_seed = _seed(seed)
+    if not isinstance(cases, tuple) or not all(isinstance(case, TacticalCase) for case in cases):
+        raise TypeError("cases must be a tuple of TacticalCase values")
+    if not cases:
+        raise ValueError("cases must not be empty")
+    results = tuple(
+        evaluate_tactical(
+            MinimaxAgent(depth=checked_depth, seed=checked_seed),
+            (case,),
+        ).results[0]
+        for case in cases
+    )
+    return TacticalEvaluation.from_case_results(
+        agent_name=f"minimax({checked_depth})",
+        results=results,
+    )
+
+
 def build_tactical_report(*, seed: int, depths: tuple[int, ...]) -> dict[str, object]:
     """Evaluate declared minimax depths on the independently solved dev suite.
 
@@ -782,9 +809,10 @@ def build_tactical_report(*, seed: int, depths: tuple[int, ...]) -> dict[str, ob
     checked_depths = tuple(_positive_integer(depth, "depth") for depth in depths)
     suite = load_dev_tactical_suite()
     evaluations = tuple(
-        evaluate_tactical(
-            MinimaxAgent(depth=depth, seed=checked_seed),
-            suite.cases,
+        _evaluate_minimax_tactical(
+            depth=depth,
+            seed=checked_seed,
+            cases=suite.cases,
         )
         for depth in checked_depths
     )
@@ -831,6 +859,7 @@ def build_tactical_report(*, seed: int, depths: tuple[int, ...]) -> dict[str, ob
         "goal_sha256": suite.manifest.goal_sha256,
         "oracle": "independent terminal-only exhaustive AND/OR forced-win solver",
         "seed": checked_seed,
+        "case_evaluation_seed_policy": "fresh policy with the declared seed per case",
         "depths": list(checked_depths),
         "evaluations": evaluation_records,
         f"depth_{checked_depths[0]}_vs_{checked_depths[-1]}": comparison_record,
@@ -902,6 +931,32 @@ def _tactical_gate(tactical: dict[str, object], depths: tuple[int, ...]) -> bool
     key = f"depth_{depths[0]}_vs_{depths[-1]}"
     comparison = _mapping(_required(cast(dict[object, object], tactical), key), key)
     return _boolean(_required(comparison, "passes_gate"), "passes_gate")
+
+
+def _tactical_depth_observations(
+    tactical: dict[str, object],
+    depths: tuple[int, ...],
+) -> list[dict[str, object]]:
+    root = cast(dict[object, object], tactical)
+    evaluations = _mapping(_required(root, "evaluations"), "tactical evaluations")
+    observations: list[dict[str, object]] = []
+    for shallower, deeper in zip(depths[:-1], depths[1:], strict=True):
+        shallow_name = f"minimax({shallower})"
+        deep_name = f"minimax({deeper})"
+        shallow = _mapping(_required(evaluations, shallow_name), shallow_name)
+        deep = _mapping(_required(evaluations, deep_name), deep_name)
+        shallow_solved = _integer(_required(shallow, "solved"), "shallow solved")
+        deep_solved = _integer(_required(deep, "solved"), "deep solved")
+        observations.append(
+            {
+                "shallower_depth": shallower,
+                "deeper_depth": deeper,
+                "shallower_solved": shallow_solved,
+                "deeper_solved": deep_solved,
+                "deeper_point_estimate_is_lower": deep_solved < shallow_solved,
+            }
+        )
+    return observations
 
 
 def _source_records() -> list[dict[str, object]]:
@@ -1012,12 +1067,30 @@ def build_evaluation_report(  # noqa: PLR0913
         }
         for anchor in ("random", "greedy")
     ]
+    tactical_depth_observations = _tactical_depth_observations(
+        tactical,
+        config.tactical_depths,
+    )
     any_non_monotonic = (
         any(
             cast(bool, observation["deeper_point_estimate_is_lower"])
             for observation in common_anchor_observations
         )
         or deeper_score < NEUTRAL_SCORE
+        or any(
+            cast(bool, observation["deeper_point_estimate_is_lower"])
+            for observation in tactical_depth_observations
+        )
+    )
+    diagnosis = (
+        "Observed tactical depth regression is consistent with horizon effects in the "
+        "non-quiescent material evaluator; it is an evaluator finding, not evidence of a rules "
+        "engine defect. The depth-1 to depth-3 gate remains the predeclared decision criterion."
+        if any_non_monotonic
+        else (
+            "No point-estimate regression was observed, but monotonic search strength is not "
+            "assumed."
+        )
     )
     return {
         "schema_version": 1,
@@ -1043,7 +1116,9 @@ def build_evaluation_report(  # noqa: PLR0913
             "reported_not_assumed_away": True,
             "minimax_2_vs_minimax_1_score": deeper_score,
             "common_anchor_observations": common_anchor_observations,
+            "tactical_depth_observations": tactical_depth_observations,
             "any_point_estimate_non_monotonicity": any_non_monotonic,
+            "diagnosis": diagnosis,
             "interpretation": (
                 "Depth-limited material minimax is not guaranteed to improve monotonically; "
                 "these are descriptive point estimates, not six independent confirmatory tests."

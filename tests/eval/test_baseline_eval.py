@@ -28,6 +28,7 @@ from checkers.eval.baseline_eval import (
 )
 from checkers.eval.elo import EloEstimate
 from checkers.eval.power import MatchScore, score_interval
+from checkers.eval.suites import TacticalCase, load_dev_tactical_suite
 from checkers.rules.state import PlayerId, State
 
 CONFIG_PATH = Path("configs/checkers-baselines-v1.yaml")
@@ -38,6 +39,7 @@ SMALL_GAMES = 2
 NEUTRAL_SCORE = 0.5
 SHA256_LENGTH = 64
 TACTICAL_CASES = 50
+INTERMEDIATE_DEPTH = 2
 
 
 def _mask(*acf_squares: int) -> int:
@@ -157,6 +159,34 @@ def test_tactical_report_preserves_exact_depth_superset_evidence() -> None:
     assert comparison["passes_gate"] is True
 
 
+def test_tactical_tie_breaks_are_isolated_per_case_and_order_independent() -> None:
+    suite = load_dev_tactical_suite()
+
+    forward = baseline_eval._evaluate_minimax_tactical(
+        depth=1,
+        seed=20260728,
+        cases=suite.cases,
+    )
+    reverse = baseline_eval._evaluate_minimax_tactical(
+        depth=1,
+        seed=20260728,
+        cases=tuple(reversed(suite.cases)),
+    )
+
+    assert forward.solved == suite.manifest.case_count - suite.manifest.depth1_misses
+    assert set(forward.solved_case_ids) == set(reverse.solved_case_ids)
+
+
+def test_tactical_report_matches_generator_isolation_contract() -> None:
+    suite = load_dev_tactical_suite()
+    report = build_tactical_report(seed=suite.manifest.generator_seed, depths=(1, 2, 3))
+    evaluations = cast(dict[str, object], report["evaluations"])
+    depth_one = cast(dict[str, object], evaluations["minimax(1)"])
+
+    assert depth_one["solved"] == suite.manifest.case_count - suite.manifest.depth1_misses
+    assert report["case_evaluation_seed_policy"] == "fresh policy with the declared seed per case"
+
+
 def test_final_report_has_sources_hashes_assumptions_and_gate_verdicts() -> None:
     config = load_baseline_config(CONFIG_PATH.read_text(encoding="utf-8"))
     matches = _small_round_robin()
@@ -176,6 +206,11 @@ def test_final_report_has_sources_hashes_assumptions_and_gate_verdicts() -> None
     gate = cast(dict[str, object], report["gate_5"])
     sources = cast(list[dict[str, object]], report["sources"])
     assumptions = cast(list[object], report["statistical_assumptions"])
+    non_monotonicity = cast(dict[str, object], report["search_depth_non_monotonicity"])
+    tactical_depths = cast(
+        list[dict[str, object]],
+        non_monotonicity["tactical_depth_observations"],
+    )
 
     assert gate["power_justified"] is True
     assert gate["no_catastrophic_inversion"] is True
@@ -183,6 +218,11 @@ def test_final_report_has_sources_hashes_assumptions_and_gate_verdicts() -> None
     assert sources
     assert all(cast(str, source["url"]).startswith("https://") for source in sources)
     assert assumptions
+    assert non_monotonicity["any_point_estimate_non_monotonicity"] is True
+    assert tactical_depths[0]["shallower_depth"] == 1
+    assert tactical_depths[0]["deeper_depth"] == INTERMEDIATE_DEPTH
+    assert tactical_depths[0]["deeper_point_estimate_is_lower"] is True
+    assert non_monotonicity["diagnosis"]
 
 
 @pytest.mark.parametrize(
@@ -394,6 +434,14 @@ def test_population_and_tactical_validate_container_shapes() -> None:
         build_population_report(cast(tuple[MatchResult, ...], ("bad",)))
     with pytest.raises(ValueError, match="sorted and unique"):
         build_tactical_report(seed=0, depths=(2, 1))
+    with pytest.raises(TypeError, match="TacticalCase"):
+        baseline_eval._evaluate_minimax_tactical(
+            depth=1,
+            seed=0,
+            cases=cast(tuple[TacticalCase, ...], ("bad",)),
+        )
+    with pytest.raises(ValueError, match="must not be empty"):
+        baseline_eval._evaluate_minimax_tactical(depth=1, seed=0, cases=())
 
 
 def _valid_final_report_inputs() -> tuple[

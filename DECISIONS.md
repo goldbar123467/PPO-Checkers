@@ -271,3 +271,21 @@
   Phase-7-trained best-response proxy `NOT_EVALUATED` until those inputs genuinely exist.
 - Evidence: `configs/checkers-baselines-v1.yaml`, `tests/eval/test_baseline_*.py`, and
   `logs/test-output/000060-phase5-baseline-runner-final-check.txt`.
+
+## ADR-020 — Isolate tactical cases and report every depth regression
+
+- Status: Accepted after rejecting the first Phase 5 report.
+- Authority: `GOAL.md` §11.3 and the controlled-experiment requirement.
+- Evidence stage: Baseline report audit.
+- Finding: the first report reused one stateful seeded tie-break RNG across all cases. Its depth-1
+  count (16/50) therefore differed from the generator's fresh-policy-per-case contract (15/50) and
+  depended on case order. It also showed depth-2 at 10/50 but set aggregate non-monotonicity false
+  because that flag inspected arena scores only.
+- Decision: instantiate a fresh policy with the declared seed for each tactical case; permanently
+  test order independence and manifest agreement; inspect every adjacent tactical depth as well as
+  common arena anchors when deriving the non-monotonicity flag.
+- Diagnosis rule: a depth regression under the non-quiescent material evaluator is recorded as a
+  horizon-effect/evaluator finding, not automatically an engine defect and not silently omitted.
+  The predeclared depth-1 versus depth-3 tactical decision remains unchanged.
+- Evidence: `logs/test-output/000061-phase5-report-semantic-red.json`,
+  `000062-phase5-tactical-report-red.txt`, and `000063-phase5-tactical-report-fix-check.txt`.
