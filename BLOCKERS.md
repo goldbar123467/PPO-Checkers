@@ -130,3 +130,27 @@ Proposed correction: include `sequence_origin`, both `no_progress` counters, and
 
 Status: OPEN (the implementation will use the source-correct complete key; Phase 3 cannot be
 labelled GREEN until the read-only field list is amended).
+
+### BLOCK-006 [P1] Gate 4/N7 — logit regression precedes the network phase
+
+Claim in GOAL.md: Gate 4 requires "the N7 aliasing regression test green," while N7 specifically
+requires two sequence-distinct states to produce different **logits**. The network is not
+implemented until Phase 6, whose strict phase scope includes §9 and the N1–N7 architecture.
+
+Why it cannot be completed in Phase 4: Phase 4 implements §6 and §5.2 only. There is no policy
+network whose logits can be tested without implementing Phase 6 out of order. Different encoded
+observations are necessary but do not mathematically guarantee different logits for arbitrary
+weights; a constant or degenerate network can map distinct tensors to the same output.
+
+Evidence: `tests/env/test_encoding.py::test_n7_pending_and_forced_planes_prevent_observation_aliasing`
+proves the Phase 4 representation is non-aliased. The actual different-logits test remains a Phase
+6 obligation against the implemented N1–N6 model.
+
+Phases affected: 4 and 6.
+
+Proposed correction: Gate 4 should require different observations plus different legal masks for
+the boundary/mid-sequence pair. Gate 6 should require the N7 different-logits regression once the
+network exists.
+
+Status: OPEN (the representation-level regression passes; Phase 4 cannot honestly be labelled
+GREEN until the gate is retargeted or Phase 6 supplies the logit test).

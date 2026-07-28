@@ -22,7 +22,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 | 1 — Rules verification | §3.1, §4, §14 Phase 1; primary WCDF/ACF rules | Per-rule primary clause or ENGINE VARIANT label, tests, R6.7 proof, P1 for unavailable text. | BLOCKED by BLOCK-001; technical gate exit 0 at `logs/gates/phase-1.txt`. |
 | 2 — State/moves | §§4–5, §§12.2–12.5, §14 Phase 2 | Fast/oracle generators, R4.5 divergence, 5M differential, BFS, metamorphic, 20 published transcripts, mutation ≥85%, rules coverage ≥98%. | BLOCKED only by BLOCK-002/003/004 wording. Feasible technical gate proven: 5M + BFS 7, 20 legal transcripts, valid composed symmetry, published perft through depth 7, 95.76% killed-only mutation, and 100% rules coverage. |
 | 3 — Terminal/hash | R6, §5.3, §14 Phase 3 | Boundary/key/property tests and committed termination proof. | BLOCKED by BLOCK-001/005 wording; feasible technical gate proven with 188 tests, all R6 boundaries, complete/narrow key separation, and 50k incremental/recomputed checks. |
-| 4 — Environment | §§5.2, 6, §14 Phase 4 | 5M-step fuzz, zero mask failures, canonical/aliasing/illegal-action/restore tests. | OPEN. |
+| 4 — Environment | §§5.2, 6, §14 Phase 4 | 5M-step fuzz, zero mask failures, canonical/aliasing/illegal-action/restore tests. | BLOCKED by BLOCK-006's premature logit requirement and inherited BLOCK-001/002/003/005 wording. Feasible technical gate PROVEN: 5M steps, all three failure counters zero, exact scalar/vector restore, and 100% environment coverage. |
 | 5 — Baselines/arena | §11.2–11.4, §14 Phase 5 | Power-justified balanced matches and hand-worked Elo/payoff validation. | OPEN. |
 | 6 — RL core | §§7–9, §12.6–12.7, §14 Phase 6; PPO/GAE primary papers | T1–T8, dtype masking, CPU/GPU determinism. | OPEN. |
 | 7 — Self-play/W&B | §§10, 12.8, 13, §14 Phase 7 | Three 30-minute smokes, all metrics, zero mask failures, powered random score ≥0.90, exact resume evidence. | OPEN. |
@@ -35,7 +35,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 |---|---|---|---|
 | D1 | Repository with all binding phase gates GREEN. | `STATE.json` plus gate logs. | OPEN. |
 | D2 | Complete checkers `README.md`. | Content audit against §18.2 and reproduced commands. | OPEN. |
-| D3 | `docs/RULES.md`. | Rule/source/test matrix plus R6.7 proof. | IN PROGRESS: source matrix/proof verified; planned covering tests remain Phase 2/3 work. |
+| D3 | `docs/RULES.md`. | Rule/source/test matrix plus R6.7 proof. | PROVEN for current rules scope: all mapped tests pass and the executable R6.7 proof is green; final clean-clone audit remains global E1 work. |
 | D4 | `docs/PPO_CHECKLIST.md`. | All applicable `[HUANG37]` items adjudicated with tiers. | OPEN. |
 | D5 | `docs/ML_TEST_SCORE.md`. | Evidence-linked `[MLTS]` self-score. | OPEN. |
 | D6 | `docs/METRICS.md`. | Every §13.2 metric formula and range. | OPEN. |
@@ -50,16 +50,16 @@ claimed. Internally generated agreement is never promoted to external correctnes
 | ID | Requirement from §19 | Authoritative proof | Status |
 |---|---|---|---|
 | E1 | Clean-clone `make check` with egress blocked. | Fresh clone/namespace transcript after dependency install. | OPEN. |
-| E2 | ≥400 passing, none skipped/xfail; coverage and mutation thresholds. | Collection report, coverage JSON, mutation report. | PARTIAL: 95.76% mutation and current coverage gates proven; current suite is below 400 tests. |
-| E3 | Strict mypy and Ruff lint/format clean. | Final `make check` log over full checkers scope. | PROVEN for Phase 2 scope at `logs/gates/phase-2.txt`; final rerun remains required. |
+| E2 | ≥400 passing, none skipped/xfail; coverage and mutation thresholds. | Collection report, coverage JSON, mutation report. | PARTIAL: 322 tests pass, including 276 rules/env tests; 100% current checkers coverage and 95.76% conservative rules mutation are proven. Total remains below 400. |
+| E3 | Strict mypy and Ruff lint/format clean. | Final `make check` log over full checkers scope. | PROVEN through Phase 4 at `logs/gates/phase-4.txt`; final rerun remains required. |
 | E4 | Every R1.1–R7.3 traced and passing; variants labelled everywhere. | `docs/RULES.md` plus node-ID audit. | OPEN. |
 | E5 | R4.5 delayed-removal divergence. | Primary clause, golden fixture, fast/oracle passing tests. | BLOCKED by BLOCK-002; exact pending occupancy/no-repeat tests and parity impossibility proof pass. |
 | E6 | State/position key separation. | Dedicated passing tests. | PROVEN: boundary-only `position_key`, counter/ply/sequence separation, frozen known keys, and 50k incremental/recomputed/undo checks at `logs/gates/phase-3.txt`. |
 | E7 | 5M differential, 20 transcripts, metamorphic, external perft or explicit unavailable label. | Saved reports with cited external sources. | PARTIAL/BLOCKED: 5M differential, 20 legal published scores, valid composed symmetry, and Bik external perft through depth 7 proven; BLOCK-003/004 prevent the invalid symmetry/result wording. |
-| E8 | 5M fuzz; release soak run or NOT RUN. | Saved fuzz/soak reports. | OPEN. |
+| E8 | 5M fuzz; release soak run or NOT RUN. | Saved fuzz/soak reports. | PROVEN: immutable 5M Phase 4 report, hash `1472e4ea…0f479ed`, with zero failures. Release soak: NOT RUN. |
 | E9 | T1–T8, including hand-computed signed GAE. | Passing tests with derivation fixtures. | OPEN. |
-| E10 | D2/D3 and exact mid-sequence resume. | Determinism/resume transcripts and metadata. | OPEN. |
-| E11 | All mask violation metrics exactly zero. | Aggregated immutable run metrics. | OPEN. |
+| E10 | D2/D3 and exact mid-sequence resume. | Determinism/resume transcripts and metadata. | PARTIAL: D3 and exact scalar/vector mid-sequence resume are proven; final README D2 remains open. |
+| E11 | All mask violation metrics exactly zero. | Aggregated immutable run metrics. | PARTIAL: Phase 4's 5M report has zero mask disagreements and empty nonterminal masks; later self-play metrics remain open. |
 | E12 | All §18 deliverables substantive. | Deliverable-by-deliverable content audit. | OPEN. |
 | E13 | No §2 violation; near-misses listed. | Final audit against Git/files/logs. | OPEN. |
 | E14 | `scripts/reproduce.sh` reproduces headline values. | Fresh execution and tolerance comparison. | OPEN. |

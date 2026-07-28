@@ -2,22 +2,23 @@
 
 ## Current Phase
 
-Phase 4 — Environment, encoding, and masking (IN PROGRESS)
+Phase 5 — Baselines and arena (IN PROGRESS)
 
-Phases 1–3 are formally BLOCKED by specification defects recorded as BLOCK-001 through BLOCK-005.
+Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001 through BLOCK-006.
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
-source-correct portion of Phase 4.
+source-correct portion of Phase 5.
 
-Work label: environment contract baseline.
+Work label: deterministic baseline-agent and powered-arena baseline.
 
-Falsifiable objective: implement the Gymnasium environment, canonical eight-plane encoding,
-128-action bijection, stored legal masks, and exact mid-sequence restore before the 5M-step gate.
+Falsifiable objective: implement random, greedy, and depth-limited minimax agents plus colour-
+balanced arena, Elo/payoff/population statistics, and power analysis that reproduce hand-worked
+examples before any performance claim.
 
 ## In Flight
 
-1. Write failing action-encoding, canonical-observation, and alias-regression tests.
-2. Implement encoding, masking, serialization, `CheckersEnv`, and deterministic vector wrappers.
-3. Smoke the complete reset/step/terminal/reward path, then build the Phase 4 fuzz runner.
+1. Write failing deterministic-agent and tactical-superset tests.
+2. Implement colour-balanced match scheduling and hand-worked score/Elo/payoff fixtures.
+3. Derive the minimum game count before running any baseline comparison.
 
 ## Gate Evidence
 
@@ -66,11 +67,17 @@ Falsifiable objective: implement the Gymnasium environment, canonical eight-plan
   R6 boundary fixtures, narrow/full key separation, and 50k incremental/recomputed/undo checks;
   all eight rules modules at 100% statement/branch coverage. Evidence `logs/gates/phase-3.txt`.
   Formal status is BLOCKED only by BLOCK-001/005.
+- Phase 4 scalar/vector environment gate: `make check`, exit 0; 322 tests plus eight property
+  tests; 276 tests under `rules/` and `env/`; every current checkers module at 100%
+  statement/branch coverage. Evidence `logs/gates/phase-4.txt`.
+- Phase 4 large fuzz: exactly 5,000,000 transitions and 120,154 terminal games; 1,015,426 capture
+  steps, 121,260 continuations, 224,842 promotions, and 500 snapshot reloads; zero invariant
+  violations, mask disagreements, and empty nonterminal masks. Report SHA-256
+  `1472e4ea…0f479ed`; evidence `reports/phase4_environment_fuzz_5m_seed20260728.json` and
+  `logs/gates/phase-4-fuzz-5m.txt`.
 
 ## Last Five Iterations
 
-- 000009: full 5M plus BFS-depth-7 differential completed in 396.35 seconds with zero disagreements;
-  independent report validation passed after one expected-SHA typo was caught.
 - 000010: 20 published PDN games replayed all 515 moves legally; BLOCK-004 separates preserved
   publisher results from outcomes that cannot be inferred from nonterminal boards.
 - 000011: made the pinned Mutmut 3.6 harness isolation-safe, preserved each configuration failure,
@@ -81,6 +88,9 @@ Falsifiable objective: implement the Gymnasium environment, canonical eight-plan
 - 000013: filed BLOCK-005, implemented source-correct R6 outcomes and complete/narrow Zobrist keys,
   proved incremental equivalence through 50k reachable steps, and completed the Phase 3 technical
   gate.
+- 000014: implemented canonical scalar/vector environments and exact mid-sequence resume, passed
+  322 tests at 100% current checkers coverage, completed the 5M environment gate with all failure
+  counters zero, and filed BLOCK-006 for the premature N7-logit requirement.
 
 ## Open Risks
 
@@ -92,10 +102,12 @@ Falsifiable objective: implement the Gymnasium environment, canonical eight-plan
 - BLOCK-004 prevents claiming publisher resignation/adjudication results were board-derived.
 - BLOCK-005 prevents the incomplete §5.3 state-key field list; source-correct code includes
   sequence origin, both counters, and ply.
-- Total suite volume remains below the final ≥400-test acceptance requirement; later environment,
-  RL, evaluation, and integration phases must add substantive tests rather than padding.
+- BLOCK-006 prevents a Phase 4 claim about logits before the Phase 6 network exists; the distinct-
+  observation regression passes now and the actual logit test remains scheduled for Phase 6.
+- Total suite volume is 322, still below the final ≥400-test acceptance requirement; 276 substantive
+  rules/environment tests already exceed that category's ≥250 requirement.
 
 ## Next Step
 
-Write Phase 4 action/observation/alias tests first, using the corrected complete key and only the
-valid composed rotation-plus-player-swap symmetry.
+Write Phase 5 baseline-agent tests first, beginning with deterministic random/greedy behavior and
+depth-limited minimax tactical supersets before implementing match statistics.

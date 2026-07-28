@@ -2,11 +2,13 @@
 
 ## Active Work
 
-- Phase 4 — environment, encoding, and masking: IN PROGRESS.
+- Phase 5 — baselines and arena: IN PROGRESS.
 - Phase 1 remains formally BLOCKED by the read-only R6.6 classification defect in BLOCK-001;
   unaffected work proceeds under `GOAL.md` §0.1.
 - Phase 2's feasible technical gate is complete but formally BLOCKED by BLOCK-002/003/004.
 - Phase 3's feasible technical gate is complete but formally BLOCKED by BLOCK-001/005.
+- Phase 4's feasible technical gate is complete but formally BLOCKED by inherited
+  BLOCK-001/002/003/005 and the premature N7-logit demand in BLOCK-006.
 
 ## Completed Gates
 
@@ -20,6 +22,11 @@
 - Gate 3 technical checks pass: R6 boundaries, loss-first precedence, boundary-only repetition,
   complete-vs-position key separation, and incremental hash equivalence through 50k reachable
   steps. See `logs/gates/phase-3.txt`.
+- Gate 4 technical checks pass: canonical 128-action/eight-plane encoding, strict Gymnasium API,
+  exact scalar/vector mid-sequence restore, illegal-action atomicity, and 100% current environment
+  coverage. The immutable 5M fuzz report records all three failure counters at zero. See
+  `logs/gates/phase-4.txt`, `logs/gates/phase-4-fuzz-5m.txt`, and
+  `reports/phase4_environment_fuzz_5m_seed20260728.json`.
 
 ## Known Failures and Root Causes
 
@@ -37,10 +44,13 @@
   so result tags are preserved but not falsely called board-derived.
 - BLOCK-005: §5.3 omits counters/ply from a key that claims to capture transition semantics. The
   implementation includes them and proves the 39/40 and 511/512 separation.
+- BLOCK-006: Gate 4 requires different network logits before Phase 6 authorizes a network. Phase 4
+  proves distinct observations; the logit assertion remains scheduled for Phase 6.
 
 ## Open Risks
 
-- Total acceptance volume remains below 400 tests; substantive Phase 3–8 suites are still needed.
+- Total acceptance volume is 322 tests, below the final 400-test threshold; 276 substantive
+  rules/environment tests already exceed that category's 250-test threshold.
 - Training, self-play, W&B, powered arenas, and full-budget ablations remain entirely unrun and
   must not be described as completed.
 - Clean-clone egress-blocked verification remains a final acceptance item.

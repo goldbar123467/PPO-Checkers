@@ -192,3 +192,61 @@
 - Consequence: A training-only draw rule cannot rescue a player who already lost under WCDF. The
   boundary behavior is deterministic and permanently tested.
 - Evidence: `tests/rules/test_terminal.py` and `logs/gates/phase-3.txt`.
+
+## ADR-015 — Use canonical step-wise Gymnasium actions
+
+- Status: Accepted.
+- Authority: `GOAL.md` §§5.2 and 6; official [Gymnasium `Env`
+  API](https://gymnasium.farama.org/api/env/).
+- Evidence stage: Environment baseline.
+- Decision: Expose `Discrete(128)` as canonical origin × direction and make one API step equal one
+  simple move or one jump. Rotate White states/actions 180° so one shared policy always views
+  itself as the actor. Preserve actor identity explicitly in info because canonical tensors do not
+  encode stable colour identity.
+- Consequence: Multi-jumps span several timesteps and retain the same actor; GAE must later apply
+  the explicit perspective sign. The smaller fixed action space is retained because every short
+  step maps bijectively and the full environment contract now tests the sequencing cost.
+- Evidence: `tests/env/test_actions.py`, `tests/env/test_encoding.py`, and
+  `logs/gates/phase-4.txt`.
+
+## ADR-016 — Persist environment history needed beyond the Markov rules state
+
+- Status: Accepted.
+- Authority: `GOAL.md` §§5.1–5.2, 7.5, and R7.3.
+- Evidence stage: Environment baseline.
+- Decision: Serialize current and reset `State`, rule configuration, sorted repetition counts, and
+  the partial ACF path. Validate the entire `CHECKERS_ENV_1` record before mutating a live wrapper.
+- Rationale: The rules state is sufficient for future legal transitions, but repetition depends on
+  prior boundary visits and the eventual full move notation depends on earlier jump landings.
+- Evidence: `tests/env/test_serialization.py`; exact `9x18x25` completion after mid-sequence
+  restore.
+
+## ADR-017 — Make vector batches transactional and masks authoritative
+
+- Status: Accepted.
+- Authority: `GOAL.md` §§6.1, 6.5, and 7.5; Huang and Ontañón,
+  [*A Closer Look at Invalid Action Masking in Policy Gradient
+  Algorithms*](https://arxiv.org/abs/2006.14171).
+- Evidence stage: Environment baseline.
+- Decision: A nonterminal lane exposes exactly its generated legal IDs; terminal lanes expose an
+  all-false mask. Illegal actions raise before mutation. The synchronous vector wrapper
+  prevalidates every lane before advancing any lane by one environment step.
+- Consequence: Gymnasium's generic checker cannot uniformly sample `Discrete(128)` and assume every
+  ID is legal; passive API checks use a known legal ID, while explicit tests prove all invalid IDs
+  raise. One bad vector lane never leaves a partially advanced batch.
+- Evidence: `tests/env/test_environment.py`, `tests/env/test_vec_env.py`, and 5M gate metrics.
+
+## ADR-018 — Classify the 5M environment gate as randomized evidence, not proof
+
+- Status: Accepted.
+- Authority: `GOAL.md` §§12.3–12.5 and the research-behavior contract.
+- Evidence stage: Phase gate.
+- Decision: Run a fixed-seed mixture of full games and adversarial boundary fixtures; check masks,
+  transitions, counters, notation, rewards, observations, hashes, and periodic snapshot reloads on
+  every applicable state. Halt on the first failure and write a new immutable report only after a
+  complete run.
+- Result: 5,000,000 steps completed with zero invariant violations, zero mask disagreements, and
+  zero empty nonterminal masks. Report SHA-256
+  `1472e4ea1da80f591ee248748d066fdb05bea72cc78f3a0f5f9aecebb0f479ed`.
+- Limitation: Agreement with recomputation and randomized coverage is strong regression evidence,
+  not exhaustive proof or independent external rules correctness.

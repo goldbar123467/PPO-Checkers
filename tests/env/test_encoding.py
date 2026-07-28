@@ -66,7 +66,7 @@ def test_white_observation_rotates_180_and_swaps_actor_planes() -> None:
     assert not np.array_equal(red_observation[:4], white_observation[:4])
 
 
-def test_pending_and_forced_planes_prevent_continuation_aliasing() -> None:
+def test_n7_pending_and_forced_planes_prevent_observation_aliasing() -> None:
     mid_sequence = State(
         men=(_mask(18), _mask(14, 22)),
         kings=(0, 0),

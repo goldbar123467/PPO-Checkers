@@ -224,3 +224,5 @@ otherwise legal games; it is not merely a defensive assertion.
 - R6.7 arithmetic: executable in `tests/rules/test_rule_traceability.py`.
 - BLOCK-001 remains open because only a human can amend the read-only `GOAL.md`; downstream code
   follows the conservative source-correct ENGINE VARIANT label.
+- The Phase 4 software mapping from these rules to observations, actions, rewards, masks, and
+  snapshots is separately sourced and traced in `docs/ENVIRONMENT.md`.
