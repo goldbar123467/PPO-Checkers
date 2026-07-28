@@ -16,9 +16,9 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Read the complete Phase 6 numerical, architecture, masking, and determinism contracts.
-2. Map T1–T8 and D2/D3 to independent RED tests before implementation.
-3. Implement the smallest coherent RL primitive and run a focused GREEN gate.
+1. Implement the full-chronology rollout buffer and its T8 RED oracles.
+2. Implement the exact GroupNorm residual policy/value network and N7 logit regression.
+3. Add PPO objectives only after buffer and network gates are independently green.
 
 ## Gate Evidence
 
@@ -111,12 +111,17 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   eight property tests, and 100% Checkers statement/branch coverage. Evidence:
   `reports/phase5_baseline_analysis.md`, `reports/phase5_baseline_report_v1.json`,
   `reports/phase5_baseline_games_v1.json.gz`, and `logs/gates/phase-5.txt`.
+- Phase 6 foundation: froze the complete T1–T8/D2–D3 oracle matrix, then implemented the sole
+  dtype-aware masked categorical and the time-major two-player GAE recursion. The RED import test
+  failed as intended; the first quality pass exposed real formatting/typing/coverage defects; the
+  corrected gate passed 41 tests with both modules at 100% statement/branch coverage. The explicit
+  four-step hand oracle includes both perspective signs, truncation/terminal tests pass, illegal
+  logits receive exact-zero gradient, and the sigma-degenerate path is bitwise equal to a separate
+  conventional GAE loop. Evidence: `docs/PHASE6_TEST_MATRIX.md` and
+  `logs/test-output/000066-*` through `000069-*`.
 
 ## Last Five Iterations
 
-- 000014: implemented canonical scalar/vector environments and exact mid-sequence resume, passed
-  322 tests at 100% current checkers coverage, completed the 5M environment gate with all failure
-  counters zero, and filed BLOCK-006 for the premature N7-logit requirement.
 - 000015: completed and fully branch-tested the powered Phase 5 evaluation stack and crash-safe
   runner; corrected cross-match seed overlap before execution; `make check` passed 606+8 tests.
 - 000016: rejected a technically passing but semantically contradictory baseline report, isolated
@@ -125,6 +130,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   machine report, and retained 100% statement/branch coverage across the full Checkers package.
 - 000018: executed the final 4,704-game powered baseline, proved byte-identical six-checkpoint
   resume, published the sourced claim-bounded analysis, and completed the Phase 5 gate.
+- 000019: froze the Phase 6 oracle matrix and made masked sampling plus signed GAE green under 41
+  focused tests at 100% statement/branch coverage.
 
 ## Open Risks
 
@@ -145,5 +152,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Read the full Phase 6 contract in `GOAL.md`, inventory the current empty `src/checkers/rl` surface,
-and derive the independent T1–T8 plus D2/D3 RED-test matrix before writing implementation code.
+Write T8-first RED tests for chronological rollout storage, per-environment GAE adjacency,
+trainable-only optimization views, and correct mid-capture rollout-boundary bootstrapping.

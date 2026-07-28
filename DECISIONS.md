@@ -329,3 +329,21 @@
 - Evidence: `reports/phase5_baseline_analysis.md`, `reports/phase5_baseline_report_v1.json`,
   `reports/phase5_baseline_games_v1.json.gz`, `logs/gates/phase-5-baseline-run.txt`,
   `logs/gates/phase-5-baseline-run-resume.txt`, and `logs/gates/phase-5.txt`.
+
+## ADR-023 — Make GAE time-major and masking singular
+
+- Status: Accepted foundation for Phase 6.
+- Authority: `GOAL.md` §§6.5 and 7.3–7.5; original GAE paper for the single-agent recursion;
+  official PyTorch categorical-distribution contract. The perspective-sign extension is a project
+  derivation validated by tests, not by citation.
+- Decision: expose one `MaskedCategorical` wrapper everywhere and reject an all-false row before
+  construction. Replace illegal logits with the input dtype's finite minimum before the underlying
+  categorical normalization. Expose a time-major signed-GAE function whose trailing dimensions
+  are independent environment lanes and whose final bootstrap has the shape of one time row.
+- Rationale: one distribution prevents rollout/update mask drift. Time-major GAE makes vector-lane
+  adjacency explicit, handles a slice ending mid-capture with a per-lane bootstrap, and reduces T8
+  to a testable reshape/grouping responsibility in the buffer rather than hidden global state.
+- Evidence: 41 focused tests, including float32/BF16 and `k=1` mask cases, exact illegal-gradient
+  zeros, a four-transition hand oracle with both signs, terminal/truncation boundaries, colour-swap
+  negation, batched lanes, and bitwise single-agent equivalence. Both modules are at 100%
+  statement/branch coverage in `logs/test-output/000069-phase6-mask-gae-quality-final.txt`.
