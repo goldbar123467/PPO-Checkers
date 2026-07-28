@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/eval/test_population.py ________________
+ImportError while importing test module '/home/thecl/ml-lab/tests/eval/test_population.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/eval/test_population.py:14: in <module>
+    from checkers.eval.population import (
+E   ModuleNotFoundError: No module named 'checkers.eval.population'
+=========================== short test summary info ============================
+ERROR tests/eval/test_population.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.37s
