@@ -8,16 +8,16 @@ Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
 source-correct portion. Phases 5 and 6 are GREEN.
 
-Work label: Phase 7 setup validation before an end-to-end self-play smoke.
+Work label: Phase 7 baseline implementation before an end-to-end offline smoke.
 
 Engineering objective: implement the resumable self-play/league/trainer/W&B path, then prove it
 with small end-to-end validation before any 30-minute smoke or powered learned-policy evaluation.
 
 ## In Flight
 
-1. Re-read and freeze the Phase 7 trainer, checkpoint, logging, league, and metric contracts.
-2. Implement self-play collection and the complete §13.2 metric/alert layer under hand oracles.
-3. Implement PPO epoch orchestration, then exact checkpoint/resume and offline W&B.
+1. Complete real offline W&B integration and the tiny CPU/CUDA CLI smoke.
+2. Prove same-stack CUDA resume tolerance and close new-module validation branches.
+3. Implement learned-policy dev evaluation, then run the three timed seeds.
 
 ## Gate Evidence
 
@@ -159,11 +159,20 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   streams, and the pinned/FIFO league implements A0–A3 selection without choosing an arm early.
   Eighty-three focused tests cover all 453 statements and 176 branches. Evidence
   `docs/PHASE7_TEST_MATRIX.md` and `logs/test-output/000100-*` through `000104-*`.
+- Phase 7 collection/update/persistence: the production vector engine retains complete chronology,
+  independent-oracle mask checks remain zero, forced continuation and terminal-reset lanes match
+  literal traces, and all 55 §13.2 names plus every §13.3 threshold have hand tests. PPO epoch
+  ledgers cover each trainable row once and reject live-rollout replay. Atomic SHA-256 checkpoints
+  use weights-only loading and restore model, Adam, config, trainer counters, every RNG family,
+  league, cumulative collector state, serialized vector lanes, W&B IDs/counters, schedules, and
+  AMP state. A checkpoint after jump one reproduces actions, metrics, epoch order, collector state,
+  and parameters bitwise for CPU updates 2–11. Fake W&B initialization/logging/completeness and the
+  tracked-file credential scan are green; the real offline run remains pending. The intermediate
+  full suite passes 872 tests at 95.26% total coverage. Evidence `logs/test-output/000105-*`
+  through `000113-*`.
 
 ## Last Five Iterations
 
-- 000022: implemented stored-mask PPO-Clip, matched the literal T3 oracle to 1e-12, passed T4
-  directional clipping, and covered the module completely.
 - 000023: unified deterministic seeding and proved ten-update D2 CPU bitwise reproduction plus D3
   same-RTX tolerance and native BF16 masking against a fully recorded reference stack.
 - 000024: froze three uniquely forced 3/5/7-step engine trajectories, proved exact actor-frame T7
@@ -172,6 +181,9 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   envelope, published the primary-source-bounded analysis, and advanced Phase 6 to GREEN.
 - 000026: froze the stricter Phase 7 gate and implemented immutable config/pure schedules, complete
   RNG snapshots, mutable trainer counters, and the pinned FIFO league at 100% focused coverage.
+- 000027: implemented self-play, all metric/alert formulas, exact PPO epoch consumption, offline
+  logging contracts, atomic weights-only checkpoints, and bitwise 10-update CPU resume from a
+  mid-capture lane; the first full integration run passed 872 tests.
 
 ## Open Risks
 
@@ -192,5 +204,4 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
 
 ## Next Step
 
-Implement production-engine self-play collection and hand-audited §13.2 metrics before coupling
-them to PPO epochs or persistence.
+Run the same-stack CUDA resume oracle, then connect the real offline W&B run and tiny CLI smoke.

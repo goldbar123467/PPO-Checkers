@@ -25,17 +25,17 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 | C1 | Literal valid/invalid configuration table | frozen `RunConfig`; all divisibility/domain/device/timing failures raise | GREEN |
 | C2 | Hand schedule endpoints | LR reaches exactly start/zero; entropy reaches start/end at declared fraction; config never mutates | GREEN |
 | L1 | Hand FIFO sequence | initial snapshot pinned; capacity 20; deterministic A0/A1/A2/A3 selection; snapshot tensors cloned | GREEN |
-| S1 | One-step engine trace | shared policy samples only legal actions; action/mask/oracle agreement counters stay zero | Pending |
-| S2 | Forced multijump lane | complete chronology, actor/sign/completion fields, and mid-sequence rollout boundary are exact | Pending |
-| S3 | Terminal/reset lane | terminal reward retained once; next row is a fresh seeded game; colour-role schedule remains balanced | Pending |
-| U1 | Literal permutation/epoch ledger | every trainable row used once per epoch, no opponent row enters policy loss, rollout discarded after configured epochs | Pending |
-| U2 | Directional integration | one complete collect/update changes parameters and increments exact global/update counters | Pending |
-| M1 | Hand metric tables | every §13.2 formula/range/name, including mean per-state normalized entropy and binned calibration | Pending |
-| M2 | Injected fault table | each §13.3 hard alert halts; sustained-alert windows fire only at exact boundaries | Pending |
-| W1 | Fake run plus real offline smoke | exact project/name/tags/config/metadata; monotonic logging steps; every §13.2 key observed | Pending |
-| W2 | Repository byte scan | no committed API-key-shaped string or credential file | Pending |
-| R1 | Checkpoint schema audit | all §12.8 fields present; update-boundary-only atomic save; corrupt/mismatched/untrusted input rejected | Pending |
-| R2 | Forked execution oracle | CPU interrupted/resumed updates `k+1…k+10` bitwise equal, including a serialized mid-capture lane | Pending |
+| S1 | One-step engine trace | shared policy samples only legal actions; action/mask/oracle agreement counters stay zero | GREEN |
+| S2 | Forced multijump lane | complete chronology, actor/sign/completion fields, and mid-sequence rollout boundary are exact | GREEN |
+| S3 | Terminal/reset lane | terminal reward retained once; next row is a fresh seeded game; colour-role schedule remains balanced | GREEN |
+| U1 | Literal permutation/epoch ledger | every trainable row used once per epoch, no opponent row enters policy loss, rollout discarded after configured epochs | GREEN |
+| U2 | Directional integration | one complete collect/update changes parameters and increments exact global/update counters | GREEN |
+| M1 | Hand metric tables | every §13.2 formula/range/name, including mean per-state normalized entropy and binned calibration | GREEN |
+| M2 | Injected fault table | each §13.3 hard alert halts; sustained-alert windows fire only at exact boundaries | GREEN |
+| W1 | Fake run plus real offline smoke | exact project/name/tags/config/metadata; monotonic logging steps; every §13.2 key observed | PARTIAL — fake contract GREEN; real offline pending |
+| W2 | Repository byte scan | no committed API-key-shaped string or credential file | GREEN |
+| R1 | Checkpoint schema audit | all §12.8 fields present; update-boundary-only atomic save; corrupt/mismatched/untrusted input rejected | GREEN |
+| R2 | Forked execution oracle | CPU interrupted/resumed updates `k+1…k+10` bitwise equal, including a serialized mid-capture lane | GREEN |
 | R3 | Same-stack RTX fork | actions equal and losses meet `atol=1e-5, rtol=1e-4`; W&B/log counters do not duplicate | Pending |
 | E1 | Tiny offline CLI run | config → collection → PPO → checkpoint reload → local W&B artifact is end-to-end and rerunnable | Pending |
 
@@ -87,3 +87,20 @@ offline/disabled W&B only, and all numeric/type domains. Trainer state advances 
 rollout boundary. RNG snapshots cover Python, NumPy, Torch CPU, every CUDA device, opponent
 selection, minibatch permutation, and stable per-environment streams. League tensors are cloned to
 CPU on every boundary; the initial policy remains pinned while unpinned history is FIFO-evicted.
+
+The self-play/persistence increment began with missing-module RED tests (`000105`, `000108`,
+`000110`, `000112`). Production-engine collection now retains every lockstep row, checks masks
+against the independent oracle before sampling, preserves a rollout cut inside a forced jump,
+retains terminal reward before per-lane reset, and serializes cumulative game/value diagnostics.
+The literal metric inventory contains 55 names; entropy is averaged per eligible state and the
+collapse alert excludes all-`k=1` batches, where a zero diagnostic is not evidence of collapse.
+PPO permutations have an exact source-index ledger and rollouts are weakly identity-tracked so a
+live object cannot be replayed without retaining every historical batch in memory.
+
+Checkpoints are CPU-portable, update-boundary-only, atomically replaced, SHA-256 accompanied, and
+loaded through `torch.load(weights_only=True)`. They include model/Adam/config/trainer/RNG/league/
+collector/vector/W&B/schedule/AMP fields and reject digest corruption, config drift, malformed
+schemas, and an untrusted pickle global. R2 checkpoints after the first jump of a forced two-jump
+move; actions, epoch ledgers, every scalar metric, collector state, model tensors, and all RNG
+families reproduce bitwise for updates 2–11 (`000113`). A repository-wide intermediate run passed
+872 tests at 95.26% total coverage (`000111`); validation-branch closure remains before Gate 7.

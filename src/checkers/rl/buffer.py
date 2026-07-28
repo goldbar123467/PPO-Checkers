@@ -52,7 +52,7 @@ class ValueView:
     source_indices: torch.Tensor
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True, slots=True, weakref_slot=True)
 class RolloutBatch:
     """Flattened time-major rollout with GAE computed before any filtering."""
 

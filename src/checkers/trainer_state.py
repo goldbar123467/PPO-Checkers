@@ -42,6 +42,7 @@ class TrainerState:
     logging_step: int = 0
     env_episode_indices: tuple[int, ...] = ()
     league_snapshot_ids: tuple[str, ...] = ()
+    negative_explained_variance_streak: int = 0
     rng_states: RNGStates | None = None
     amp_scaler_state: dict[str, Any] = field(default_factory=dict)
 

@@ -468,3 +468,25 @@
   0.90 at alpha .05 and power .80. This approximation and its limitations will be reported.
 - Evidence: 83 focused tests and 100% statement/branch coverage in
   `logs/test-output/000104-phase7-config-league-quality-final.txt`.
+
+## ADR-031 — Persist complete chronology and load only digest-verified weights-only checkpoints
+
+- Status: Accepted Phase 7 implementation foundation; timed gate pending.
+- Authority: `GOAL.md` §§7.4–7.5, 8.4, 12.8, and 13.2–13.3; official PyTorch state/loading and
+  W&B offline/resume documentation listed in `docs/PHASE7_TEST_MATRIX.md`.
+- Decision: collect directly through `CheckersVectorEnv`, compare every pre-action mask to the
+  independent rules oracle, and retain actor/sign/completion fields across capture slices. Average
+  normalized entropy only over states with more than one legal action; an all-forced batch does not
+  constitute collapse evidence. Apply each live rollout through a deterministic permutation ledger
+  and reject replay while that rollout object remains reachable.
+- Persistence: checkpoint only when `global_step == update_idx * batch_size`; store every global and
+  trainer-owned RNG, cumulative collector/value trace, the full serialized vector environment,
+  league tensors, model/Adam state, frozen config, W&B ID/log counter, schedule values, AMP state,
+  and source provenance. Clone tensors to CPU, write a sibling temporary file, atomically replace,
+  bind a SHA-256 sidecar, and use `torch.load(weights_only=True)` after digest verification.
+- Result: a forced capture is checkpointed after its first jump. The uninterrupted and resumed CPU
+  forks have identical actions, minibatch ledgers, scalar metrics, collector records, RNG states,
+  and model tensors for the next ten updates. The first full integration run passes 872 tests at
+  95.26% total coverage; CUDA resume and real W&B offline evidence remain pending.
+- Evidence: `tests/integration/test_resume_training.py`, `tests/test_checkpoint.py`, and
+  `logs/test-output/000105-*` through `000113-*`.
