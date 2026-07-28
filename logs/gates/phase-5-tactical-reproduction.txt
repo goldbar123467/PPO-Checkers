@@ -1,0 +1,1 @@
+{"byte_identical": true, "canonical_file_sha256": "04a02a6a9721b03f3f484f2c12330f14e340b785758be60097b237e14031f334", "case_count": 50, "cases_sha256": "cf0bf4040185dfb229099f9780f988b9650425833c36390f2427c181729ffd01", "depth1_misses": 35, "depth3_solved": 50, "games_scanned": 236, "regenerated_file_sha256": "04a02a6a9721b03f3f484f2c12330f14e340b785758be60097b237e14031f334"}
