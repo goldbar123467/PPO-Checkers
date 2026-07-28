@@ -451,3 +451,20 @@
   calls are retained separately and are not acceptance evidence.
 - Evidence: `reports/phase6_rl_core_analysis.md`, `logs/gates/phase-6.txt`, and
   `logs/gates/phase-6-memory.txt`.
+
+## ADR-030 — Separate immutable run choices from resumable trainer state
+
+- Status: Accepted Phase 7 foundation.
+- Authority: `GOAL.md` §§8.3–8.4, 10.2, and 12.8; official PyTorch RNG/state guidance.
+- Decision: keep a frozen fully explicit `RunConfig`; compute LR/entropy as pure functions; keep
+  counters, schedule phase, W&B counters, episode indices, RNG snapshot, and AMP state in mutable
+  `TrainerState`. Capture Python, NumPy, Torch CPU/all-CUDA, opponent, minibatch, and stable
+  per-environment random streams together. Do not mutate configuration on resume.
+- League decision: implement all declared A0–A3 selectors, but run Phase 7 with A0 only. The
+  initial network is pinned; capacity includes it; FIFO eviction removes only the oldest unpinned
+  snapshot. Model tensors are detached, cloned, and moved to CPU at every pool boundary.
+- Timed-gate interpretation: require at least 1,800 recorded training seconds per seed. The random
+  evaluation freezes 364 balanced games from the existing normal-approximation plan for 0.85 vs
+  0.90 at alpha .05 and power .80. This approximation and its limitations will be reported.
+- Evidence: 83 focused tests and 100% statement/branch coverage in
+  `logs/test-output/000104-phase7-config-league-quality-final.txt`.

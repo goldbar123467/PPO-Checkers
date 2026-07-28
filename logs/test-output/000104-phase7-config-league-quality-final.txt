@@ -1,0 +1,24 @@
+6 files already formatted
+All checks passed!
+Success: no issues found in 42 source files
+........................................................................ [ 86%]
+...........                                                              [100%]
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+src/checkers/config.py            177      0     50      0   100%
+src/checkers/rl/league.py         173      0     90      0   100%
+src/checkers/schedules.py          22      0      6      0   100%
+src/checkers/trainer_state.py      81      0     30      0   100%
+---------------------------------------------------------------------------
+TOTAL                             453      0    176      0   100%
+Required test coverage of 100% reached. Total coverage: 100.00%
+83 passed, 1 warning in 1.81s

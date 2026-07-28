@@ -1,0 +1,175 @@
+unformatted: File would be reformatted
+   --> tests/rl/test_league.py:1:1
+    |
+124 |         (
+    -             lambda: LeaguePool(capacity=2).select(
+    -                 arm="A4", mixture_draw=0.0, historical_draw=0.0
+    -             ),
+125 +             lambda: LeaguePool(capacity=2).select(arm="A4", mixture_draw=0.0, historical_draw=0.0),
+126 |             ValueError,
+    |
+
+1 file would be reformatted, 5 files already formatted
+UP035 [*] Import from `collections.abc` instead: `Mapping`
+ --> src/checkers/rl/league.py:7:1
+  |
+5 | import math
+6 | from dataclasses import dataclass
+7 | from typing import Mapping, cast
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+8 |
+9 | import torch
+  |
+help: Import from `collections.abc`
+  |
+6 | from dataclasses import dataclass
+  - from typing import Mapping, cast
+7 + from typing import cast
+8 + from collections.abc import Mapping
+9 |
+  |
+
+PLR2004 Magic value used in comparison, consider replacing `4` with a constant variable
+  --> tests/rl/test_league.py:28:25
+   |
+26 |     assert pool.initial.model_state["weight"].item() == 0.0
+27 |     assert pool.initial.pinned
+28 |     assert len(pool) == 4
+   |                         ^
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `4.0` with a constant variable
+   --> tests/rl/test_league.py:111:80
+    |
+109 |     assert restored.snapshot_ids == ("initial", "update-4", "update-5")
+110 |     assert pool.snapshot_ids == ("initial", "update-4")
+111 |     assert restored.clone_snapshot("update-4").model_state["weight"].item() == 4.0
+    |                                                                                ^^^
+    |
+
+PLR2004 Magic value used in comparison, consider replacing `32` with a constant variable
+  --> tests/rl/test_training_config.py:44:33
+   |
+42 |     config = _config()
+43 |
+44 |     assert config.batch_size == 32
+   |                                 ^^
+45 |     assert config.minibatch_size == 8
+46 |     assert config.total_updates == 10
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `8` with a constant variable
+  --> tests/rl/test_training_config.py:45:37
+   |
+44 |     assert config.batch_size == 32
+45 |     assert config.minibatch_size == 8
+   |                                     ^
+46 |     assert config.total_updates == 10
+47 |     assert config.validate() is config
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `10` with a constant variable
+  --> tests/rl/test_training_config.py:46:36
+   |
+44 |     assert config.batch_size == 32
+45 |     assert config.minibatch_size == 8
+46 |     assert config.total_updates == 10
+   |                                    ^^
+47 |     assert config.validate() is config
+48 |     with pytest.raises(FrozenInstanceError):
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `0.25` with a constant variable
+   --> tests/rl/test_training_config.py:126:48
+    |
+125 |     state.global_step = TOTAL_TIMESTEPS // 4
+126 |     assert schedule_progress(config, state) == 0.25
+    |                                                ^^^^
+127 |     assert current_lr(config, state) == pytest.approx(2.25e-4)
+128 |     assert current_ent_coef(config, state) == pytest.approx(0.0055)
+    |
+
+PLR2004 Magic value used in comparison, consider replacing `1.25` with a constant variable
+   --> tests/rl/test_training_config.py:149:46
+    |
+147 |     assert state.global_step == config.batch_size
+148 |     assert state.update_idx == 1
+149 |     assert state.elapsed_training_seconds == 1.25
+    |                                              ^^^^
+150 |     assert state.schedule_phase == schedule_progress(config, state)
+151 |     state.advance_logging_step()
+    |
+
+Found 8 errors.
+[*] 1 fixable with the `--fix` option.
+src/checkers/config.py:238: error: Argument 1 to "RunConfig" has incompatible type "**dict[str, object]"; expected "str"  [arg-type]
+src/checkers/config.py:238: error: Argument 1 to "RunConfig" has incompatible type "**dict[str, object]"; expected "int"  [arg-type]
+src/checkers/config.py:238: error: Argument 1 to "RunConfig" has incompatible type "**dict[str, object]"; expected "bool"  [arg-type]
+src/checkers/config.py:238: error: Argument 1 to "RunConfig" has incompatible type "**dict[str, object]"; expected "float | None"  [arg-type]
+src/checkers/config.py:238: error: Argument 1 to "RunConfig" has incompatible type "**dict[str, object]"; expected "float"  [arg-type]
+src/checkers/trainer_state.py:108: error: Invalid index type "int" for "dict[str, Any]"; expected type "str"  [index]
+src/checkers/trainer_state.py:109: error: Invalid index type "int" for "dict[str, Any]"; expected type "str"  [index]
+src/checkers/trainer_state.py:110: error: Invalid index type "int" for "dict[str, Any]"; expected type "str"  [index]
+src/checkers/trainer_state.py:111: error: Invalid index type "int" for "dict[str, Any]"; expected type "str"  [index]
+src/checkers/trainer_state.py:112: error: Invalid index type "int" for "dict[str, Any]"; expected type "str"  [index]
+tests/rl/test_league.py:140: error: Unused "type: ignore" comment  [unused-ignore]
+Found 11 errors in 3 files (checked 42 source files)
+........................................................
+ERROR: Coverage failure: total of 9 is less than fail-under=100
+                                                                         [100%]
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                                    Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------------
+src/checkers/__init__.py                    1      0      0      0   100%
+src/checkers/agents/__init__.py             0      0      0      0   100%
+src/checkers/agents/base.py                16     16      4      0     0%   3-57
+src/checkers/agents/greedy_agent.py        33     33      4      0     0%   3-98
+src/checkers/agents/minimax_agent.py      107    107     24      0     0%   3-197
+src/checkers/agents/random_agent.py        14     14      2      0     0%   3-46
+src/checkers/config.py                    177      7     50      5    95%   23, 45, 48, 202, 222, 225-226
+src/checkers/env/__init__.py                0      0      0      0   100%
+src/checkers/env/checkers_env.py          182    182     46      0     0%   3-436
+src/checkers/env/encoding.py               44     44     12      0     0%   3-81
+src/checkers/env/masking.py                71     71     20      0     0%   3-188
+src/checkers/env/serialize.py             124    124     68      0     0%   3-213
+src/checkers/env/vec_env.py               135    135     46      0     0%   3-314
+src/checkers/eval/__init__.py               0      0      0      0   100%
+src/checkers/eval/arena.py                245    245     84      0     0%   3-466
+src/checkers/eval/baseline_eval.py        391    391    140      0     0%   3-1095
+src/checkers/eval/baseline_run.py         164    164     66      0     0%   3-368
+src/checkers/eval/elo.py                   53     53     30      0     0%   3-116
+src/checkers/eval/population.py           361    361    140      0     0%   3-714
+src/checkers/eval/power.py                119    119     32      0     0%   3-244
+src/checkers/eval/suites.py               412    412    164      0     0%   3-813
+src/checkers/rl/__init__.py                 0      0      0      0   100%
+src/checkers/rl/buffer.py                 211    211     96      0     0%   3-409
+src/checkers/rl/determinism.py             68     68     16      0     0%   3-126
+src/checkers/rl/gae.py                     65     65     34      0     0%   3-161
+src/checkers/rl/league.py                 172     33     90     32    75%   20, 26, 29, 35, 39, 41, 44, 66, 68, 70, 72, 74, 95, 97, 128, 145, 181, 214, 242, 248, 270, 273, 277-278, 285, 319, 322, 326, 329, 332, 340, 342, 345
+src/checkers/rl/masked_categorical.py      45     45     18      0     0%   3-101
+src/checkers/rl/networks.py               103    103     12      0     0%   3-202
+src/checkers/rl/ppo.py                    164    164     56      0     0%   3-380
+src/checkers/rules/__init__.py              0      0      0      0   100%
+src/checkers/rules/board.py                32     32      8      0     0%   3-124
+src/checkers/rules/differential.py        109    109     26      0     0%   3-203
+src/checkers/rules/moves.py               153    153     42      0     0%   3-331
+src/checkers/rules/notation.py             65     65     22      0     0%   3-174
+src/checkers/rules/oracle.py               74     74     30      0     0%   8-133
+src/checkers/rules/state.py               115    115     42      0     0%   3-187
+src/checkers/rules/terminal.py             62     62     32      0     0%   3-141
+src/checkers/rules/zobrist.py             104    104     42      0     0%   3-212
+src/checkers/schedules.py                  22      2      6      2    86%   11, 13
+src/checkers/trainer_state.py              79     11     30     12    79%   59, 61, 66, 99, 101, 105, 147, 149, 151, 155, 159, 163->165
+-----------------------------------------------------------------------------------
+TOTAL                                    4292   3894   1534     51     9%
+FAIL Required test coverage of 100% not reached. Total coverage: 8.98%
+56 passed, 1 warning in 2.17s
+quality_exit_code=1

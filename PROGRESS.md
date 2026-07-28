@@ -16,8 +16,8 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
 ## In Flight
 
 1. Re-read and freeze the Phase 7 trainer, checkpoint, logging, league, and metric contracts.
-2. Inventory existing repository entrypoints/configuration and write the Phase 7 test matrix.
-3. Implement the smallest resume-complete self-play slice under tests.
+2. Implement self-play collection and the complete §13.2 metric/alert layer under hand oracles.
+3. Implement PPO epoch orchestration, then exact checkpoint/resume and offline W&B.
 
 ## Gate Evidence
 
@@ -154,11 +154,14 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   A ten-update CUDA probe used 73.125 MiB peak allocated and 94.000 MiB peak reserved. Evidence
   `reports/phase6_rl_core_analysis.md`, `logs/gates/phase-6.txt`, and
   `logs/gates/phase-6-memory.txt`.
+- Phase 7 state foundation: the frozen config validates every scalar/cross-field contract, pure
+  schedules hit literal endpoints without mutation, RNG snapshots cover global/CUDA/trainer-owned
+  streams, and the pinned/FIFO league implements A0–A3 selection without choosing an arm early.
+  Eighty-three focused tests cover all 453 statements and 176 branches. Evidence
+  `docs/PHASE7_TEST_MATRIX.md` and `logs/test-output/000100-*` through `000104-*`.
 
 ## Last Five Iterations
 
-- 000021: implemented and structurally verified the exact GroupNorm network, passed T1/T2/T5 and
-  N7, and resolved the phase-order-only BLOCK-006 with the real logit regression.
 - 000022: implemented stored-mask PPO-Clip, matched the literal T3 oracle to 1e-12, passed T4
   directional clipping, and covered the module completely.
 - 000023: unified deterministic seeding and proved ten-update D2 CPU bitwise reproduction plus D3
@@ -167,6 +170,8 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
   targets, and killed a deliberately injected missing-recursive-sign defect.
 - 000025: passed the consolidated 760+8-test Gate 6 at 100% coverage, measured the CUDA memory
   envelope, published the primary-source-bounded analysis, and advanced Phase 6 to GREEN.
+- 000026: froze the stricter Phase 7 gate and implemented immutable config/pure schedules, complete
+  RNG snapshots, mutable trainer counters, and the pinned FIFO league at 100% focused coverage.
 
 ## Open Risks
 
@@ -187,5 +192,5 @@ with small end-to-end validation before any 30-minute smoke or powered learned-p
 
 ## Next Step
 
-Re-read the Phase 7 normative sections, freeze an evidence matrix, and implement only the first
-test-driven self-play/checkpoint slice before attempting a timed smoke.
+Implement production-engine self-play collection and hand-audited §13.2 metrics before coupling
+them to PPO epochs or persistence.
