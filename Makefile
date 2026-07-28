@@ -43,13 +43,13 @@ mutate:
 	@cd $(LAB) && $(TRAIN_BIN)/mutmut run --paths-to-mutate=src/checkers/rules
 
 fuzz-ci:
-	@cd $(LAB) && $(TRAIN_PY) -m pytest -q tests/property tests/test_phase0_scaffold.py
+	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/property tests/test_phase0_scaffold.py
 
 fuzz:
-	@cd $(LAB) && $(TRAIN_PY) -m pytest -q tests/property tests/metamorphic
+	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/property tests/metamorphic
 
 perft:
-	@cd $(LAB) && $(TRAIN_PY) -m pytest -q tests/rules -k 'perft or differential'
+	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/rules -k 'perft or differential'
 
 check: format-check lint types test fuzz-ci
 

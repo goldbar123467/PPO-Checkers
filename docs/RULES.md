@@ -40,19 +40,20 @@ Dark-square numbering viewed from Red's side:
 
 ```text
              WHITE HOME / RED KING ROW
-          29      30      31      32
-      25      26      27      28
-          21      22      23      24
-      17      18      19      20
-          13      14      15      16
-       9      10      11      12
-           5       6       7       8
-       1       2       3       4
+          32      31      30      29
+      28      27      26      25
+          24      23      22      21
+      20      19      18      17
+          16      15      14      13
+      12      11      10       9
+           8       7       6       5
+       4       3       2       1
              RED HOME / WHITE KING ROW
 ```
 
 Only the shown squares are playable. The diagram is FROZEN: a change requires an explicit rules
 adjudication and re-running every rules, notation, transcript, and symmetry gate.
+The double corners are Red's squares 1/5 and White's squares 28/32.
 
 ## Clause Adjudication Notes
 

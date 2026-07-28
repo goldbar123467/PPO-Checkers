@@ -2,17 +2,29 @@
 
 ## Active Work
 
-- Phase 0 — Scaffolding: IN PROGRESS.
+- Phase 2 — State model, board, and move generation: IN PROGRESS.
+- Phase 1 remains formally BLOCKED by the read-only R6.6 classification defect in BLOCK-001;
+  unaffected work proceeds under `GOAL.md` §0.1.
 
 ## Completed Gates
 
-None.
+- Gate 0 GREEN: scaffold, pinned environment, injected-red sensitivity checks, offline CI, and GPU
+  doctor. See `logs/gates/phase-0.txt` and `logs/gates/phase-0-gpu-doctor.txt`.
+- Gate 1 technical checks pass, but formal status is BLOCKED by BLOCK-001. See
+  `logs/gates/phase-1.txt`.
 
 ## Known Failures and Root Causes
 
-None yet.
+- Phase 1 initially drew the ACF diagram mirrored. Primary-source reinspection caught the issue
+  before move generation; ADR-006 records the corrected frozen mapping.
+- The first Phase 2 full check exposed a harness interaction: fuzz-only pytest reran global
+  coverage over six scaffold tests and reported new rules modules at 0%. Fuzz/perft targets now
+  use `--no-cov`; the mandatory full suite remains the single coverage authority.
 
 ## Open Risks
 
-- Preserve the pre-existing `ml_lab` system while introducing the checkers project.
-- Prove offline runtime behavior in CI after dependency installation.
+- Delayed-removal semantics still require a hand-adjudicated divergence fixture and independent
+  oracle agreement.
+- Gate 2 still requires 5M differential positions, breadth-first depth evidence, published
+  transcript replay, mutation ≥85%, and rules coverage ≥98%.
+- Clean-clone egress-blocked verification remains a final acceptance item.

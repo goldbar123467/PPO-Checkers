@@ -61,3 +61,17 @@
 - Rationale: This preserves the more specific capture-sequence text and never attributes a clear
   project departure to WCDF.
 - Evidence: `docs/RULES.md`, `tests/rules/test_rule_traceability.py`, and BLOCK-001.
+
+## ADR-006 — Correct ACF geometry before move generation
+
+- Status: Accepted correction to a pre-implementation near-miss.
+- Authority: Tier A WCDF clauses 1.4–1.5 and the official board diagram.
+- Evidence stage: Correctness baseline.
+- Context: The first Phase 1 ASCII diagram increased ACF numbers from Red's left to right. That
+  mirrored the official orientation and placed the double corner on the wrong side.
+- Decision: Freeze rows as `(4,3,2,1)`, `(8,7,6,5)`, …, `(32,31,30,29)` when viewed from Red's
+  side. Internal zero-based square `s` still denotes ACF square `s + 1`; only coordinate mapping is
+  affected.
+- Evidence: `docs/RULES.md`, `tests/rules/test_board.py`, and
+  `logs/test-output/000003-check-4.txt`. The defect was found before move-generation code existed,
+  so no trained artifacts or transcripts were invalidated.

@@ -1,0 +1,136 @@
+Script started on 2026-07-27 22:42:28-04:00 [COMMAND="make check" <not executed on terminal>]
+20 files already formatted
+I001 [*] Import block is un-sorted or un-formatted
+ --> src/checkers/rules/board.py:3:1
+  |
+1 |   """Frozen ACF 1-32 board geometry for American Checkers."""
+2 |
+3 | / from __future__ import annotations
+4 | |
+5 | | from checkers.rules.state import PlayerId
+  | |_________________________________________^
+  |
+help: Organize imports
+  |
+6 |
+  -
+7 | BOARD_SIZE = 8
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> src/checkers/rules/state.py:3:1
+  |
+1 |   """Immutable complete game state for American Checkers transitions."""
+2 |
+3 | / from __future__ import annotations
+4 | |
+5 | | from dataclasses import dataclass
+6 | | from enum import IntEnum
+  | |________________________^
+  |
+help: Organize imports
+  |
+7 |
+  -
+8 | UINT32_MAX = (1 << 32) - 1
+  |
+
+PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+  --> src/checkers/rules/state.py:34:56
+   |
+33 | def _validate_pair(values: object, field: str) -> tuple[int, int]:
+34 |     if not isinstance(values, tuple) or len(values) != 2:
+   |                                                        ^
+35 |         raise TypeError(f"{field} must be a pair")
+36 |     return (
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `32` with a constant variable
+  --> src/checkers/rules/state.py:47:25
+   |
+45 |     if isinstance(value, bool) or not isinstance(value, int):
+46 |         raise TypeError(f"{field} must be an integer square or None")
+47 |     if not 0 <= value < 32:
+   |                         ^^
+48 |         raise ValueError(f"{field} square must be in [0, 31]")
+   |
+
+PLR0912 Too many branches (14 > 12)
+  --> src/checkers/rules/state.py:69:9
+   |
+67 |     ply: int = 0
+68 |
+69 |     def __post_init__(self) -> None:
+   |         ^^^^^^^^^^^^^
+70 |         men = _validate_pair(self.men, "men")
+71 |         kings = _validate_pair(self.kings, "kings")
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+   --> src/checkers/rules/state.py:104:41
+    |
+102 |         if (
+103 |             not isinstance(self.no_progress, tuple)
+104 |             or len(self.no_progress) != 2
+    |                                         ^
+105 |             or any(
+106 |                 isinstance(value, bool) or not isinstance(value, int) for value in self.no_progress
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/rules/test_board.py:3:1
+   |
+ 1 |   """Board geometry tests for WCDF R1.1-R1.3 and the frozen ACF orientation."""
+ 2 |
+ 3 | / from __future__ import annotations
+ 4 | |
+ 5 | | import pytest
+ 6 | |
+ 7 | | from checkers.rules.board import (
+ 8 | |     acf_number,
+ 9 | |     bit,
+10 | |     coord,
+11 | |     double_corner,
+12 | |     is_playable_coord,
+13 | |     rotate_square,
+14 | | )
+15 | | from checkers.rules.state import PlayerId
+   | |_________________________________________^
+   |
+help: Organize imports
+   |
+16 |
+   -
+17 | EXPECTED_ACF_ROWS = (
+   |
+
+PLR2004 Magic value used in comparison, consider replacing `32` with a constant variable
+  --> tests/rules/test_board.py:38:25
+   |
+36 |         seen.add((row, column))
+37 |         assert bit(square) == 1 << square
+38 |     assert len(seen) == 32
+   |                         ^^
+   |
+
+B010 [*] Do not call `setattr` with a constant attribute value. It is not any safer than normal property access.
+  --> tests/rules/test_state.py:36:9
+   |
+34 |     state = State.initial()
+35 |     with pytest.raises(FrozenInstanceError):
+36 |         setattr(state, "ply", 1)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: Replace `setattr` with assignment
+   |
+35 |     with pytest.raises(FrozenInstanceError):
+   -         setattr(state, "ply", 1)
+36 +         state.ply = 1
+37 |
+   |
+
+Found 9 errors.
+[*] 4 fixable with the `--fix` option.
+make: *** [Makefile:31: lint] Error 1
+
+Script done on 2026-07-27 22:42:28-04:00 [COMMAND_EXIT_CODE="2"]

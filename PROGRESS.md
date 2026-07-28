@@ -14,9 +14,9 @@ removal produce different continuations.
 
 ## In Flight
 
-1. Write failing R1/state-invariant tests, then implement board mapping, enums, and immutable State.
-2. Write failing R3–R5 tests, then implement the fast legal-step/apply/undo path with delayed removal.
-3. Write an independently structured oracle plus R4.5 divergence and differential tests.
+1. Write failing R3–R5 tests, then implement the fast legal-step/apply/undo path with delayed removal.
+2. Write an independently structured oracle plus R4.5 divergence and differential tests.
+3. Implement R7 notation and complete-state serialization with exact mid-sequence round trips.
 
 ## Gate Evidence
 
@@ -27,11 +27,16 @@ removal produce different continuations.
 - GPU doctor after lock change: exit 0; `logs/gates/phase-0-gpu-doctor.txt`.
 - Phase 1 technical gate: `make check`, exit 0; 24 passed; `logs/gates/phase-1.txt`.
   Phase remains BLOCKED, not GREEN, pending BLOCK-001 resolution.
+- Phase 2 board/state increment: `make check`, exit 0; 57 passed; `src/checkers/rules/board.py`
+  and `state.py` each at 100% statement/branch coverage; evidence
+  `logs/test-output/000003-check-4.txt`.
 
 ## Last Five Iterations
 
 - 000001: Gate 0 GREEN; injected lint/test failures detected; CUDA/BF16/NF4 doctor passed.
 - 000002: WCDF source hash-pinned; 30-rule matrix and R6.7 proof pass; R6.6 label defect filed.
+- 000003: corrected mirrored ACF diagram before move code; immutable uint32 state and board mapping
+  pass 33 focused tests and the 57-test repository gate at 100% checkers coverage.
 
 ## Open Risks
 
@@ -41,4 +46,4 @@ removal produce different continuations.
 
 ## Next Step
 
-Write the first failing board/state contract tests from R1 and §5.1.
+Write failing fast-path legal-step tests for R2–R5, including delayed-removal continuation state.

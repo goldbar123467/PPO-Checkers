@@ -1,0 +1,30 @@
+Script started on 2026-07-27 22:41:14-04:00 [COMMAND=".venv-train/bin/python -m pytest -q --no-cov tests/rules/test_board.py tests/rules/test_state.py" <not executed on terminal>]
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/rules/test_board.py __________________
+ImportError while importing test module '/home/thecl/ml-lab/tests/rules/test_board.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/rules/test_board.py:7: in <module>
+    from checkers.rules.board import (
+E   ModuleNotFoundError: No module named 'checkers.rules.board'
+__________________ ERROR collecting tests/rules/test_state.py __________________
+ImportError while importing test module '/home/thecl/ml-lab/tests/rules/test_state.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/rules/test_state.py:9: in <module>
+    from checkers.rules.state import PlayerId, State
+E   ModuleNotFoundError: No module named 'checkers.rules.state'
+=========================== short test summary info ============================
+ERROR tests/rules/test_board.py
+ERROR tests/rules/test_state.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 0.15s
+
+Script done on 2026-07-27 22:41:14-04:00 [COMMAND_EXIT_CODE="2"]
