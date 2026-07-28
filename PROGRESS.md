@@ -8,7 +8,7 @@ Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
 source-correct portion of Phase 6. Phase 5 is GREEN.
 
-Work label: setup validation and test-contract derivation for the offline RL core.
+Work label: offline RL-core verification.
 
 Engineering objective: implement masked categorical sampling, two-player perspective-aware GAE,
 the rollout buffer, GroupNorm residual network, and PPO update so every T1–T8 numerical oracle and
@@ -16,9 +16,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Build the ten-update seeded D2 CPU and D3 RTX 5070 fixtures.
-2. Add BF16/autocast masking coverage on the actual GPU path.
-3. Complete T7 with scripted length-3/5/7 forced terminal trajectories.
+1. Complete T7 with scripted length-3/5/7 forced terminal trajectories.
+2. Run the consolidated Gate 6 static, coverage, CPU, and RTX checks.
 
 ## Gate Evidence
 
@@ -139,11 +138,16 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   global norm clipping. The RED/fixture-correction trail is retained; the final strict gate passes
   31 tests with all 164 statements and 56 branches covered. Evidence `logs/test-output/000082-*`
   through `000087-*`.
+- Phase 6 determinism: one SplitMix-derived root seeds Python, NumPy, Torch, CUDA, and four stable
+  environment streams. A ten-update fixture rebuilt twice yields bitwise-identical CPU actions and
+  loss diagnostics; on the same RTX 5070, actions are identical and diagnostics meet
+  `atol=1e-5, rtol=1e-4`. Native CUDA BF16 masking remains finite/legal with exact-zero illegal
+  gradients. The hardware/software/BLAS stack and deterministic flags are pinned in
+  `logs/gates/phase-6-determinism.txt`; 13 tests and the 68-statement/16-branch module are at 100%
+  focused coverage in `logs/test-output/000091-*`.
 
 ## Last Five Iterations
 
-- 000018: executed the final 4,704-game powered baseline, proved byte-identical six-checkpoint
-  resume, published the sourced claim-bounded analysis, and completed the Phase 5 gate.
 - 000019: froze the Phase 6 oracle matrix and made masked sampling plus signed GAE green under 41
   focused tests at 100% statement/branch coverage.
 - 000020: implemented full-chronology lockstep rollout storage, proved trainable filtering occurs
@@ -152,6 +156,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   N7, and resolved the phase-order-only BLOCK-006 with the real logit regression.
 - 000022: implemented stored-mask PPO-Clip, matched the literal T3 oracle to 1e-12, passed T4
   directional clipping, and covered the module completely.
+- 000023: unified deterministic seeding and proved ten-update D2 CPU bitwise reproduction plus D3
+  same-RTX tolerance and native BF16 masking against a fully recorded reference stack.
 
 ## Open Risks
 
@@ -172,5 +178,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Implement deterministic seed control and a frozen ten-update fixture, then run D2 twice on CPU and
-D3 twice on the local RTX 5070 under the declared tolerances.
+Derive three independent rule-engine forced terminal trajectories, freeze their exact actor-frame
+targets as T7 oracles, then run the consolidated Gate 6 check.

@@ -33,8 +33,8 @@ implementation formula in the assertion is insufficient.
 | T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | Pending |
 | T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | GREEN |
 | N2–N7 | Structural module inspection plus equal-state batch-invariance probes | exact GroupNorm residual architecture, output shapes/ranges, no BatchNorm, aliasing logits differ | GREEN |
-| D2 | Run a frozen ten-update fixture twice from full reseeding | CPU loss/action tensors bitwise equal | Pending |
-| D3 | Run the same ten-update fixture twice on the RTX 5070 | actions identical; losses `atol=1e-5`, `rtol=1e-4`; BF16 autocast path included if enabled | Pending |
+| D2 | Run a frozen ten-update fixture twice from full reseeding | CPU loss/action tensors bitwise equal | GREEN (exact tuple equality) |
+| D3 | Run the same ten-update fixture twice on the RTX 5070 | actions identical; losses `atol=1e-5`, `rtol=1e-4`; BF16 path included | GREEN |
 
 ## Foundation evidence
 
@@ -71,6 +71,15 @@ expected policy loss `0.06898048`, value MSE `0.35025398359296`, entropy
 rows and verifies positive-advantage probability never decreases, negative-advantage probability
 never increases, both cross their 1.2/0.8 ratio bounds, clip fraction reaches 1, and both then
 plateau. Evidence is `logs/test-output/000087-*`.
+
+The D2/D3 fixture performs ten genuine Adam updates and freshly samples both the current action and
+its stored behaviour log-probability on every update. Each repeat reconstructs the network,
+optimizer, observations, masks, and all RNG streams from the root seed. CPU action/loss traces are
+bitwise identical; same-machine RTX 5070 action traces are identical and all loss diagnostics pass
+`atol=1e-5, rtol=1e-4`. A native CUDA BF16 distribution also proves finite entropy, legal samples,
+and exact-zero illegal gradients. The transcript pins Python 3.12.3, PyTorch 2.13.0+cu130, CUDA
+13.0, cuDNN 9.20, MKL, driver 610.74, GPU UUID/model, and enabled deterministic flags in
+`logs/gates/phase-6-determinism.txt`; focused strict coverage is 100% in `000091-*`.
 
 ## Negative controls retained
 

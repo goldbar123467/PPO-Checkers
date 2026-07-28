@@ -400,3 +400,20 @@
   probabilities plateau.
 - Evidence: 31 focused tests and 100% statement/branch coverage in
   `logs/test-output/000087-phase6-ppo-quality-final.txt`.
+
+## ADR-027 — Scope deterministic reproduction to a fully recorded stack
+
+- Status: Accepted; D1–D3 GREEN.
+- Authority: `GOAL.md` §12.7 and official PyTorch deterministic-algorithm documentation.
+- Decision: derive independent Python, NumPy, Torch, CUDA, and per-environment streams from one
+  unsigned 64-bit root with SplitMix64; enable deterministic Torch algorithms and deterministic
+  cuDNN in test/smoke mode; rebuild the complete network/optimizer/data fixture before each
+  reproduction run. Require exact CPU tuple equality, but only identical actions and
+  `atol=1e-5, rtol=1e-4` loss agreement on the same GPU/software stack.
+- Claim boundary: no bitwise GPU, cross-machine, cross-driver, or cross-library claim is made.
+  Distinct deterministic sub-seeds are not claimed to establish statistical independence.
+- Result: two ten-update CPU traces are bitwise identical; two ten-update RTX 5070 traces have
+  identical actions and satisfy the declared tolerance. Native CUDA BF16 masked sampling is legal
+  and finite, with exact-zero illegal gradients.
+- Evidence: `tests/rl/test_determinism.py`, `logs/gates/phase-6-determinism.txt`, and
+  `logs/test-output/000091-phase6-determinism-quality-final.txt`.
