@@ -1,0 +1,3542 @@
+{
+  "ballot_count": 216,
+  "ballots": [
+    {
+      "actions": [
+        33,
+        45,
+        16
+      ],
+      "ballot_id": "position-bfad68dbb8349bc8",
+      "moves": [
+        "9-13",
+        "21-17",
+        "5-9"
+      ],
+      "position_key": "bfad68dbb8349bc8",
+      "representative_sequence_id": "sequence-000",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        21
+      ],
+      "ballot_id": "position-1c58beb0e3017b93",
+      "moves": [
+        "9-13",
+        "21-17",
+        "6-9"
+      ],
+      "position_key": "1c58beb0e3017b93",
+      "representative_sequence_id": "sequence-001",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        37
+      ],
+      "ballot_id": "position-13b7d494423b8a0a",
+      "moves": [
+        "9-13",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "13b7d494423b8a0a",
+      "representative_sequence_id": "sequence-002",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        36
+      ],
+      "ballot_id": "position-829c1527df6acdef",
+      "moves": [
+        "9-13",
+        "21-17",
+        "10-15"
+      ],
+      "position_key": "829c1527df6acdef",
+      "representative_sequence_id": "sequence-003",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        41
+      ],
+      "ballot_id": "position-5167f52667066cc8",
+      "moves": [
+        "9-13",
+        "21-17",
+        "11-15"
+      ],
+      "position_key": "5167f52667066cc8",
+      "representative_sequence_id": "sequence-004",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        40
+      ],
+      "ballot_id": "position-b7b5ac2030c1566a",
+      "moves": [
+        "9-13",
+        "21-17",
+        "11-16"
+      ],
+      "position_key": "b7b5ac2030c1566a",
+      "representative_sequence_id": "sequence-005",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        45
+      ],
+      "ballot_id": "position-8ffe95182792f97b",
+      "moves": [
+        "9-13",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "8ffe95182792f97b",
+      "representative_sequence_id": "sequence-006",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        40,
+        48
+      ],
+      "ballot_id": "position-491f7707aa64f6d2",
+      "moves": [
+        "9-13",
+        "22-17",
+        "13x22"
+      ],
+      "position_key": "491f7707aa64f6d2",
+      "representative_sequence_id": "sequence-007",
+      "state": "CHK1;RM=00200eff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        16
+      ],
+      "ballot_id": "position-2dad63a6977e7d3a",
+      "moves": [
+        "9-13",
+        "22-18",
+        "5-9"
+      ],
+      "position_key": "2dad63a6977e7d3a",
+      "representative_sequence_id": "sequence-008",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        21
+      ],
+      "ballot_id": "position-8e58b5cdcc4b9d61",
+      "moves": [
+        "9-13",
+        "22-18",
+        "6-9"
+      ],
+      "position_key": "8e58b5cdcc4b9d61",
+      "representative_sequence_id": "sequence-009",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        37
+      ],
+      "ballot_id": "position-81b7dfe96d716cf8",
+      "moves": [
+        "9-13",
+        "22-18",
+        "10-14"
+      ],
+      "position_key": "81b7dfe96d716cf8",
+      "representative_sequence_id": "sequence-010",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        36
+      ],
+      "ballot_id": "position-109c1e5af0202b1d",
+      "moves": [
+        "9-13",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "109c1e5af0202b1d",
+      "representative_sequence_id": "sequence-011",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        41
+      ],
+      "ballot_id": "position-c367fe5b484c8a3a",
+      "moves": [
+        "9-13",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "c367fe5b484c8a3a",
+      "representative_sequence_id": "sequence-012",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        40
+      ],
+      "ballot_id": "position-25b5a75d1f8bb098",
+      "moves": [
+        "9-13",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "25b5a75d1f8bb098",
+      "representative_sequence_id": "sequence-013",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        45
+      ],
+      "ballot_id": "position-1dfe9e6508d81f89",
+      "moves": [
+        "9-13",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "1dfe9e6508d81f89",
+      "representative_sequence_id": "sequence-014",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        48
+      ],
+      "ballot_id": "position-d82a14c74241037a",
+      "moves": [
+        "9-13",
+        "22-18",
+        "13-17"
+      ],
+      "position_key": "d82a14c74241037a",
+      "representative_sequence_id": "sequence-015",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        16
+      ],
+      "ballot_id": "position-9b1d37955039c57a",
+      "moves": [
+        "9-13",
+        "23-18",
+        "5-9"
+      ],
+      "position_key": "9b1d37955039c57a",
+      "representative_sequence_id": "sequence-016",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        21
+      ],
+      "ballot_id": "position-38e8e1fe0b0c2521",
+      "moves": [
+        "9-13",
+        "23-18",
+        "6-9"
+      ],
+      "position_key": "38e8e1fe0b0c2521",
+      "representative_sequence_id": "sequence-017",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        37
+      ],
+      "ballot_id": "position-37078bdaaa36d4b8",
+      "moves": [
+        "9-13",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "37078bdaaa36d4b8",
+      "representative_sequence_id": "sequence-018",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        36
+      ],
+      "ballot_id": "position-a62c4a693767935d",
+      "moves": [
+        "9-13",
+        "23-18",
+        "10-15"
+      ],
+      "position_key": "a62c4a693767935d",
+      "representative_sequence_id": "sequence-019",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        41
+      ],
+      "ballot_id": "position-75d7aa688f0b327a",
+      "moves": [
+        "9-13",
+        "23-18",
+        "11-15"
+      ],
+      "position_key": "75d7aa688f0b327a",
+      "representative_sequence_id": "sequence-020",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        40
+      ],
+      "ballot_id": "position-9305f36ed8cc08d8",
+      "moves": [
+        "9-13",
+        "23-18",
+        "11-16"
+      ],
+      "position_key": "9305f36ed8cc08d8",
+      "representative_sequence_id": "sequence-021",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        45
+      ],
+      "ballot_id": "position-ab4eca56cf9fa7c9",
+      "moves": [
+        "9-13",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "ab4eca56cf9fa7c9",
+      "representative_sequence_id": "sequence-022",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        48
+      ],
+      "ballot_id": "position-6e9a40f48506bb3a",
+      "moves": [
+        "9-13",
+        "23-18",
+        "13-17"
+      ],
+      "position_key": "6e9a40f48506bb3a",
+      "representative_sequence_id": "sequence-023",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        16
+      ],
+      "ballot_id": "position-b9937ea4b2fc77b3",
+      "moves": [
+        "9-13",
+        "23-19",
+        "5-9"
+      ],
+      "position_key": "b9937ea4b2fc77b3",
+      "representative_sequence_id": "sequence-024",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        21
+      ],
+      "ballot_id": "position-1a66a8cfe9c997e8",
+      "moves": [
+        "9-13",
+        "23-19",
+        "6-9"
+      ],
+      "position_key": "1a66a8cfe9c997e8",
+      "representative_sequence_id": "sequence-025",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        37
+      ],
+      "ballot_id": "position-1589c2eb48f36671",
+      "moves": [
+        "9-13",
+        "23-19",
+        "10-14"
+      ],
+      "position_key": "1589c2eb48f36671",
+      "representative_sequence_id": "sequence-026",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        36
+      ],
+      "ballot_id": "position-84a20358d5a22194",
+      "moves": [
+        "9-13",
+        "23-19",
+        "10-15"
+      ],
+      "position_key": "84a20358d5a22194",
+      "representative_sequence_id": "sequence-027",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        41
+      ],
+      "ballot_id": "position-5759e3596dce80b3",
+      "moves": [
+        "9-13",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "5759e3596dce80b3",
+      "representative_sequence_id": "sequence-028",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        40
+      ],
+      "ballot_id": "position-b18bba5f3a09ba11",
+      "moves": [
+        "9-13",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "b18bba5f3a09ba11",
+      "representative_sequence_id": "sequence-029",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        45
+      ],
+      "ballot_id": "position-89c083672d5a1500",
+      "moves": [
+        "9-13",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "89c083672d5a1500",
+      "representative_sequence_id": "sequence-030",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        48
+      ],
+      "ballot_id": "position-4c1409c567c309f3",
+      "moves": [
+        "9-13",
+        "23-19",
+        "13-17"
+      ],
+      "position_key": "4c1409c567c309f3",
+      "representative_sequence_id": "sequence-031",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        16
+      ],
+      "ballot_id": "position-e2e538be66df8455",
+      "moves": [
+        "9-13",
+        "24-19",
+        "5-9"
+      ],
+      "position_key": "e2e538be66df8455",
+      "representative_sequence_id": "sequence-032",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        21
+      ],
+      "ballot_id": "position-4110eed53dea640e",
+      "moves": [
+        "9-13",
+        "24-19",
+        "6-9"
+      ],
+      "position_key": "4110eed53dea640e",
+      "representative_sequence_id": "sequence-033",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        37
+      ],
+      "ballot_id": "position-4eff84f19cd09597",
+      "moves": [
+        "9-13",
+        "24-19",
+        "10-14"
+      ],
+      "position_key": "4eff84f19cd09597",
+      "representative_sequence_id": "sequence-034",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        36
+      ],
+      "ballot_id": "position-dfd445420181d272",
+      "moves": [
+        "9-13",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "dfd445420181d272",
+      "representative_sequence_id": "sequence-035",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        41
+      ],
+      "ballot_id": "position-0c2fa543b9ed7355",
+      "moves": [
+        "9-13",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "0c2fa543b9ed7355",
+      "representative_sequence_id": "sequence-036",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        40
+      ],
+      "ballot_id": "position-eafdfc45ee2a49f7",
+      "moves": [
+        "9-13",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "eafdfc45ee2a49f7",
+      "representative_sequence_id": "sequence-037",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        45
+      ],
+      "ballot_id": "position-d2b6c57df979e6e6",
+      "moves": [
+        "9-13",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "d2b6c57df979e6e6",
+      "representative_sequence_id": "sequence-038",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        48
+      ],
+      "ballot_id": "position-17624fdfb3e0fa15",
+      "moves": [
+        "9-13",
+        "24-19",
+        "13-17"
+      ],
+      "position_key": "17624fdfb3e0fa15",
+      "representative_sequence_id": "sequence-039",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        16
+      ],
+      "ballot_id": "position-8ec8a465cb12ed40",
+      "moves": [
+        "9-13",
+        "24-20",
+        "5-9"
+      ],
+      "position_key": "8ec8a465cb12ed40",
+      "representative_sequence_id": "sequence-040",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        21
+      ],
+      "ballot_id": "position-2d3d720e90270d1b",
+      "moves": [
+        "9-13",
+        "24-20",
+        "6-9"
+      ],
+      "position_key": "2d3d720e90270d1b",
+      "representative_sequence_id": "sequence-041",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        37
+      ],
+      "ballot_id": "position-22d2182a311dfc82",
+      "moves": [
+        "9-13",
+        "24-20",
+        "10-14"
+      ],
+      "position_key": "22d2182a311dfc82",
+      "representative_sequence_id": "sequence-042",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        36
+      ],
+      "ballot_id": "position-b3f9d999ac4cbb67",
+      "moves": [
+        "9-13",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "b3f9d999ac4cbb67",
+      "representative_sequence_id": "sequence-043",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        41
+      ],
+      "ballot_id": "position-6002399814201a40",
+      "moves": [
+        "9-13",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "6002399814201a40",
+      "representative_sequence_id": "sequence-044",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        40
+      ],
+      "ballot_id": "position-86d0609e43e720e2",
+      "moves": [
+        "9-13",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "86d0609e43e720e2",
+      "representative_sequence_id": "sequence-045",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        45
+      ],
+      "ballot_id": "position-be9b59a654b48ff3",
+      "moves": [
+        "9-13",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "be9b59a654b48ff3",
+      "representative_sequence_id": "sequence-046",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        48
+      ],
+      "ballot_id": "position-7b4fd3041e2d9300",
+      "moves": [
+        "9-13",
+        "24-20",
+        "13-17"
+      ],
+      "position_key": "7b4fd3041e2d9300",
+      "representative_sequence_id": "sequence-047",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        45,
+        53
+      ],
+      "ballot_id": "position-14fb0a0b11b04199",
+      "moves": [
+        "9-14",
+        "21-17",
+        "14x21"
+      ],
+      "position_key": "14fb0a0b11b04199",
+      "representative_sequence_id": "sequence-048",
+      "state": "CHK1;RM=00100eff;RK=00000000;WM=ffe00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        16
+      ],
+      "ballot_id": "position-45a3be4fee59a684",
+      "moves": [
+        "9-14",
+        "22-17",
+        "5-9"
+      ],
+      "position_key": "45a3be4fee59a684",
+      "representative_sequence_id": "sequence-049",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        21
+      ],
+      "ballot_id": "position-e6566824b56c46df",
+      "moves": [
+        "9-14",
+        "22-17",
+        "6-9"
+      ],
+      "position_key": "e6566824b56c46df",
+      "representative_sequence_id": "sequence-050",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        36
+      ],
+      "ballot_id": "position-7892c3b38907f0a3",
+      "moves": [
+        "9-14",
+        "22-17",
+        "10-15"
+      ],
+      "position_key": "7892c3b38907f0a3",
+      "representative_sequence_id": "sequence-051",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        41
+      ],
+      "ballot_id": "position-ab6923b2316b5184",
+      "moves": [
+        "9-14",
+        "22-17",
+        "11-15"
+      ],
+      "position_key": "ab6923b2316b5184",
+      "representative_sequence_id": "sequence-052",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        40
+      ],
+      "ballot_id": "position-4dbb7ab466ac6b26",
+      "moves": [
+        "9-14",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "4dbb7ab466ac6b26",
+      "representative_sequence_id": "sequence-053",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        45
+      ],
+      "ballot_id": "position-75f0438c71ffc437",
+      "moves": [
+        "9-14",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "75f0438c71ffc437",
+      "representative_sequence_id": "sequence-054",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        52
+      ],
+      "ballot_id": "position-5ddada6e4a1cb85e",
+      "moves": [
+        "9-14",
+        "22-17",
+        "14-18"
+      ],
+      "position_key": "5ddada6e4a1cb85e",
+      "representative_sequence_id": "sequence-055",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        16
+      ],
+      "ballot_id": "position-3b0e821011096c5d",
+      "moves": [
+        "9-14",
+        "22-18",
+        "5-9"
+      ],
+      "position_key": "3b0e821011096c5d",
+      "representative_sequence_id": "sequence-056",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        21
+      ],
+      "ballot_id": "position-98fb547b4a3c8c06",
+      "moves": [
+        "9-14",
+        "22-18",
+        "6-9"
+      ],
+      "position_key": "98fb547b4a3c8c06",
+      "representative_sequence_id": "sequence-057",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        36
+      ],
+      "ballot_id": "position-063fffec76573a7a",
+      "moves": [
+        "9-14",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "063fffec76573a7a",
+      "representative_sequence_id": "sequence-058",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        41
+      ],
+      "ballot_id": "position-d5c41fedce3b9b5d",
+      "moves": [
+        "9-14",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "d5c41fedce3b9b5d",
+      "representative_sequence_id": "sequence-059",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        40
+      ],
+      "ballot_id": "position-331646eb99fca1ff",
+      "moves": [
+        "9-14",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "331646eb99fca1ff",
+      "representative_sequence_id": "sequence-060",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        45
+      ],
+      "ballot_id": "position-0b5d7fd38eaf0eee",
+      "moves": [
+        "9-14",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "0b5d7fd38eaf0eee",
+      "representative_sequence_id": "sequence-061",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        36,
+        52
+      ],
+      "ballot_id": "position-0c31cd81ee4395a8",
+      "moves": [
+        "9-14",
+        "23-18",
+        "14x23"
+      ],
+      "position_key": "0c31cd81ee4395a8",
+      "representative_sequence_id": "sequence-063",
+      "state": "CHK1;RM=00400eff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        16
+      ],
+      "ballot_id": "position-af309f12348b66d4",
+      "moves": [
+        "9-14",
+        "23-19",
+        "5-9"
+      ],
+      "position_key": "af309f12348b66d4",
+      "representative_sequence_id": "sequence-064",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        21
+      ],
+      "ballot_id": "position-0cc549796fbe868f",
+      "moves": [
+        "9-14",
+        "23-19",
+        "6-9"
+      ],
+      "position_key": "0cc549796fbe868f",
+      "representative_sequence_id": "sequence-065",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        36
+      ],
+      "ballot_id": "position-9201e2ee53d530f3",
+      "moves": [
+        "9-14",
+        "23-19",
+        "10-15"
+      ],
+      "position_key": "9201e2ee53d530f3",
+      "representative_sequence_id": "sequence-066",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        41
+      ],
+      "ballot_id": "position-41fa02efebb991d4",
+      "moves": [
+        "9-14",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "41fa02efebb991d4",
+      "representative_sequence_id": "sequence-067",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        40
+      ],
+      "ballot_id": "position-a7285be9bc7eab76",
+      "moves": [
+        "9-14",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "a7285be9bc7eab76",
+      "representative_sequence_id": "sequence-068",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        45
+      ],
+      "ballot_id": "position-9f6362d1ab2d0467",
+      "moves": [
+        "9-14",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "9f6362d1ab2d0467",
+      "representative_sequence_id": "sequence-069",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        52
+      ],
+      "ballot_id": "position-b749fb3390ce780e",
+      "moves": [
+        "9-14",
+        "23-19",
+        "14-18"
+      ],
+      "position_key": "b749fb3390ce780e",
+      "representative_sequence_id": "sequence-071",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        16
+      ],
+      "ballot_id": "position-f446d908e0a89532",
+      "moves": [
+        "9-14",
+        "24-19",
+        "5-9"
+      ],
+      "position_key": "f446d908e0a89532",
+      "representative_sequence_id": "sequence-072",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        21
+      ],
+      "ballot_id": "position-57b30f63bb9d7569",
+      "moves": [
+        "9-14",
+        "24-19",
+        "6-9"
+      ],
+      "position_key": "57b30f63bb9d7569",
+      "representative_sequence_id": "sequence-073",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        36
+      ],
+      "ballot_id": "position-c977a4f487f6c315",
+      "moves": [
+        "9-14",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "c977a4f487f6c315",
+      "representative_sequence_id": "sequence-074",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        41
+      ],
+      "ballot_id": "position-1a8c44f53f9a6232",
+      "moves": [
+        "9-14",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "1a8c44f53f9a6232",
+      "representative_sequence_id": "sequence-075",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        40
+      ],
+      "ballot_id": "position-fc5e1df3685d5890",
+      "moves": [
+        "9-14",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "fc5e1df3685d5890",
+      "representative_sequence_id": "sequence-076",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        45
+      ],
+      "ballot_id": "position-c41524cb7f0ef781",
+      "moves": [
+        "9-14",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "c41524cb7f0ef781",
+      "representative_sequence_id": "sequence-077",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        52
+      ],
+      "ballot_id": "position-ec3fbd2944ed8be8",
+      "moves": [
+        "9-14",
+        "24-19",
+        "14-18"
+      ],
+      "position_key": "ec3fbd2944ed8be8",
+      "representative_sequence_id": "sequence-079",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        16
+      ],
+      "ballot_id": "position-986b45d34d65fc27",
+      "moves": [
+        "9-14",
+        "24-20",
+        "5-9"
+      ],
+      "position_key": "986b45d34d65fc27",
+      "representative_sequence_id": "sequence-080",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        21
+      ],
+      "ballot_id": "position-3b9e93b816501c7c",
+      "moves": [
+        "9-14",
+        "24-20",
+        "6-9"
+      ],
+      "position_key": "3b9e93b816501c7c",
+      "representative_sequence_id": "sequence-081",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        36
+      ],
+      "ballot_id": "position-a55a382f2a3baa00",
+      "moves": [
+        "9-14",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "a55a382f2a3baa00",
+      "representative_sequence_id": "sequence-082",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        41
+      ],
+      "ballot_id": "position-76a1d82e92570b27",
+      "moves": [
+        "9-14",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "76a1d82e92570b27",
+      "representative_sequence_id": "sequence-083",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        40
+      ],
+      "ballot_id": "position-90738128c5903185",
+      "moves": [
+        "9-14",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "90738128c5903185",
+      "representative_sequence_id": "sequence-084",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        45
+      ],
+      "ballot_id": "position-a838b810d2c39e94",
+      "moves": [
+        "9-14",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "a838b810d2c39e94",
+      "representative_sequence_id": "sequence-085",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        52
+      ],
+      "ballot_id": "position-801221f2e920e2fd",
+      "moves": [
+        "9-14",
+        "24-20",
+        "14-18"
+      ],
+      "position_key": "801221f2e920e2fd",
+      "representative_sequence_id": "sequence-087",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        45,
+        53
+      ],
+      "ballot_id": "position-ae7f4d25b5f23d0a",
+      "moves": [
+        "10-14",
+        "21-17",
+        "14x21"
+      ],
+      "position_key": "ae7f4d25b5f23d0a",
+      "representative_sequence_id": "sequence-088",
+      "state": "CHK1;RM=00100dff;RK=00000000;WM=ffe00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        25
+      ],
+      "ballot_id": "position-e427e99c3edf1c73",
+      "moves": [
+        "10-14",
+        "22-17",
+        "7-10"
+      ],
+      "position_key": "e427e99c3edf1c73",
+      "representative_sequence_id": "sequence-090",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        33
+      ],
+      "ballot_id": "position-ff1ae3b69221a621",
+      "moves": [
+        "10-14",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "ff1ae3b69221a621",
+      "representative_sequence_id": "sequence-091",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        41
+      ],
+      "ballot_id": "position-11ed649c95292d17",
+      "moves": [
+        "10-14",
+        "22-17",
+        "11-15"
+      ],
+      "position_key": "11ed649c95292d17",
+      "representative_sequence_id": "sequence-092",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        40
+      ],
+      "ballot_id": "position-f73f3d9ac2ee17b5",
+      "moves": [
+        "10-14",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "f73f3d9ac2ee17b5",
+      "representative_sequence_id": "sequence-093",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        45
+      ],
+      "ballot_id": "position-cf7404a2d5bdb8a4",
+      "moves": [
+        "10-14",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "cf7404a2d5bdb8a4",
+      "representative_sequence_id": "sequence-094",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        52
+      ],
+      "ballot_id": "position-e75e9d40ee5ec4cd",
+      "moves": [
+        "10-14",
+        "22-17",
+        "14-18"
+      ],
+      "position_key": "e75e9d40ee5ec4cd",
+      "representative_sequence_id": "sequence-095",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        25
+      ],
+      "ballot_id": "position-9a8ad5c3c18fd6aa",
+      "moves": [
+        "10-14",
+        "22-18",
+        "7-10"
+      ],
+      "position_key": "9a8ad5c3c18fd6aa",
+      "representative_sequence_id": "sequence-097",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        41
+      ],
+      "ballot_id": "position-6f4058c36a79e7ce",
+      "moves": [
+        "10-14",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "6f4058c36a79e7ce",
+      "representative_sequence_id": "sequence-099",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        40
+      ],
+      "ballot_id": "position-899201c53dbedd6c",
+      "moves": [
+        "10-14",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "899201c53dbedd6c",
+      "representative_sequence_id": "sequence-100",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        45
+      ],
+      "ballot_id": "position-b1d938fd2aed727d",
+      "moves": [
+        "10-14",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "b1d938fd2aed727d",
+      "representative_sequence_id": "sequence-101",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        53
+      ],
+      "ballot_id": "position-62ae53e9e6037fe9",
+      "moves": [
+        "10-14",
+        "22-18",
+        "14-17"
+      ],
+      "position_key": "62ae53e9e6037fe9",
+      "representative_sequence_id": "sequence-102",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        36,
+        52
+      ],
+      "ballot_id": "position-b6b58aaf4a01e93b",
+      "moves": [
+        "10-14",
+        "23-18",
+        "14x23"
+      ],
+      "position_key": "b6b58aaf4a01e93b",
+      "representative_sequence_id": "sequence-103",
+      "state": "CHK1;RM=00400dff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        25
+      ],
+      "ballot_id": "position-0eb4c8c1e40ddc23",
+      "moves": [
+        "10-14",
+        "23-19",
+        "7-10"
+      ],
+      "position_key": "0eb4c8c1e40ddc23",
+      "representative_sequence_id": "sequence-105",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        41
+      ],
+      "ballot_id": "position-fb7e45c14ffbed47",
+      "moves": [
+        "10-14",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "fb7e45c14ffbed47",
+      "representative_sequence_id": "sequence-107",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        40
+      ],
+      "ballot_id": "position-1dac1cc7183cd7e5",
+      "moves": [
+        "10-14",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "1dac1cc7183cd7e5",
+      "representative_sequence_id": "sequence-108",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        45
+      ],
+      "ballot_id": "position-25e725ff0f6f78f4",
+      "moves": [
+        "10-14",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "25e725ff0f6f78f4",
+      "representative_sequence_id": "sequence-109",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        53
+      ],
+      "ballot_id": "position-f6904eebc3817560",
+      "moves": [
+        "10-14",
+        "23-19",
+        "14-17"
+      ],
+      "position_key": "f6904eebc3817560",
+      "representative_sequence_id": "sequence-110",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        52
+      ],
+      "ballot_id": "position-0dcdbc1d348c049d",
+      "moves": [
+        "10-14",
+        "23-19",
+        "14-18"
+      ],
+      "position_key": "0dcdbc1d348c049d",
+      "representative_sequence_id": "sequence-111",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        25
+      ],
+      "ballot_id": "position-55c28edb302e2fc5",
+      "moves": [
+        "10-14",
+        "24-19",
+        "7-10"
+      ],
+      "position_key": "55c28edb302e2fc5",
+      "representative_sequence_id": "sequence-113",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        41
+      ],
+      "ballot_id": "position-a00803db9bd81ea1",
+      "moves": [
+        "10-14",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "a00803db9bd81ea1",
+      "representative_sequence_id": "sequence-115",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        40
+      ],
+      "ballot_id": "position-46da5addcc1f2403",
+      "moves": [
+        "10-14",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "46da5addcc1f2403",
+      "representative_sequence_id": "sequence-116",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        45
+      ],
+      "ballot_id": "position-7e9163e5db4c8b12",
+      "moves": [
+        "10-14",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "7e9163e5db4c8b12",
+      "representative_sequence_id": "sequence-117",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        53
+      ],
+      "ballot_id": "position-ade608f117a28686",
+      "moves": [
+        "10-14",
+        "24-19",
+        "14-17"
+      ],
+      "position_key": "ade608f117a28686",
+      "representative_sequence_id": "sequence-118",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        52
+      ],
+      "ballot_id": "position-56bbfa07e0aff77b",
+      "moves": [
+        "10-14",
+        "24-19",
+        "14-18"
+      ],
+      "position_key": "56bbfa07e0aff77b",
+      "representative_sequence_id": "sequence-119",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        25
+      ],
+      "ballot_id": "position-39ef12009de346d0",
+      "moves": [
+        "10-14",
+        "24-20",
+        "7-10"
+      ],
+      "position_key": "39ef12009de346d0",
+      "representative_sequence_id": "sequence-121",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        41
+      ],
+      "ballot_id": "position-cc259f00361577b4",
+      "moves": [
+        "10-14",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "cc259f00361577b4",
+      "representative_sequence_id": "sequence-123",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        40
+      ],
+      "ballot_id": "position-2af7c60661d24d16",
+      "moves": [
+        "10-14",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "2af7c60661d24d16",
+      "representative_sequence_id": "sequence-124",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        45
+      ],
+      "ballot_id": "position-12bcff3e7681e207",
+      "moves": [
+        "10-14",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "12bcff3e7681e207",
+      "representative_sequence_id": "sequence-125",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        53
+      ],
+      "ballot_id": "position-c1cb942aba6fef93",
+      "moves": [
+        "10-14",
+        "24-20",
+        "14-17"
+      ],
+      "position_key": "c1cb942aba6fef93",
+      "representative_sequence_id": "sequence-126",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        52
+      ],
+      "ballot_id": "position-3a9666dc4d629e6e",
+      "moves": [
+        "10-14",
+        "24-20",
+        "14-18"
+      ],
+      "position_key": "3a9666dc4d629e6e",
+      "representative_sequence_id": "sequence-127",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        20
+      ],
+      "ballot_id": "position-9bd09eb5f8272d11",
+      "moves": [
+        "10-15",
+        "21-17",
+        "6-10"
+      ],
+      "position_key": "9bd09eb5f8272d11",
+      "representative_sequence_id": "sequence-128",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        25
+      ],
+      "ballot_id": "position-99a11f0d739477bd",
+      "moves": [
+        "10-15",
+        "21-17",
+        "7-10"
+      ],
+      "position_key": "99a11f0d739477bd",
+      "representative_sequence_id": "sequence-129",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        32
+      ],
+      "ballot_id": "position-943ff491591ddc88",
+      "moves": [
+        "10-15",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "943ff491591ddc88",
+      "representative_sequence_id": "sequence-131",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        40
+      ],
+      "ballot_id": "position-8ab9cb0b8fa57c7b",
+      "moves": [
+        "10-15",
+        "21-17",
+        "11-16"
+      ],
+      "position_key": "8ab9cb0b8fa57c7b",
+      "representative_sequence_id": "sequence-132",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        45
+      ],
+      "ballot_id": "position-b2f2f23398f6d36a",
+      "moves": [
+        "10-15",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "b2f2f23398f6d36a",
+      "representative_sequence_id": "sequence-133",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        57
+      ],
+      "ballot_id": "position-0bf3aa623e44e8e6",
+      "moves": [
+        "10-15",
+        "21-17",
+        "15-18"
+      ],
+      "position_key": "0bf3aa623e44e8e6",
+      "representative_sequence_id": "sequence-134",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        56
+      ],
+      "ballot_id": "position-f866ca257581e496",
+      "moves": [
+        "10-15",
+        "21-17",
+        "15-19"
+      ],
+      "position_key": "f866ca257581e496",
+      "representative_sequence_id": "sequence-135",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        20
+      ],
+      "ballot_id": "position-777da997283d013a",
+      "moves": [
+        "10-15",
+        "22-17",
+        "6-10"
+      ],
+      "position_key": "777da997283d013a",
+      "representative_sequence_id": "sequence-136",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        25
+      ],
+      "ballot_id": "position-750c282fa38e5b96",
+      "moves": [
+        "10-15",
+        "22-17",
+        "7-10"
+      ],
+      "position_key": "750c282fa38e5b96",
+      "representative_sequence_id": "sequence-137",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        33
+      ],
+      "ballot_id": "position-6e3122050f70e1c4",
+      "moves": [
+        "10-15",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "6e3122050f70e1c4",
+      "representative_sequence_id": "sequence-138",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        40
+      ],
+      "ballot_id": "position-6614fc295fbf5050",
+      "moves": [
+        "10-15",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "6614fc295fbf5050",
+      "representative_sequence_id": "sequence-140",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        45
+      ],
+      "ballot_id": "position-5e5fc51148ecff41",
+      "moves": [
+        "10-15",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "5e5fc51148ecff41",
+      "representative_sequence_id": "sequence-141",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        56
+      ],
+      "ballot_id": "position-14cbfd07a59bc8bd",
+      "moves": [
+        "10-15",
+        "22-17",
+        "15-19"
+      ],
+      "position_key": "14cbfd07a59bc8bd",
+      "representative_sequence_id": "sequence-143",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        41,
+        57
+      ],
+      "ballot_id": "position-f39b30290e268a41",
+      "moves": [
+        "10-15",
+        "22-18",
+        "15x22"
+      ],
+      "position_key": "f39b30290e268a41",
+      "representative_sequence_id": "sequence-144",
+      "state": "CHK1;RM=00200dff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        20
+      ],
+      "ballot_id": "position-bf60c1fb102a73a3",
+      "moves": [
+        "10-15",
+        "23-18",
+        "6-10"
+      ],
+      "position_key": "bf60c1fb102a73a3",
+      "representative_sequence_id": "sequence-145",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        25
+      ],
+      "ballot_id": "position-bd1140439b99290f",
+      "moves": [
+        "10-15",
+        "23-18",
+        "7-10"
+      ],
+      "position_key": "bd1140439b99290f",
+      "representative_sequence_id": "sequence-146",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        32
+      ],
+      "ballot_id": "position-b08fabdfb110823a",
+      "moves": [
+        "10-15",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "b08fabdfb110823a",
+      "representative_sequence_id": "sequence-148",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        40
+      ],
+      "ballot_id": "position-ae09944567a822c9",
+      "moves": [
+        "10-15",
+        "23-18",
+        "11-16"
+      ],
+      "position_key": "ae09944567a822c9",
+      "representative_sequence_id": "sequence-149",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        45
+      ],
+      "ballot_id": "position-9642ad7d70fb8dd8",
+      "moves": [
+        "10-15",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "9642ad7d70fb8dd8",
+      "representative_sequence_id": "sequence-150",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        56
+      ],
+      "ballot_id": "position-dcd6956b9d8cba24",
+      "moves": [
+        "10-15",
+        "23-18",
+        "15-19"
+      ],
+      "position_key": "dcd6956b9d8cba24",
+      "representative_sequence_id": "sequence-151",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        20
+      ],
+      "ballot_id": "position-9dee88caf2efc16a",
+      "moves": [
+        "10-15",
+        "23-19",
+        "6-10"
+      ],
+      "position_key": "9dee88caf2efc16a",
+      "representative_sequence_id": "sequence-152",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        25
+      ],
+      "ballot_id": "position-9f9f0972795c9bc6",
+      "moves": [
+        "10-15",
+        "23-19",
+        "7-10"
+      ],
+      "position_key": "9f9f0972795c9bc6",
+      "representative_sequence_id": "sequence-153",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        40
+      ],
+      "ballot_id": "position-8c87dd74856d9000",
+      "moves": [
+        "10-15",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "8c87dd74856d9000",
+      "representative_sequence_id": "sequence-156",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        45
+      ],
+      "ballot_id": "position-b4cce44c923e3f11",
+      "moves": [
+        "10-15",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "b4cce44c923e3f11",
+      "representative_sequence_id": "sequence-157",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        32,
+        56
+      ],
+      "ballot_id": "position-7d702c7e67ea1112",
+      "moves": [
+        "10-15",
+        "24-19",
+        "15x24"
+      ],
+      "position_key": "7d702c7e67ea1112",
+      "representative_sequence_id": "sequence-159",
+      "state": "CHK1;RM=00800dff;RK=00000000;WM=ff700000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        20
+      ],
+      "ballot_id": "position-aab5520b8b015b99",
+      "moves": [
+        "10-15",
+        "24-20",
+        "6-10"
+      ],
+      "position_key": "aab5520b8b015b99",
+      "representative_sequence_id": "sequence-160",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        25
+      ],
+      "ballot_id": "position-a8c4d3b300b20135",
+      "moves": [
+        "10-15",
+        "24-20",
+        "7-10"
+      ],
+      "position_key": "a8c4d3b300b20135",
+      "representative_sequence_id": "sequence-161",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        40
+      ],
+      "ballot_id": "position-bbdc07b5fc830af3",
+      "moves": [
+        "10-15",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "bbdc07b5fc830af3",
+      "representative_sequence_id": "sequence-164",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        45
+      ],
+      "ballot_id": "position-83973e8debd0a5e2",
+      "moves": [
+        "10-15",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "83973e8debd0a5e2",
+      "representative_sequence_id": "sequence-165",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        56
+      ],
+      "ballot_id": "position-c903069b06a7921e",
+      "moves": [
+        "10-15",
+        "24-20",
+        "15-19"
+      ],
+      "position_key": "c903069b06a7921e",
+      "representative_sequence_id": "sequence-167",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        29
+      ],
+      "ballot_id": "position-e0ebee94ed02b42e",
+      "moves": [
+        "11-15",
+        "21-17",
+        "8-11"
+      ],
+      "position_key": "e0ebee94ed02b42e",
+      "representative_sequence_id": "sequence-169",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        32
+      ],
+      "ballot_id": "position-47c41490e1717daf",
+      "moves": [
+        "11-15",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "47c41490e1717daf",
+      "representative_sequence_id": "sequence-171",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        37
+      ],
+      "ballot_id": "position-fd4053be4533013c",
+      "moves": [
+        "11-15",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "fd4053be4533013c",
+      "representative_sequence_id": "sequence-172",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        45
+      ],
+      "ballot_id": "position-61091232209a724d",
+      "moves": [
+        "11-15",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "61091232209a724d",
+      "representative_sequence_id": "sequence-173",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        57
+      ],
+      "ballot_id": "position-d8084a63862849c1",
+      "moves": [
+        "11-15",
+        "21-17",
+        "15-18"
+      ],
+      "position_key": "d8084a63862849c1",
+      "representative_sequence_id": "sequence-174",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        56
+      ],
+      "ballot_id": "position-2b9d2a24cded45b1",
+      "moves": [
+        "11-15",
+        "21-17",
+        "15-19"
+      ],
+      "position_key": "2b9d2a24cded45b1",
+      "representative_sequence_id": "sequence-175",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        29
+      ],
+      "ballot_id": "position-0c46d9b63d189805",
+      "moves": [
+        "11-15",
+        "22-17",
+        "8-11"
+      ],
+      "position_key": "0c46d9b63d189805",
+      "representative_sequence_id": "sequence-177",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        33
+      ],
+      "ballot_id": "position-bdcac204b71c40e3",
+      "moves": [
+        "11-15",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "bdcac204b71c40e3",
+      "representative_sequence_id": "sequence-178",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        45
+      ],
+      "ballot_id": "position-8da42510f0805e66",
+      "moves": [
+        "11-15",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "8da42510f0805e66",
+      "representative_sequence_id": "sequence-181",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        57
+      ],
+      "ballot_id": "position-34a57d41563265ea",
+      "moves": [
+        "11-15",
+        "22-17",
+        "15-18"
+      ],
+      "position_key": "34a57d41563265ea",
+      "representative_sequence_id": "sequence-182",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        56
+      ],
+      "ballot_id": "position-c7301d061df7699a",
+      "moves": [
+        "11-15",
+        "22-17",
+        "15-19"
+      ],
+      "position_key": "c7301d061df7699a",
+      "representative_sequence_id": "sequence-183",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        41,
+        57
+      ],
+      "ballot_id": "position-2060d028b64a2b66",
+      "moves": [
+        "11-15",
+        "22-18",
+        "15x22"
+      ],
+      "position_key": "2060d028b64a2b66",
+      "representative_sequence_id": "sequence-184",
+      "state": "CHK1;RM=00200bff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        29
+      ],
+      "ballot_id": "position-c45bb1da050fea9c",
+      "moves": [
+        "11-15",
+        "23-18",
+        "8-11"
+      ],
+      "position_key": "c45bb1da050fea9c",
+      "representative_sequence_id": "sequence-186",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        32
+      ],
+      "ballot_id": "position-63744bde097c231d",
+      "moves": [
+        "11-15",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "63744bde097c231d",
+      "representative_sequence_id": "sequence-188",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        37
+      ],
+      "ballot_id": "position-d9f00cf0ad3e5f8e",
+      "moves": [
+        "11-15",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "d9f00cf0ad3e5f8e",
+      "representative_sequence_id": "sequence-189",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        45
+      ],
+      "ballot_id": "position-45b94d7cc8972cff",
+      "moves": [
+        "11-15",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "45b94d7cc8972cff",
+      "representative_sequence_id": "sequence-190",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        56
+      ],
+      "ballot_id": "position-0f2d756a25e01b03",
+      "moves": [
+        "11-15",
+        "23-18",
+        "15-19"
+      ],
+      "position_key": "0f2d756a25e01b03",
+      "representative_sequence_id": "sequence-191",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        29
+      ],
+      "ballot_id": "position-e6d5f8ebe7ca5855",
+      "moves": [
+        "11-15",
+        "23-19",
+        "8-11"
+      ],
+      "position_key": "e6d5f8ebe7ca5855",
+      "representative_sequence_id": "sequence-193",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        45
+      ],
+      "ballot_id": "position-6737044d2a529e36",
+      "moves": [
+        "11-15",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "6737044d2a529e36",
+      "representative_sequence_id": "sequence-197",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        57
+      ],
+      "ballot_id": "position-de365c1c8ce0a5ba",
+      "moves": [
+        "11-15",
+        "23-19",
+        "15-18"
+      ],
+      "position_key": "de365c1c8ce0a5ba",
+      "representative_sequence_id": "sequence-198",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        32,
+        56
+      ],
+      "ballot_id": "position-ae8bcc7fdf86b035",
+      "moves": [
+        "11-15",
+        "24-19",
+        "15x24"
+      ],
+      "position_key": "ae8bcc7fdf86b035",
+      "representative_sequence_id": "sequence-199",
+      "state": "CHK1;RM=00800bff;RK=00000000;WM=ff700000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        29
+      ],
+      "ballot_id": "position-d18e222a9e24c2a6",
+      "moves": [
+        "11-15",
+        "24-20",
+        "8-11"
+      ],
+      "position_key": "d18e222a9e24c2a6",
+      "representative_sequence_id": "sequence-201",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        45
+      ],
+      "ballot_id": "position-506cde8c53bc04c5",
+      "moves": [
+        "11-15",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "506cde8c53bc04c5",
+      "representative_sequence_id": "sequence-205",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        57
+      ],
+      "ballot_id": "position-e96d86ddf50e3f49",
+      "moves": [
+        "11-15",
+        "24-20",
+        "15-18"
+      ],
+      "position_key": "e96d86ddf50e3f49",
+      "representative_sequence_id": "sequence-206",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        56
+      ],
+      "ballot_id": "position-1af8e69abecb3339",
+      "moves": [
+        "11-15",
+        "24-20",
+        "15-19"
+      ],
+      "position_key": "1af8e69abecb3339",
+      "representative_sequence_id": "sequence-207",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        24
+      ],
+      "ballot_id": "position-7f73460b24534d1f",
+      "moves": [
+        "11-16",
+        "21-17",
+        "7-11"
+      ],
+      "position_key": "7f73460b24534d1f",
+      "representative_sequence_id": "sequence-208",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        29
+      ],
+      "ballot_id": "position-0639b792bac58e8c",
+      "moves": [
+        "11-16",
+        "21-17",
+        "8-11"
+      ],
+      "position_key": "0639b792bac58e8c",
+      "representative_sequence_id": "sequence-209",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        32
+      ],
+      "ballot_id": "position-a1164d96b6b6470d",
+      "moves": [
+        "11-16",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "a1164d96b6b6470d",
+      "representative_sequence_id": "sequence-211",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        37
+      ],
+      "ballot_id": "position-1b920ab812f43b9e",
+      "moves": [
+        "11-16",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "1b920ab812f43b9e",
+      "representative_sequence_id": "sequence-212",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        60
+      ],
+      "ballot_id": "position-1563bcd45d5a3266",
+      "moves": [
+        "11-16",
+        "21-17",
+        "16-20"
+      ],
+      "position_key": "1563bcd45d5a3266",
+      "representative_sequence_id": "sequence-215",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        24
+      ],
+      "ballot_id": "position-93de7129f4496134",
+      "moves": [
+        "11-16",
+        "22-17",
+        "7-11"
+      ],
+      "position_key": "93de7129f4496134",
+      "representative_sequence_id": "sequence-216",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        29
+      ],
+      "ballot_id": "position-ea9480b06adfa2a7",
+      "moves": [
+        "11-16",
+        "22-17",
+        "8-11"
+      ],
+      "position_key": "ea9480b06adfa2a7",
+      "representative_sequence_id": "sequence-217",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        33
+      ],
+      "ballot_id": "position-5b189b02e0db7a41",
+      "moves": [
+        "11-16",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "5b189b02e0db7a41",
+      "representative_sequence_id": "sequence-218",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        60
+      ],
+      "ballot_id": "position-f9ce8bf68d401e4d",
+      "moves": [
+        "11-16",
+        "22-17",
+        "16-20"
+      ],
+      "position_key": "f9ce8bf68d401e4d",
+      "representative_sequence_id": "sequence-223",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        24
+      ],
+      "ballot_id": "position-ed734d760b19abed",
+      "moves": [
+        "11-16",
+        "22-18",
+        "7-11"
+      ],
+      "position_key": "ed734d760b19abed",
+      "representative_sequence_id": "sequence-224",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        29
+      ],
+      "ballot_id": "position-9439bcef958f687e",
+      "moves": [
+        "11-16",
+        "22-18",
+        "8-11"
+      ],
+      "position_key": "9439bcef958f687e",
+      "representative_sequence_id": "sequence-225",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        36
+      ],
+      "ballot_id": "position-18b9c076a0ef9a89",
+      "moves": [
+        "11-16",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "18b9c076a0ef9a89",
+      "representative_sequence_id": "sequence-229",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        61
+      ],
+      "ballot_id": "position-b99d2159e2a7a343",
+      "moves": [
+        "11-16",
+        "22-18",
+        "16-19"
+      ],
+      "position_key": "b99d2159e2a7a343",
+      "representative_sequence_id": "sequence-230",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        60
+      ],
+      "ballot_id": "position-8763b7a97210d494",
+      "moves": [
+        "11-16",
+        "22-18",
+        "16-20"
+      ],
+      "position_key": "8763b7a97210d494",
+      "representative_sequence_id": "sequence-231",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        24
+      ],
+      "ballot_id": "position-5bc31945cc5e13ad",
+      "moves": [
+        "11-16",
+        "23-18",
+        "7-11"
+      ],
+      "position_key": "5bc31945cc5e13ad",
+      "representative_sequence_id": "sequence-232",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        29
+      ],
+      "ballot_id": "position-2289e8dc52c8d03e",
+      "moves": [
+        "11-16",
+        "23-18",
+        "8-11"
+      ],
+      "position_key": "2289e8dc52c8d03e",
+      "representative_sequence_id": "sequence-233",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        32
+      ],
+      "ballot_id": "position-85a612d85ebb19bf",
+      "moves": [
+        "11-16",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "85a612d85ebb19bf",
+      "representative_sequence_id": "sequence-235",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        37
+      ],
+      "ballot_id": "position-3f2255f6faf9652c",
+      "moves": [
+        "11-16",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "3f2255f6faf9652c",
+      "representative_sequence_id": "sequence-236",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        60
+      ],
+      "ballot_id": "position-31d3e39ab5576cd4",
+      "moves": [
+        "11-16",
+        "23-18",
+        "16-20"
+      ],
+      "position_key": "31d3e39ab5576cd4",
+      "representative_sequence_id": "sequence-239",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        37,
+        61
+      ],
+      "ballot_id": "position-654e6aaef26d481c",
+      "moves": [
+        "11-16",
+        "23-19",
+        "16x23"
+      ],
+      "position_key": "654e6aaef26d481c",
+      "representative_sequence_id": "sequence-240",
+      "state": "CHK1;RM=00400bff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        24
+      ],
+      "ballot_id": "position-223b166efab85282",
+      "moves": [
+        "11-16",
+        "24-19",
+        "7-11"
+      ],
+      "position_key": "223b166efab85282",
+      "representative_sequence_id": "sequence-241",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        29
+      ],
+      "ballot_id": "position-5b71e7f7642e9111",
+      "moves": [
+        "11-16",
+        "24-19",
+        "8-11"
+      ],
+      "position_key": "5b71e7f7642e9111",
+      "representative_sequence_id": "sequence-242",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        36
+      ],
+      "ballot_id": "position-d7f19b6e514e63e6",
+      "moves": [
+        "11-16",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "d7f19b6e514e63e6",
+      "representative_sequence_id": "sequence-246",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        60
+      ],
+      "ballot_id": "position-482becb183b12dfb",
+      "moves": [
+        "11-16",
+        "24-19",
+        "16-20"
+      ],
+      "position_key": "482becb183b12dfb",
+      "representative_sequence_id": "sequence-247",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        24
+      ],
+      "ballot_id": "position-4e168ab557753b97",
+      "moves": [
+        "11-16",
+        "24-20",
+        "7-11"
+      ],
+      "position_key": "4e168ab557753b97",
+      "representative_sequence_id": "sequence-248",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        29
+      ],
+      "ballot_id": "position-375c7b2cc9e3f804",
+      "moves": [
+        "11-16",
+        "24-20",
+        "8-11"
+      ],
+      "position_key": "375c7b2cc9e3f804",
+      "representative_sequence_id": "sequence-249",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        32
+      ],
+      "ballot_id": "position-995d74aea1e5e81c",
+      "moves": [
+        "12-16",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "995d74aea1e5e81c",
+      "representative_sequence_id": "sequence-257",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        37
+      ],
+      "ballot_id": "position-23d9338005a7948f",
+      "moves": [
+        "12-16",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "23d9338005a7948f",
+      "representative_sequence_id": "sequence-258",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        61
+      ],
+      "ballot_id": "position-13d6131cdabeeaa0",
+      "moves": [
+        "12-16",
+        "21-17",
+        "16-19"
+      ],
+      "position_key": "13d6131cdabeeaa0",
+      "representative_sequence_id": "sequence-261",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        60
+      ],
+      "ballot_id": "position-2d2885ec4a099d77",
+      "moves": [
+        "12-16",
+        "21-17",
+        "16-20"
+      ],
+      "position_key": "2d2885ec4a099d77",
+      "representative_sequence_id": "sequence-262",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        33
+      ],
+      "ballot_id": "position-6353a23af788d550",
+      "moves": [
+        "12-16",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "6353a23af788d550",
+      "representative_sequence_id": "sequence-264",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        61
+      ],
+      "ballot_id": "position-ff7b243e0aa4c68b",
+      "moves": [
+        "12-16",
+        "22-17",
+        "16-19"
+      ],
+      "position_key": "ff7b243e0aa4c68b",
+      "representative_sequence_id": "sequence-269",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        60
+      ],
+      "ballot_id": "position-c185b2ce9a13b15c",
+      "moves": [
+        "12-16",
+        "22-17",
+        "16-20"
+      ],
+      "position_key": "c185b2ce9a13b15c",
+      "representative_sequence_id": "sequence-270",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        36
+      ],
+      "ballot_id": "position-20f2f94eb7bc3598",
+      "moves": [
+        "12-16",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "20f2f94eb7bc3598",
+      "representative_sequence_id": "sequence-275",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        41
+      ],
+      "ballot_id": "position-f309194f0fd094bf",
+      "moves": [
+        "12-16",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "f309194f0fd094bf",
+      "representative_sequence_id": "sequence-276",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        61
+      ],
+      "ballot_id": "position-81d61861f5f40c52",
+      "moves": [
+        "12-16",
+        "22-18",
+        "16-19"
+      ],
+      "position_key": "81d61861f5f40c52",
+      "representative_sequence_id": "sequence-277",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        60
+      ],
+      "ballot_id": "position-bf288e9165437b85",
+      "moves": [
+        "12-16",
+        "22-18",
+        "16-20"
+      ],
+      "position_key": "bf288e9165437b85",
+      "representative_sequence_id": "sequence-278",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        32
+      ],
+      "ballot_id": "position-bded2be049e8b6ae",
+      "moves": [
+        "12-16",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "bded2be049e8b6ae",
+      "representative_sequence_id": "sequence-281",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        37
+      ],
+      "ballot_id": "position-07696cceedaaca3d",
+      "moves": [
+        "12-16",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "07696cceedaaca3d",
+      "representative_sequence_id": "sequence-282",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        61
+      ],
+      "ballot_id": "position-37664c5232b3b412",
+      "moves": [
+        "12-16",
+        "23-18",
+        "16-19"
+      ],
+      "position_key": "37664c5232b3b412",
+      "representative_sequence_id": "sequence-285",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        60
+      ],
+      "ballot_id": "position-0998daa2a204c3c5",
+      "moves": [
+        "12-16",
+        "23-18",
+        "16-20"
+      ],
+      "position_key": "0998daa2a204c3c5",
+      "representative_sequence_id": "sequence-286",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        37,
+        61
+      ],
+      "ballot_id": "position-5d055396e53ee70d",
+      "moves": [
+        "12-16",
+        "23-19",
+        "16x23"
+      ],
+      "position_key": "5d055396e53ee70d",
+      "representative_sequence_id": "sequence-287",
+      "state": "CHK1;RM=004007ff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        36
+      ],
+      "ballot_id": "position-efbaa256461dccf7",
+      "moves": [
+        "12-16",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "efbaa256461dccf7",
+      "representative_sequence_id": "sequence-292",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        41
+      ],
+      "ballot_id": "position-3c414257fe716dd0",
+      "moves": [
+        "12-16",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "3c414257fe716dd0",
+      "representative_sequence_id": "sequence-293",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        60
+      ],
+      "ballot_id": "position-7060d58994e282ea",
+      "moves": [
+        "12-16",
+        "24-19",
+        "16-20"
+      ],
+      "position_key": "7060d58994e282ea",
+      "representative_sequence_id": "sequence-294",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        61
+      ],
+      "ballot_id": "position-22b3dfa2a9989c28",
+      "moves": [
+        "12-16",
+        "24-20",
+        "16-19"
+      ],
+      "position_key": "22b3dfa2a9989c28",
+      "representative_sequence_id": "sequence-301",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    }
+  ],
+  "completed_checkers_moves": 3,
+  "first_move_gate": {
+    "distinct_first_moves": 7,
+    "expected": 7,
+    "passed": true
+  },
+  "schema": "CHECKERS_EVAL_BALLOTS_1",
+  "sha256": "9b7c1db4c70c4b39140220fccc5eca4d2d891b3176eb4d623550a304277a365b",
+  "sha256_scope": "canonical compact JSON of the ballots array",
+  "source_sequence_count": 302,
+  "source_sequences_sha256": "d5d617f3cbdb20ebbdddf011178189d366c1d57cc8f30bbb0ff3be8f76f09b80",
+  "transposition_collapse": {
+    "collapsed_sequences": 86,
+    "deduplicate_on": "position_key",
+    "position_count": 216,
+    "sequence_count": 302
+  },
+  "worked_transposition_examples": [
+    {
+      "position_key": "829c1527df6acdef",
+      "sequences": [
+        {
+          "actions": [
+            33,
+            45,
+            36
+          ],
+          "moves": [
+            "9-13",
+            "21-17",
+            "10-15"
+          ],
+          "sequence_id": "sequence-003"
+        },
+        {
+          "actions": [
+            36,
+            45,
+            33
+          ],
+          "moves": [
+            "10-15",
+            "21-17",
+            "9-13"
+          ],
+          "sequence_id": "sequence-130"
+        }
+      ]
+    },
+    {
+      "position_key": "5167f52667066cc8",
+      "sequences": [
+        {
+          "actions": [
+            33,
+            45,
+            41
+          ],
+          "moves": [
+            "9-13",
+            "21-17",
+            "11-15"
+          ],
+          "sequence_id": "sequence-004"
+        },
+        {
+          "actions": [
+            41,
+            45,
+            33
+          ],
+          "moves": [
+            "11-15",
+            "21-17",
+            "9-13"
+          ],
+          "sequence_id": "sequence-170"
+        }
+      ]
+    }
+  ]
+}

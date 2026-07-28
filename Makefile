@@ -12,7 +12,7 @@ CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/test_che
 	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
 	scripts/build_published_transcripts.py scripts/differential_rules.py \
 	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py \
-	scripts/evaluate_baselines.py scripts/train.py \
+	scripts/evaluate_baselines.py scripts/generate_ballots.py scripts/train.py \
 	scripts/recover_checkers_run.py scripts/audit_recovery_smoke.py scripts/monitor_run.py
 MODEL ?=
 PORT ?= 8000

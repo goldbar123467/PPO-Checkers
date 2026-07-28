@@ -1,0 +1,4916 @@
+{
+  "completed_checkers_moves": 3,
+  "first_move_gate": {
+    "distinct_first_moves": 7,
+    "expected": 7,
+    "passed": true
+  },
+  "schema": "CHECKERS_BALLOT_SEQUENCES_1",
+  "sequence_count": 302,
+  "sequences": [
+    {
+      "actions": [
+        33,
+        45,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "5-9"
+      ],
+      "position_key": "bfad68dbb8349bc8",
+      "sequence_hash": "e7d1fecd0589ebd0000a8b17a87879325b1b36de24c9ea165bcc77de4f7a4334",
+      "sequence_id": "sequence-000",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "6-9"
+      ],
+      "position_key": "1c58beb0e3017b93",
+      "sequence_hash": "c2b5a040aaec5840a2c5b3ba1b44b269384e4977817ffa2eb7226a543f9d2d39",
+      "sequence_id": "sequence-001",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "13b7d494423b8a0a",
+      "sequence_hash": "fbdd9f4cd31424d01682ebf06af22a0e3ac48408a72c50f5efd7c5507d83fdf3",
+      "sequence_id": "sequence-002",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "10-15"
+      ],
+      "position_key": "829c1527df6acdef",
+      "sequence_hash": "411c467b7e8180d24cc6b193a1c2ea8c8808c2c0ded2e2b8a043edd2031ba1ac",
+      "sequence_id": "sequence-003",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "11-15"
+      ],
+      "position_key": "5167f52667066cc8",
+      "sequence_hash": "55f60f2c9986926f831d55bfd178ff92223fcdc6feacdb767eb4f6e3a49ce978",
+      "sequence_id": "sequence-004",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "11-16"
+      ],
+      "position_key": "b7b5ac2030c1566a",
+      "sequence_hash": "9ef4b417ddaa92cc930fc9c444b7d4e7334200f43e283dd2b0e244936dc06bd1",
+      "sequence_id": "sequence-005",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        45,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "8ffe95182792f97b",
+      "sequence_hash": "67a1f2535b64475ac495b7c5b887126292b0ab5fca39a506fad50801c4d7699d",
+      "sequence_id": "sequence-006",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        40,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "22-17",
+        "13x22"
+      ],
+      "position_key": "491f7707aa64f6d2",
+      "sequence_hash": "7b58bade6131ea2d528b9e516fed9d511b167f46122f0d5b42fbd789c5c11367",
+      "sequence_id": "sequence-007",
+      "state": "CHK1;RM=00200eff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "5-9"
+      ],
+      "position_key": "2dad63a6977e7d3a",
+      "sequence_hash": "cb41c7c1feea8d6950138c6870165c5c7bc84192f11e1194fe6bc727dd1ca24f",
+      "sequence_id": "sequence-008",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "6-9"
+      ],
+      "position_key": "8e58b5cdcc4b9d61",
+      "sequence_hash": "6ff412794b4eb6509f243662b01ada673408a196ef47a7bb9d7df4b835b52216",
+      "sequence_id": "sequence-009",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "10-14"
+      ],
+      "position_key": "81b7dfe96d716cf8",
+      "sequence_hash": "880b4a2fab4202e77a583127c52b3100171ce96d50bb0e16c556537f4d87b9a4",
+      "sequence_id": "sequence-010",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "109c1e5af0202b1d",
+      "sequence_hash": "4504ec7ae5bc6f11d20933f5e6d42dfa1e453b9e03f07a31d1a76192bd83ff36",
+      "sequence_id": "sequence-011",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "c367fe5b484c8a3a",
+      "sequence_hash": "92bfeca62bfac055616a426f8e992b094268aabb78d3a69fcb722cd5e133737b",
+      "sequence_id": "sequence-012",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "25b5a75d1f8bb098",
+      "sequence_hash": "28e836bbc2fdb78af2ca14aaad91de37d1f4938532f6e9165973b83c89921ca6",
+      "sequence_id": "sequence-013",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "1dfe9e6508d81f89",
+      "sequence_hash": "da4a74d02cdbc92deddcecb0570085184f40e4b88e051cdfb47ce0ca6ccb8e3d",
+      "sequence_id": "sequence-014",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        41,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "22-18",
+        "13-17"
+      ],
+      "position_key": "d82a14c74241037a",
+      "sequence_hash": "e549ee448f88a5b72038510fb11ff6f2c7e356eb3b6f5ee09a3c4e09a5ce6422",
+      "sequence_id": "sequence-015",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "5-9"
+      ],
+      "position_key": "9b1d37955039c57a",
+      "sequence_hash": "63770a9dc1065ba0a0ee6516b745e300be3bb8303a5d7e8ad2ecf024653cad3b",
+      "sequence_id": "sequence-016",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "6-9"
+      ],
+      "position_key": "38e8e1fe0b0c2521",
+      "sequence_hash": "7bffb93d8b7ddd2b5e758d717f10aa12ebdffacbcd320319a455833304e08914",
+      "sequence_id": "sequence-017",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "37078bdaaa36d4b8",
+      "sequence_hash": "f1f2d0285b61d557298be11bc85c0c0cd22670cdca5bd33cb0974ed272078f12",
+      "sequence_id": "sequence-018",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "10-15"
+      ],
+      "position_key": "a62c4a693767935d",
+      "sequence_hash": "c4595073a04e02765b9e9b3eedd270c3599aafba862a0fb76818d581fd1dbbf9",
+      "sequence_id": "sequence-019",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "11-15"
+      ],
+      "position_key": "75d7aa688f0b327a",
+      "sequence_hash": "a3c6b2d48689fd7f561521cc0a174d8347ca5623ca5c7f1d0d1b16624405306d",
+      "sequence_id": "sequence-020",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "11-16"
+      ],
+      "position_key": "9305f36ed8cc08d8",
+      "sequence_hash": "528ec8928840d2bca19614f6237d31d8501eab63ce6f9dc5f58dc208573b8344",
+      "sequence_id": "sequence-021",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "ab4eca56cf9fa7c9",
+      "sequence_hash": "f5194aae10ed601b35c72998e01d85e7db1a180cc28ad65c3421de7ff73d9380",
+      "sequence_id": "sequence-022",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        36,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "23-18",
+        "13-17"
+      ],
+      "position_key": "6e9a40f48506bb3a",
+      "sequence_hash": "d4f103a5d886c1b45d117836307392572bb614a0d2554c33ad91c9dba484ae65",
+      "sequence_id": "sequence-023",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "5-9"
+      ],
+      "position_key": "b9937ea4b2fc77b3",
+      "sequence_hash": "b6f890547dfac73f6aaccc37d9e6721549364c6629a70b120daff539363c4365",
+      "sequence_id": "sequence-024",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "6-9"
+      ],
+      "position_key": "1a66a8cfe9c997e8",
+      "sequence_hash": "fa43e1fa40875e704105df75c9a254771b00beb2d520952d60f9c23347d20438",
+      "sequence_id": "sequence-025",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "10-14"
+      ],
+      "position_key": "1589c2eb48f36671",
+      "sequence_hash": "77555e26d65742c9d17d813715827a2d35f2f9ee65772a40dea4cbf8fb2419a0",
+      "sequence_id": "sequence-026",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "10-15"
+      ],
+      "position_key": "84a20358d5a22194",
+      "sequence_hash": "1c3a6d0e3d3acf054ffea92317aeb6d37f5f9b236598e5f5ddf79885450aab06",
+      "sequence_id": "sequence-027",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "5759e3596dce80b3",
+      "sequence_hash": "6a81c1de81435cc0a79c6a3289ee30f7973b8b18a1f1273ae33d41ef8183031a",
+      "sequence_id": "sequence-028",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "b18bba5f3a09ba11",
+      "sequence_hash": "b2eaef00aeabef60f08801f63c6dd1c392d7c5cb5a23c20725fd30977794a258",
+      "sequence_id": "sequence-029",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "89c083672d5a1500",
+      "sequence_hash": "867600c988f38275dd783be3849d65e3cffd9b77c24fa66145c9f63f01beb8fe",
+      "sequence_id": "sequence-030",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        37,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "23-19",
+        "13-17"
+      ],
+      "position_key": "4c1409c567c309f3",
+      "sequence_hash": "c7d1e3d5ddf3ae282d91622a4c4b138e936a17c19ba0ce725d5d7a3995dac9fa",
+      "sequence_id": "sequence-031",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "5-9"
+      ],
+      "position_key": "e2e538be66df8455",
+      "sequence_hash": "df445c1955dcd2af1378a2c9e1744ec177260ddd86917db7f2f5bb267f193ac5",
+      "sequence_id": "sequence-032",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "6-9"
+      ],
+      "position_key": "4110eed53dea640e",
+      "sequence_hash": "6d029953f18300f2d1e8f1d09d1008c32b96eac70505df30a17e0e21dad6b084",
+      "sequence_id": "sequence-033",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "10-14"
+      ],
+      "position_key": "4eff84f19cd09597",
+      "sequence_hash": "79b86a9f4618cc76dea29ee71bdde9ea65c3e563a196052a807cb2275358764d",
+      "sequence_id": "sequence-034",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "dfd445420181d272",
+      "sequence_hash": "66c48ce0a65eb4988c795abe9f0fb7856203b5725660126085b5a0fd2a33f83a",
+      "sequence_id": "sequence-035",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "0c2fa543b9ed7355",
+      "sequence_hash": "e2093262e2e53a6ae0b1fe64aaad6d9272d8873cc67b1dd6ede51556a42e7349",
+      "sequence_id": "sequence-036",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "eafdfc45ee2a49f7",
+      "sequence_hash": "8852d874daf02d171d52f735af5b5a6471fa6c646b25f95440b89b1a3e1fc71a",
+      "sequence_id": "sequence-037",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "d2b6c57df979e6e6",
+      "sequence_hash": "7944b3e6e1906f7a65eee4e4afc8e09e493fc5b2fedc85b075382b1f9ed96645",
+      "sequence_id": "sequence-038",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        32,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "24-19",
+        "13-17"
+      ],
+      "position_key": "17624fdfb3e0fa15",
+      "sequence_hash": "a8052a4c2d94346b038955b9f123db8479723729969ab60ead1c341440e1576a",
+      "sequence_id": "sequence-039",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        16
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "5-9"
+      ],
+      "position_key": "8ec8a465cb12ed40",
+      "sequence_hash": "d96bf7cb12408bb910d6fe34f56cce1d737617c820d0762e6cf45a5f9b79f824",
+      "sequence_id": "sequence-040",
+      "state": "CHK1;RM=00001fef;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        21
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "6-9"
+      ],
+      "position_key": "2d3d720e90270d1b",
+      "sequence_hash": "e91901e3b81a427754ebb9bc5915f613ee2e764f19c372eab52348461d26b052",
+      "sequence_id": "sequence-041",
+      "state": "CHK1;RM=00001fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        37
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "10-14"
+      ],
+      "position_key": "22d2182a311dfc82",
+      "sequence_hash": "f24d505d80676152bf68eabbe44be5e673f57f48b96e0f93b1ebe44ed90f8354",
+      "sequence_id": "sequence-042",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        36
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "b3f9d999ac4cbb67",
+      "sequence_hash": "dca7d87f90a91b9efdb995563666192ba4e01906e33d397530efcffd1239e4cd",
+      "sequence_id": "sequence-043",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        41
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "6002399814201a40",
+      "sequence_hash": "71cc9ce660cae12329dc5ad806e7fd1aa2935ee6ef12362faf897e75ba7c0d8f",
+      "sequence_id": "sequence-044",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        40
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "86d0609e43e720e2",
+      "sequence_hash": "c97487bc9638e821024605cdab2fb753702624f2525880b7a00e5a9c40e71047",
+      "sequence_id": "sequence-045",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        45
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "be9b59a654b48ff3",
+      "sequence_hash": "32b781d3fb9ea5a3b033126ae54d891767b7a0b845ebebd2d12dbd8749104076",
+      "sequence_id": "sequence-046",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        33,
+        33,
+        48
+      ],
+      "moves": [
+        "9-13",
+        "24-20",
+        "13-17"
+      ],
+      "position_key": "7b4fd3041e2d9300",
+      "sequence_hash": "65231b21fd0b71151dbfbfa4d300fbe79043502e92541811ae5e4071098d02da",
+      "sequence_id": "sequence-047",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        45,
+        53
+      ],
+      "moves": [
+        "9-14",
+        "21-17",
+        "14x21"
+      ],
+      "position_key": "14fb0a0b11b04199",
+      "sequence_hash": "98260f9d43cb44ad4aa01e932ae836971a39676e49fbec6a7937a94a1424eb9f",
+      "sequence_id": "sequence-048",
+      "state": "CHK1;RM=00100eff;RK=00000000;WM=ffe00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        16
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "5-9"
+      ],
+      "position_key": "45a3be4fee59a684",
+      "sequence_hash": "44919d0a3dcdb260d54cf4ae8f98779caba08e649418f14ce196ea26b42af9f4",
+      "sequence_id": "sequence-049",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        21
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "6-9"
+      ],
+      "position_key": "e6566824b56c46df",
+      "sequence_hash": "6e1f71947c08a18a9547778faa53f95e33aa3aad44ccf02f48ad8a8333ea406c",
+      "sequence_id": "sequence-050",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        36
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "10-15"
+      ],
+      "position_key": "7892c3b38907f0a3",
+      "sequence_hash": "2e8732826357ada05e2d5922baf98f709b5694493c08cb09e8b3666f0c26d87f",
+      "sequence_id": "sequence-051",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        41
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "11-15"
+      ],
+      "position_key": "ab6923b2316b5184",
+      "sequence_hash": "d9d75a83e9660a07316b4be3a98c66d4fd5b985aaa897c8c4b7ae0ea98d42a86",
+      "sequence_id": "sequence-052",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        40
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "4dbb7ab466ac6b26",
+      "sequence_hash": "6a700c2f2bd26b68e1298fbe97669efcb4037e574184051722f0bc905fb2d23c",
+      "sequence_id": "sequence-053",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        45
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "75f0438c71ffc437",
+      "sequence_hash": "7c478fc7bdc3b08edec7ccf904b8d40692a7f8d232f0eaa37d6ff70af5b8782e",
+      "sequence_id": "sequence-054",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        40,
+        52
+      ],
+      "moves": [
+        "9-14",
+        "22-17",
+        "14-18"
+      ],
+      "position_key": "5ddada6e4a1cb85e",
+      "sequence_hash": "cc85c8347181a1462f2d534589444af2a15539b6a321bc18e6161a02a9ae4798",
+      "sequence_id": "sequence-055",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        16
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "5-9"
+      ],
+      "position_key": "3b0e821011096c5d",
+      "sequence_hash": "591e270798bfa38404a30fe20deb7acff22cae36e017645afc357b3baabfc2ef",
+      "sequence_id": "sequence-056",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        21
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "6-9"
+      ],
+      "position_key": "98fb547b4a3c8c06",
+      "sequence_hash": "91eca86a06d2cc4a70b5d520aeae884881990e2753287c0706bcff0723b4bb17",
+      "sequence_id": "sequence-057",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        36
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "063fffec76573a7a",
+      "sequence_hash": "b82ecc202ddf0d545d7d53e4900ebfcd6c7f17dd646d10cc89054c1f2d61ae77",
+      "sequence_id": "sequence-058",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        41
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "d5c41fedce3b9b5d",
+      "sequence_hash": "c19f41119e9ce917a0898bcf41032a250f2da60353277db69b5890839c5dee4d",
+      "sequence_id": "sequence-059",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        40
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "331646eb99fca1ff",
+      "sequence_hash": "39fce39b8715b15d9ea9a4be77a58c5eccacaadace2292ff1edf6574241c9bd6",
+      "sequence_id": "sequence-060",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        45
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "0b5d7fd38eaf0eee",
+      "sequence_hash": "94b10b302c1ac8d1e347f337ba3b5476f6b542e68b1694b6f44b026dddbd019e",
+      "sequence_id": "sequence-061",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        41,
+        53
+      ],
+      "moves": [
+        "9-14",
+        "22-18",
+        "14-17"
+      ],
+      "position_key": "d82a14c74241037a",
+      "sequence_hash": "bb6c6828b6fa4d6e4c9fd5b1a99a91f11c767d185e2500290e1af0e00c3ba223",
+      "sequence_id": "sequence-062",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        36,
+        52
+      ],
+      "moves": [
+        "9-14",
+        "23-18",
+        "14x23"
+      ],
+      "position_key": "0c31cd81ee4395a8",
+      "sequence_hash": "e6517245cf4cf2a38c60b4ae27288f008a12907b3d1d15a5629dbfc4e56b04cb",
+      "sequence_id": "sequence-063",
+      "state": "CHK1;RM=00400eff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        16
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "5-9"
+      ],
+      "position_key": "af309f12348b66d4",
+      "sequence_hash": "b3656ee09b1fe41fa3949cdaf1d9aef02a5bea4c3a41d54a79a2e093cc25edba",
+      "sequence_id": "sequence-064",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        21
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "6-9"
+      ],
+      "position_key": "0cc549796fbe868f",
+      "sequence_hash": "ea60bc5dcac4ff822f6bdfb2d5cce1d0462eb6d49f15678e8dfa236f39caf8fa",
+      "sequence_id": "sequence-065",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        36
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "10-15"
+      ],
+      "position_key": "9201e2ee53d530f3",
+      "sequence_hash": "63ef8e7ba1297c59e68fc94ab46ded2173c2291f845d436564c7bce9a44796ec",
+      "sequence_id": "sequence-066",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        41
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "41fa02efebb991d4",
+      "sequence_hash": "5b0e01289f2c162df4b2bf62fd5f5e2ff8a31587031d85a610d38d9da123e7f5",
+      "sequence_id": "sequence-067",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        40
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "a7285be9bc7eab76",
+      "sequence_hash": "ec526b546bb6d39fe5624c2f67be1fac18887eaf13ee38d8344370ad65fce35a",
+      "sequence_id": "sequence-068",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        45
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "9f6362d1ab2d0467",
+      "sequence_hash": "4802609f85d763262fcf9bb63cfb4032318a49a2255738faa6a7e8646fa9926f",
+      "sequence_id": "sequence-069",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        53
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "14-17"
+      ],
+      "position_key": "4c1409c567c309f3",
+      "sequence_hash": "17afb8f8d72bb207fa1740a762e19369a125127eb359e01996adbc66351652d9",
+      "sequence_id": "sequence-070",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        37,
+        52
+      ],
+      "moves": [
+        "9-14",
+        "23-19",
+        "14-18"
+      ],
+      "position_key": "b749fb3390ce780e",
+      "sequence_hash": "18f8c4fe57485c9c7deab014e8cab80d49bff2d1059378e28a7087b64455ea51",
+      "sequence_id": "sequence-071",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        16
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "5-9"
+      ],
+      "position_key": "f446d908e0a89532",
+      "sequence_hash": "94ac50b263c31f2ef89c6e3410dffce8455fa81f4631c85f8b82774a0ae2d2ad",
+      "sequence_id": "sequence-072",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        21
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "6-9"
+      ],
+      "position_key": "57b30f63bb9d7569",
+      "sequence_hash": "43a053dbff21b391b5b138adcb4c14b5565f67779e6c945d99e07bc919b88ffd",
+      "sequence_id": "sequence-073",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        36
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "c977a4f487f6c315",
+      "sequence_hash": "a23642ddeb2f4a43ef2f22bac9ad195d9c00412e31cbea09f594f3d376f8ea16",
+      "sequence_id": "sequence-074",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        41
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "1a8c44f53f9a6232",
+      "sequence_hash": "a984ac0fda661aee6c193d27b07e7ed7b26d52456c9b851fc5a63be586b6f0ad",
+      "sequence_id": "sequence-075",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        40
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "fc5e1df3685d5890",
+      "sequence_hash": "8f2dcb8610de16c2cebe6a65723b810e0bc514b85b699292f259a14da8923644",
+      "sequence_id": "sequence-076",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        45
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "c41524cb7f0ef781",
+      "sequence_hash": "986e20f723235ac5e2350082569bc28c77dca4b46a098b4daafa37db5b5b32b7",
+      "sequence_id": "sequence-077",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        53
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "14-17"
+      ],
+      "position_key": "17624fdfb3e0fa15",
+      "sequence_hash": "9e44add4d3e163c5bf5127313511c3586ff1b5c6ee28c5158a1495d433334725",
+      "sequence_id": "sequence-078",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        32,
+        52
+      ],
+      "moves": [
+        "9-14",
+        "24-19",
+        "14-18"
+      ],
+      "position_key": "ec3fbd2944ed8be8",
+      "sequence_hash": "f9b63c340a181de711f6be53e1d585241dfcf6476cab65e034ce0b708ae15d2e",
+      "sequence_id": "sequence-079",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        16
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "5-9"
+      ],
+      "position_key": "986b45d34d65fc27",
+      "sequence_hash": "9baa863e0294f36f84e02eaec4d9d205385a57786b565d15fc5be89fb564b617",
+      "sequence_id": "sequence-080",
+      "state": "CHK1;RM=00002fef;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        21
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "6-9"
+      ],
+      "position_key": "3b9e93b816501c7c",
+      "sequence_hash": "b51e5e5009acc0e3a37d5ccc0846ac639769b69a7deea62dc5a1b5fe86ab3d7c",
+      "sequence_id": "sequence-081",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        36
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "a55a382f2a3baa00",
+      "sequence_hash": "5356a6a3a5788b1f10da48666fd8ecd76f06ea4c9254d3f315e9a790f4b73c35",
+      "sequence_id": "sequence-082",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        41
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "76a1d82e92570b27",
+      "sequence_hash": "18e83592a441eb4fa475d95f4b21cd9cec41a794e942fc2239d3a7d277b9c8c7",
+      "sequence_id": "sequence-083",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        40
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "90738128c5903185",
+      "sequence_hash": "faade11deb631f236554d03e1cad09caee54ff1fe5a810512d94803111afb890",
+      "sequence_id": "sequence-084",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        45
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "a838b810d2c39e94",
+      "sequence_hash": "f83a0e7f2542906c6cd90f3290b0687ed235f4df2da080c5ce8578643ce57907",
+      "sequence_id": "sequence-085",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        53
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "14-17"
+      ],
+      "position_key": "7b4fd3041e2d9300",
+      "sequence_hash": "73035af0eb17db08853c9650021b149303a316e9f623043ff4c80eb9bf54b856",
+      "sequence_id": "sequence-086",
+      "state": "CHK1;RM=00010eff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        32,
+        33,
+        52
+      ],
+      "moves": [
+        "9-14",
+        "24-20",
+        "14-18"
+      ],
+      "position_key": "801221f2e920e2fd",
+      "sequence_hash": "2c918e9b547405b252032aa43110a69b5c69f1d3ef2ad2fbfb621ac3621a8f5f",
+      "sequence_id": "sequence-087",
+      "state": "CHK1;RM=00020eff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        45,
+        53
+      ],
+      "moves": [
+        "10-14",
+        "21-17",
+        "14x21"
+      ],
+      "position_key": "ae7f4d25b5f23d0a",
+      "sequence_hash": "dd1ac42e51af7e761ad311fc1bc17214fa5e03a9ceaa4fa4efb9e16c1748669c",
+      "sequence_id": "sequence-088",
+      "state": "CHK1;RM=00100dff;RK=00000000;WM=ffe00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        20
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "6-10"
+      ],
+      "position_key": "e6566824b56c46df",
+      "sequence_hash": "c0f132919b64e6e824f9c0d48a3e8e3c6637a6327d7b5b83bcdc402fde7a1da8",
+      "sequence_id": "sequence-089",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        25
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "7-10"
+      ],
+      "position_key": "e427e99c3edf1c73",
+      "sequence_hash": "ba9ac70ac51e1f8b432b6ab870b24d9452142f57e8b07a8092574d81b20e9279",
+      "sequence_id": "sequence-090",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        33
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "ff1ae3b69221a621",
+      "sequence_hash": "0ebd637839e3771660d79164ba581fee800bdfa2d756760f2f9555f70d3e0d49",
+      "sequence_id": "sequence-091",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        41
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "11-15"
+      ],
+      "position_key": "11ed649c95292d17",
+      "sequence_hash": "2d33b796bdc917118700c8ccde3194f3f5eb3e5754b6c0789511015df8597d24",
+      "sequence_id": "sequence-092",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        40
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "f73f3d9ac2ee17b5",
+      "sequence_hash": "ce7d0b473c4a916b5a3459e0dd4c5a0bb85382b137b8a8545d1b78220c760e23",
+      "sequence_id": "sequence-093",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        45
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "cf7404a2d5bdb8a4",
+      "sequence_hash": "e9ead1c7bdc8ba1f8916653630816c16c1acc9f2b994448adfb17d2101aba561",
+      "sequence_id": "sequence-094",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        40,
+        52
+      ],
+      "moves": [
+        "10-14",
+        "22-17",
+        "14-18"
+      ],
+      "position_key": "e75e9d40ee5ec4cd",
+      "sequence_hash": "8ea3c48504e3b6682bd3fcabfa1b73ab68f00c5dd0017f482fbfbea8d7d8694b",
+      "sequence_id": "sequence-095",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        20
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "6-10"
+      ],
+      "position_key": "98fb547b4a3c8c06",
+      "sequence_hash": "085887bb0e9ddd237eb8899504244f4808f4a6dd5e2d556b7c58f354991ac93c",
+      "sequence_id": "sequence-096",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        25
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "7-10"
+      ],
+      "position_key": "9a8ad5c3c18fd6aa",
+      "sequence_hash": "aee3e4946c82d734d50607c20999f71e2d2304f1da343d4608d750177e0103ef",
+      "sequence_id": "sequence-097",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        33
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "9-13"
+      ],
+      "position_key": "81b7dfe96d716cf8",
+      "sequence_hash": "bf80d43bf94661abfdc6d799df632a7417fc4290862a98d012e5ffacb274a92a",
+      "sequence_id": "sequence-098",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        41
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "6f4058c36a79e7ce",
+      "sequence_hash": "58831665d2a762561de3e183651f755af28e82a59dee5ea303d6232821112335",
+      "sequence_id": "sequence-099",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        40
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "11-16"
+      ],
+      "position_key": "899201c53dbedd6c",
+      "sequence_hash": "a0ecf07394275e9bbf2b555107d90d7db6885f122aff1b112c6e61c991d54319",
+      "sequence_id": "sequence-100",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        45
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "12-16"
+      ],
+      "position_key": "b1d938fd2aed727d",
+      "sequence_hash": "d402eed3c6584dfba238e9ff53027449af8d496ec7505e258a69d916208386d4",
+      "sequence_id": "sequence-101",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        41,
+        53
+      ],
+      "moves": [
+        "10-14",
+        "22-18",
+        "14-17"
+      ],
+      "position_key": "62ae53e9e6037fe9",
+      "sequence_hash": "a5387d4e3f524653c5935956128c89655e5fcd00fb42f4f4772d42fa6da80137",
+      "sequence_id": "sequence-102",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        36,
+        52
+      ],
+      "moves": [
+        "10-14",
+        "23-18",
+        "14x23"
+      ],
+      "position_key": "b6b58aaf4a01e93b",
+      "sequence_hash": "0f7a6d0501783dcba791964333803742b1efc238d66eeff688f0ffb70c7834c4",
+      "sequence_id": "sequence-103",
+      "state": "CHK1;RM=00400dff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        20
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "6-10"
+      ],
+      "position_key": "0cc549796fbe868f",
+      "sequence_hash": "91c5e2b3b17caed75a3323e1d347c089a6f502179066f1c49d39e0415527ab00",
+      "sequence_id": "sequence-104",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        25
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "7-10"
+      ],
+      "position_key": "0eb4c8c1e40ddc23",
+      "sequence_hash": "423f51cfd88f1bf73f128a0401d497453f412a4b1d84dcfed27dafba239998f9",
+      "sequence_id": "sequence-105",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        33
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "9-13"
+      ],
+      "position_key": "1589c2eb48f36671",
+      "sequence_hash": "7647d902e969edbf6cd528de1bed777546c4444605c20e53a8ee92840d5a4c8b",
+      "sequence_id": "sequence-106",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        41
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "11-15"
+      ],
+      "position_key": "fb7e45c14ffbed47",
+      "sequence_hash": "4c76e2fd03f00f9505d172a55ed523d953bccb6bcd84086b303f38f03d5684a9",
+      "sequence_id": "sequence-107",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        40
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "1dac1cc7183cd7e5",
+      "sequence_hash": "8d3b61ea76644aa2337cfdde0699d9fe2a8d0070fc7b8484358015966f30e7d1",
+      "sequence_id": "sequence-108",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        45
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "25e725ff0f6f78f4",
+      "sequence_hash": "147f4618f74eefcbf3219e5455bf353fa8c08f54eefd1cf40a974060adc1410f",
+      "sequence_id": "sequence-109",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        53
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "14-17"
+      ],
+      "position_key": "f6904eebc3817560",
+      "sequence_hash": "bcc3be531f3c67ced476eb839a0bcdbe3662dc46481b1407c1edce9a35f786d0",
+      "sequence_id": "sequence-110",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        37,
+        52
+      ],
+      "moves": [
+        "10-14",
+        "23-19",
+        "14-18"
+      ],
+      "position_key": "0dcdbc1d348c049d",
+      "sequence_hash": "c46f98a5e15e1ff995f719f0b751c4b4512344443f4e0ceffe051d5df52f7b9d",
+      "sequence_id": "sequence-111",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        20
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "6-10"
+      ],
+      "position_key": "57b30f63bb9d7569",
+      "sequence_hash": "bf83ee64356a96df476b12338e5aab6eb73b42dd67973b933838702406ded8ef",
+      "sequence_id": "sequence-112",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        25
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "7-10"
+      ],
+      "position_key": "55c28edb302e2fc5",
+      "sequence_hash": "b9a271e4881db3d16c44d106d4c3fac29ee9d81657e8880d332d9da434bbd179",
+      "sequence_id": "sequence-113",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        33
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "9-13"
+      ],
+      "position_key": "4eff84f19cd09597",
+      "sequence_hash": "bb5d6f4a536bdfbec09fc453364db47892614fe48427aed39936cdcfc7c16f36",
+      "sequence_id": "sequence-114",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        41
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "a00803db9bd81ea1",
+      "sequence_hash": "0627e38ee6da7e0465af56e70139ed685ad5423730f2a0667a2917ffb0711d30",
+      "sequence_id": "sequence-115",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        40
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "11-16"
+      ],
+      "position_key": "46da5addcc1f2403",
+      "sequence_hash": "6d32b997d10906f58af370a139601b0bd4442794dccedef9eba68898d1671b79",
+      "sequence_id": "sequence-116",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        45
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "12-16"
+      ],
+      "position_key": "7e9163e5db4c8b12",
+      "sequence_hash": "1628d9755ae4fef522b0eebf8c8dd71ee428ad408b8fefbd33b941438129a7f1",
+      "sequence_id": "sequence-117",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        53
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "14-17"
+      ],
+      "position_key": "ade608f117a28686",
+      "sequence_hash": "efa234b455687edc4f03a0e173dbeb9ddf3f2dd67d5fdbb92b138e90185b61de",
+      "sequence_id": "sequence-118",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        32,
+        52
+      ],
+      "moves": [
+        "10-14",
+        "24-19",
+        "14-18"
+      ],
+      "position_key": "56bbfa07e0aff77b",
+      "sequence_hash": "0a385a65719338928f894c52743285259e344fa58e6af9e53981777f296ae747",
+      "sequence_id": "sequence-119",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        20
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "6-10"
+      ],
+      "position_key": "3b9e93b816501c7c",
+      "sequence_hash": "c559004c36b35d7c070cfe24a2f273f79b4eccfa9e15f95b5dc27bf355995c99",
+      "sequence_id": "sequence-120",
+      "state": "CHK1;RM=00002fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        25
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "7-10"
+      ],
+      "position_key": "39ef12009de346d0",
+      "sequence_hash": "320366c1c6ddcbcf0294bde5214884f2c6125ac9b5eb1f941ab9c4340803e180",
+      "sequence_id": "sequence-121",
+      "state": "CHK1;RM=00002fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        33
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "9-13"
+      ],
+      "position_key": "22d2182a311dfc82",
+      "sequence_hash": "7ff83667102da949384cda6299341cdf9225f16db5c7d5037e7bfe312bbdc9df",
+      "sequence_id": "sequence-122",
+      "state": "CHK1;RM=00003cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        41
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "cc259f00361577b4",
+      "sequence_hash": "8c236d4efac1506649be36ea71d29cb58113ed119202f9254c5fb8efee7b1bf5",
+      "sequence_id": "sequence-123",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        40
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "2af7c60661d24d16",
+      "sequence_hash": "2528010631cb702d317211432ff25cf704dfc64b0be0a7208e932030013c01eb",
+      "sequence_id": "sequence-124",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        45
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "12bcff3e7681e207",
+      "sequence_hash": "1b77ea7cc1e6c3435097613564ba5eb8b7d689839ef3f14ece56ae9e22199d0f",
+      "sequence_id": "sequence-125",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        53
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "14-17"
+      ],
+      "position_key": "c1cb942aba6fef93",
+      "sequence_hash": "6b866a8de2dd3fddd9014c1f64c1d717e4fda152281f8fcceb91d4d83029dff9",
+      "sequence_id": "sequence-126",
+      "state": "CHK1;RM=00010dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        37,
+        33,
+        52
+      ],
+      "moves": [
+        "10-14",
+        "24-20",
+        "14-18"
+      ],
+      "position_key": "3a9666dc4d629e6e",
+      "sequence_hash": "8786f0aecca2e5d239e760355e46f3eece5485149154f6428e8de423f1da55c9",
+      "sequence_id": "sequence-127",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        20
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "6-10"
+      ],
+      "position_key": "9bd09eb5f8272d11",
+      "sequence_hash": "6e44909412500589b7e32acc8a3f7802a3ee26b29331f2cfa7eff40e6b980339",
+      "sequence_id": "sequence-128",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        25
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "7-10"
+      ],
+      "position_key": "99a11f0d739477bd",
+      "sequence_hash": "ed30a6dfb8f62f0bb616b42ffd2bbeaea13c8883316fd7c62bbb899d5675b235",
+      "sequence_id": "sequence-129",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        33
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "9-13"
+      ],
+      "position_key": "829c1527df6acdef",
+      "sequence_hash": "fb8b675a918d6007ea1f3f33d1a848efffc9a204491770d7e5797a87a9dae77e",
+      "sequence_id": "sequence-130",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        32
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "943ff491591ddc88",
+      "sequence_hash": "e37eb0821e77b0d116957d74e8bbb1eb7b9b6b034e402b09cce63d9c87bc1a6e",
+      "sequence_id": "sequence-131",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        40
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "11-16"
+      ],
+      "position_key": "8ab9cb0b8fa57c7b",
+      "sequence_hash": "7b7fc73d54870fce01d3e62b94354c3e2720b62b60b0a3c0d82f2b9aefdfaf4f",
+      "sequence_id": "sequence-132",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        45
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "b2f2f23398f6d36a",
+      "sequence_hash": "09f8b25cc5e520c214e212218c79af8bbe9e43479e642f1b3ca2b7ef8d0dab95",
+      "sequence_id": "sequence-133",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        57
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "15-18"
+      ],
+      "position_key": "0bf3aa623e44e8e6",
+      "sequence_hash": "06567fd13ef1ce7c3f982b9fa046e1fc885be7ae258e9a6ac5bc1a38aa94c12e",
+      "sequence_id": "sequence-134",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        45,
+        56
+      ],
+      "moves": [
+        "10-15",
+        "21-17",
+        "15-19"
+      ],
+      "position_key": "f866ca257581e496",
+      "sequence_hash": "9a8b64e7fa86a2976d1a8645d32570ee3b9f9d99e82256661fb28f40733b3058",
+      "sequence_id": "sequence-135",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        20
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "6-10"
+      ],
+      "position_key": "777da997283d013a",
+      "sequence_hash": "fb3d5d46e4696dd39c99d3c6d481703cf76b7008823053ce8b6605400ddf99eb",
+      "sequence_id": "sequence-136",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        25
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "7-10"
+      ],
+      "position_key": "750c282fa38e5b96",
+      "sequence_hash": "9c13f48d750692f19d2fb61c03aaa5a963b52c7276ab44f557ddf37555999189",
+      "sequence_id": "sequence-137",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        33
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "6e3122050f70e1c4",
+      "sequence_hash": "2709b0bc9cab0a8b2b7e334f4b8f8cfe302b78fa809608b42c267fec46e45415",
+      "sequence_id": "sequence-138",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        32
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "9-14"
+      ],
+      "position_key": "7892c3b38907f0a3",
+      "sequence_hash": "8483dee12a940376897c82a0cbaa16e1cc52737e74520b6815bc58f208d01039",
+      "sequence_id": "sequence-139",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        40
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "11-16"
+      ],
+      "position_key": "6614fc295fbf5050",
+      "sequence_hash": "11cbfa104794c78b6b87ad8409e4052093f00efc5b170f09d1afb29dd0aa417d",
+      "sequence_id": "sequence-140",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        45
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "5e5fc51148ecff41",
+      "sequence_hash": "a957e0811e1da62436e263e0f8f50037f9c20f784e4186a75f6d010802ac35c2",
+      "sequence_id": "sequence-141",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        57
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "15-18"
+      ],
+      "position_key": "e75e9d40ee5ec4cd",
+      "sequence_hash": "91c63ef8819fb17289a1567c22ec7171b47ecc6b893dab51418c3c69c1204374",
+      "sequence_id": "sequence-142",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        40,
+        56
+      ],
+      "moves": [
+        "10-15",
+        "22-17",
+        "15-19"
+      ],
+      "position_key": "14cbfd07a59bc8bd",
+      "sequence_hash": "b823fcb28de6341ee6167ac8e4a3f34cbf9f7db5c9272660f08664d0e7b779e5",
+      "sequence_id": "sequence-143",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        41,
+        57
+      ],
+      "moves": [
+        "10-15",
+        "22-18",
+        "15x22"
+      ],
+      "position_key": "f39b30290e268a41",
+      "sequence_hash": "c8ad7d559ac5b1f26e048e1572750d205d11cc0efd184ec9e30230eca166f114",
+      "sequence_id": "sequence-144",
+      "state": "CHK1;RM=00200dff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        20
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "6-10"
+      ],
+      "position_key": "bf60c1fb102a73a3",
+      "sequence_hash": "94b904df18d8e8dde6841323107ff62b427948f8a1d25816d57de843ddb79cb9",
+      "sequence_id": "sequence-145",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        25
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "7-10"
+      ],
+      "position_key": "bd1140439b99290f",
+      "sequence_hash": "4b10c96fbfbf65ecaa68b98f71c7dcf39fefae5cdca4ca43201988d259f05664",
+      "sequence_id": "sequence-146",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        33
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "9-13"
+      ],
+      "position_key": "a62c4a693767935d",
+      "sequence_hash": "e5cf54eb03906889f8ddc88eb3d57406699ebcbda56e131c16e2c538ce0da2c9",
+      "sequence_id": "sequence-147",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        32
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "b08fabdfb110823a",
+      "sequence_hash": "d9cab96a716cb632546d0973b0fe998f8b71d2da1b507e71e43240603dde96ca",
+      "sequence_id": "sequence-148",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        40
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "11-16"
+      ],
+      "position_key": "ae09944567a822c9",
+      "sequence_hash": "21bc3674291947cbec22af2c6aa0090b32fdb11ac5b2c295cb643598f4607fca",
+      "sequence_id": "sequence-149",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        45
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "9642ad7d70fb8dd8",
+      "sequence_hash": "1dbf99eb7db0cca2e25532bccfeaed5b00d5000a3710ccf02e1a02bc5b3f7a8a",
+      "sequence_id": "sequence-150",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        36,
+        56
+      ],
+      "moves": [
+        "10-15",
+        "23-18",
+        "15-19"
+      ],
+      "position_key": "dcd6956b9d8cba24",
+      "sequence_hash": "637973390820e91b8a02e134da7c423a37ebb1281f0065b988dc741dd1a8a2fc",
+      "sequence_id": "sequence-151",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        20
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "6-10"
+      ],
+      "position_key": "9dee88caf2efc16a",
+      "sequence_hash": "56196833bfa247bf0848d5de95243adf8507a9478300974e72d589e7a1c0dc7a",
+      "sequence_id": "sequence-152",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        25
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "7-10"
+      ],
+      "position_key": "9f9f0972795c9bc6",
+      "sequence_hash": "9d28ef78e65d7e8d76fd81b601e792d7cf613f3298e56071ed4ab1f4f37f9fb1",
+      "sequence_id": "sequence-153",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        33
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "9-13"
+      ],
+      "position_key": "84a20358d5a22194",
+      "sequence_hash": "384da3530032f4f5c87fc64f41f61f7eaab9afcd9238f440b8d5fbde4ff3b3e1",
+      "sequence_id": "sequence-154",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        32
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "9-14"
+      ],
+      "position_key": "9201e2ee53d530f3",
+      "sequence_hash": "0d8f8fd29da7083c431f78dd7512b0d47c144c0d39fa31b3f237d5cc5969385f",
+      "sequence_id": "sequence-155",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        40
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "11-16"
+      ],
+      "position_key": "8c87dd74856d9000",
+      "sequence_hash": "0b268381b9faca4fa7d95e0503e5f8e87bb3b254937fc0f6b0c51ca6f2fc6775",
+      "sequence_id": "sequence-156",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        45
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "b4cce44c923e3f11",
+      "sequence_hash": "95c6145d748f3bea28df4e6e5b13a08d310527af6656c8d8a9e78b88337a0d63",
+      "sequence_id": "sequence-157",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        37,
+        57
+      ],
+      "moves": [
+        "10-15",
+        "23-19",
+        "15-18"
+      ],
+      "position_key": "0dcdbc1d348c049d",
+      "sequence_hash": "de450c3de3d7b8c3a3f15b2972cf6b14a94609146b3bcfa47400bda83df2fd8c",
+      "sequence_id": "sequence-158",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        32,
+        56
+      ],
+      "moves": [
+        "10-15",
+        "24-19",
+        "15x24"
+      ],
+      "position_key": "7d702c7e67ea1112",
+      "sequence_hash": "7cb4f0672d2fe7869ecb7b007a57e3df3850dd931c71dcb3098ecb98821bb25e",
+      "sequence_id": "sequence-159",
+      "state": "CHK1;RM=00800dff;RK=00000000;WM=ff700000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        20
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "6-10"
+      ],
+      "position_key": "aab5520b8b015b99",
+      "sequence_hash": "8d964adb684286fce8ddf79ed60c76cb557b5ba2ae119506b2c2bbbb13d98a08",
+      "sequence_id": "sequence-160",
+      "state": "CHK1;RM=00004fdf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        25
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "7-10"
+      ],
+      "position_key": "a8c4d3b300b20135",
+      "sequence_hash": "d4b5eeddb80cc67426d1074cfee02b9a7cef91c8edabe2d6293420c52c850199",
+      "sequence_id": "sequence-161",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        33
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "9-13"
+      ],
+      "position_key": "b3f9d999ac4cbb67",
+      "sequence_hash": "2085fb0872390eceb691dcd2b5715a05c2571cf8da0db8a25766b4a1090cd091",
+      "sequence_id": "sequence-162",
+      "state": "CHK1;RM=00005cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        32
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "9-14"
+      ],
+      "position_key": "a55a382f2a3baa00",
+      "sequence_hash": "74e3a9335c85e5ff7cf63f6e65e82a536a28b180162b0f9427d05f906b92609a",
+      "sequence_id": "sequence-163",
+      "state": "CHK1;RM=00006cff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        40
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "11-16"
+      ],
+      "position_key": "bbdc07b5fc830af3",
+      "sequence_hash": "328f9c8ae9efe2ded40af0182e9118a4edeb5aa5f33ae35e26ecb7100ae6b37d",
+      "sequence_id": "sequence-164",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        45
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "83973e8debd0a5e2",
+      "sequence_hash": "ed8430a461798c9836893bbecbbfc3d68577582f22e7c18741ae1c2ba2e1d2dd",
+      "sequence_id": "sequence-165",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        57
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "15-18"
+      ],
+      "position_key": "3a9666dc4d629e6e",
+      "sequence_hash": "f687709ea25d459913cdf130fde3487c74d7096366ac8f48e8f7fcf5a8271fc0",
+      "sequence_id": "sequence-166",
+      "state": "CHK1;RM=00020dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        36,
+        33,
+        56
+      ],
+      "moves": [
+        "10-15",
+        "24-20",
+        "15-19"
+      ],
+      "position_key": "c903069b06a7921e",
+      "sequence_hash": "6ab597ef485fea5ffc4d1e050b9d37a4267d2babca3b64c8a13116f79f96ac4a",
+      "sequence_id": "sequence-167",
+      "state": "CHK1;RM=00040dff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        24
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "7-11"
+      ],
+      "position_key": "99a11f0d739477bd",
+      "sequence_hash": "6c166b0a5a0b25d7f646ffef0c7201842f0ec67b3f8aa6249d442b5ed29c509f",
+      "sequence_id": "sequence-168",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        29
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "8-11"
+      ],
+      "position_key": "e0ebee94ed02b42e",
+      "sequence_hash": "93a4d454ba70cce068f8e3fd4b198b87d692fb8afb8c6dc74cc1bb236bef2d33",
+      "sequence_id": "sequence-169",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        33
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "9-13"
+      ],
+      "position_key": "5167f52667066cc8",
+      "sequence_hash": "5cf30c4d381607cbdd916b6ca21d186c1a6e3b81cd174c0aeba468e0da061d9a",
+      "sequence_id": "sequence-170",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        32
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "47c41490e1717daf",
+      "sequence_hash": "1415536d67984931ea67bf65c1729ad5f40c767807393d6cd66773a7e7cb21ab",
+      "sequence_id": "sequence-171",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        37
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "fd4053be4533013c",
+      "sequence_hash": "6f7dad14c4d7456b0b333e5b0c16fb6f0f5a820f80e2db5f5741e4d69b33e2b8",
+      "sequence_id": "sequence-172",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        45
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "12-16"
+      ],
+      "position_key": "61091232209a724d",
+      "sequence_hash": "f96b3dbb4a117598ca9c8275f9a4793cfa44617692519ca9c467a2ad90a4cfc0",
+      "sequence_id": "sequence-173",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        57
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "15-18"
+      ],
+      "position_key": "d8084a63862849c1",
+      "sequence_hash": "a583b832abba6d59c87e2023f53ce33e9f8abb63bf4a66d378980b394e2f1cdf",
+      "sequence_id": "sequence-174",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        45,
+        56
+      ],
+      "moves": [
+        "11-15",
+        "21-17",
+        "15-19"
+      ],
+      "position_key": "2b9d2a24cded45b1",
+      "sequence_hash": "0ef594371f0f9312ec73bc2fd3d5ac1ab36cb9f586101952fd3f76c335ed2a72",
+      "sequence_id": "sequence-175",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        24
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "7-11"
+      ],
+      "position_key": "750c282fa38e5b96",
+      "sequence_hash": "17933e0ffcf9ef8a5500c454702186ab2124a1133a5c26e5d6f88be27e83f2b7",
+      "sequence_id": "sequence-176",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        29
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "8-11"
+      ],
+      "position_key": "0c46d9b63d189805",
+      "sequence_hash": "efdae181fac9c644171dd4b4e7ef0b8459d1b87a31c14ce4af9e7b2c66bbe837",
+      "sequence_id": "sequence-177",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        33
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "bdcac204b71c40e3",
+      "sequence_hash": "b1d96a7e85ce04cae9b2948c5837b3162fc167ccab3ab87a218ea7a9b99a2410",
+      "sequence_id": "sequence-178",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        32
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "9-14"
+      ],
+      "position_key": "ab6923b2316b5184",
+      "sequence_hash": "567e856a01e04ce5fe90f5032bf1a01936c27366498492e41f7c3982038f7337",
+      "sequence_id": "sequence-179",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        37
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "10-14"
+      ],
+      "position_key": "11ed649c95292d17",
+      "sequence_hash": "0548d7256e453fd5e4c1bf69b8fe8746b3bc89705d5d7e13421541e4ae70ff21",
+      "sequence_id": "sequence-180",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        45
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "12-16"
+      ],
+      "position_key": "8da42510f0805e66",
+      "sequence_hash": "d667baaada456c69a3ebc013b6053202b3c3f62f23e5269603ff615a0a8aa06d",
+      "sequence_id": "sequence-181",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        57
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "15-18"
+      ],
+      "position_key": "34a57d41563265ea",
+      "sequence_hash": "61d1fd8c6e77b78c6489ec07cfb83953bf984b2324be7692d461795b9cd40ec3",
+      "sequence_id": "sequence-182",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        40,
+        56
+      ],
+      "moves": [
+        "11-15",
+        "22-17",
+        "15-19"
+      ],
+      "position_key": "c7301d061df7699a",
+      "sequence_hash": "0a51b33817e1303da588e8267d4f83ff029cf4136e6530c414bc62b2d9f1ade5",
+      "sequence_id": "sequence-183",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        41,
+        57
+      ],
+      "moves": [
+        "11-15",
+        "22-18",
+        "15x22"
+      ],
+      "position_key": "2060d028b64a2b66",
+      "sequence_hash": "d309460f0e6ed63825f08103fbb90c9fe98e0b28eb87df988add5fe609dea344",
+      "sequence_id": "sequence-184",
+      "state": "CHK1;RM=00200bff;RK=00000000;WM=ffd00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        24
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "7-11"
+      ],
+      "position_key": "bd1140439b99290f",
+      "sequence_hash": "e42fddbd5bd86d015c785008d86be80ef59c56fada96ef8fce76637971272589",
+      "sequence_id": "sequence-185",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        29
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "8-11"
+      ],
+      "position_key": "c45bb1da050fea9c",
+      "sequence_hash": "754cecec9b071f5df2325044cfc8f7e1d4afc49516446d6442bbbce5f68dc6a5",
+      "sequence_id": "sequence-186",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        33
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "9-13"
+      ],
+      "position_key": "75d7aa688f0b327a",
+      "sequence_hash": "017eb056b6c6df3835187869c9315b2270531913acfad9f329ecc39ae0069803",
+      "sequence_id": "sequence-187",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        32
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "63744bde097c231d",
+      "sequence_hash": "d9f849872a5f196052b6643fdec6f09f98e2c83f6b321a556deb61d69fe8e7e3",
+      "sequence_id": "sequence-188",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        37
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "d9f00cf0ad3e5f8e",
+      "sequence_hash": "fb0fc34a09903857e68e45089aec05022d3f839d625cb5c960b1ff7db80dc818",
+      "sequence_id": "sequence-189",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        45
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "12-16"
+      ],
+      "position_key": "45b94d7cc8972cff",
+      "sequence_hash": "ced9cf0a7ea855d1741ec6008dfda0541af18d38f5b94a94512524e28affc957",
+      "sequence_id": "sequence-190",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        36,
+        56
+      ],
+      "moves": [
+        "11-15",
+        "23-18",
+        "15-19"
+      ],
+      "position_key": "0f2d756a25e01b03",
+      "sequence_hash": "c2d2f26adad250d399008a1789867a24b7380983f55128be39eeb6e4f1c1659f",
+      "sequence_id": "sequence-191",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        24
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "7-11"
+      ],
+      "position_key": "9f9f0972795c9bc6",
+      "sequence_hash": "bbbc7bec7866787050011d53c6eb36bf18420998e42fc9f7f48919dae68a13ae",
+      "sequence_id": "sequence-192",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        29
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "8-11"
+      ],
+      "position_key": "e6d5f8ebe7ca5855",
+      "sequence_hash": "1a1800da6cd61d9da6136e905bb1be11a94bcbb62e31a953780aa7bc0ed7b01e",
+      "sequence_id": "sequence-193",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        33
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "9-13"
+      ],
+      "position_key": "5759e3596dce80b3",
+      "sequence_hash": "b583cdb08ee0e023eb1d15bcfcdba91d8a51d8e3203cbd71dc9ae3b33d9cecf2",
+      "sequence_id": "sequence-194",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        32
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "9-14"
+      ],
+      "position_key": "41fa02efebb991d4",
+      "sequence_hash": "47135f0b290cede0bca81658ea03a21d826362081f991dc7108874b495795350",
+      "sequence_id": "sequence-195",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        37
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "10-14"
+      ],
+      "position_key": "fb7e45c14ffbed47",
+      "sequence_hash": "02aa03211e023300b259caae8f7549db8bc5d6f3c471827fa819f30ce20a7724",
+      "sequence_id": "sequence-196",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        45
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "12-16"
+      ],
+      "position_key": "6737044d2a529e36",
+      "sequence_hash": "8c01b86ffac3b7db7579964f50a3813592997a5304649afabf0211297953b76a",
+      "sequence_id": "sequence-197",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        37,
+        57
+      ],
+      "moves": [
+        "11-15",
+        "23-19",
+        "15-18"
+      ],
+      "position_key": "de365c1c8ce0a5ba",
+      "sequence_hash": "4d9244f15e68931970d59be01a691b59975fac4839fc6a7ebaa7163fda9095e5",
+      "sequence_id": "sequence-198",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ffb40000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        32,
+        56
+      ],
+      "moves": [
+        "11-15",
+        "24-19",
+        "15x24"
+      ],
+      "position_key": "ae8bcc7fdf86b035",
+      "sequence_hash": "a3fa33ad7d25bf7c72b5a20872b8dcf666400e5e3d0025e842b64bded87f7840",
+      "sequence_id": "sequence-199",
+      "state": "CHK1;RM=00800bff;RK=00000000;WM=ff700000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        24
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "7-11"
+      ],
+      "position_key": "a8c4d3b300b20135",
+      "sequence_hash": "6ad1d1d145e1dde85545993377536ae79df86330b9cd3d392c999004c51288f3",
+      "sequence_id": "sequence-200",
+      "state": "CHK1;RM=00004fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        29
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "8-11"
+      ],
+      "position_key": "d18e222a9e24c2a6",
+      "sequence_hash": "0cc2a4b0eb8b01f4433ae98d7e36a03091873c477d1de0e12bd0ab701cfb51a5",
+      "sequence_id": "sequence-201",
+      "state": "CHK1;RM=00004f7f;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        33
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "9-13"
+      ],
+      "position_key": "6002399814201a40",
+      "sequence_hash": "976bb23e03997561be1eabc0e2182045fac25149b94e7793e3b8f87283b9d785",
+      "sequence_id": "sequence-202",
+      "state": "CHK1;RM=00005aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        32
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "9-14"
+      ],
+      "position_key": "76a1d82e92570b27",
+      "sequence_hash": "a313f60ffd35c176f2255436c8525573f3aa8deddbf3454a182c69c6c5d87df9",
+      "sequence_id": "sequence-203",
+      "state": "CHK1;RM=00006aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        37
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "10-14"
+      ],
+      "position_key": "cc259f00361577b4",
+      "sequence_hash": "b1d8b8f7f11189f0fbac1fff7750158af690eb74fc37ebe377003a86b7eb840a",
+      "sequence_id": "sequence-204",
+      "state": "CHK1;RM=000069ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        45
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "12-16"
+      ],
+      "position_key": "506cde8c53bc04c5",
+      "sequence_hash": "dc7dad1b6248d406edca9aa9c774dcd4c11274cafd9db72cf56f0aacef644b16",
+      "sequence_id": "sequence-205",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        57
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "15-18"
+      ],
+      "position_key": "e96d86ddf50e3f49",
+      "sequence_hash": "8977ad91c2f2d4113a1ef7a8d926c2571360b25239d160236351f0fc9088de75",
+      "sequence_id": "sequence-206",
+      "state": "CHK1;RM=00020bff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        41,
+        33,
+        56
+      ],
+      "moves": [
+        "11-15",
+        "24-20",
+        "15-19"
+      ],
+      "position_key": "1af8e69abecb3339",
+      "sequence_hash": "66930be656e3e448f4f2d320b6d44c9d7c024883668360e631e7294389673ed7",
+      "sequence_id": "sequence-207",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "7-11"
+      ],
+      "position_key": "7f73460b24534d1f",
+      "sequence_hash": "0631601c8522ddc8cc0457d234a5086b11ef849536efa37e84e36688ef9d80d5",
+      "sequence_id": "sequence-208",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "8-11"
+      ],
+      "position_key": "0639b792bac58e8c",
+      "sequence_hash": "f053d3b4022ccb2f1942de7b2a700dd5c0f037bf82cf019be3e34785d1a92dbd",
+      "sequence_id": "sequence-209",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "9-13"
+      ],
+      "position_key": "b7b5ac2030c1566a",
+      "sequence_hash": "c9a85c395e4a43b90f2aaf1e5c6aebd0432ec9ebb83c21a1cf5f1d25912a02a9",
+      "sequence_id": "sequence-210",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "a1164d96b6b6470d",
+      "sequence_hash": "3fa68e787ce659b28510f3d407d58c7ca4554b1d8b057252e2ec9bd436b6f7e4",
+      "sequence_id": "sequence-211",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "1b920ab812f43b9e",
+      "sequence_hash": "517d9587e7e71e7603c957951d2308148d2c45ee853f150d067056f364ef14ae",
+      "sequence_id": "sequence-212",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "10-15"
+      ],
+      "position_key": "8ab9cb0b8fa57c7b",
+      "sequence_hash": "1636b81887b0413ee7d9824bd6718e42ff2f4d1ee8a064395f706739dfdcd0d0",
+      "sequence_id": "sequence-213",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "16-19"
+      ],
+      "position_key": "2b9d2a24cded45b1",
+      "sequence_hash": "66b70e6c9ca54a74ee19c15eb91da624f6020d8c43055161c8f1ba586aeee0ab",
+      "sequence_id": "sequence-214",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        45,
+        60
+      ],
+      "moves": [
+        "11-16",
+        "21-17",
+        "16-20"
+      ],
+      "position_key": "1563bcd45d5a3266",
+      "sequence_hash": "ee3b09f9b426cc97c2bcd68201845e1d9ca3f82fb8275b91c544c96c5c15fa36",
+      "sequence_id": "sequence-215",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "7-11"
+      ],
+      "position_key": "93de7129f4496134",
+      "sequence_hash": "6b63ccfa8963306ffede10c7ef7926996e87a3b06539700bcb1d6d37eec035b7",
+      "sequence_id": "sequence-216",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "8-11"
+      ],
+      "position_key": "ea9480b06adfa2a7",
+      "sequence_hash": "f80d4dca0a9849db1c399eec8cd31e06308adb11a91459c46728652aa3186207",
+      "sequence_id": "sequence-217",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "5b189b02e0db7a41",
+      "sequence_hash": "f520a1c9f971e753dea27df3c67cdaf51e33aaf768659b1cf0b2b8c7d6987121",
+      "sequence_id": "sequence-218",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "9-14"
+      ],
+      "position_key": "4dbb7ab466ac6b26",
+      "sequence_hash": "18fb6b179c7c25b27efc8d637afdf90cb5bc9f7d5ee393ecd689bb1c3b34a89f",
+      "sequence_id": "sequence-219",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "10-14"
+      ],
+      "position_key": "f73f3d9ac2ee17b5",
+      "sequence_hash": "fe82cb813ad9079f2ba6cdc491f6fe32959450ca90cdb55fcdf9725e45c8c1ea",
+      "sequence_id": "sequence-220",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "10-15"
+      ],
+      "position_key": "6614fc295fbf5050",
+      "sequence_hash": "87b35375f3332fa736cd6772ca8dbb58291e50dffc15eb7d37252506c288bc74",
+      "sequence_id": "sequence-221",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "16-19"
+      ],
+      "position_key": "c7301d061df7699a",
+      "sequence_hash": "c7c37a1909e0804e4eea534719826ab6982632946155e8cbe053d5091f887518",
+      "sequence_id": "sequence-222",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        40,
+        60
+      ],
+      "moves": [
+        "11-16",
+        "22-17",
+        "16-20"
+      ],
+      "position_key": "f9ce8bf68d401e4d",
+      "sequence_hash": "79c7f922608c4e1cac2721a70e9b7ce34bacd3575f057203b4b9ab87f8573254",
+      "sequence_id": "sequence-223",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "7-11"
+      ],
+      "position_key": "ed734d760b19abed",
+      "sequence_hash": "c7bdae2eb70e9916041d9523a6ba0753c62828a609dffa3bf7dc757a193baf58",
+      "sequence_id": "sequence-224",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "8-11"
+      ],
+      "position_key": "9439bcef958f687e",
+      "sequence_hash": "db123f05f1f5ef456b2acea79cb96c1412d7b606e2d5c904a3806e30fc8e8b8d",
+      "sequence_id": "sequence-225",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "9-13"
+      ],
+      "position_key": "25b5a75d1f8bb098",
+      "sequence_hash": "6416e3fc56cc4fb80a7cf452ba0cb716d6ce905856358506465defd8393c254e",
+      "sequence_id": "sequence-226",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "9-14"
+      ],
+      "position_key": "331646eb99fca1ff",
+      "sequence_hash": "90d8cad381388c9a0c0de6b1b87c8219853e3b255d48818ced35bc9982acedb4",
+      "sequence_id": "sequence-227",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "10-14"
+      ],
+      "position_key": "899201c53dbedd6c",
+      "sequence_hash": "f7aa073965f7908d3ac885087bf580c274197e5a010bdc607ea320a56bbbdb06",
+      "sequence_id": "sequence-228",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "18b9c076a0ef9a89",
+      "sequence_hash": "bb24fe77d3c3feabefc5070460dd21eea757134e863037a40bb5e8325affb96e",
+      "sequence_id": "sequence-229",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "16-19"
+      ],
+      "position_key": "b99d2159e2a7a343",
+      "sequence_hash": "61c5702a7da07ee97e9201c68d3fcc74bc839b26201a7f1281249b90d010230a",
+      "sequence_id": "sequence-230",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        41,
+        60
+      ],
+      "moves": [
+        "11-16",
+        "22-18",
+        "16-20"
+      ],
+      "position_key": "8763b7a97210d494",
+      "sequence_hash": "994a15687f2a8df18cbb98d04830533e21e117c4cfd91bf4c9bea1da1942a52d",
+      "sequence_id": "sequence-231",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "7-11"
+      ],
+      "position_key": "5bc31945cc5e13ad",
+      "sequence_hash": "52bde6d13e7da01d0cd99d88d70d446f7aa4a22b84eef2b874937b483105a655",
+      "sequence_id": "sequence-232",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "8-11"
+      ],
+      "position_key": "2289e8dc52c8d03e",
+      "sequence_hash": "fdd63983d9c28a2a06e5fd9a618a1ae732048220809c2e90527ce31f6299fa1e",
+      "sequence_id": "sequence-233",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "9-13"
+      ],
+      "position_key": "9305f36ed8cc08d8",
+      "sequence_hash": "761f8e78a0d2567a99f6736f8a6059099643ca10043a97d777da4b30a7348fd1",
+      "sequence_id": "sequence-234",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "85a612d85ebb19bf",
+      "sequence_hash": "8f9a20c584cb1de787257067d9428203c9e30d5d0788232ecb837da94a1c12e5",
+      "sequence_id": "sequence-235",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "3f2255f6faf9652c",
+      "sequence_hash": "13b769a0269d2b9b36528b98f026b65fc961cf906d1b193c7e527bab3108fb50",
+      "sequence_id": "sequence-236",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "10-15"
+      ],
+      "position_key": "ae09944567a822c9",
+      "sequence_hash": "df260588cc507d216401916b8b344ee326577394ac75acf5c0ab636ae16df1e7",
+      "sequence_id": "sequence-237",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "16-19"
+      ],
+      "position_key": "0f2d756a25e01b03",
+      "sequence_hash": "9566eeb7e28f1ba472c749e55cbdb0ce8a63b93616f640890beb46c35459dcc5",
+      "sequence_id": "sequence-238",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        36,
+        60
+      ],
+      "moves": [
+        "11-16",
+        "23-18",
+        "16-20"
+      ],
+      "position_key": "31d3e39ab5576cd4",
+      "sequence_hash": "d1b82135313edcb2f01104c9344673bcff0ff04f943b6d57613254dfab17838a",
+      "sequence_id": "sequence-239",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        37,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "23-19",
+        "16x23"
+      ],
+      "position_key": "654e6aaef26d481c",
+      "sequence_hash": "9cf3523e7ec89a01129058a92f533d59c2f0c04b944e527a72e91d489e543f19",
+      "sequence_id": "sequence-240",
+      "state": "CHK1;RM=00400bff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "7-11"
+      ],
+      "position_key": "223b166efab85282",
+      "sequence_hash": "912ab969a2669b7353fed395735cf0b5fe8426118aab83318503535ce6ac97bc",
+      "sequence_id": "sequence-241",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "8-11"
+      ],
+      "position_key": "5b71e7f7642e9111",
+      "sequence_hash": "26ba31dfc78a9fd729393f63c1f5d66132f2c77f8d8516cbfbb7150e5a3e1f53",
+      "sequence_id": "sequence-242",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "9-13"
+      ],
+      "position_key": "eafdfc45ee2a49f7",
+      "sequence_hash": "2d2a386934e1786a6f83d1fe7b23a0f1bd53a199359e3c5069e35cd37410e2a2",
+      "sequence_id": "sequence-243",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "9-14"
+      ],
+      "position_key": "fc5e1df3685d5890",
+      "sequence_hash": "60f07fcbe49766bf2dfc1a6486928dd8dcd6e400934bc06c0b6c059d3e3791ff",
+      "sequence_id": "sequence-244",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "10-14"
+      ],
+      "position_key": "46da5addcc1f2403",
+      "sequence_hash": "a44274892273056e092792661b47d279d0f7c3befd3e951b87baf6a7524e2ec9",
+      "sequence_id": "sequence-245",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "d7f19b6e514e63e6",
+      "sequence_hash": "a96171bdf89a2fad81cc608e4184401f49f94853737db3e439305bf17dd40092",
+      "sequence_id": "sequence-246",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        32,
+        60
+      ],
+      "moves": [
+        "11-16",
+        "24-19",
+        "16-20"
+      ],
+      "position_key": "482becb183b12dfb",
+      "sequence_hash": "41af4edb04d3aee03ba19406a42bb5c3ecd8818a002c62d8912aea58525a18a8",
+      "sequence_id": "sequence-247",
+      "state": "CHK1;RM=00080bff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        24
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "7-11"
+      ],
+      "position_key": "4e168ab557753b97",
+      "sequence_hash": "fdf074ea726f77181f945b25c436476549279adeb788e5a22cdcfb20d2c9f8bc",
+      "sequence_id": "sequence-248",
+      "state": "CHK1;RM=00008fbf;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        29
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "8-11"
+      ],
+      "position_key": "375c7b2cc9e3f804",
+      "sequence_hash": "b495462ba86a6b42166e6987719de2cd5f59070f052857baa8f6691b42762fc3",
+      "sequence_id": "sequence-249",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        33
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "9-13"
+      ],
+      "position_key": "86d0609e43e720e2",
+      "sequence_hash": "9d94760cad132ee5058d3b5d824ccb74bf69792e86b8dc7dd521867350392873",
+      "sequence_id": "sequence-250",
+      "state": "CHK1;RM=00009aff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        32
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "9-14"
+      ],
+      "position_key": "90738128c5903185",
+      "sequence_hash": "2da3c45927f4dccf4a8e9e99e4caec70757721eb2ffcda11222fa8e9086c2d23",
+      "sequence_id": "sequence-251",
+      "state": "CHK1;RM=0000aaff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        37
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "10-14"
+      ],
+      "position_key": "2af7c60661d24d16",
+      "sequence_hash": "addb8f7ef023fd1506ebee84e9046762b8879fbc41521f03d8fb56c03ed2e401",
+      "sequence_id": "sequence-252",
+      "state": "CHK1;RM=0000a9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        36
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "bbdc07b5fc830af3",
+      "sequence_hash": "915b466018e7130e09e33cc641563f0b103959b3404bd3fad689fabb86a9ce29",
+      "sequence_id": "sequence-253",
+      "state": "CHK1;RM=0000c9ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        40,
+        33,
+        61
+      ],
+      "moves": [
+        "11-16",
+        "24-20",
+        "16-19"
+      ],
+      "position_key": "1af8e69abecb3339",
+      "sequence_hash": "bdd83652458ba2aeee731785f4bf477b9f8793b1c64dc37cb4e986c3750516f2",
+      "sequence_id": "sequence-254",
+      "state": "CHK1;RM=00040bff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "8-12"
+      ],
+      "position_key": "0639b792bac58e8c",
+      "sequence_hash": "1a08196fca4c511555270c7cd53cc8597eab91e85f182d1caffb0efcf0cd6eef",
+      "sequence_id": "sequence-255",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "9-13"
+      ],
+      "position_key": "8ffe95182792f97b",
+      "sequence_hash": "b9d9a1d26f97010d88d8f4a1b51455083b5685c9ec708d9e38cc61ca02c0b6b1",
+      "sequence_id": "sequence-256",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "9-14"
+      ],
+      "position_key": "995d74aea1e5e81c",
+      "sequence_hash": "f49105e59db0066571f257bf453c971a314ab9d05a6e9ff14d1c605a474a7986",
+      "sequence_id": "sequence-257",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "10-14"
+      ],
+      "position_key": "23d9338005a7948f",
+      "sequence_hash": "d65e3397ddfa99acde4fc408fa26b040117f9119d15572ef9b9179a777c08cef",
+      "sequence_id": "sequence-258",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "10-15"
+      ],
+      "position_key": "b2f2f23398f6d36a",
+      "sequence_hash": "fc060e10d0104b7e406c66847e83732d337bc0950c76f6b76ffbae3afa02624d",
+      "sequence_id": "sequence-259",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "11-15"
+      ],
+      "position_key": "61091232209a724d",
+      "sequence_hash": "00410751aea0b7896c8b6ed1eebc242a4aca9a5495785f520a70a69123eb5dc0",
+      "sequence_id": "sequence-260",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "16-19"
+      ],
+      "position_key": "13d6131cdabeeaa0",
+      "sequence_hash": "a17af5ed15232aed93a69aef4ee99b6a6663902aa0f87b4dfe9bb5908645c5d1",
+      "sequence_id": "sequence-261",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        45,
+        60
+      ],
+      "moves": [
+        "12-16",
+        "21-17",
+        "16-20"
+      ],
+      "position_key": "2d2885ec4a099d77",
+      "sequence_hash": "993a9681b522046ec9f15b7d8f7cc6ddd5e6418a1ec8a447cbfecf99a7555636",
+      "sequence_id": "sequence-262",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffe10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "8-12"
+      ],
+      "position_key": "ea9480b06adfa2a7",
+      "sequence_hash": "9a8d957463d9e95ec17546f2556d663ac0a80bd7986945e2cbd239553e08e56d",
+      "sequence_id": "sequence-263",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "9-13"
+      ],
+      "position_key": "6353a23af788d550",
+      "sequence_hash": "7a59efbd40a4787e753a38db5106b6cdaaa5e51a8536080d9b1cb5182ac10762",
+      "sequence_id": "sequence-264",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "9-14"
+      ],
+      "position_key": "75f0438c71ffc437",
+      "sequence_hash": "cbe6769a7c8f9d9262b4d24d1dd74683f123deed9c674ef671f514f62d5f22fb",
+      "sequence_id": "sequence-265",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "10-14"
+      ],
+      "position_key": "cf7404a2d5bdb8a4",
+      "sequence_hash": "37056e205f95f73859b995d608335c8debdab012b079fca1a2471e2c57b68ac4",
+      "sequence_id": "sequence-266",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "10-15"
+      ],
+      "position_key": "5e5fc51148ecff41",
+      "sequence_hash": "280a68a41ab56a8e1374feb38fcec2882b3aa9738d202daf4c4a7f5104550695",
+      "sequence_id": "sequence-267",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "11-15"
+      ],
+      "position_key": "8da42510f0805e66",
+      "sequence_hash": "a3cb4a1c6684cffe24b54ddffc64d4147810fa1371fba2b44e092cb18f5c8a8f",
+      "sequence_id": "sequence-268",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "16-19"
+      ],
+      "position_key": "ff7b243e0aa4c68b",
+      "sequence_hash": "97276aab20353c30738d946b9bc3a8b8a5d275e2345949b5ef8ee2717ea013c7",
+      "sequence_id": "sequence-269",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        40,
+        60
+      ],
+      "moves": [
+        "12-16",
+        "22-17",
+        "16-20"
+      ],
+      "position_key": "c185b2ce9a13b15c",
+      "sequence_hash": "898fa7d5b416be979ed085d3178c6ac450beaf23e4bdfdf56a25c7f0c01dd3fe",
+      "sequence_id": "sequence-270",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffd10000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "8-12"
+      ],
+      "position_key": "9439bcef958f687e",
+      "sequence_hash": "7df7b26b62176a0be55bd2714869741c41c8cdf8e24cc9db00ec5a0e38a3f56e",
+      "sequence_id": "sequence-271",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "9-13"
+      ],
+      "position_key": "1dfe9e6508d81f89",
+      "sequence_hash": "be5d1372ecc4acacd47b07894bbc0957617d94be0386fe4fe1f709118a856c4c",
+      "sequence_id": "sequence-272",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "9-14"
+      ],
+      "position_key": "0b5d7fd38eaf0eee",
+      "sequence_hash": "282be0d1164a68a3bcf42df88848b685340c823eed3ca1f5fd47580c49dd5dc6",
+      "sequence_id": "sequence-273",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "10-14"
+      ],
+      "position_key": "b1d938fd2aed727d",
+      "sequence_hash": "57b6d79ca6bbe1ed9388941621fcf21d5790abb6548a911a68cfa9634451b4f2",
+      "sequence_id": "sequence-274",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "10-15"
+      ],
+      "position_key": "20f2f94eb7bc3598",
+      "sequence_hash": "4685a0bb92bb98e3dd4ae0ce64468e6380ee82b5d86f57545311f337c306e75a",
+      "sequence_id": "sequence-275",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "11-15"
+      ],
+      "position_key": "f309194f0fd094bf",
+      "sequence_hash": "10c48b3aa1e217cdd67778417a1ac31a0203a13759bbf1dfbf6e635d1a010719",
+      "sequence_id": "sequence-276",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "16-19"
+      ],
+      "position_key": "81d61861f5f40c52",
+      "sequence_hash": "efae1db46be98e23fca0e37b480807f53c969e1c541f72df4d8af1b603888b1c",
+      "sequence_id": "sequence-277",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        41,
+        60
+      ],
+      "moves": [
+        "12-16",
+        "22-18",
+        "16-20"
+      ],
+      "position_key": "bf288e9165437b85",
+      "sequence_hash": "d072aede4890c248b8e1b6a3dfc6eb116d3b1f3f1ecbd6988773163a9c61a400",
+      "sequence_id": "sequence-278",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffd20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "8-12"
+      ],
+      "position_key": "2289e8dc52c8d03e",
+      "sequence_hash": "b7a88cbdac70da0269db8cad28e73aade3c62f675a3275dd84ee42285c2425b1",
+      "sequence_id": "sequence-279",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "9-13"
+      ],
+      "position_key": "ab4eca56cf9fa7c9",
+      "sequence_hash": "44b6cb35f65e7da3f723a172db49dcb8eb97d77a0bc3821e2bcbde1b4e6b2536",
+      "sequence_id": "sequence-280",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "9-14"
+      ],
+      "position_key": "bded2be049e8b6ae",
+      "sequence_hash": "af49d58620140c14940e71c7238c750a30c31ca9ac20bc498321c9ec1ec1d66e",
+      "sequence_id": "sequence-281",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "10-14"
+      ],
+      "position_key": "07696cceedaaca3d",
+      "sequence_hash": "e30aab35aed053dc0129dc205596e6c85985b13defe4c2bdd4a3628b140174cc",
+      "sequence_id": "sequence-282",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "10-15"
+      ],
+      "position_key": "9642ad7d70fb8dd8",
+      "sequence_hash": "9d9afe209ec502f7cca8f110bc30b3d9d161f229c0043c23a6a12a14215fd717",
+      "sequence_id": "sequence-283",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "11-15"
+      ],
+      "position_key": "45b94d7cc8972cff",
+      "sequence_hash": "15dfc952bf47c0b6e452693d8effe2a686c2940ea4c68fd300d71e95bd2acc74",
+      "sequence_id": "sequence-284",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "16-19"
+      ],
+      "position_key": "37664c5232b3b412",
+      "sequence_hash": "96d3ce2066eb6dd21f6ada5e38ce2cd7ee978a759de8863c50b7ad035a92b89d",
+      "sequence_id": "sequence-285",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        36,
+        60
+      ],
+      "moves": [
+        "12-16",
+        "23-18",
+        "16-20"
+      ],
+      "position_key": "0998daa2a204c3c5",
+      "sequence_hash": "2f80b2a47019a715a43aad64919ba348d1ed912938cde4b4fc4919180f11cddc",
+      "sequence_id": "sequence-286",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ffb20000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        37,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "23-19",
+        "16x23"
+      ],
+      "position_key": "5d055396e53ee70d",
+      "sequence_hash": "433c61651c36efdd7e65e606eb0324ee7a5b25c41bc230ec8361b5ab8d84381e",
+      "sequence_id": "sequence-287",
+      "state": "CHK1;RM=004007ff;RK=00000000;WM=ffb00000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "8-12"
+      ],
+      "position_key": "5b71e7f7642e9111",
+      "sequence_hash": "61e6022aabc3818a7742a6c06ccf05093797aca7c6cb35b0c453575e3488e2d1",
+      "sequence_id": "sequence-288",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "9-13"
+      ],
+      "position_key": "d2b6c57df979e6e6",
+      "sequence_hash": "64685a770edc64c695e771a137d62118bb59befc084fb47e246ad8a497eb6fdc",
+      "sequence_id": "sequence-289",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "9-14"
+      ],
+      "position_key": "c41524cb7f0ef781",
+      "sequence_hash": "d5afa38ba03b940ea0beacde3f6e65578b5ab3d4000e011233059fa28e4f08ee",
+      "sequence_id": "sequence-290",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "10-14"
+      ],
+      "position_key": "7e9163e5db4c8b12",
+      "sequence_hash": "8b999bd6726abc8cb8b50e7e6c6c439fc69557f06cb50de8ad30026183586785",
+      "sequence_id": "sequence-291",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "10-15"
+      ],
+      "position_key": "efbaa256461dccf7",
+      "sequence_hash": "ffb6ee494268f8b925bb2f4295d863c16d4a5a2f54d9d4351b24e8758445d477",
+      "sequence_id": "sequence-292",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "11-15"
+      ],
+      "position_key": "3c414257fe716dd0",
+      "sequence_hash": "89ba2ce38a30a027573219e5a647b08b048f58f1c41374c0ad8e67da63cf1ef1",
+      "sequence_id": "sequence-293",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        32,
+        60
+      ],
+      "moves": [
+        "12-16",
+        "24-19",
+        "16-20"
+      ],
+      "position_key": "7060d58994e282ea",
+      "sequence_hash": "c6a5ef1e9caf870032a2c9c872c0a6e3743e58a851be37c007340df03bae6156",
+      "sequence_id": "sequence-294",
+      "state": "CHK1;RM=000807ff;RK=00000000;WM=ff740000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        28
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "8-12"
+      ],
+      "position_key": "375c7b2cc9e3f804",
+      "sequence_hash": "2f6c5e7c3c9c4f986d51b35bd12627bbf70147d5d3b7df61849938841d372e78",
+      "sequence_id": "sequence-295",
+      "state": "CHK1;RM=00008f7f;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        33
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "9-13"
+      ],
+      "position_key": "be9b59a654b48ff3",
+      "sequence_hash": "607a363bd9c5add87503e93c69b42444cf3ecb5124bca4afd4847c70c4a6dcc0",
+      "sequence_id": "sequence-296",
+      "state": "CHK1;RM=000096ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        32
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "9-14"
+      ],
+      "position_key": "a838b810d2c39e94",
+      "sequence_hash": "2cf2fa698a3ec302edcea938f220677118391cd87bb682b07f7f7e5776a5c32d",
+      "sequence_id": "sequence-297",
+      "state": "CHK1;RM=0000a6ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        37
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "10-14"
+      ],
+      "position_key": "12bcff3e7681e207",
+      "sequence_hash": "d048d572c0aed676ad894702aec164b1f8dc9d73ceae7ea6e5706ed24caffd1c",
+      "sequence_id": "sequence-298",
+      "state": "CHK1;RM=0000a5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        36
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "10-15"
+      ],
+      "position_key": "83973e8debd0a5e2",
+      "sequence_hash": "4ea9156066c265022341e15f303eb438ee56d2f3956bacd1d66eaf55f2b69079",
+      "sequence_id": "sequence-299",
+      "state": "CHK1;RM=0000c5ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        41
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "11-15"
+      ],
+      "position_key": "506cde8c53bc04c5",
+      "sequence_hash": "721bc178155ac0dcc1eb402ac511698d3c27c77260312ebe5d2ea4bad30bd693",
+      "sequence_id": "sequence-300",
+      "state": "CHK1;RM=0000c3ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    },
+    {
+      "actions": [
+        45,
+        33,
+        61
+      ],
+      "moves": [
+        "12-16",
+        "24-20",
+        "16-19"
+      ],
+      "position_key": "22b3dfa2a9989c28",
+      "sequence_hash": "bd4048a7ffffbd182fc2ab6de58d55a3253629bbc66a165aa7f0988a34103a8c",
+      "sequence_id": "sequence-301",
+      "state": "CHK1;RM=000407ff;RK=00000000;WM=ff780000;WK=00000000;STM=W;CIP=0;MS=-;SO=-;CP=00000000;NP=0,0;PLY=3"
+    }
+  ],
+  "sha256": "d5d617f3cbdb20ebbdddf011178189d366c1d57cc8f30bbb0ff3be8f76f09b80",
+  "sha256_scope": "canonical compact JSON of the sequences array",
+  "transposition_collapse": {
+    "collapsed_sequences": 86,
+    "deduplicate_on": "position_key",
+    "position_count": 216,
+    "sequence_count": 302
+  },
+  "worked_transposition_examples": [
+    {
+      "position_key": "829c1527df6acdef",
+      "sequences": [
+        {
+          "actions": [
+            33,
+            45,
+            36
+          ],
+          "moves": [
+            "9-13",
+            "21-17",
+            "10-15"
+          ],
+          "sequence_id": "sequence-003"
+        },
+        {
+          "actions": [
+            36,
+            45,
+            33
+          ],
+          "moves": [
+            "10-15",
+            "21-17",
+            "9-13"
+          ],
+          "sequence_id": "sequence-130"
+        }
+      ]
+    },
+    {
+      "position_key": "5167f52667066cc8",
+      "sequences": [
+        {
+          "actions": [
+            33,
+            45,
+            41
+          ],
+          "moves": [
+            "9-13",
+            "21-17",
+            "11-15"
+          ],
+          "sequence_id": "sequence-004"
+        },
+        {
+          "actions": [
+            41,
+            45,
+            33
+          ],
+          "moves": [
+            "11-15",
+            "21-17",
+            "9-13"
+          ],
+          "sequence_id": "sequence-170"
+        }
+      ]
+    }
+  ]
+}
