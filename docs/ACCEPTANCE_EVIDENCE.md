@@ -19,7 +19,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 | Gate | Binding source | Proof required | Status / evidence |
 |---|---|---|---|
 | 0 — Scaffolding | `GOAL.md` §14 Phase 0 | Exact pins, required layout/state, quality tools, offline CI, green `make check`, injected lint/test failures. | PROVEN: `logs/gates/phase-0.txt` exit 0; injected-red logs; `logs/gates/phase-0-gpu-doctor.txt`. |
-| 1 — Rules verification | §3.1, §4, §14 Phase 1; primary WCDF/ACF rules | Per-rule primary clause or ENGINE VARIANT label, tests, R6.7 proof, P1 for unavailable text. | OPEN. |
+| 1 — Rules verification | §3.1, §4, §14 Phase 1; primary WCDF/ACF rules | Per-rule primary clause or ENGINE VARIANT label, tests, R6.7 proof, P1 for unavailable text. | BLOCKED by BLOCK-001; technical gate exit 0 at `logs/gates/phase-1.txt`. |
 | 2 — State/moves | §§4–5, §§12.2–12.5, §14 Phase 2 | Fast/oracle generators, R4.5 divergence, 5M differential, BFS, metamorphic, 20 published transcripts, mutation ≥85%, rules coverage ≥98%. | OPEN. |
 | 3 — Terminal/hash | R6, §5.3, §14 Phase 3 | Boundary/key/property tests and committed termination proof. | OPEN. |
 | 4 — Environment | §§5.2, 6, §14 Phase 4 | 5M-step fuzz, zero mask failures, canonical/aliasing/illegal-action/restore tests. | OPEN. |
@@ -35,7 +35,7 @@ claimed. Internally generated agreement is never promoted to external correctnes
 |---|---|---|---|
 | D1 | Repository with all binding phase gates GREEN. | `STATE.json` plus gate logs. | OPEN. |
 | D2 | Complete checkers `README.md`. | Content audit against §18.2 and reproduced commands. | OPEN. |
-| D3 | `docs/RULES.md`. | Rule/source/test matrix plus R6.7 proof. | OPEN. |
+| D3 | `docs/RULES.md`. | Rule/source/test matrix plus R6.7 proof. | IN PROGRESS: source matrix/proof verified; planned covering tests remain Phase 2/3 work. |
 | D4 | `docs/PPO_CHECKLIST.md`. | All applicable `[HUANG37]` items adjudicated with tiers. | OPEN. |
 | D5 | `docs/ML_TEST_SCORE.md`. | Evidence-linked `[MLTS]` self-score. | OPEN. |
 | D6 | `docs/METRICS.md`. | Every §13.2 metric formula and range. | OPEN. |

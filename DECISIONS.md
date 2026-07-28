@@ -49,3 +49,15 @@
   finite backward gradients, BF16, compiled `sm_120`, and bitsandbytes NF4 forward/backward on the
   RTX 5070. Revisit only if a later experiment produces a concrete incompatibility.
 - Evidence: `logs/gates/phase-0-gpu-doctor.txt` (exit 0, `overall_passed: true`).
+
+## ADR-005 — Source-correct delayed removal and R6.6 classification
+
+- Status: Accepted provisionally; BLOCK-001 remains open for the read-only spec erratum.
+- Authority: Tier A WCDF clauses 1.18–1.20 and 1.32.
+- Evidence stage: Rules verification.
+- Decision: Read WCDF 1.19, the specific multi-jump clause, as controlling 1.18's single-jump
+  removal language. During a sequence, captured pieces remain occupying their squares and cannot
+  be jumped twice. Separately, label R6.6 ENGINE VARIANT because WCDF 1.32 permits agreed draws.
+- Rationale: This preserves the more specific capture-sequence text and never attributes a clear
+  project departure to WCDF.
+- Evidence: `docs/RULES.md`, `tests/rules/test_rule_traceability.py`, and BLOCK-001.

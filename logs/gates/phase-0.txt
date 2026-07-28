@@ -8,7 +8,7 @@ rootdir: /home/thecl/ml-lab
 configfile: pyproject.toml
 testpaths: tests
 plugins: xdist-3.8.0, hypothesis-6.161.8, cov-7.1.0, anyio-4.14.2
-collecting ... collecting 19 items                                                            collected 19 items                                                             
+collecting ... collecting 19 items                                                            collected 19 items
 
 tests/test_config.py ...                                                 [ 15%]
 tests/test_gsm8k_eval.py .                                               [ 21%]

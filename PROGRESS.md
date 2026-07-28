@@ -2,18 +2,21 @@
 
 ## Current Phase
 
-Phase 1 — Rules verification (IN PROGRESS)
+Phase 2 — State model, board, and move generation (IN PROGRESS)
 
-Work label: setup validation and primary-source verification.
+Phase 1 is BLOCKED by P1 BLOCK-001, so §0.1 directs work to the next non-blocked phase.
 
-Falsifiable objective: every R1.1–R7.3 row in `docs/RULES.md` cites an exact primary WCDF/ACF
-clause or is explicitly labelled ENGINE VARIANT; R6.7 has a checked finite-resource derivation.
+Work label: correctness baseline.
+
+Falsifiable objective: a typed immutable state and two independently structured legal-step
+generators agree on R1–R5/R7, including a hand-constructed R4.5 position where delayed and immediate
+removal produce different continuations.
 
 ## In Flight
 
-1. Obtain and archive the authoritative WCDF/ACF English Draughts rules text and its provenance.
-2. Write a failing completeness/source-clause test for the `docs/RULES.md` traceability matrix.
-3. Produce the rule matrix and R6.7 proof, adjudicate discrepancies, and run Gate 1.
+1. Write failing R1/state-invariant tests, then implement board mapping, enums, and immutable State.
+2. Write failing R3–R5 tests, then implement the fast legal-step/apply/undo path with delayed removal.
+3. Write an independently structured oracle plus R4.5 divergence and differential tests.
 
 ## Gate Evidence
 
@@ -22,19 +25,20 @@ clause or is explicitly labelled ENGINE VARIANT; R6.7 has a checked finite-resou
 - Sensitivity: failing-test and Ruff F401 probes both exited nonzero; evidence under
   `logs/test-output/000001-injected-*-red.txt`.
 - GPU doctor after lock change: exit 0; `logs/gates/phase-0-gpu-doctor.txt`.
+- Phase 1 technical gate: `make check`, exit 0; 24 passed; `logs/gates/phase-1.txt`.
+  Phase remains BLOCKED, not GREEN, pending BLOCK-001 resolution.
 
 ## Last Five Iterations
 
 - 000001: Gate 0 GREEN; injected lint/test failures detected; CUDA/BF16/NF4 doctor passed.
+- 000002: WCDF source hash-pinned; 30-rule matrix and R6.7 proof pass; R6.6 label defect filed.
 
 ## Open Risks
 
-- Primary rules wording and clause numbering are not yet archived or mapped.
-- The R6.7 worst-case termination bound must be derived carefully; `max_plies=512` must remain
-  honestly below that bound.
-- The repository has no initial commit yet; `git_sha` remains null until the green tree is committed.
+- BLOCK-001 prevents Phase 1 from being marked GREEN until a human accepts the R6.6 erratum.
+- Delayed-removal semantics are high risk and require a real divergence fixture, not only prose.
+- Phase 2's 5M differential, published transcripts, mutation, and coverage gates are not yet run.
 
 ## Next Step
 
-Fetch the primary WCDF/ACF rules publication and preserve source metadata before authoring the
-traceability matrix.
+Write the first failing board/state contract tests from R1 and §5.1.

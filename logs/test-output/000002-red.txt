@@ -1,0 +1,188 @@
+Script started on 2026-07-27 22:35:52-04:00 [COMMAND=".venv-train/bin/python -m pytest -q tests/rules/test_rule_traceability.py" <not executed on terminal>]
+FFFFF/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/coverage/inorout.py:561: CoverageWarning: Module checkers was never imported. (module-not-imported); see https://coverage.readthedocs.io/en/7.15.2/messages.html#warning-module-not-imported
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")
+/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/coverage/control.py:955: CoverageWarning: No data was collected. (no-data-collected); see https://coverage.readthedocs.io/en/7.15.2/messages.html#warning-no-data-collected
+  self._warn("No data was collected.", slug="no-data-collected")
+
+WARNING: Failed to generate report: No data to report.
+
+/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pytest_cov/plugin.py:366: CovReportWarning: Failed to generate report: No data to report.
+
+  warnings.warn(CovReportWarning(message), stacklevel=1)
+
+ERROR: Coverage failure: total of 0 is less than fail-under=92
+                                                                         [100%]
+=================================== FAILURES ===================================
+___________ test_phase_1_every_rule_id_has_exactly_one_authority_row ___________
+
+    def test_phase_1_every_rule_id_has_exactly_one_authority_row() -> None:
+>       document = RULES_DOC.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/rules/test_rule_traceability.py:62:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/thecl/ml-lab/docs/RULES.md'), mode = 'r', buffering = -1
+encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/thecl/ml-lab/docs/RULES.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+________ test_phase_1_all_rules_departures_are_explicit_engine_variants ________
+
+    def test_phase_1_all_rules_departures_are_explicit_engine_variants() -> None:
+>       document = RULES_DOC.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/rules/test_rule_traceability.py:71:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/thecl/ml-lab/docs/RULES.md'), mode = 'r', buffering = -1
+encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/thecl/ml-lab/docs/RULES.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_______________ test_phase_1_primary_source_provenance_is_pinned _______________
+
+    def test_phase_1_primary_source_provenance_is_pinned() -> None:
+>       document = RULES_DOC.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/rules/test_rule_traceability.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/thecl/ml-lab/docs/RULES.md'), mode = 'r', buffering = -1
+encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/thecl/ml-lab/docs/RULES.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+___________ test_R6_7_termination_bound_is_derived_and_above_ply_cap ___________
+
+    def test_R6_7_termination_bound_is_derived_and_above_ply_cap() -> None:
+        men_per_starting_row = 4
+        forward_row_distances = (7, 6, 5)
+        colours = 2
+        max_man_advances = colours * men_per_starting_row * sum(forward_row_distances)
+        max_capture_removals = 23
+        max_resetting_moves = max_man_advances + max_capture_removals
+        moves_per_counter_window = 2 * 40
+        max_completed_moves = (max_resetting_moves + 1) * moves_per_counter_window
+        max_extra_jump_steps = max_capture_removals - 1
+        max_environment_steps = max_completed_moves + max_extra_jump_steps
+
+        assert max_man_advances == 144
+        assert max_resetting_moves == 167
+        assert max_completed_moves == 13_440
+        assert max_environment_steps == 13_462
+        assert 512 < max_environment_steps
+
+>       document = RULES_DOC.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/rules/test_rule_traceability.py:105:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/thecl/ml-lab/docs/RULES.md'), mode = 'r', buffering = -1
+encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/thecl/ml-lab/docs/RULES.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+_________ test_R1_2_board_orientation_and_player_convention_are_frozen _________
+
+    def test_R1_2_board_orientation_and_player_convention_are_frozen() -> None:
+>       document = RULES_DOC.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/rules/test_rule_traceability.py:111:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/home/thecl/ml-lab/docs/RULES.md'), mode = 'r', buffering = -1
+encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/thecl/ml-lab/docs/RULES.md'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+================================ tests coverage ================================
+FAIL Required test coverage of 92% not reached. Total coverage: 0.00%
+=========================== short test summary info ============================
+FAILED tests/rules/test_rule_traceability.py::test_phase_1_every_rule_id_has_exactly_one_authority_row
+FAILED tests/rules/test_rule_traceability.py::test_phase_1_all_rules_departures_are_explicit_engine_variants
+FAILED tests/rules/test_rule_traceability.py::test_phase_1_primary_source_provenance_is_pinned
+FAILED tests/rules/test_rule_traceability.py::test_R6_7_termination_bound_is_derived_and_above_ply_cap
+FAILED tests/rules/test_rule_traceability.py::test_R1_2_board_orientation_and_player_convention_are_frozen
+5 failed in 0.24s
+
+Script done on 2026-07-27 22:35:52-04:00 [COMMAND_EXIT_CODE="1"]

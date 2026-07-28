@@ -1,19 +1,20 @@
-Script started on 2026-07-27 22:27:08-04:00 [COMMAND="make check" <not executed on terminal>]
-15 files already formatted
+Script started on 2026-07-27 22:38:21-04:00 [COMMAND="make check" <not executed on terminal>]
+16 files already formatted
 All checks passed!
-[1m[32mSuccess: no issues found in 15 source files(B[m
+[1m[32mSuccess: no issues found in 16 source files(B[m
 ============================= test session starts ==============================
 platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
 rootdir: /home/thecl/ml-lab
 configfile: pyproject.toml
 testpaths: tests
 plugins: xdist-3.8.0, hypothesis-6.161.8, cov-7.1.0, anyio-4.14.2
-collecting ... collecting 19 items                                                            collected 19 items
+collecting ... collecting 24 items                                                            collected 24 items
 
-tests/test_config.py ...                                                 [ 15%]
-tests/test_gsm8k_eval.py .                                               [ 21%]
-tests/test_phase0_scaffold.py ......                                     [ 52%]
-tests/test_run_metadata.py .                                             [ 57%]
+tests/rules/test_rule_traceability.py .....                              [ 20%]
+tests/test_config.py ...                                                 [ 33%]
+tests/test_gsm8k_eval.py .                                               [ 37%]
+tests/test_phase0_scaffold.py ......                                     [ 62%]
+tests/test_run_metadata.py .                                             [ 66%]
 tests/test_synthgsm8k.py ........                                        [100%]
 
 =============================== warnings summary ===============================
@@ -36,7 +37,7 @@ src/checkers/rules/__init__.py        0      0      0      0   100%
 -----------------------------------------------------------------------------
 TOTAL                                 1      0      0      0   100%
 Required test coverage of 92% reached. Total coverage: 100.00%
-======================== 19 passed, 1 warning in 4.69s =========================
+======================== 24 passed, 1 warning in 2.63s =========================
 ......                                                                   [100%]
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.12.3-final-0 ________________
@@ -52,6 +53,6 @@ src/checkers/rules/__init__.py        0      0      0      0   100%
 -----------------------------------------------------------------------------
 TOTAL                                 1      0      0      0   100%
 Required test coverage of 92% reached. Total coverage: 100.00%
-6 passed in 0.11s
+6 passed in 0.12s
 
-Script done on 2026-07-27 22:27:14-04:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2026-07-27 22:38:25-04:00 [COMMAND_EXIT_CODE="0"]
