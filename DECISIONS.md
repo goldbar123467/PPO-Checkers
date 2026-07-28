@@ -559,6 +559,11 @@
 - Decision: Suspend the Stage-A and Stage-B requirements and all multi-seed requirements while
   Practice mode is active, and replace §19 Tier 2 with one full-budget run completing with clean
   instrumentation.
+- Correction history: Before commit, the draft Practice-mode text in both `GOAL.md` and this ADR
+  incorrectly said "Stage-B and Stage-C multi-seed requirements." The human identified the
+  intended scope as Stage-A and Stage-B requirements plus all multi-seed requirements, explicitly
+  authorized the agent to replace the draft wording in both files, and authorized commit
+  `ca78229` on 2026-07-28.
 - Integrity retained: fixed transition budgets, zero illegal-action counters, determinism, resume,
   and randomized evaluation openings remain binding.
 - Consequence: Practice-mode completion does not support a multi-seed learning, ablation, or
