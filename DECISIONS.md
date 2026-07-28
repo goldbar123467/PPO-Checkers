@@ -382,3 +382,21 @@
   versus boundary pair yields different logits, resolving BLOCK-006.
 - Evidence: `tests/rl/test_networks.py`, `logs/test-output/000080-phase6-networks-quality-final.txt`,
   and `000081-phase6-supervised-metrics.txt`.
+
+## ADR-026 — Keep PPO loss literal and stored-mask only
+
+- Status: Accepted; T3, T4, and T5 GREEN.
+- Authority: original PPO paper for the clipped surrogate; `GOAL.md` §8 for the classified
+  objective and defaults; official PyTorch gradient-clipping behavior.
+- Decision: compute new log-probability and entropy only through `MaskedCategorical` with the mask
+  persisted at collection. Normalize advantages per minibatch using population standard deviation
+  plus `1e-8`; use unclipped MSE values; compute k3 KL and strict ratio-bound clip fraction; form
+  `policy + vf_coef*value - ent_coef*entropy`; clip the global gradient norm before Adam steps.
+- Oracle: for ratios `[1.1,0.9,1.3,0.7]`, the hand-frozen losses are policy `0.06898048`, value
+  `0.35025398359296`, entropy `0.6677927263741105`, KL `0.02609025383118571`, clip fraction `0.5`,
+  and total `0.23742954453273896`. Each matches within `1e-12`.
+- Direction: repeated updates increase positive-advantage selected-action probability and decrease
+  negative-advantage probability until ratios cross 1.2/0.8; clip fraction becomes one and both
+  probabilities plateau.
+- Evidence: 31 focused tests and 100% statement/branch coverage in
+  `logs/test-output/000087-phase6-ppo-quality-final.txt`.

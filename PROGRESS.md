@@ -16,9 +16,9 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## In Flight
 
-1. Write a literal T3 PPO-loss oracle and T4 clipping-direction RED tests.
-2. Implement loss metrics and one deterministic PPO minibatch update with stored masks.
-3. Build the ten-update D2/D3 fixture only after the one-update numerical oracle is green.
+1. Build the ten-update seeded D2 CPU and D3 RTX 5070 fixtures.
+2. Add BF16/autocast masking coverage on the actual GPU path.
+3. Complete T7 with scripted length-3/5/7 forced terminal trajectories.
 
 ## Gate Evidence
 
@@ -132,11 +132,16 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   nonzero aggregate gradient. The deferred N7 state pair now produces different logits, resolving
   BLOCK-006. Focused strict gates pass 13 tests at 100% statement/branch coverage. Evidence:
   `logs/test-output/000075-*` through `000081-*`.
+- Phase 6 PPO core: the literal T3 oracle matches signed GAE, ratios, clipped surrogate, plain-MSE
+  value loss, masked entropy, k3 KL, clip fraction, and total loss within `1e-12`. T4 fixed-batch
+  probabilities move monotonically in the advantage direction until both ratio bounds clip and
+  plateau. The update uses stored masks, trainable-only rows, Adam-compatible zeroing, and observed
+  global norm clipping. The RED/fixture-correction trail is retained; the final strict gate passes
+  31 tests with all 164 statements and 56 branches covered. Evidence `logs/test-output/000082-*`
+  through `000087-*`.
 
 ## Last Five Iterations
 
-- 000017: audited primary statistical sources, promoted five material limitations into the tested
-  machine report, and retained 100% statement/branch coverage across the full Checkers package.
 - 000018: executed the final 4,704-game powered baseline, proved byte-identical six-checkpoint
   resume, published the sourced claim-bounded analysis, and completed the Phase 5 gate.
 - 000019: froze the Phase 6 oracle matrix and made masked sampling plus signed GAE green under 41
@@ -145,6 +150,8 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
   only after GAE, and completed T8 at 100% focused statement/branch coverage.
 - 000021: implemented and structurally verified the exact GroupNorm network, passed T1/T2/T5 and
   N7, and resolved the phase-order-only BLOCK-006 with the real logit regression.
+- 000022: implemented stored-mask PPO-Clip, matched the literal T3 oracle to 1e-12, passed T4
+  directional clipping, and covered the module completely.
 
 ## Open Risks
 
@@ -165,5 +172,5 @@ D2/D3 determinism requirement passes offline without exceeding the 12 GB local V
 
 ## Next Step
 
-Write a four-transition literal T3 loss oracle and T4 directional/clipping RED tests before adding
-the PPO loss/update module.
+Implement deterministic seed control and a frozen ten-update fixture, then run D2 twice on CPU and
+D3 twice on the local RTX 5070 under the declared tolerances.

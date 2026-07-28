@@ -1,0 +1,262 @@
+FF....................                                                   [100%]
+=================================== FAILURES ===================================
+_________ test_t3_four_transition_ppo_loss_matches_literal_hand_oracle _________
+
+    def test_t3_four_transition_ppo_loss_matches_literal_hand_oracle() -> None:
+        gae = compute_two_player_gae(
+            rewards=torch.tensor([0.0, 0.0, 0.0, 1.0], dtype=torch.float64),
+            values=torch.tensor([0.2, -0.1, 0.3, 0.4], dtype=torch.float64),
+            dones=torch.tensor([False, False, False, True]),
+            sigmas=torch.tensor([1, -1, -1, 1], dtype=torch.int8),
+            bootstrap_value=torch.tensor(0.7, dtype=torch.float64),
+            gamma=0.9,
+            gae_lambda=0.8,
+        )
+        chosen_probabilities = torch.tensor([0.55, 0.45, 0.65, 0.35], dtype=torch.float64)
+        logits = torch.log(torch.stack((chosen_probabilities, 1.0 - chosen_probabilities), dim=1))
+>       losses = compute_ppo_loss(
+            logits=logits,
+            legal_mask=torch.ones((4, 2), dtype=torch.bool),
+            actions=torch.zeros(4, dtype=torch.int64),
+            old_logprob=torch.full((4,), torch.log(torch.tensor(0.5, dtype=torch.float64))),
+            values=torch.tensor([0.25, -0.2, 0.0, 0.5], dtype=torch.float64),
+            advantages=gae.advantages,
+            returns=gae.returns,
+            config=PPOConfig(
+                clip_coef=0.2,
+                vf_coef=0.5,
+                ent_coef=0.01,
+                max_grad_norm=0.5,
+                normalize_advantages=False,
+                advantage_eps=1e-8,
+                target_kl=0.02,
+            ),
+        )
+
+tests/rl/test_ppo.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/checkers/rl/ppo.py:280: in compute_ppo_loss
+    ) = _validate_loss_inputs(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+logits = tensor([[-0.5978, -0.7985],
+        [-0.7985, -0.5978],
+        [-0.4308, -1.0498],
+        [-1.0498, -0.4308]], dtype=torch.float64)
+legal_mask = tensor([[True, True],
+        [True, True],
+        [True, True],
+        [True, True]])
+actions = tensor([0, 0, 0, 0])
+old_logprob = tensor([-0.6931, -0.6931, -0.6931, -0.6931])
+values = tensor([ 0.2500, -0.2000,  0.0000,  0.5000], dtype=torch.float64)
+advantages = tensor([ 0.1537,  0.6162, -1.0920,  0.6000], dtype=torch.float64)
+returns = tensor([ 0.3537,  0.5162, -0.7920,  1.0000], dtype=torch.float64)
+
+    def _validate_loss_inputs(  # noqa: PLR0912, PLR0913, PLR0917
+        logits: object,
+        legal_mask: object,
+        actions: object,
+        old_logprob: object,
+        values: object,
+        advantages: object,
+        returns: object,
+    ) -> tuple[
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+    ]:
+        checked_logits = _tensor(logits, "logits")
+        checked_mask = _tensor(legal_mask, "legal_mask")
+        checked_actions = _tensor(actions, "actions")
+        checked_old_logprob = _tensor(old_logprob, "old_logprob")
+        checked_values = _tensor(values, "values")
+        checked_advantages = _tensor(advantages, "advantages")
+        checked_returns = _tensor(returns, "returns")
+        if checked_logits.ndim != 2 or checked_logits.shape[1] < 1:
+            raise ValueError("logits must have shape (batch, actions) with a non-empty action axis")
+        batch_size = checked_actions.shape[0] if checked_actions.ndim == 1 else -1
+        if checked_logits.shape[0] != batch_size:
+            raise ValueError("logits batch size must match the action vector")
+        if checked_mask.shape != checked_logits.shape:
+            raise ValueError("legal_mask shape must equal logits shape")
+        vector_shape = (batch_size,)
+        vectors = (
+            (checked_actions, "actions"),
+            (checked_old_logprob, "old_logprob"),
+            (checked_values, "values"),
+            (checked_advantages, "advantages"),
+            (checked_returns, "returns"),
+        )
+        for tensor, name in vectors:
+            if tensor.shape != vector_shape:
+                raise ValueError(f"{name} shape must be {vector_shape}")
+        if not checked_logits.is_floating_point():
+            raise TypeError("logits must be floating")
+        if checked_mask.dtype is not torch.bool:
+            raise TypeError("legal_mask must have dtype bool")
+        if checked_actions.dtype is not torch.int64:
+            raise TypeError("actions must have dtype int64")
+        floating_vectors = (
+            (checked_old_logprob, "old_logprob"),
+            (checked_values, "values"),
+            (checked_advantages, "advantages"),
+            (checked_returns, "returns"),
+        )
+        for tensor, name in floating_vectors:
+            if not tensor.is_floating_point():
+                raise TypeError(f"{name} must be floating")
+        if not (
+            checked_logits.dtype
+            == checked_old_logprob.dtype
+            == checked_values.dtype
+            == checked_advantages.dtype
+            == checked_returns.dtype
+            and checked_logits.device
+            == checked_mask.device
+            == checked_actions.device
+            == checked_old_logprob.device
+            == checked_values.device
+            == checked_advantages.device
+            == checked_returns.device
+        ):
+>           raise ValueError("all PPO tensors must share floating dtype and device")
+E           ValueError: all PPO tensors must share floating dtype and device
+
+src/checkers/rl/ppo.py:178: ValueError
+____ test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped ____
+
+    def test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped() -> None:
+        logits = nn.Parameter(torch.zeros((2, 2), dtype=torch.float64))
+        optimizer = torch.optim.SGD((logits,), lr=0.2)
+        config = PPOConfig(
+            clip_coef=0.2,
+            vf_coef=0.0,
+            ent_coef=0.0,
+            max_grad_norm=1.0,
+            normalize_advantages=False,
+            advantage_eps=1e-8,
+            target_kl=1.0,
+        )
+        positive_probabilities: list[float] = []
+        negative_probabilities: list[float] = []
+        clipfractions: list[float] = []
+    
+        for _ in range(100):
+            optimizer.zero_grad(set_to_none=True)
+>           losses = compute_ppo_loss(
+                logits=logits,
+                legal_mask=torch.ones((2, 2), dtype=torch.bool),
+                actions=torch.zeros(2, dtype=torch.int64),
+                old_logprob=torch.full((2,), -torch.log(torch.tensor(2.0, dtype=torch.float64))),
+                values=torch.zeros(2, dtype=torch.float64),
+                advantages=torch.tensor([1.0, -1.0], dtype=torch.float64),
+                returns=torch.zeros(2, dtype=torch.float64),
+                config=config,
+            )
+
+tests/rl/test_ppo.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/checkers/rl/ppo.py:280: in compute_ppo_loss
+    ) = _validate_loss_inputs(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+logits = Parameter containing:
+tensor([[0., 0.],
+        [0., 0.]], dtype=torch.float64, requires_grad=True)
+legal_mask = tensor([[True, True],
+        [True, True]])
+actions = tensor([0, 0]), old_logprob = tensor([-0.6931, -0.6931])
+values = tensor([0., 0.], dtype=torch.float64)
+advantages = tensor([ 1., -1.], dtype=torch.float64)
+returns = tensor([0., 0.], dtype=torch.float64)
+
+    def _validate_loss_inputs(  # noqa: PLR0912, PLR0913, PLR0917
+        logits: object,
+        legal_mask: object,
+        actions: object,
+        old_logprob: object,
+        values: object,
+        advantages: object,
+        returns: object,
+    ) -> tuple[
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+        torch.Tensor,
+    ]:
+        checked_logits = _tensor(logits, "logits")
+        checked_mask = _tensor(legal_mask, "legal_mask")
+        checked_actions = _tensor(actions, "actions")
+        checked_old_logprob = _tensor(old_logprob, "old_logprob")
+        checked_values = _tensor(values, "values")
+        checked_advantages = _tensor(advantages, "advantages")
+        checked_returns = _tensor(returns, "returns")
+        if checked_logits.ndim != 2 or checked_logits.shape[1] < 1:
+            raise ValueError("logits must have shape (batch, actions) with a non-empty action axis")
+        batch_size = checked_actions.shape[0] if checked_actions.ndim == 1 else -1
+        if checked_logits.shape[0] != batch_size:
+            raise ValueError("logits batch size must match the action vector")
+        if checked_mask.shape != checked_logits.shape:
+            raise ValueError("legal_mask shape must equal logits shape")
+        vector_shape = (batch_size,)
+        vectors = (
+            (checked_actions, "actions"),
+            (checked_old_logprob, "old_logprob"),
+            (checked_values, "values"),
+            (checked_advantages, "advantages"),
+            (checked_returns, "returns"),
+        )
+        for tensor, name in vectors:
+            if tensor.shape != vector_shape:
+                raise ValueError(f"{name} shape must be {vector_shape}")
+        if not checked_logits.is_floating_point():
+            raise TypeError("logits must be floating")
+        if checked_mask.dtype is not torch.bool:
+            raise TypeError("legal_mask must have dtype bool")
+        if checked_actions.dtype is not torch.int64:
+            raise TypeError("actions must have dtype int64")
+        floating_vectors = (
+            (checked_old_logprob, "old_logprob"),
+            (checked_values, "values"),
+            (checked_advantages, "advantages"),
+            (checked_returns, "returns"),
+        )
+        for tensor, name in floating_vectors:
+            if not tensor.is_floating_point():
+                raise TypeError(f"{name} must be floating")
+        if not (
+            checked_logits.dtype
+            == checked_old_logprob.dtype
+            == checked_values.dtype
+            == checked_advantages.dtype
+            == checked_returns.dtype
+            and checked_logits.device
+            == checked_mask.device
+            == checked_actions.device
+            == checked_old_logprob.device
+            == checked_values.device
+            == checked_advantages.device
+            == checked_returns.device
+        ):
+>           raise ValueError("all PPO tensors must share floating dtype and device")
+E           ValueError: all PPO tensors must share floating dtype and device
+
+src/checkers/rl/ppo.py:178: ValueError
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/rl/test_ppo.py::test_t3_four_transition_ppo_loss_matches_literal_hand_oracle
+FAILED tests/rl/test_ppo.py::test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped
+2 failed, 20 passed, 1 warning in 2.19s

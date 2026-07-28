@@ -1,0 +1,65 @@
+.F....................                                                   [100%]
+=================================== FAILURES ===================================
+____ test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped ____
+
+    def test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped() -> None:
+        logits = nn.Parameter(torch.zeros((2, 2), dtype=torch.float64))
+        optimizer = torch.optim.SGD((logits,), lr=0.2)
+        config = PPOConfig(
+            clip_coef=0.2,
+            vf_coef=0.0,
+            ent_coef=0.0,
+            max_grad_norm=1.0,
+            normalize_advantages=False,
+            advantage_eps=1e-8,
+            target_kl=1.0,
+        )
+        positive_probabilities: list[float] = []
+        negative_probabilities: list[float] = []
+        clipfractions: list[float] = []
+    
+        for _ in range(100):
+            optimizer.zero_grad(set_to_none=True)
+            losses = compute_ppo_loss(
+                logits=logits,
+                legal_mask=torch.ones((2, 2), dtype=torch.bool),
+                actions=torch.zeros(2, dtype=torch.int64),
+                old_logprob=torch.full((2,), -math.log(2.0), dtype=torch.float64),
+                values=torch.zeros(2, dtype=torch.float64),
+                advantages=torch.tensor([1.0, -1.0], dtype=torch.float64),
+                returns=torch.zeros(2, dtype=torch.float64),
+                config=config,
+            )
+            probabilities = torch.softmax(logits.detach(), dim=-1)[:, 0]
+            positive_probabilities.append(float(probabilities[0]))
+            negative_probabilities.append(float(probabilities[1]))
+            clipfractions.append(float(losses.clipfrac))
+            losses.total_loss.backward()  # type: ignore[no-untyped-call]
+            optimizer.step()
+    
+>       assert all(
+            after >= before
+            for before, after in zip(positive_probabilities, positive_probabilities[1:], strict=True)
+        )
+
+tests/rl/test_ppo.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <zip object at 0x7e21e1699cc0>
+
+>   assert all(
+        after >= before
+        for before, after in zip(positive_probabilities, positive_probabilities[1:], strict=True)
+    )
+E   ValueError: zip() argument 2 is shorter than argument 1
+
+tests/rl/test_ppo.py:112: ValueError
+=============================== warnings summary ===============================
+.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64
+  /home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/torch/cuda/__init__.py:64: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+    import pynvml  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/rl/test_ppo.py::test_t4_probabilities_move_monotonically_until_both_ratios_are_clipped
+1 failed, 21 passed, 1 warning in 2.00s

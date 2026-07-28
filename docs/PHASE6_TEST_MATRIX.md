@@ -26,9 +26,9 @@ implementation formula in the assertion is insufficient.
 | A2–A6 | Legal-set membership, exact illegal-gradient zeros, direct restricted softmax | float32, BF16, `k=1`, all-masked failure, used autocast modes | Foundation GREEN |
 | T1 | Fixed 64-state labels generated independently of optimizer/model | policy accuracy >0.99; proves capacity, not PPO | GREEN (1.0000) |
 | T2 | Fixed 64-state scalar targets | value MSE <1e-3; proves capacity, not PPO | GREEN (4.69e-14) |
-| T3 | Literal four-row hand table | both sigma signs, deltas, advantages, returns, ratios, clipped objective, total loss within 1e-6 | GAE half GREEN; PPO half pending |
-| T4 | Stored old probabilities plus sign-labelled advantages | selected probabilities monotone in the required direction until clipping; clip fraction at exact bounds | Pending |
-| T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | GREEN for distribution/network; PPO pending |
+| T3 | Literal four-row hand table | both sigma signs, deltas, advantages, returns, ratios, clipped objective, total loss within 1e-6 | GREEN (all scalars within 1e-12) |
+| T4 | Stored old probabilities plus sign-labelled advantages | selected probabilities monotone in the required direction until clipping; clip fraction at exact bounds | GREEN |
+| T5 | Per-module gradient aggregation and direct illegal-logit probe | every module reached across the suite; illegal logits exactly zero | GREEN |
 | T6 | Minimal conventional GAE loop with no perspective transform | all `sigma=+1` results bitwise equal | GREEN |
 | T7 | Scripted rule-engine forced wins of lengths 3, 5, and 7 | exact actor-relative targets; one multi-jump terminal path and one R6.2 ending | Pending |
 | T8 | Hand-interleaved multi-environment chronology | opponent transitions excluded only after GAE; per-environment adjacency; mid-sequence final bootstrap sign | GREEN |
@@ -63,6 +63,14 @@ masked logits retain exact-zero gradients. Evidence is `logs/test-output/000080-
 GroupNorm has no cross-sample statistics, but a convolution applied at batch size 1 versus 4 can
 use a different accumulation order. Batch-composition outputs are therefore checked at D3's
 `atol=1e-5, rtol=1e-4`, while train versus eval mode on the identical input is bitwise equal.
+
+The literal T3 PPO oracle uses chosen-action ratios `[1.1,0.9,1.3,0.7]` and independently frozen
+expected policy loss `0.06898048`, value MSE `0.35025398359296`, entropy
+`0.6677927263741105`, k3 KL `0.02609025383118571`, clip fraction `0.5`, and total loss
+`0.23742954453273896`. Every scalar matches within `1e-12`. T4 repeatedly optimizes two independent
+rows and verifies positive-advantage probability never decreases, negative-advantage probability
+never increases, both cross their 1.2/0.8 ratio bounds, clip fraction reaches 1, and both then
+plateau. Evidence is `logs/test-output/000087-*`.
 
 ## Negative controls retained
 
