@@ -82,11 +82,18 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 | RC4 | Interrupted partial destination fixture | stale partial detected and recreated atomically; decision recorded | GREEN |
 | RC5 | One-update CPU continuation/audit | update/logging steps contiguous, no duplicates, full reload and RNG restore | GREEN |
 | RC6 | Read-only monitor fixtures | partial-tail tolerance, diagnostic labels, lifecycle distinctions, source hashes unchanged | GREEN |
-| RC7 | One-update RTX 5070 recovery smoke | optimizer/device, collector, league, RNG, masks, telemetry, time counters pass | Pending |
+| RC7 | One-update RTX 5070 recovery smoke | optimizer/device, collector, league, RNG, masks, telemetry, time counters pass | GREEN |
 | RC8 | Production Seed 0 recovery | 1,800 seconds, powered final evaluation, reload, artifacts, reconciliation | Pending |
 
 The recovery design and commands are frozen in `docs/PHASE7_RECOVERY.md`. RC1–RC6 are engineering
 evidence only; they make no policy-strength claim and do not satisfy G1–G5.
+
+RC7 uses the independently prepared `phase7-a0-seed0-c8207ca-recovery-smoke-002` directory at
+commit `dd6abcde9e3b1078d627b6456eed23a293f4ac45`. The one-update run reached update 171 and global
+step 1,400,832 with contiguous logging step 188. The live monitor observed `RUNNING` and terminal
+`FINISHED`; the post-run audit records 66 CUDA parameters, 132 CUDA Adam moments, 66 finite CPU
+scalar steps, restored RNG/full state, stable W&B ID, finite telemetry/metrics, and zero mask
+faults. It remains bounded setup evidence only.
 
 ## Foundation evidence
 
