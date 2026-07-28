@@ -19,6 +19,7 @@ from checkers.logging_wandb import (
     PROJECT_NAME,
     RunMetadata,
     WandbLogger,
+    collect_run_metadata,
     create_wandb_logger,
     game_table,
     payoff_matrix_table,
@@ -404,3 +405,160 @@ def test_wandb_failures_never_propagate_and_logging_restores_all_global_rngs(
         for line in (tmp_path / "wandb_failures.jsonl").read_text(encoding="utf-8").splitlines()
     ]
     assert [record["operation"] for record in records] == ["log", "artifact", "finish"]
+
+
+def test_wandb_logger_rejects_invalid_local_contract_inputs(tmp_path: Path) -> None:
+    with pytest.raises(TypeError, match="run"):
+        WandbLogger(run=object(), initial_logging_step=0)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="initial_logging_step"):
+        WandbLogger(run=None, initial_logging_step=True)
+    with pytest.raises(ValueError, match="non-negative"):
+        WandbLogger(run=None, initial_logging_step=-1)
+    with pytest.raises(TypeError, match="failure_path"):
+        WandbLogger(run=None, initial_logging_step=0, failure_path="bad")  # type: ignore[arg-type]
+
+    logger = WandbLogger(run=None, initial_logging_step=0)
+    state = TrainerState()
+    with pytest.raises(TypeError, match="mapping"):
+        logger.log([], state=state)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="TrainerState"):
+        logger.log({"metric": 1.0}, state=object())  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="empty"):
+        logger.log({}, state=state)
+    with pytest.raises(TypeError, match="metric names"):
+        logger.log(cast(dict[str, object], {1: 1.0}), state=state)
+    logger.log({"metric": 1.0}, state=state)
+    state.logging_step = 0
+    with pytest.raises(ValueError, match="monotonic"):
+        logger.log({"metric": 2.0}, state=state)
+
+    with pytest.raises(TypeError, match="summary values"):
+        logger.update_summary([])  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="summary keys"):
+        logger.update_summary(cast(dict[str, object], {1: 1.0}))
+    logger.update_summary({"valid": 1.0})
+    with pytest.raises(TypeError, match="required_keys"):
+        logger.assert_complete(cast(frozenset[str], {"bad"}))
+    with pytest.raises(TypeError, match="required_keys"):
+        logger.assert_complete(cast(frozenset[str], frozenset({""})))
+
+    artifact = tmp_path / "artifact"
+    artifact.write_bytes(b"x")
+    with pytest.raises(ValueError, match="name"):
+        logger.log_artifact(name="", artifact_type="model", files=(artifact,), metadata={})
+    with pytest.raises(ValueError, match="artifact_type"):
+        logger.log_artifact(name="name", artifact_type="", files=(artifact,), metadata={})
+    with pytest.raises(ValueError, match="non-empty tuple"):
+        logger.log_artifact(name="name", artifact_type="model", files=(), metadata={})
+    with pytest.raises(TypeError, match="metadata"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=(artifact,),
+            metadata=[],  # type: ignore[arg-type]
+        )
+    with pytest.raises(TypeError, match="Paths"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=cast(tuple[Path, ...], ("bad",)),
+            metadata={},
+        )
+    with pytest.raises(ValueError, match="does not exist"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=(tmp_path / "missing",),
+            metadata={},
+        )
+    logger.log_artifact(name="name", artifact_type="model", files=(artifact,), metadata={})
+    with pytest.raises(TypeError, match="exit_code"):
+        logger.finish(exit_code=True)
+    logger.finish(exit_code=0)
+
+
+def test_wandb_summary_failure_and_missing_failure_path_fall_back_to_stderr(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    class FailingSummary(dict[str, object]):
+        def update(self, *args: object, **kwargs: object) -> None:
+            del args, kwargs
+            raise ConnectionError("summary failure")
+
+    run = FakeRun()
+    run.summary = FailingSummary()
+    logger = WandbLogger(run=run, initial_logging_step=0)
+
+    logger.update_summary({"metric": 1.0})
+
+    assert "wandb_failure operation=summary error_type=ConnectionError" in capsys.readouterr().err
+
+
+def test_create_wandb_logger_validates_boundaries_and_malformed_init_results(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    valid = {
+        "config": _config(),
+        "state": TrainerState(),
+        "metadata": _metadata(),
+        "stamp": "valid",
+        "directory": tmp_path,
+        "run_factory": lambda **_kwargs: FakeRun(),
+    }
+    invalid_cases: tuple[tuple[dict[str, object], type[Exception], str], ...] = (
+        ({"config": object()}, TypeError, "config"),
+        ({"state": object()}, TypeError, "state"),
+        ({"metadata": object()}, TypeError, "metadata"),
+        ({"stamp": ""}, ValueError, "stamp"),
+        ({"directory": "bad"}, TypeError, "directory"),
+        ({"additional_summary": []}, TypeError, "additional_summary"),
+        (
+            {"additional_summary": cast(dict[str, object], {1: 1.0})},
+            TypeError,
+            "summary keys",
+        ),
+    )
+    for overrides, error_type, message in invalid_cases:
+        with pytest.raises(error_type, match=message):
+            create_wandb_logger(**{**valid, **overrides})  # type: ignore[arg-type]
+
+    monkeypatch.setenv("WANDB_MODE", "invalid")
+    with pytest.raises(ValueError, match="WANDB_MODE"):
+        create_wandb_logger(**valid)  # type: ignore[arg-type]
+    monkeypatch.delenv("WANDB_MODE")
+
+    for factory in (
+        lambda **_kwargs: None,
+        lambda **_kwargs: FakeRun(run_id=""),
+    ):
+        state = TrainerState()
+        logger = create_wandb_logger(
+            config=_config(),
+            state=state,
+            metadata=_metadata(),
+            stamp="malformed",
+            directory=tmp_path,
+            run_factory=factory,
+        )
+        assert state.wandb_run_id.startswith("local-")
+        logger.finish(exit_code=0)
+
+
+def test_tables_metadata_and_scanner_reject_invalid_boundaries(tmp_path: Path) -> None:
+    with pytest.raises(TypeError, match="tuple"):
+        payoff_matrix_table([])  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="must not be empty"):
+        payoff_matrix_table(())
+    with pytest.raises(TypeError, match="mappings"):
+        payoff_matrix_table(cast(tuple[dict[str, object], ...], (object(),)))
+    with pytest.raises(ValueError, match="fields"):
+        payoff_matrix_table(({"wrong": 1},))
+    with pytest.raises(TypeError, match="config"):
+        collect_run_metadata(config=object(), repository=tmp_path)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="repository"):
+        collect_run_metadata(config=_config(), repository="bad")  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="Path"):
+        scan_repository_for_credentials("bad")  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="directory"):
+        scan_repository_for_credentials(tmp_path / "missing")

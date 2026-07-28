@@ -15,6 +15,7 @@ import yaml
 
 from checkers import practice_preflight
 from checkers.config import RunConfig
+from checkers.eval.arena import AgentSpec
 from checkers.eval.ballots import BallotSet, OpeningBallot
 from checkers.eval.policy_eval import PracticePolicyEvaluation
 from checkers.practice_preflight import (
@@ -30,6 +31,7 @@ LOSS_VALUE_COUNT = 2
 PREFLIGHT_LOSS_VALUES = 40
 FULL_EVALUATION_GAMES = 864
 ARENA_EVALUATION_GAMES = 64
+PREFLIGHT_SEQUENCE_COUNT = 302
 
 
 def _history(policy: float, value: float) -> dict[int, dict[str, float]]:
@@ -230,3 +232,79 @@ def test_run_preflight_reports_all_numeric_acceptance_evidence(
     assert report["arena_benchmark_games"] == ARENA_EVALUATION_GAMES
     assert report["arena_record_mismatches"] == 0
     assert report["lr_absolute_error"] == 0.0
+
+
+def test_sequential_benchmark_builds_random_and_position_seeded_minimax(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = _practice_config()
+    session = cast(TrainingSession, SimpleNamespace(config=config, network=object()))
+    ballot_set = BallotSet(
+        ballots=cast(tuple[OpeningBallot, ...], (object(),)),
+        sha256="a" * 64,
+        source_sequence_count=PREFLIGHT_SEQUENCE_COUNT,
+        source_sequences_sha256="b" * 64,
+        distinct_first_moves=7,
+        transposition_examples=(),
+    )
+    calls: list[dict[str, object]] = []
+    matches = (
+        cast(object, SimpleNamespace(name="random")),
+        cast(object, SimpleNamespace(name="minimax")),
+    )
+
+    def play(**kwargs: object) -> object:
+        calls.append(kwargs)
+        return matches[len(calls) - 1]
+
+    monkeypatch.setattr(practice_preflight, "play_ballot_match", play)
+    random_match, minimax_match = practice_preflight._sequential_practice_matches(
+        session=session,
+        ballot_set=ballot_set,
+        seed=7,
+    )
+
+    assert random_match is matches[0]
+    assert minimax_match is matches[1]
+    assert cast(AgentSpec, calls[0]["second"]).name == "random"
+    assert cast(AgentSpec, calls[1]["second"]).name == "minimax(2)"
+    assert cast(AgentSpec, calls[1]["second"]).position_seeded is True
+    assert calls[0]["ballots"] == ballot_set.ballots
+
+
+def test_preflight_rejects_missing_key_nonempty_output_and_wrong_profile(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        yaml.safe_dump(asdict(_practice_config()), sort_keys=False),
+        encoding="utf-8",
+    )
+    monkeypatch.delenv("WANDB_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="WANDB_API_KEY"):
+        run_preflight(
+            repository=tmp_path,
+            config_path=config_path,
+            output_directory=tmp_path / "missing-key",
+        )
+
+    monkeypatch.setenv("WANDB_API_KEY", "unit-key")
+    occupied = tmp_path / "occupied"
+    occupied.mkdir()
+    (occupied / "record").write_text("x", encoding="utf-8")
+    with pytest.raises(ValueError, match="absent or empty"):
+        run_preflight(
+            repository=tmp_path,
+            config_path=config_path,
+            output_directory=occupied,
+        )
+
+    wrong = RunConfig(**{**asdict(_practice_config()), "stage": "A"})
+    config_path.write_text(yaml.safe_dump(asdict(wrong), sort_keys=False), encoding="utf-8")
+    with pytest.raises(ValueError, match="seed-0 practice"):
+        run_preflight(
+            repository=tmp_path,
+            config_path=config_path,
+            output_directory=tmp_path / "wrong-profile",
+        )

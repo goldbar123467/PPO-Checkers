@@ -29,6 +29,8 @@ from checkers.training_cli import (
 
 FINAL_LOGGING_STEPS = 2
 PRACTICE_GAMES = 432
+PRACTICE_TOTAL_ANCHOR_GAMES = 4
+PRACTICE_SEQUENCE_COUNT = 302
 
 
 def _config() -> RunConfig:
@@ -194,3 +196,88 @@ def test_practice_gate_and_heartbeat_lines_are_numeric(
     assert "approval_gate status=PAUSED update=1024" in output
     assert "eval/vs_minimax2_ma3=0.3" in output
     assert "env/draw_rate=0.96" in output
+
+
+def test_practice_evaluation_writes_timing_scalars_and_replay_manifest(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = _config()
+    state = TrainerState(global_step=1, update_idx=1, elapsed_training_seconds=2.0)
+    alerts: list[dict[str, float]] = []
+
+    def record_alerts(metrics: dict[str, float]) -> None:
+        alerts.append(metrics)
+
+    session = cast(
+        TrainingSession,
+        SimpleNamespace(
+            config=config,
+            state=state,
+            network=object(),
+            check_evaluation_alerts=record_alerts,
+        ),
+    )
+    match = SimpleNamespace(games=2, records=("game-1", "game-2"))
+    scalar_metrics = {
+        "eval/vs_random": 0.75,
+        "eval/vs_random_ci_low": 0.5,
+        "eval/vs_random_ci_high": 1.0,
+        "eval/vs_random_games": 2.0,
+        "eval/vs_minimax2": 0.5,
+        "eval/vs_minimax2_ci_low": 0.25,
+        "eval/vs_minimax2_ci_high": 0.75,
+        "eval/vs_minimax2_games": 2.0,
+    }
+    evaluation = cast(
+        PracticePolicyEvaluation,
+        SimpleNamespace(
+            scalar_metrics=scalar_metrics,
+            game_rows=({"game": 1},),
+            random_match=match,
+            minimax_match=match,
+        ),
+    )
+    ballot_set = BallotSet(
+        ballots=(),
+        sha256="a" * 64,
+        source_sequence_count=302,
+        source_sequences_sha256="b" * 64,
+        distinct_first_moves=7,
+        transposition_examples=(),
+    )
+    logger = _Logger()
+    history = MetricHistoryWriter(path=tmp_path / "metrics.jsonl", next_logging_step=0)
+    monkeypatch.setattr(
+        training_cli,
+        "evaluate_practice_policy",
+        lambda **_kwargs: evaluation,
+    )
+
+    result = training_cli._run_practice_evaluation(
+        session=session,
+        logger=logger,  # type: ignore[arg-type]
+        history=history,
+        output_directory=tmp_path,
+        ballot_set=ballot_set,
+        training_metrics={
+            "charts/SPS": 10.0,
+            "train/policy_loss": 0.1,
+            "train/approx_kl": 0.01,
+            "train/clipfrac": 0.02,
+            "train/explained_variance": 0.3,
+            "policy/normalized_entropy": 0.9,
+            "env/draw_rate": 0.4,
+        },
+        kind="periodic",
+    )
+
+    assert result.path.is_file()
+    record = json.loads(result.path.read_text(encoding="utf-8"))
+    assert record["schema"] == "CHECKERS_PRACTICE_EVALUATION_1"
+    assert record["total_games"] == PRACTICE_TOTAL_ANCHOR_GAMES
+    assert record["source_sequence_count"] == PRACTICE_SEQUENCE_COUNT
+    history_record = json.loads((tmp_path / "metrics.jsonl").read_text(encoding="utf-8"))
+    assert history_record["metrics"]["eval/wall_seconds"] >= 0.0
+    assert history_record["metrics"]["eval/games_per_second"] >= 0.0
+    assert alerts == [scalar_metrics]
