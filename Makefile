@@ -41,7 +41,7 @@ test:
 	@cd $(LAB) && $(TRAIN_PY) -m pytest
 
 mutate:
-	@cd $(LAB) && $(TRAIN_BIN)/mutmut run --paths-to-mutate=src/checkers/rules
+	@cd $(LAB) && $(TRAIN_BIN)/mutmut run
 
 fuzz-ci:
 	@cd $(LAB) && $(TRAIN_PY) -m pytest -q --no-cov tests/property tests/test_phase0_scaffold.py

@@ -1,0 +1,119 @@
+⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠙ Generating mutants⠹ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants
+    done in 116ms (1 files mutated, 0 ignored, 6 unmodified)
+⠙ Running stats     ⠹ Running stats⠸ Running stats⠼ Running stats⠴ Running stats⠦ Running stats⠧ Running stats⠇ Running stats⠏ Running stats⠋ Running stats⠙ Running stats⠹ Running stats⠸ Running stats⠼ Running stats⠴ Running stats⠦ Running stats⠧ Running stats⠇ Running stats⠏ Running stats⠋ Running stats⠙ Running stats⠹ Running stats⠸ Running stats⠼ Running stats
+..........F
+=================================== FAILURES ===================================
+________________ test_r4_1_jump_geometry_and_landing_occupancy _________________
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+                             ^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 167, in _multicall
+    raise exception
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+    teardown.throw(exception)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/logging.py", line 865, in pytest_runtest_call
+    yield
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+    teardown.throw(exception)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 53, in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_result.py", line 103, in get_result
+    raise exc.with_traceback(tb)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 38, in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+    teardown.throw(exception)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/capture.py", line 900, in pytest_runtest_call
+    return (yield)
+            ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+    teardown.throw(exception)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 53, in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_result.py", line 103, in get_result
+    raise exc.with_traceback(tb)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 38, in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+    teardown.throw(exception)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/skipping.py", line 268, in pytest_runtest_call
+    return (yield)
+            ^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 1707, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 167, in _multicall
+    raise exception
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 167, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/tests/rules/test_captures.py", line 36, in test_r4_1_jump_geometry_and_landing_occupancy
+    assert legal_steps(open_landing) == (_step(9, 18, 14),)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 101, in _trampoline_wrapper
+    return trampoline(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 61, in trampoline
+    return orig_func(*call_args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/mutants/src/checkers/rules/moves.py", line 1244, in x_legal_steps__mutmut_orig
+    step for origin in _iter_squares(origins) for step in _capture_steps_from(state, origin)
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 101, in _trampoline_wrapper
+    return trampoline(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 61, in trampoline
+    return orig_func(*call_args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/mutants/src/checkers/rules/moves.py", line 315, in x__capture_steps_from__mutmut_orig
+    captures.append(Step(origin=origin, destination=landing, captured=adjacent))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 6, in __init__
+  File "/home/thecl/ml-lab/mutants/src/checkers/rules/moves.py", line 46, in __post_init__
+    bit(self.origin)
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 101, in _trampoline_wrapper
+    return trampoline(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 60, in trampoline
+    record_trampoline_hit(f"{orig_func.__module__}.{mangled_name_from_mutant_name(orig_func.__name__)}")
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 130, in record_trampoline_hit
+    file_path = Path(filename).resolve(strict=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1242, in resolve
+    s = self._flavour.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 432, in realpath
+  File "<frozen posixpath>", line 476, in _joinrealpath
+FileNotFoundError: [Errno 2] No such file or directory: '<string>'
+=========================== short test summary info ============================
+FAILED tests/rules/test_captures.py::test_r4_1_jump_geometry_and_landing_occupancy
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+failed to collect stats. runner returned 1
+

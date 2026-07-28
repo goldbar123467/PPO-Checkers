@@ -31,7 +31,8 @@
 ## Open Risks
 
 - The independent grid oracle agrees across 5,000,000 playout positions plus BFS depth 7; 20
-  external scores replay legally. Phase 2 mutation analysis remains.
-- Gate 2 still requires 5M differential positions, breadth-first depth evidence, published
-  transcript replay, mutation ≥85%, and rules coverage ≥98%.
+  external scores replay legally. Mutmut 3.6 isolation and sensitivity are validated; the full
+  968-mutant score run remains.
+- Gate 2's completed large differential, transcript, metamorphic, and coverage evidence is
+  preserved; only the full mutation score and consolidated status record remain technically open.
 - Clean-clone egress-blocked verification remains a final acceptance item.

@@ -4,10 +4,30 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import IntEnum
+from typing import TypedDict, Unpack
 
 UINT32_MAX = (1 << 32) - 1
 PAIR_SIZE = 2
 PLAYABLE_SQUARES = 32
+STATE_OPTION_FIELDS = frozenset(
+    {
+        "capture_in_progress",
+        "moving_square",
+        "sequence_origin",
+        "captured_pending",
+        "no_progress",
+        "ply",
+    }
+)
+
+
+class _StateOptions(TypedDict, total=False):
+    capture_in_progress: bool
+    moving_square: int | None
+    sequence_origin: int | None
+    captured_pending: int
+    no_progress: tuple[int, int]
+    ply: int
 
 
 class PlayerId(IntEnum):
@@ -49,7 +69,7 @@ def _validate_square_or_none(value: int | None, field: str) -> None:
         raise ValueError(f"{field} square must be in [0, 31]")
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True, slots=True, init=False)
 class State:
     """Complete Markov state, including any active capture sequence.
 
@@ -66,6 +86,28 @@ class State:
     captured_pending: int = 0
     no_progress: tuple[int, int] = (0, 0)
     ply: int = 0
+
+    def __init__(
+        self,
+        men: tuple[int, int],
+        kings: tuple[int, int],
+        side_to_move: PlayerId,
+        **options: Unpack[_StateOptions],
+    ) -> None:
+        unknown_fields = set(options) - STATE_OPTION_FIELDS
+        if unknown_fields:
+            names = ", ".join(sorted(unknown_fields))
+            raise TypeError(f"unexpected State field(s): {names}")
+        object.__setattr__(self, "men", men)
+        object.__setattr__(self, "kings", kings)
+        object.__setattr__(self, "side_to_move", side_to_move)
+        object.__setattr__(self, "capture_in_progress", options.get("capture_in_progress", False))
+        object.__setattr__(self, "moving_square", options.get("moving_square"))
+        object.__setattr__(self, "sequence_origin", options.get("sequence_origin"))
+        object.__setattr__(self, "captured_pending", options.get("captured_pending", 0))
+        object.__setattr__(self, "no_progress", options.get("no_progress", (0, 0)))
+        object.__setattr__(self, "ply", options.get("ply", 0))
+        self.__post_init__()
 
     def __post_init__(self) -> None:
         men = _validate_pair(self.men, "men")

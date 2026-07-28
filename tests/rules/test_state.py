@@ -38,6 +38,17 @@ def test_state_is_frozen() -> None:
         setattr(state, field_name, 1)
 
 
+def test_state_rejects_unknown_runtime_fields() -> None:
+    constructor = cast(Callable[..., State], State)
+    with pytest.raises(TypeError, match=r"unexpected State field\(s\): surprise"):
+        constructor(
+            men=(0, 0),
+            kings=(0, 0),
+            side_to_move=PlayerId.RED,
+            surprise=True,
+        )
+
+
 @pytest.mark.parametrize(
     ("factory", "message"),
     [

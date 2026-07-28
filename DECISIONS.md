@@ -113,3 +113,26 @@
   not inferred from a nonterminal board.
 - Evidence: `tests/golden/test_published_transcripts.py`, fixture SHA-256
   `1ab2a5b530d2ff44d5595e0d7674ec521db12e99fed21cbe13c64f8790974311`, and BLOCK-004.
+
+## ADR-010 — Make the rules package compatible with Mutmut 3.6 isolation
+
+- Status: Accepted.
+- Authority: Tier B test-tool engineering; pinned Mutmut 3.6.0 source and documentation.
+- Evidence stage: Mutation-harness validation.
+- Context: Mutmut 3 uses generated trampolines and executes pytest from an isolated `mutants/`
+  tree. Import-time calls into functions that Mutmut instruments can resolve to generated
+  filenames such as `<string>` or `<frozen importlib._bootstrap>`, and nested non-source fixtures
+  are not copied unless their parent directory is declared.
+- Decision: Freeze the already-tested 32-square geometry as an immutable constant; give the three
+  small frozen value dataclasses explicit typed constructors; copy the published fixture and docs
+  directories into the isolated tree; and use Mutmut's current configuration-driven CLI. Do not
+  set `max_stack_depth`: the installed 3.6.0 implementation shows that any non-default value walks
+  and resolves the Python stack on every instrumented call, while the default records all touched
+  functions without that filter.
+- Sources:
+  - Mutmut project documentation: <https://mutmut.readthedocs.io/en/latest/>
+  - Pinned package: `mutmut==3.6.0`, wheel SHA-256
+    `a9f5b8dcf6cbf9496769d7cf8bdbba37a0ec709ad98f88d103238b62f10bdf37` in `uv.lock`.
+- Evidence: `logs/test-output/000011-mutmut-probe-8.txt` kills all 15 selected `coord()`
+  mutants; `logs/test-output/000011-check.txt` proves 148 repository tests plus eight property
+  tests pass with 100% statement/branch coverage over `src/checkers/rules`.

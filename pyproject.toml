@@ -85,3 +85,10 @@ source = ["checkers"]
 [tool.coverage.report]
 fail_under = 92
 show_missing = true
+
+[tool.mutmut]
+source_paths = ["src/checkers/rules/"]
+pytest_add_cli_args = ["--no-cov", "-q"]
+pytest_add_cli_args_test_selection = ["tests/rules/", "tests/golden/", "tests/metamorphic/"]
+also_copy = ["tests/golden/data/", "docs/"]
+cache_invalidation_files = ["tests/golden/data/published_games.json"]

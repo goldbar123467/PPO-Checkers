@@ -20,6 +20,7 @@ __pycache__/
 .coverage
 .coverage.*
 htmlcov/
+mutants/
 .ipynb_checkpoints/
 
 # Large or generated ML artifacts

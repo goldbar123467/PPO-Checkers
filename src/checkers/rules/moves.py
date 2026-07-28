@@ -6,7 +6,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from typing import cast
 
-from checkers.rules.board import PLAYABLE_SQUARES, acf_number, bit, coord, is_playable_coord
+from checkers.rules.board import bit, coord
 from checkers.rules.state import PlayerId, State
 
 DIRECTION_DELTAS = ((1, -1), (1, 1), (-1, -1), (-1, 1))
@@ -21,7 +21,7 @@ class IllegalStepError(ValueError):
     """Raised when a requested step is not legal in the supplied state."""
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True, slots=True, init=False)
 class Step:
     """One environment step: an adjacent move or one jump of a capture sequence.
 
@@ -38,6 +38,12 @@ class Step:
     origin: int
     destination: int
     captured: int | None = None
+
+    def __init__(self, origin: int, destination: int, captured: int | None = None) -> None:
+        object.__setattr__(self, "origin", origin)
+        object.__setattr__(self, "destination", destination)
+        object.__setattr__(self, "captured", captured)
+        self.__post_init__()
 
     def __post_init__(self) -> None:
         bit(self.origin)
@@ -73,24 +79,40 @@ class Transition:
     move_completed: bool
 
 
-def _build_geometry() -> tuple[tuple[Geometry, ...], ...]:
-    table: list[tuple[Geometry, ...]] = []
-    for square in range(PLAYABLE_SQUARES):
-        row, column = coord(square)
-        directions: list[Geometry] = []
-        for row_delta, column_delta in DIRECTION_DELTAS:
-            adjacent_coord = (row + row_delta, column + column_delta)
-            landing_coord = (row + 2 * row_delta, column + 2 * column_delta)
-            adjacent = (
-                acf_number(*adjacent_coord) - 1 if is_playable_coord(*adjacent_coord) else None
-            )
-            landing = acf_number(*landing_coord) - 1 if is_playable_coord(*landing_coord) else None
-            directions.append((adjacent, landing))
-        table.append(tuple(directions))
-    return tuple(table)
-
-
-GEOMETRY = _build_geometry()
+GEOMETRY: tuple[tuple[Geometry, ...], ...] = (
+    ((5, 9), (4, None), (None, None), (None, None)),
+    ((6, 10), (5, 8), (None, None), (None, None)),
+    ((7, 11), (6, 9), (None, None), (None, None)),
+    ((None, None), (7, 10), (None, None), (None, None)),
+    ((8, 13), (None, None), (0, None), (None, None)),
+    ((9, 14), (8, 12), (1, None), (0, None)),
+    ((10, 15), (9, 13), (2, None), (1, None)),
+    ((11, None), (10, 14), (3, None), (2, None)),
+    ((13, 17), (12, None), (5, 1), (4, None)),
+    ((14, 18), (13, 16), (6, 2), (5, 0)),
+    ((15, 19), (14, 17), (7, 3), (6, 1)),
+    ((None, None), (15, 18), (None, None), (7, 2)),
+    ((16, 21), (None, None), (8, 5), (None, None)),
+    ((17, 22), (16, 20), (9, 6), (8, 4)),
+    ((18, 23), (17, 21), (10, 7), (9, 5)),
+    ((19, None), (18, 22), (11, None), (10, 6)),
+    ((21, 25), (20, None), (13, 9), (12, None)),
+    ((22, 26), (21, 24), (14, 10), (13, 8)),
+    ((23, 27), (22, 25), (15, 11), (14, 9)),
+    ((None, None), (23, 26), (None, None), (15, 10)),
+    ((24, 29), (None, None), (16, 13), (None, None)),
+    ((25, 30), (24, 28), (17, 14), (16, 12)),
+    ((26, 31), (25, 29), (18, 15), (17, 13)),
+    ((27, None), (26, 30), (19, None), (18, 14)),
+    ((29, None), (28, None), (21, 17), (20, None)),
+    ((30, None), (29, None), (22, 18), (21, 16)),
+    ((31, None), (30, None), (23, 19), (22, 17)),
+    ((None, None), (31, None), (None, None), (23, 18)),
+    ((None, None), (None, None), (24, 21), (None, None)),
+    ((None, None), (None, None), (25, 22), (24, 20)),
+    ((None, None), (None, None), (26, 23), (25, 21)),
+    ((None, None), (None, None), (27, None), (26, 22)),
+)
 
 
 def _iter_squares(mask: int) -> Iterator[int]:

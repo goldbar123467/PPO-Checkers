@@ -6,7 +6,10 @@ from typing import cast
 
 import pytest
 
+from checkers.rules.board import acf_number, coord, is_playable_coord
 from checkers.rules.moves import (
+    DIRECTION_DELTAS,
+    GEOMETRY,
     IllegalStepError,
     Step,
     Transition,
@@ -17,6 +20,25 @@ from checkers.rules.moves import (
 from checkers.rules.state import PlayerId, State
 
 TWO_ENVIRONMENT_STEPS = 2
+
+
+def test_precomputed_geometry_matches_frozen_coordinate_derivation() -> None:
+    for square, directions in enumerate(GEOMETRY):
+        row, column = coord(square)
+        for (row_delta, column_delta), actual in zip(
+            DIRECTION_DELTAS,
+            directions,
+            strict=True,
+        ):
+            adjacent_coord = (row + row_delta, column + column_delta)
+            landing_coord = (row + 2 * row_delta, column + 2 * column_delta)
+            expected_adjacent = (
+                acf_number(*adjacent_coord) - 1 if is_playable_coord(*adjacent_coord) else None
+            )
+            expected_landing = (
+                acf_number(*landing_coord) - 1 if is_playable_coord(*landing_coord) else None
+            )
+            assert actual == (expected_adjacent, expected_landing)
 
 
 def _mask(*acf_squares: int) -> int:

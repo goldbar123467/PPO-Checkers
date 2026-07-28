@@ -1,0 +1,29 @@
+⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠴ Generating mutants⠦ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠏ Generating mutants⠋ Generating mutants⠹ Generating mutants
+    done in 17ms (0 files mutated, 0 ignored, 7 unmodified)
+⠴ Listing all tests ⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests⠏ Listing all tests⠋ Listing all tests⠙ Listing all tests⠹ Listing all tests⠸ Listing all tests⠼ Listing all tests⠴ Listing all tests⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests⠏ Listing all tests⠋ Listing all tests⠙ Listing all tests⠹ Listing all tests⠸ Listing all tests⠼ Listing all tests⠴ Listing all tests⠦ Listing all tests⠧ Listing all tests⠇ Listing all tests
+⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests⠧ Running clean tests⠇ Running clean tests⠏ Running clean tests⠋ Running clean tests⠙ Running clean tests⠹ Running clean tests⠸ Running clean tests⠼ Running clean tests⠴ Running clean tests⠦ Running clean tests
+    done
+⠧ Running forced fail test⠇ Running forced fail test⠏ Running forced fail test⠋ Running forced fail test⠙ Running forced fail test⠹ Running forced fail test⠸ Running forced fail test⠼ Running forced fail test⠴ Running forced fail test⠦ Running forced fail test⠧ Running forced fail test⠇ Running forced fail test⠏ Running forced fail test⠋ Running forced fail test
+    done
+Running mutation testing
+⠙ 0/968  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠹ 0/968  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠸ 1/968  🎉 1 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠼ 2/968  🎉 2 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠴ 3/968  🎉 3 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠦ 4/968  🎉 4 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠧ 5/968  🎉 5 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠇ 6/968  🎉 6 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠏ 7/968  🎉 7 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠋ 8/968  🎉 8 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠙ 9/968  🎉 9 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠹ 10/968  🎉 10 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠸ 11/968  🎉 11 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠼ 12/968  🎉 12 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠴ 13/968  🎉 13 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0⠦ 15/968  🎉 15 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+36.22 mutations/second
+
+Mutant results
+--------------
+🎉 checkers.rules.board.x_coord__mutmut_1
+🎉 checkers.rules.board.x_coord__mutmut_10
+🎉 checkers.rules.board.x_coord__mutmut_11
+🎉 checkers.rules.board.x_coord__mutmut_12
+🎉 checkers.rules.board.x_coord__mutmut_13
+🎉 checkers.rules.board.x_coord__mutmut_14
+🎉 checkers.rules.board.x_coord__mutmut_15
+🎉 checkers.rules.board.x_coord__mutmut_2
+🎉 checkers.rules.board.x_coord__mutmut_3
+🎉 checkers.rules.board.x_coord__mutmut_4
+🎉 checkers.rules.board.x_coord__mutmut_5
+🎉 checkers.rules.board.x_coord__mutmut_6
+🎉 checkers.rules.board.x_coord__mutmut_7
+🎉 checkers.rules.board.x_coord__mutmut_8
+🎉 checkers.rules.board.x_coord__mutmut_9
+

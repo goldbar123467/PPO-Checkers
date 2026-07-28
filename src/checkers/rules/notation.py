@@ -26,7 +26,7 @@ STATE_PATTERN = re.compile(
 )
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True, slots=True, init=False)
 class MovePath:
     """One complete checkers move in internal zero-based ACF squares.
 
@@ -41,6 +41,11 @@ class MovePath:
 
     squares: tuple[int, ...]
     is_capture: bool
+
+    def __init__(self, squares: tuple[int, ...], is_capture: bool) -> None:
+        object.__setattr__(self, "squares", squares)
+        object.__setattr__(self, "is_capture", is_capture)
+        self.__post_init__()
 
     def __post_init__(self) -> None:
         if not isinstance(self.squares, tuple):

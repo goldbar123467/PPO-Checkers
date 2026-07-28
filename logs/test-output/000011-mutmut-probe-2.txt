@@ -1,0 +1,67 @@
+⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠙ Generating mutants⠹ Generating mutants⠹ Generating mutants⠸ Generating mutants⠼ Generating mutants⠴ Generating mutants⠦ Generating mutants⠧ Generating mutants⠇ Generating mutants⠏ Generating mutants⠋ Generating mutants⠙ Generating mutants⠹ Generating mutants
+    done in 603ms (1 files mutated, 0 ignored, 6 unmodified)
+⠙ Running stats     ⠹ Running stats⠸ Running stats⠼ Running stats⠴ Running stats⠦ Running stats⠧ Running stats⠇ Running stats⠏ Running stats⠋ Running stats⠙ Running stats⠹ Running stats⠸ Running stats
+
+==================================== ERRORS ====================================
+_________________ ERROR collecting tests/rules/test_oracle.py __________________
+Traceback (most recent call last):
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+                             ^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/runner.py", line 406, in collect
+    return list(collector.collect())
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 564, in collect
+    self._register_setup_module_fixture()
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 577, in _register_setup_module_fixture
+    self.obj, ("setUpModule", "setup_module")
+    ^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 290, in obj
+    self._obj = obj = self._getobj()
+                      ^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 561, in _getobj
+    return importtestmodule(self.path, self.config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/python.py", line 508, in importtestmodule
+    mod = import_path(
+          ^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/pathlib.py", line 596, in import_path
+    importlib.import_module(module_name)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 188, in exec_module
+    exec(co, module.__dict__)
+  File "/home/thecl/ml-lab/tests/rules/test_oracle.py", line 30, in <module>
+    State.initial(),
+    ^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/mutants/src/checkers/rules/state.py", line 478, in initial
+    return cls(
+           ^^^^
+  File "<string>", line 12, in __init__
+  File "/home/thecl/ml-lab/mutants/src/checkers/rules/state.py", line 414, in __post_init__
+    men = _validate_pair(self.men, "men")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 101, in _trampoline_wrapper
+    return trampoline(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/mutation/trampoline.py", line 60, in trampoline
+    record_trampoline_hit(f"{orig_func.__module__}.{mangled_name_from_mutant_name(orig_func.__name__)}")
+  File "/home/thecl/ml-lab/.venv-train/lib/python3.12/site-packages/mutmut/__main__.py", line 130, in record_trampoline_hit
+    file_path = Path(filename).resolve(strict=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1242, in resolve
+    s = self._flavour.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 432, in realpath
+  File "<frozen posixpath>", line 476, in _joinrealpath
+FileNotFoundError: [Errno 2] No such file or directory: '<string>'
+=========================== short test summary info ============================
+ERROR tests/rules/test_oracle.py - FileNotFoundError: [Errno 2] No such file ...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+failed to collect stats. runner returned 1
+

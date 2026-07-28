@@ -47,11 +47,13 @@ geometry.
   `logs/gates/phase-2-differential.txt`.
 - Published transcripts: 20 hash-pinned external scores, 515 completed moves / 561 steps, all legal
   with unique resolution; 21 tests pass. Evidence `logs/test-output/000010-transcripts.txt`.
+- Mutation harness: Mutmut 3.6 collected 127 isolated tests, passed its clean/forced-failure
+  controls, and killed all 15 `coord()` mutants. The repository gate remains at 100% rules
+  statement/branch coverage with 148 plus eight tests. Evidence
+  `logs/test-output/000011-mutmut-probe-8.txt` and `000011-check.txt`.
 
 ## Last Five Iterations
 
-- 000006: strict ACF move grammar and CHK1 complete-state format pass canonical, invalid, and exact
-  mid-sequence round-trip tests; repository gate remains at 100% rules coverage.
 - 000007: 50k deterministic fuzz, Hypothesis trajectories, and valid combined symmetry pass;
   BLOCK-003 records why separate mirror/colour/rotation claims are false.
 - 000008: added a deterministic, metadata-bearing 5M differential CLI; its 1,000-position smoke
@@ -60,6 +62,8 @@ geometry.
   independent report validation passed after one expected-SHA typo was caught.
 - 000010: 20 published PDN games replayed all 515 moves legally; BLOCK-004 separates preserved
   publisher results from outcomes that cannot be inferred from nonterminal boards.
+- 000011: made the pinned Mutmut 3.6 harness isolation-safe, preserved each configuration failure,
+  and killed a 15-mutant production probe before authorizing the full 968-mutant run.
 
 ## Open Risks
 
@@ -73,4 +77,5 @@ geometry.
 
 ## Next Step
 
-Configure Mutmut 3.6 from its primary documentation and run the full rules mutation gate.
+Run all 968 generated rules mutants, add targeted killing tests for actionable survivors, and
+export a structured mutation-score report.

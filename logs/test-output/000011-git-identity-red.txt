@@ -1,0 +1,8 @@
+Command: git commit -m "test: validate rules mutation harness"
+Exit: 128
+
+Author identity unknown
+
+Git rejected the commit because repository-local user.name/user.email were unset and the inherited
+identity had an empty name. The immediately preceding repository commit records the established
+identity as `Codex <codex@openai.com>`; that identity was reused repository-locally before retry.
