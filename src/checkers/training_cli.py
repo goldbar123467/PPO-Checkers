@@ -31,7 +31,15 @@ from checkers.logging_wandb import (
     scan_repository_for_credentials,
 )
 from checkers.metric_history import MetricHistoryWriter
+from checkers.recovery import validate_recovery_resume_context
 from checkers.rl.determinism import derive_stream_seed
+from checkers.run_runtime import (
+    attach_runtime_run_id,
+    finish_runtime_state,
+    new_runtime_state,
+    write_runtime_state,
+)
+from checkers.system_metrics import SystemTelemetrySampler
 from checkers.train import TrainingSession
 
 
@@ -218,6 +226,12 @@ def run_training(  # noqa: PLR0912, PLR0915
         reasons = sorted({finding.reason for finding in credential_findings})
         raise RuntimeError(f"repository credential scan failed: {reasons}")
     output_directory.mkdir(parents=True, exist_ok=True)
+    recovery_context = validate_recovery_resume_context(
+        output_directory=output_directory,
+        resume_path=resume_path,
+        current_commit=metadata.git_sha,
+        working_tree_clean=not metadata.git_dirty,
+    )
     _write_resolved_config(output_directory / "config.resolved.yaml", config)
     session = (
         TrainingSession.create(config=config)
@@ -225,29 +239,55 @@ def run_training(  # noqa: PLR0912, PLR0915
         else TrainingSession.resume(config=config, checkpoint_path=resume_path)
     )
     start_update = session.state.update_idx
+    if recovery_context is not None:
+        if start_update < recovery_context.checkpoint_update_idx:
+            raise RuntimeError("resume checkpoint predates the prepared recovery boundary")
+        if session.state.wandb_run_id != recovery_context.source_wandb_run_id:
+            raise RuntimeError("resume checkpoint W&B identity disagrees with recovery provenance")
     update_limit = config.total_updates
     if checked_max_updates is not None:
         update_limit = min(update_limit, start_update + checked_max_updates)
-    stamp = datetime.now().astimezone().strftime("%Y%m%dT%H%M%S%z")
-    logger = create_wandb_logger(
-        config=config,
-        state=session.state,
-        metadata=metadata,
-        stamp=stamp,
-        directory=output_directory,
-    )
     metrics_path = output_directory / "metrics.jsonl"
     history = MetricHistoryWriter(
         path=metrics_path,
         next_logging_step=session.state.logging_step,
     )
+    runtime_path = output_directory / "runtime.json"
+    runtime_state = new_runtime_state(
+        start_update=start_update,
+        experiment_id=config.experiment_id,
+        seed=config.seed,
+        git_sha=metadata.git_sha,
+        run_id=session.state.wandb_run_id or None,
+        resume_from=resume_path,
+    )
+    write_runtime_state(runtime_path, runtime_state)
+    telemetry = SystemTelemetrySampler(process_pid=runtime_state.pid)
+    stamp = datetime.now().astimezone().strftime("%Y%m%dT%H%M%S%z")
+    logger: WandbLogger | None = None
     checkpoints = output_directory / "checkpoints"
     final_checkpoint = resume_path
     evaluation_path: Path | None = None
     artifact_name: str | None = None
     wall_started = time.perf_counter()
     status = "failed"
+    runtime_error: str | None = None
     try:
+        logger = create_wandb_logger(
+            config=config,
+            state=session.state,
+            metadata=metadata,
+            stamp=stamp,
+            directory=output_directory,
+            additional_summary=(
+                None if recovery_context is None else recovery_context.wandb_summary()
+            ),
+        )
+        runtime_state = attach_runtime_run_id(
+            runtime_state,
+            run_id=session.state.wandb_run_id,
+        )
+        write_runtime_state(runtime_path, runtime_state)
         while session.state.update_idx < update_limit:
             if (
                 config.duration_seconds is not None
@@ -255,11 +295,13 @@ def run_training(  # noqa: PLR0912, PLR0915
             ):
                 break
             update = session.run_update()
+            logged_metrics = dict(update.metrics)
+            logged_metrics.update(telemetry.sample().scalar_metrics())
             logging_step = session.state.logging_step
-            logger.log(update.metrics, state=session.state)
+            logger.log(logged_metrics, state=session.state)
             history.append(
                 kind="training",
-                metrics=update.metrics,
+                metrics=logged_metrics,
                 state=session.state,
                 logging_step=logging_step,
             )
@@ -325,25 +367,52 @@ def run_training(  # noqa: PLR0912, PLR0915
             diff = _source_diff(repository, output_directory)
             if diff is not None:
                 files.append(diff)
+            if recovery_context is not None:
+                files.extend(recovery_context.artifact_files)
             artifact_name = (
                 f"checkpoint-{config.experiment_id}-update-{session.state.update_idx:06d}"
             )
+            artifact_metadata: dict[str, object] = {
+                "experiment_id": config.experiment_id,
+                "seed": config.seed,
+                "update_idx": session.state.update_idx,
+                "global_step": session.state.global_step,
+                "git_sha": metadata.git_sha,
+                "git_dirty": metadata.git_dirty,
+            }
+            if recovery_context is not None:
+                artifact_metadata.update(
+                    {
+                        "recovery_manifest_sha256": recovery_context.manifest_sha256,
+                        "recovery_source_commit": recovery_context.source_commit,
+                        "recovery_checkpoint_sha256": (recovery_context.source_checkpoint_sha256),
+                    }
+                )
             logger.log_artifact(
                 name=artifact_name,
                 artifact_type="model",
                 files=tuple(files),
-                metadata={
-                    "experiment_id": config.experiment_id,
-                    "seed": config.seed,
-                    "update_idx": session.state.update_idx,
-                    "global_step": session.state.global_step,
-                    "git_sha": metadata.git_sha,
-                    "git_dirty": metadata.git_dirty,
-                },
+                metadata=artifact_metadata,
             )
         status = "completed"
+    except BaseException as error:
+        runtime_error = f"{type(error).__name__}: {error}"
+        raise
     finally:
-        logger.finish(exit_code=0 if status == "completed" else 1)
+        try:
+            if logger is not None:
+                logger.finish(exit_code=0 if status == "completed" else 1)
+        except BaseException as error:
+            status = "failed"
+            runtime_error = f"{type(error).__name__}: {error}"
+            raise
+        finally:
+            terminal_runtime = finish_runtime_state(
+                runtime_state,
+                status="COMPLETED" if status == "completed" else "FAILED",
+                latest_error=runtime_error,
+            )
+            write_runtime_state(runtime_path, terminal_runtime)
 
     wall_seconds = time.perf_counter() - wall_started
     if not math.isfinite(wall_seconds) or wall_seconds < 0.0:
@@ -373,6 +442,18 @@ def run_training(  # noqa: PLR0912, PLR0915
         "metrics_history": str(metrics_path),
         "wandb_artifact": artifact_name,
         "resume_from": None if resume_path is None else str(resume_path),
+        "recovery": (
+            None
+            if recovery_context is None
+            else {
+                "manifest": str(recovery_context.manifest_path),
+                "manifest_sha256": recovery_context.manifest_sha256,
+                "source_commit": recovery_context.source_commit,
+                "recovery_commit": recovery_context.recovery_commit,
+                "checkpoint_update": recovery_context.checkpoint_update_idx,
+                "checkpoint_sha256": recovery_context.source_checkpoint_sha256,
+            }
+        ),
     }
     manifest_path = output_directory / f"manifest-{session.state.update_idx:06d}.json"
     atomic_write_bytes(manifest_path, _manifest_bytes(manifest))

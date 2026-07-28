@@ -274,6 +274,7 @@ def create_wandb_logger(  # noqa: PLR0913
     stamp: str,
     directory: Path | None = None,
     run_factory: Callable[..., object] | None = None,
+    additional_summary: Mapping[str, object] | None = None,
 ) -> WandbLogger:
     """Initialize an offline-capable run with exact naming, tags, config, and resume ID."""
 
@@ -287,6 +288,8 @@ def create_wandb_logger(  # noqa: PLR0913
         raise ValueError("stamp must be non-empty text")
     if directory is not None and not isinstance(directory, Path):
         raise TypeError("directory must be a Path or None")
+    if additional_summary is not None and not isinstance(additional_summary, Mapping):
+        raise TypeError("additional_summary must be a mapping or None")
     factory = cast(Callable[..., object], wandb.init) if run_factory is None else run_factory
     arguments: dict[str, object] = {
         "project": PROJECT_NAME,
@@ -313,6 +316,10 @@ def create_wandb_logger(  # noqa: PLR0913
     if not isinstance(run.id, str) or not run.id:
         raise RuntimeError("W&B run did not provide a non-empty ID")
     run.summary.update(metadata.as_summary())
+    if additional_summary is not None:
+        if any(not isinstance(key, str) or not key for key in additional_summary):
+            raise TypeError("additional summary keys must be non-empty strings")
+        run.summary.update(dict(additional_summary))
     state.wandb_run_id = run.id
     return WandbLogger(run=run, initial_logging_step=state.logging_step)
 

@@ -72,6 +72,22 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 - Any shortened seed, missing metric, nonzero mask counter, or underpowered/odd-colour arena cannot
   satisfy the timed gate.
 
+## Interrupted Seed 0 recovery matrix
+
+| ID | Evidence | Acceptance rule | Status |
+|---|---|---|---|
+| RC1 | Exact update-170 fixture plus two later records | both orphans preserved verbatim; active prefix ends at logging step 186 | GREEN |
+| RC2 | No-orphan and seven-orphan fixtures | idempotent preparation; every later record preserved | GREEN |
+| RC3 | Ambiguous, malformed, and hash-drift fixtures | fail before final destination; source bytes unchanged | GREEN |
+| RC4 | Interrupted partial destination fixture | stale partial detected and recreated atomically; decision recorded | GREEN |
+| RC5 | One-update CPU continuation/audit | update/logging steps contiguous, no duplicates, full reload and RNG restore | GREEN |
+| RC6 | Read-only monitor fixtures | partial-tail tolerance, diagnostic labels, lifecycle distinctions, source hashes unchanged | GREEN |
+| RC7 | One-update RTX 5070 recovery smoke | optimizer/device, collector, league, RNG, masks, telemetry, time counters pass | Pending |
+| RC8 | Production Seed 0 recovery | 1,800 seconds, powered final evaluation, reload, artifacts, reconciliation | Pending |
+
+The recovery design and commands are frozen in `docs/PHASE7_RECOVERY.md`. RC1–RC6 are engineering
+evidence only; they make no policy-strength claim and do not satisfy G1–G5.
+
 ## Foundation evidence
 
 The import suite began RED because `checkers.config`, `schedules`, `trainer_state`, and `rl.league`
@@ -122,3 +138,9 @@ and labels the setup checkpoint as predating the final exploitability config fie
 post-implementation `make check` passes
 format, Ruff, strict mypy, 889 tests with no skips/xfails, 93.88% total line/branch coverage, and the
 eight-property fuzz target (`000119`).
+
+Recovery engineering after the interrupted Seed 0 run first passed all 901 tests but failed the
+unchanged coverage gate at 90.58%. The adversarial branch audit then closed recovery, lifecycle,
+monitor, and telemetry paths. The clean pre-CUDA-smoke `make check` passes formatting, Ruff, strict
+mypy, 925 tests, 92.40% total line/branch coverage, and all eight property/fuzz tests. This is setup
+validation only; RC7 and the timed Gate 7 evidence remain pending (`logs/iterations/000029.md`).

@@ -517,3 +517,31 @@
   remain pending.
 - Evidence: `tests/eval/test_best_response.py`, `tests/eval/test_policy_eval.py`,
   `tests/integration/test_train_cli.py`, `docs/PPO_CHECKLIST.md`, and logs `000114`–`000119`.
+
+## ADR-033 — Recover interrupted runs by immutable prefix proof
+
+- Status: Accepted recovery engineering; Seed 0 timed evidence pending.
+- Authority: append-only metric/checkpoint contracts in ADR-031, the Seed 0 recovery objective, and
+  the prohibition on treating metrics as reconstructable trainer state.
+- Decision: never resume into the interrupted source directory. Verify the source checkpoint with
+  its SHA-256 sidecar and weights-only full-state loader; require exactly one JSONL record matching
+  checkpoint update, transitions, elapsed time, and preceding logging step; preserve the later raw
+  byte suffix separately; and atomically materialize a sibling recovery directory. Revalidate the
+  source hashes, recovery commit/cleanliness, copied checkpoint, active-prefix hash, and W&B ID
+  before a resumed trainer initializes logging or takes an action.
+- Interruption handling: construct under one destination-specific partial sibling. A rerun detects
+  and recreates only that partial path, recording the event; a completed destination is accepted
+  only when its preparation manifest and artifact hashes still agree. Malformed, ambiguous,
+  non-contiguous, duplicate, non-finite, or changed sources fail closed.
+- Validation: use a separate one-update recovery directory for bounded CUDA validation, then audit
+  prefix identity, next update/logging step, transition/time monotonicity, full checkpoint/RNG
+  reload, optimizer device, collector/league/trainer consistency, finite metrics, and zero mask
+  faults. Prepare production independently from the immutable update-170 source so smoke work
+  cannot contaminate the baseline.
+- Observability: write an atomic runtime lifecycle record, append psutil/NVIDIA telemetry to local
+  JSONL and W&B, retain the source W&B ID with recovery provenance, and provide a polling monitor
+  that is strictly read only and labels periodic evaluations as diagnostic.
+- Evidence: `src/checkers/recovery.py`, `src/checkers/monitor.py`,
+  `src/checkers/system_metrics.py`, `tests/test_recovery.py`, `tests/test_monitor.py`,
+  `tests/test_run_runtime.py`, `tests/test_system_metrics.py`, and
+  `docs/PHASE7_RECOVERY.md`. The real RTX smoke and timed completion remain pending.

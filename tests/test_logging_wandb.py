@@ -146,6 +146,34 @@ def test_w1_resume_uses_saved_id_and_monotonic_explicit_logging_steps() -> None:
         logger.log({"train/entropy": 0.1}, state=state)
 
 
+def test_w1_recovery_summary_is_namespaced_and_does_not_change_run_config() -> None:
+    config = _config()
+    state = TrainerState(wandb_run_id="source-id")
+    captured: dict[str, Any] = {}
+    fake = FakeRun(run_id="source-id")
+
+    def factory(**kwargs: object) -> FakeRun:
+        captured.update(kwargs)
+        return fake
+
+    create_wandb_logger(
+        config=config,
+        state=state,
+        metadata=_metadata(),
+        stamp="recovery",
+        run_factory=factory,
+        additional_summary={
+            "recovery/is_recovery": True,
+            "recovery/checkpoint_sha256": "a" * 64,
+        },
+    )
+
+    assert captured["config"] == asdict(config)
+    assert captured["id"] == "source-id"
+    assert fake.summary["recovery/is_recovery"] is True
+    assert fake.summary["recovery/checkpoint_sha256"] == "a" * 64
+
+
 def test_w1_completeness_audit_fails_closed_then_accepts_exact_inventory() -> None:
     state = TrainerState()
     fake = FakeRun()
