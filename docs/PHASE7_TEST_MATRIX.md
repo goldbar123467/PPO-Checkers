@@ -43,11 +43,11 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 
 | ID | Immutable evidence | Gate condition | Status |
 |---|---|---|---|
-| G1 | Three seed run manifests and W&B-offline directories | each records at least 1,800 training seconds with deterministic mode enabled | Pending |
-| G2 | Metric-completeness audit over all three histories | every §13.2 key logged; all three masking fault counters exactly zero | Pending |
-| G3 | Three 364-game colour-balanced random matches | each score at least 0.90 with W/D/L, game count, and 95% interval reported | Pending |
-| G4 | Load validation and resume transcript | final checkpoints load/use; R2/R3 exact-resume evidence remains green | Pending |
-| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | PRELIMINARY GREEN — rerun after timed seeds/report |
+| G1 | Three seed run manifests and W&B-offline directories | each records at least 1,800 training seconds with deterministic mode enabled | GREEN |
+| G2 | Metric-completeness audit over all three histories | every §13.2 key logged; all three masking fault counters exactly zero | GREEN |
+| G3 | Three 364-game colour-balanced random matches | each score at least 0.90 with W/D/L, game count, and 95% interval reported | GREEN |
+| G4 | Load validation and resume transcript | final checkpoints load/use; R2/R3 exact-resume evidence remains green | GREEN |
+| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | GREEN |
 
 ## Primary implementation sources
 
@@ -100,7 +100,7 @@ RC8 uses the separately prepared `phase7-a0-seed0-c8207ca-recovery-001` run at t
 1,804.556 measured training seconds, 291 contiguous records, a digest-verified/full-state-reloaded
 checkpoint, six 364-game final match groups, measured best response, W&B offline artifact, and zero
 aggregate legality/oracle faults. The original source hashes remain unchanged. Seeds 1 and 2 are
-still required before the three-seed Gate 7 conclusion.
+complete and audited in `reports/phase7_gate_analysis.md`; G1–G5 are green.
 
 ## Foundation evidence
 
@@ -157,4 +157,5 @@ Recovery engineering after the interrupted Seed 0 run first passed all 901 tests
 unchanged coverage gate at 90.58%. The adversarial branch audit then closed recovery, lifecycle,
 monitor, and telemetry paths. The clean pre-CUDA-smoke `make check` passes formatting, Ruff, strict
 mypy, 925 tests, 92.40% total line/branch coverage, and all eight property/fuzz tests. This is setup
-validation only; RC7 and the timed Gate 7 evidence remain pending (`logs/iterations/000029.md`).
+validation only; RC7 and the timed Gate 7 evidence were still pending at that checkpoint
+(`logs/iterations/000029.md`).

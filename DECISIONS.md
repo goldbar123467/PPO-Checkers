@@ -471,7 +471,7 @@
 
 ## ADR-031 — Persist complete chronology and load only digest-verified weights-only checkpoints
 
-- Status: Accepted Phase 7 implementation foundation; timed gate pending.
+- Status: Accepted Phase 7 implementation; timed gate complete.
 - Authority: `GOAL.md` §§7.4–7.5, 8.4, 12.8, and 13.2–13.3; official PyTorch state/loading and
   W&B offline/resume documentation listed in `docs/PHASE7_TEST_MATRIX.md`.
 - Decision: collect directly through `CheckersVectorEnv`, compare every pre-action mask to the
@@ -487,13 +487,13 @@
 - Result: a forced capture is checkpointed after its first jump. The uninterrupted and resumed CPU
   forks have identical actions, minibatch ledgers, scalar metrics, collector records, RNG states,
   and model tensors for the next ten updates. The first full integration run passes 872 tests at
-  95.26% total coverage; CUDA resume and real W&B offline evidence remain pending.
+  95.26% total coverage. CUDA resume, W&B offline logging, and the timed gate later passed.
 - Evidence: `tests/integration/test_resume_training.py`, `tests/test_checkpoint.py`, and
   `logs/test-output/000105-*` through `000113-*`.
 
 ## ADR-032 — Keep evaluation RNG-neutral and make exploitability a trained measurement
 
-- Status: Accepted Phase 7 instrumentation; timed evidence pending.
+- Status: Accepted Phase 7 instrumentation; timed evidence complete.
 - Authority: `GOAL.md` §§11.2–11.5 and 13; Huang et al. 2022 is Tier B for PPO implementation
   details, while the short-budget proxy budget is a documented project operational choice.
 - Decision: run a private two-game diagnostic at each `eval_every` boundary and reserve the
@@ -513,14 +513,14 @@
   action IDs in game tables.
 - Validation: CPU and CUDA evaluation preserve the candidate weights/mode and global Torch RNG. A
   CUDA setup proxy used 16 games, 654 candidate decisions, 14 optimizer steps, and left the frozen
-  digest unchanged. The five-minute end-to-end smoke and 889-test gate pass; powered seed results
-  remain pending.
+  digest unchanged. The five-minute end-to-end smoke and 889-test gate pass; all three later
+  powered seed evaluations completed and are consolidated in the Phase 7 reports.
 - Evidence: `tests/eval/test_best_response.py`, `tests/eval/test_policy_eval.py`,
   `tests/integration/test_train_cli.py`, `docs/PPO_CHECKLIST.md`, and logs `000114`–`000119`.
 
 ## ADR-033 — Recover interrupted runs by immutable prefix proof
 
-- Status: Accepted recovery engineering and Seed 0 timed recovery; Seeds 1 and 2 pending.
+- Status: Accepted recovery engineering; recovered Seed 0 and three-seed Gate 7 complete.
 - Authority: append-only metric/checkpoint contracts in ADR-031, the Seed 0 recovery objective, and
   the prohibition on treating metrics as reconstructable trainer state.
 - Decision: never resume into the interrupted source directory. Verify the source checkpoint with
@@ -546,4 +546,4 @@
 - Evidence: `src/checkers/recovery.py`, `src/checkers/monitor.py`,
   `src/checkers/system_metrics.py`, `tests/test_recovery.py`, `tests/test_monitor.py`,
   `tests/test_run_runtime.py`, `tests/test_system_metrics.py`, and
-  `docs/PHASE7_RECOVERY.md`. The real RTX smoke and timed completion remain pending.
+  `docs/PHASE7_RECOVERY.md`. The real RTX smoke, recovered Seed 0, and timed gate passed.

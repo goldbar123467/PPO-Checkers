@@ -2,22 +2,20 @@
 
 ## Current Phase
 
-Phase 7 — self-play loop and W&B (IN PROGRESS)
+Phase 7 — self-play loop and W&B (GREEN); Phase 8 pending
 
 Phases 1–4 are formally BLOCKED by specification defects recorded as BLOCK-001 through BLOCK-006.
 Their technically feasible work and gates are complete, so §0.1 directs work to the next
 source-correct portion. Phases 5 and 6 are GREEN.
 
-Work label: Phase 7 timed three-seed baseline after successful CUDA setup validation.
+Work label: completed Phase 7 timed three-seed A0 baseline.
 
 Engineering objective: run three independently seeded A0 baselines for at least 1,800 measured
 training seconds each, then audit the powered evaluations and checkpoint reloads against Gate 7.
 
 ## In Flight
 
-1. Preserve the accepted recovered Seed 0 run and its immutable source/orphan evidence.
-2. Run Seeds 1 and 2 sequentially on the single RTX 5070 without changing A0.
-3. Consolidate all three 364-game results, mask counters, metric completeness, and reload evidence.
+No Phase 7 work remains in flight. Phase 8 A1–A3 ablation planning has not started.
 
 ## Gate Evidence
 
@@ -167,8 +165,8 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
   league, cumulative collector state, serialized vector lanes, W&B IDs/counters, schedules, and
   AMP state. A checkpoint after jump one reproduces actions, metrics, epoch order, collector state,
   and parameters bitwise for CPU updates 2–11. Fake W&B initialization/logging/completeness and the
-  tracked-file credential scan are green; the real offline run remains pending. The intermediate
-  full suite passes 872 tests at 95.26% total coverage. Evidence `logs/test-output/000105-*`
+  tracked-file credential scan were green; the real offline run was still pending at that point.
+  The intermediate full suite passes 872 tests at 95.26% total coverage. Evidence `logs/test-output/000105-*`
   through `000113-*`.
 - Phase 7 CUDA/offline completion: the first RTX resume run found a `cuda` versus `cuda:0` tensor-
   ownership defect; the permanent test then passed CPU bitwise and same-stack CUDA tolerance over
@@ -199,12 +197,18 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
   were 0.9973 vs random, 0.9986 vs greedy, 0.6731 vs minimax-2, and 0.25 for the trained
   best-response proxy. The post-observability-fix gate passed 930 tests at 92.27% plus eight
   property tests. Evidence `logs/iterations/000031.md` and the recovered run directory.
+- Phase 7 timed Seeds 1–2 and synthesis: both fresh runs used the same clean `ea5f62f` revision,
+  exceeded 1,800 measured seconds, passed full CUDA checkpoint reload and metric integrity checks,
+  and completed six 364-game final match groups each. All three random scores exceed 0.997, every
+  required metric is present, and all mask-fault sums are zero. G1–G5 are green. Evidence
+  `reports/phase7_gate_analysis.md`,
+  `reports/phase7_gate_report_v1.json`, and `logs/iterations/000032.md`.
+- Gate 7 GREEN: the post-report `make check` passed formatting, Ruff, strict mypy, 930 tests at
+  92.27% total line/branch coverage, and eight property/fuzz tests. G1–G5 are green. Evidence
+  `logs/gates/phase-7.txt` and the two Phase 7 reports.
 
 ## Last Five Iterations
 
-- 000027: implemented self-play, all metric/alert formulas, exact PPO epoch consumption, offline
-  logging contracts, atomic weights-only checkpoints, and bitwise 10-update CPU resume from a
-  mid-capture lane; the first full integration run passed 872 tests.
 - 000028: fixed the CUDA device-identity defect; proved same-stack resume; completed real offline
   W&B, learned-policy evaluation, frozen-opponent best response, JSONL history, artifact logging,
   a five-minute CUDA smoke, and the 889-test pre-timed gate.
@@ -214,6 +218,8 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
   and accepted a fresh one-update CUDA smoke with full machine evidence.
 - 000031: completed and audited the recovered timed Seed 0, then replaced clock-sensitive PID
   identity with exact boot-relative process start tokens before allowing Seed 1.
+- 000032: ran Seeds 1 and 2 sequentially at one clean revision, fully audited both, and synthesized
+  the three-seed evidence with G1–G5 green.
 
 ## Open Risks
 
@@ -230,9 +236,9 @@ training seconds each, then audit the powered evaluations and checkpoint reloads
 - The best-response proxy is genuinely trained and measured at final evaluation; periodic
   diagnostics retain the explicit `NOT_EVALUATED=-1` sentinel. Seed 0 scored 0.25, but Seeds 1 and
   2 remain required before reporting a three-seed result.
-- Test volume is 608 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
+- Test volume is 930 with none skipped/xfailed, exceeding the final ≥400 requirement; the existing
   276 substantive rules/environment tests exceed that category's ≥250 requirement.
 
 ## Next Step
 
-Commit the Seed 0 audit and exact monitor identity, then execute Seeds 1 and 2 sequentially.
+Phase 8 is next: freeze the A1–A3 ablation plan before changing the accepted A0 baseline.
