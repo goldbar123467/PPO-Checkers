@@ -34,6 +34,7 @@ models/adapters/*
 !models/adapters/.gitkeep
 !models/adapters/smoke-test/
 models/adapters/smoke-test/*
+models/checkers/
 runs/checkpoints/
 runs/logs/
 runs/tensorboard/
@@ -45,6 +46,13 @@ wandb/
 *.pt
 *.pth
 *.gguf
+
+# Local web dependency and build output
+web/checkers/node_modules/
+web/checkers/dist/
+web/checkers/*.tsbuildinfo
+web/checkers/vite.config.js
+web/checkers/vite.config.d.ts
 
 # Runtime state and editor files
 runs/

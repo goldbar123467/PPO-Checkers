@@ -1,0 +1,18 @@
+# These exact historical findings are 64-hex Zobrist `position_key` values in generated
+# checkers ballot fixtures, confirmed by field name. No path/rule-wide allowlist is used.
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:432
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:592
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:640
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:1632
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:1712
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballots_v1.json:generic-api-key:1984
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:438
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:598
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:646
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:1270
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:1718
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:1782
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:1894
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:2214
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:2838
+dacf1f1d58393f33a18a84793f491f04daa55db7:data/ballot_sequences_v1.json:generic-api-key:4678

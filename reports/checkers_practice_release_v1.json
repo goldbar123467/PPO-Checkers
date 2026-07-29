@@ -1,0 +1,160 @@
+{
+  "bundle": {
+    "config_sha256": "6aac34f8b24e446fabc2a8a61f2b1b49d99edfc6244002f1e1bf4264a49825f5",
+    "id": "checkers-ppo-practice-seed0-v1-update-004608",
+    "parameter_count": 470410,
+    "parity_validation_positions": 12,
+    "sha256": "5d6c5c8392f7fb6897a596f5eb204f7d958f6f828d1cf56cfce98b3fcfec34fe",
+    "size_bytes": 1905669,
+    "source_checkpoint_sha256": "5ae84a2e8e376cfa7c5864d2ad11955b065f9c1c6b1f79244d5321f3e6a13762",
+    "source_checkpoint_size_bytes": 735110559
+  },
+  "experiment": {
+    "deterministic": true,
+    "device": "cuda",
+    "final_update": 6144,
+    "global_step": 50331648,
+    "id": "checkers-ppo-practice-seed0-v1",
+    "invocation_wall_seconds": 82170.56810843201,
+    "measured_training_seconds": 77845.00490633435,
+    "seed": 0,
+    "source_git_sha": "495ff829e15373c3bb5117dd13933b3a8cdfa492"
+  },
+  "final_evaluation": {
+    "evaluation_sha256": "8d26c80932c6f5ede81adf031de445cd7d292c25b163564604a12b48e0718190",
+    "update": 6144,
+    "vs_minimax2": {
+      "ci95_high": 0.8905513242680452,
+      "ci95_low": 0.8253053104913326,
+      "draws": 90,
+      "games": 432,
+      "losses": 15,
+      "score": 0.8611111111111112,
+      "wins": 327
+    },
+    "vs_random": {
+      "ci95_high": 1.0,
+      "ci95_low": 0.9911861096668306,
+      "draws": 0,
+      "games": 432,
+      "losses": 0,
+      "score": 1.0,
+      "wins": 432
+    }
+  },
+  "limitations": [
+    "One practice-run seed is reported; no between-seed uncertainty is available for this checkpoint.",
+    "Minimax-2 is a shallow project baseline, not an external rating or expert-strength reference.",
+    "The selected checkpoint has not been evaluated on a sealed external suite or against humans."
+  ],
+  "resources": {
+    "gpu_memory_used_mib": {
+      "max": 11923.0,
+      "mean": 7442.61962890625
+    },
+    "gpu_power_draw_watts": {
+      "max": 115.28,
+      "mean": 61.851681315104166
+    },
+    "gpu_temperature_celsius": {
+      "max": 60.0,
+      "mean": 44.884440104166664
+    },
+    "gpu_utilization_percent": {
+      "max": 100.0,
+      "mean": 72.36279296875
+    },
+    "process_rss_bytes": {
+      "max": 4592087040.0,
+      "mean": 3953907137.3333335
+    },
+    "steps_per_second": {
+      "max": 1354.0310139476348,
+      "mean": 828.5697332738254,
+      "min": 76.23815639924385
+    },
+    "training_rows": 6144
+  },
+  "schema": "CHECKERS_PUBLIC_RELEASE_REPORT_1",
+  "selected_evaluation": {
+    "ballot_count": 216,
+    "ballot_sha256": "9b7c1db4c70c4b39140220fccc5eca4d2d891b3176eb4d623550a304277a365b",
+    "evaluation_sha256": "809566af8ae420d5e50d11afc540a6d239fd98de534d3ef3ae2fe3158d11b5c0",
+    "vs_minimax2": {
+      "ci95_high": 0.9252607365812731,
+      "ci95_low": 0.8686059160685495,
+      "draws": 70,
+      "games": 432,
+      "losses": 8,
+      "score": 0.9004629629629629,
+      "wins": 354
+    },
+    "vs_random": {
+      "ci95_high": 1.0,
+      "ci95_low": 0.9911861096668306,
+      "draws": 0,
+      "games": 432,
+      "losses": 0,
+      "score": 1.0,
+      "wins": 432
+    }
+  },
+  "selection": {
+    "criterion": "highest vs_minimax2 score among persisted checkpoints with a full ballot evaluation",
+    "evaluated_persisted_checkpoints": [
+      {
+        "evaluation_sha256": "88a4c3aff53e7c1e2d60e136db493cf3fe0ce8c215d85afd99256734d509e490",
+        "update": 768,
+        "vs_minimax2_score": 0.7615740740740741
+      },
+      {
+        "evaluation_sha256": "102760365925b32429acfea4902068a65f592bf1566386da190d2eae9af80835",
+        "update": 1024,
+        "vs_minimax2_score": 0.7731481481481481
+      },
+      {
+        "evaluation_sha256": "ee71a266d53116e2de7b21d6dc5e47892dbcf22e600829749bca5f71bb791091",
+        "update": 1536,
+        "vs_minimax2_score": 0.7719907407407407
+      },
+      {
+        "evaluation_sha256": "4bfb5c9284ea378b9601c74f3f5cf0048092b532834776e1c040859b0381031e",
+        "update": 2304,
+        "vs_minimax2_score": 0.8101851851851852
+      },
+      {
+        "evaluation_sha256": "252152c33f944aa64c2c9ad12f00803ca69aa44458f9baf62ab6772ef3cb9530",
+        "update": 3072,
+        "vs_minimax2_score": 0.8668981481481481
+      },
+      {
+        "evaluation_sha256": "beabe48ede196f2bee47cd14f293895f9aef68731d9470eec148a1bc7e893188",
+        "update": 3840,
+        "vs_minimax2_score": 0.8564814814814815
+      },
+      {
+        "evaluation_sha256": "809566af8ae420d5e50d11afc540a6d239fd98de534d3ef3ae2fe3158d11b5c0",
+        "update": 4608,
+        "vs_minimax2_score": 0.9004629629629629
+      },
+      {
+        "evaluation_sha256": "f76a2f331e8b9c02a562d46135443b32da7038416f436ba43ac7cfe9f049fc07",
+        "update": 5376,
+        "vs_minimax2_score": 0.8576388888888888
+      },
+      {
+        "evaluation_sha256": "8d26c80932c6f5ede81adf031de445cd7d292c25b163564604a12b48e0718190",
+        "update": 6144,
+        "vs_minimax2_score": 0.8611111111111112
+      }
+    ],
+    "selected_update": 4608,
+    "selection_bias_warning": "The ballot suite was reused for checkpoint selection; this is not sealed test evidence."
+  },
+  "source_evidence": {
+    "approval_manifest_sha256": "df5449735d6270566d5ff441896f633e07629b74e96d598672e3fcb96ed0f1bc",
+    "manifest_sha256": "b55a839172389f62dfe51e39109cfd982747946727202912c5dd9bd14ab57358",
+    "metrics_history_sha256": "323ecc335ae8d9e2679b9ce1fe9b392eaa69f866951bdc8bde2accea1b5ae8f7",
+    "resolved_config_sha256": "a99bc3bf2e2fefce7a58098b7201c747d32b3499060a46a5b175b8130e047806"
+  }
+}

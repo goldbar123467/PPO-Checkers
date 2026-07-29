@@ -1,0 +1,4 @@
+gymnasium==1.3.0
+numpy==2.5.1
+pyyaml==6.0.3
+torch @ https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=4ca4a9394b0c771238a4f73590fdbbc4debad85ed0fa63d026ae1b085da7d6e2
