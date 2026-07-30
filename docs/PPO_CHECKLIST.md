@@ -2,9 +2,9 @@
 
 This checklist adjudicates the 37 details catalogued by Huang, Dossa, Raffin, Kanervisto, and
 Wang, [*The 37 Implementation Details of Proximal Policy Optimization*](https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/)
-(ICLR Blog Track, 2022). That source is Tier B implementation evidence, not binding law. The
-checkers-specific algorithm in `GOAL.md` has priority where the task differs from Atari, continuous
-control, LSTM, or `MultiDiscrete` environments.
+(ICLR Blog Track, 2022). That source is implementation evidence, not binding law. The public
+[experiment contract](experiment-contract.md) has priority where checkers differs from Atari,
+continuous control, LSTM, or `MultiDiscrete` environments.
 
 Status meanings: **ADOPTED** is implemented directly; **ADAPTED** preserves the purpose with an
 explicit checkers/two-player change; **REJECTED** is intentionally not used; **N/A** does not apply
@@ -22,7 +22,7 @@ to this environment. Code and test paths are repository-relative.
 | 6 | Shuffled mini-batch updates | ADOPTED | Tier B | `RolloutUpdater` makes a full seeded permutation per epoch and records every source index; exactly-once and completeness tests in `tests/rl/test_train.py`. |
 | 7 | Per-mini-batch advantage normalization | ADOPTED | Tier B/default | `compute_ppo_loss` normalizes with epsilon 1e-8 within each minibatch; PPO numerical tests. |
 | 8 | Clipped surrogate objective | ADOPTED | LAW | Literal PPO-Clip minimum in `rl/ppo.py`; hand-computed and directional tests T3/T4. |
-| 9 | Value-function loss clipping | REJECTED | GOAL §8.2 default | Plain MSE is intentional; Engstrom-era clipping is not assumed beneficial. `tests/rl/test_ppo.py` locks the formula. |
+| 9 | Value-function loss clipping | REJECTED | Project contract | Plain MSE is intentional; Engstrom-era clipping is not assumed beneficial. `tests/rl/test_ppo.py` locks the formula. |
 | 10 | Overall loss and entropy bonus | ADAPTED | LAW/default | `policy + 0.5·value − ent_coef·entropy`; entropy coefficient linearly anneals 0.01→0.001 over the first 50% by project hypothesis. |
 | 11 | Global gradient clipping | ADOPTED | Tier B/default | `clip_grad_norm_` at 0.5 with non-finite failure in `rl/ppo.py`; gradient tests. |
 | 12 | Debug variables | ADAPTED | Tier B | All source metrics plus mask, policy, value, game, anchor, and population diagnostics are frozen in `metrics.py`; KL uses the lower-variance nonnegative k3 estimator and all 55 keys are completeness-audited. |
@@ -53,7 +53,7 @@ to this environment. Code and test paths are repository-relative.
 | 27 | Clip continuous action; store raw action | N/A | Continuous-only | Illegal actions have exactly zero probability under the stored mask; no post-sampling clipping occurs. |
 | 28 | Running observation normalization | REJECTED | Task-specific | Semantic planes have fixed meanings and bounded ranges; running statistics would make a position depend on training history. GroupNorm normalizes learned features instead. |
 | 29 | Observation clipping | N/A | Continuous-only | Encoded planes are already bounded and validated. |
-| 30 | Reward scaling | REJECTED | Project law | Would alter the declared terminal-only objective and is prohibited by `GOAL.md` §2.3. |
+| 30 | Reward scaling | REJECTED | Project contract | Would alter the declared terminal-only objective. |
 | 31 | Reward clipping after scaling | REJECTED | Project law | No scaling is performed; terminal rewards are already in the exact target range. |
 
 ## Five LSTM details

@@ -1,2 +1,0 @@
-rule mutation challenges: PASS
-report: /home/thecl/ml-lab/reports/phase2_rule_mutation_challenges.json

@@ -557,12 +557,12 @@ def _metadata() -> dict[str, object]:
     return {
         "git_sha": _git("rev-parse", "HEAD"),
         "git_dirty": bool(_git("status", "--porcelain")),
-        "goal_sha256": sha256(Path("GOAL.md").read_bytes()).hexdigest(),
+        "goal_sha256": sha256(Path("docs/experiment-contract.md").read_bytes()).hexdigest(),
         "source_sha256": _file_hashes(),
         "python": platform.python_version(),
         "packages": {
             "gymnasium": version("gymnasium"),
-            "ml-lab": version("ml-lab"),
+            "ppo-checkers": version("ppo-checkers"),
             "numpy": version("numpy"),
         },
         "hardware": {

@@ -1,9 +1,0 @@
-Name                               Stmts   Miss Branch BrPart  Cover   Missing
-------------------------------------------------------------------------------
-src/checkers/env/__init__.py           0      0      0      0   100%
-src/checkers/env/checkers_env.py     182      0     46      0   100%
-src/checkers/env/encoding.py          44      0     12      0   100%
-src/checkers/env/masking.py           71      0     20      0   100%
-src/checkers/env/serialize.py        124      0     68      0   100%
-------------------------------------------------------------------------------
-TOTAL                                421      0    146      0   100%

@@ -74,8 +74,8 @@ def test_cli_orchestration_writes_loadable_report_archive_and_progress(
         [
             "--config",
             "configs/checkers-baselines-v1.yaml",
-            "--goal",
-            "GOAL.md",
+            "--contract",
+            "docs/experiment-contract.md",
             "--checkpoint-dir",
             str(tmp_path / "checkpoints"),
             "--raw-output",

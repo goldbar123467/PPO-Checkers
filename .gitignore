@@ -10,8 +10,8 @@
 
 # Environments and Python output
 .venv/
+.venv-checkers/
 .venv-train/
-.venv-vllm/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -23,23 +23,12 @@ htmlcov/
 mutants/
 .ipynb_checkpoints/
 
-# Large or generated ML artifacts
+# Generated training and model artifacts
 cache/
 data/raw/
 data/processed/
-models/base/
-models/merged/
-models/gguf/
-models/adapters/*
-!models/adapters/.gitkeep
-!models/adapters/smoke-test/
-models/adapters/smoke-test/*
-models/checkers/
-runs/checkpoints/
-runs/logs/
-runs/tensorboard/
-runs/remote/logs/
-runs/remote/recovered/
+models/
+runs/
 wandb/
 *.safetensors
 *.bin
@@ -55,9 +44,6 @@ web/checkers/vite.config.js
 web/checkers/vite.config.d.ts
 
 # Runtime state and editor files
-runs/
-runs/*.pid
-runs/*.log
 .DS_Store
 .idea/
 .vscode/

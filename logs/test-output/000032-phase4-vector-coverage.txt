@@ -1,6 +1,0 @@
-Name                          Stmts   Miss Branch BrPart  Cover   Missing
--------------------------------------------------------------------------
-src/checkers/env/vec_env.py     135     13     46      3    89%   47->54, 49, 188, 279-293
--------------------------------------------------------------------------
-TOTAL                           135     13     46      3    89%
-Coverage failure: total of 89 is less than fail-under=98

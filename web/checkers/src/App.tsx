@@ -77,7 +77,7 @@ export default function App() {
       </header>
 
       <section className="hero" id="top">
-        <p className="eyebrow">ML Lab · policy table 01</p>
+        <p className="eyebrow">PPO Checkers · policy table 01</p>
         <h1>Play the run,<br />not a simulation.</h1>
         <p className="hero-copy">
           The saved PPO policy is loaded on the game server. Every legal move comes from the same

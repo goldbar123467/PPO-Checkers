@@ -41,7 +41,8 @@ DEFAULT_CONFIG = Path("configs/checkers-baselines-v1.yaml")
 DEFAULT_CHECKPOINT_DIR = Path("runs/metadata/phase5-baselines-v1")
 DEFAULT_RAW_OUTPUT = Path("reports/phase5_baseline_games_v1.json.gz")
 DEFAULT_REPORT_OUTPUT = Path("reports/phase5_baseline_report_v1.json")
-PACKAGE_NAMES = ("python", "ml-lab", "numpy", "gymnasium", "pyyaml")
+PACKAGE_NAMES = ("python", "ppo-checkers", "numpy", "gymnasium", "pyyaml")
+DEFAULT_CONTRACT = Path("docs/experiment-contract.md")
 
 
 def _canonical_json_bytes(value: object) -> bytes:
@@ -269,7 +270,7 @@ def run(arguments: argparse.Namespace) -> int:
     raw_output = cast(Path, arguments.raw_output)
     report_output = cast(Path, arguments.report_output)
     progress_log = cast(Path | None, arguments.progress_log)
-    goal_path = cast(Path, arguments.goal)
+    contract_path = cast(Path, arguments.contract)
 
     git_commit = _clean_git_commit()
     config_text = config_path.read_text(encoding="utf-8")
@@ -278,7 +279,7 @@ def run(arguments: argparse.Namespace) -> int:
         experiment_id=config.experiment_id,
         git_commit=git_commit,
         config_sha256=hashlib.sha256(config_text.encode("utf-8")).hexdigest(),
-        goal_sha256=_file_sha256(goal_path),
+        goal_sha256=_file_sha256(contract_path),
     )
     log_handle = None if progress_log is None else progress_log.open("w", encoding="utf-8")
     try:
@@ -378,7 +379,14 @@ def run(arguments: argparse.Namespace) -> int:
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--goal", type=Path, default=Path("GOAL.md"))
+    parser.add_argument(
+        "--contract",
+        "--goal",
+        dest="contract",
+        type=Path,
+        default=DEFAULT_CONTRACT,
+        help="public experiment contract to hash into the evaluation identity",
+    )
     parser.add_argument("--checkpoint-dir", type=Path, default=DEFAULT_CHECKPOINT_DIR)
     parser.add_argument("--raw-output", type=Path, default=DEFAULT_RAW_OUTPUT)
     parser.add_argument("--report-output", type=Path, default=DEFAULT_REPORT_OUTPUT)
