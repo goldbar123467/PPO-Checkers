@@ -45,7 +45,7 @@ The final update 6144 regressed to 0.8611 against Minimax-2. That adverse result
 | Deployment steady RSS | about 160 MiB |
 | Deployment neural reply at origin | 7 ms in the recorded smoke |
 
-The compact machine-readable evidence is [reports/checkers_practice_release_v1.json](reports/checkers_practice_release_v1.json); methodology and caveats are in [docs/evaluation.md](docs/evaluation.md) and [docs/results.md](docs/results.md).
+The compact machine-readable evidence is [reports/checkers_practice_release_v1.json](reports/checkers_practice_release_v1.json); the production image, runtime, and exercised rollback are recorded in [reports/checkers_deployment_v1.json](reports/checkers_deployment_v1.json). Methodology and caveats are in [docs/evaluation.md](docs/evaluation.md) and [docs/results.md](docs/results.md).
 
 ## System shape
 
