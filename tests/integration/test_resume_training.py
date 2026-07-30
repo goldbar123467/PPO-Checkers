@@ -15,6 +15,10 @@ from checkers.train import TrainingSession
 TOTAL_UPDATES = 11
 POST_CHECKPOINT_UPDATES = 10
 RESUMED_LOGGING_STEP = 7
+REQUIRES_CUDA = pytest.mark.skipif(
+    not torch.cuda.is_available(),
+    reason="requires the declared CUDA validation host",
+)
 
 
 def _mask(*acf_squares: int) -> int:
@@ -113,10 +117,10 @@ def test_r2_ten_updates_after_midsequence_resume_are_cpu_bitwise_equal(
         assert torch.equal(resumed.network.state_dict()[name], expected_tensor)
 
 
+@REQUIRES_CUDA
 def test_r3_ten_updates_after_cuda_resume_match_declared_same_stack_tolerance(
     tmp_path: Path,
 ) -> None:
-    assert torch.cuda.is_available(), "R3 requires the declared local CUDA GPU"
     config = _config(device="cuda")
     uninterrupted = TrainingSession.create(
         config=config,

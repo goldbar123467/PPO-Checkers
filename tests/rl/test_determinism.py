@@ -17,6 +17,10 @@ from checkers.rl.ppo import PPOConfig, PPOMinibatch, ppo_minibatch_update
 NUM_ENVS = 4
 UPDATES = 10
 ROOT_SEED = 314159
+REQUIRES_CUDA = pytest.mark.skipif(
+    not torch.cuda.is_available(),
+    reason="requires the declared CUDA validation host",
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -169,8 +173,8 @@ def test_d2_cpu_losses_and_actions_are_bitwise_reproducible_for_ten_updates() ->
     assert len(first.metrics) == UPDATES
 
 
+@REQUIRES_CUDA
 def test_d3_gpu_actions_match_and_losses_meet_same_stack_tolerance() -> None:
-    assert torch.cuda.is_available(), "D3 requires the declared local CUDA GPU"
     device = torch.device("cuda:0")
     first = _run_ten_updates(device)
     second = _run_ten_updates(device)
@@ -182,8 +186,8 @@ def test_d3_gpu_actions_match_and_losses_meet_same_stack_tolerance() -> None:
     assert len(first.metrics) == UPDATES
 
 
+@REQUIRES_CUDA
 def test_d3_cuda_bfloat16_masked_distribution_is_finite_and_legal() -> None:
-    assert torch.cuda.is_available(), "BF16 mask test requires the declared local CUDA GPU"
     device = torch.device("cuda:0")
     logits = torch.tensor(
         [[-3.0, 0.0, 2.0, 7.0], [4.0, 3.0, 2.0, 1.0]],

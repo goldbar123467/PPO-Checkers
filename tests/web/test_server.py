@@ -18,6 +18,8 @@ from checkers.web.game import GameService
 from checkers.web.policy_bundle import LoadedPolicy
 from checkers.web.server import WebServerConfig, create_server
 
+LOOPBACK_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
 
 @contextmanager
 def _running_server(loaded_policy: LoadedPolicy) -> Iterator[str]:
@@ -40,7 +42,7 @@ def _json_request(url: str, payload: dict[str, object] | None = None) -> tuple[i
         headers={} if data is None else {"Content-Type": "application/json"},
     )
     try:
-        with urllib.request.urlopen(request, timeout=3) as response:
+        with LOOPBACK_OPENER.open(request, timeout=3) as response:
             value = json.loads(response.read())
             if not isinstance(value, dict):
                 raise TypeError("JSON response must be an object")
@@ -53,7 +55,7 @@ def _json_request(url: str, payload: dict[str, object] | None = None) -> tuple[i
 
 
 def _get(url: str) -> tuple[int, bytes, dict[str, str]]:
-    with urllib.request.urlopen(url, timeout=3) as response:
+    with LOOPBACK_OPENER.open(url, timeout=3) as response:
         return response.status, response.read(), dict(response.headers.items())
 
 
@@ -64,7 +66,7 @@ def _raw_post(url: str, payload: bytes, content_type: str = "application/json") 
         headers={"Content-Type": content_type},
     )
     try:
-        with urllib.request.urlopen(request, timeout=3) as response:
+        with LOOPBACK_OPENER.open(request, timeout=3) as response:
             return response.status, json.loads(response.read())
     except urllib.error.HTTPError as error:
         return error.code, json.loads(error.read())
@@ -103,7 +105,7 @@ def test_api_errors_are_structured(loaded_policy: LoadedPolicy) -> None:
 
         request = urllib.request.Request(f"{root}/api/games", data=b"{}")
         try:
-            urllib.request.urlopen(request, timeout=3)
+            LOOPBACK_OPENER.open(request, timeout=3)
         except urllib.error.HTTPError as error:
             assert error.code == HTTPStatus.UNSUPPORTED_MEDIA_TYPE
             payload = json.loads(error.read())
@@ -209,7 +211,7 @@ def test_malformed_requests_and_missing_frontend_are_structured(
         assert payload["error"]["code"] == "invalid_game_id"
 
         try:
-            urllib.request.urlopen(root, timeout=3)
+            LOOPBACK_OPENER.open(root, timeout=3)
         except urllib.error.HTTPError as error:
             assert error.code == HTTPStatus.NOT_FOUND
             payload = json.loads(error.read())
