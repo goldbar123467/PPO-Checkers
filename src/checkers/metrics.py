@@ -99,6 +99,18 @@ REQUIRED_METRIC_KEYS = (
     | GAME_METRIC_KEYS
     | EVALUATION_METRIC_KEYS
 )
+PRACTICE_REQUIRED_METRIC_KEYS = (
+    OPTIMIZATION_METRIC_KEYS
+    | MASK_METRIC_KEYS
+    | POLICY_METRIC_KEYS
+    | VALUE_METRIC_KEYS
+    | GAME_METRIC_KEYS
+    | frozenset(
+        f"eval/vs_{anchor}{suffix}"
+        for anchor in ("random", "minimax2")
+        for suffix in ("", "_ci_low", "_ci_high", "_games")
+    )
+)
 
 
 def _one_dimensional_floating(tensor: object, name: str) -> torch.Tensor:

@@ -13,7 +13,7 @@ from checkers.eval.suites import load_dev_tactical_suite, replay_tactical_case
 from scripts.generate_dev_tactics import GenerationConfig, generate_cases
 
 EXPECTED_CASES_SHA256 = "cf0bf4040185dfb229099f9780f988b9650425833c36390f2427c181729ffd01"
-EXPECTED_FILE_SHA256 = "04a02a6a9721b03f3f484f2c12330f14e340b785758be60097b237e14031f334"
+EXPECTED_FILE_SHA256 = "a17ac33b914a863f7b00b302d3cb77edd7fcef5c44a4018ae6edb0c1f104b689"
 TACTICAL_PATH = Path("src/checkers/eval/data/dev_tactics_v1.json")
 GENERATOR_PATH = Path("scripts/generate_dev_tactics.py")
 GOAL_PATH = Path("GOAL.md")

@@ -5339,7 +5339,7 @@
     "games_scanned": 236,
     "generator_seed": 20260728,
     "generator_source_sha256": "2db9546461974020746edca3726e7242c2da24bf8d27963c0e32dc33e71f4e29",
-    "goal_sha256": "dab54331c088a201c1e43e0743866e1780aa84e3b0868b0b7cce34271c17660f",
+    "goal_sha256": "12d971a8b6c048e9d57d45886c3ad420b8ddc54afb785844bdf2f6542d2aa040",
     "grade_band": "not_applicable_game_state",
     "horizon_completed_moves": 3,
     "license": "CC0-1.0",

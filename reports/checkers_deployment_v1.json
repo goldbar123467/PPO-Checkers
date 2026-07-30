@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "ml-lab.checkers.deployment.v1",
+  "recordedAt": "2026-07-29T23:58:53Z",
+  "service": {
+    "name": "Red House",
+    "primaryUrl": "https://checkers.upsidedownatlas.com",
+    "apexUrl": "https://upsidedownatlas.com",
+    "apexBehavior": "301 redirect preserving the request path"
+  },
+  "release": {
+    "releaseId": "20260729T235517Z-4ece0bc",
+    "sourceCommit": "4ece0bcb1651619634077106313c4ffac9da3621",
+    "sourceBranch": "agent/publish-checkers-policy",
+    "imageTag": "ml-lab-checkers:4ece0bc",
+    "imageId": "sha256:966c4ba17be0c759d29cbbc2cb222acedca4358df3d3acb5b3f91ddb2f214d85",
+    "imageSizeBytes": 307862724
+  },
+  "model": {
+    "bundleId": "checkers-ppo-practice-seed0-v1-update-004608",
+    "bundleSha256": "5d6c5c8392f7fb6897a596f5eb204f7d958f6f828d1cf56cfce98b3fcfec34fe",
+    "bundleSizeBytes": 1905669,
+    "parameterCount": 470410,
+    "sourceCheckpointSha256": "5ae84a2e8e376cfa7c5864d2ad11955b065f9c1c6b1f79244d5321f3e6a13762",
+    "sourceTrainingCommit": "495ff829e15373c3bb5117dd13933b3a8cdfa492",
+    "update": 4608,
+    "globalStep": 37748736
+  },
+  "origin": {
+    "provider": "Hetzner Cloud",
+    "region": "Falkenstein, Germany",
+    "operatingSystem": "Ubuntu 26.04 LTS",
+    "architecture": "x86_64",
+    "vcpus": 1,
+    "memoryMiB": 2048,
+    "gpu": null,
+    "inferenceDevice": "cpu"
+  },
+  "runtime": {
+    "modelLoadMs": 28.23,
+    "applicationMemoryMiB": 157.8,
+    "proxyMemoryMiB": 13.12,
+    "applicationHealth": "healthy",
+    "publicHealthStatus": 200,
+    "publicHtmlStatus": 200,
+    "apexStatus": 301,
+    "directOriginWebAccess": "blocked by firewall",
+    "ingress": "Cloudflare proxied DNS to Caddy; origin web ports restricted to Cloudflare networks"
+  },
+  "rollbackProof": {
+    "verifiedAt": "2026-07-29T23:58:24Z",
+    "releaseId": "20260729T230616Z",
+    "imageId": "sha256:3d61e11862fc343fbd90130277ebae46d7ce1f8081137385dd48b6ebd7092249",
+    "containerHealth": "healthy",
+    "bundleSha256": "5d6c5c8392f7fb6897a596f5eb204f7d958f6f828d1cf56cfce98b3fcfec34fe",
+    "gameCreateStatus": 201,
+    "moveStatus": 200,
+    "pliesAfterExchange": 2,
+    "neuralReply": "22-18"
+  },
+  "rollForwardProof": {
+    "verifiedAt": "2026-07-29T23:58:50Z",
+    "releaseId": "20260729T235517Z-4ece0bc",
+    "imageId": "sha256:966c4ba17be0c759d29cbbc2cb222acedca4358df3d3acb5b3f91ddb2f214d85",
+    "containerHealth": "healthy",
+    "bundleSha256": "5d6c5c8392f7fb6897a596f5eb204f7d958f6f828d1cf56cfce98b3fcfec34fe",
+    "gameCreateStatus": 201,
+    "moveStatus": 200,
+    "pliesAfterExchange": 2,
+    "neuralReply": "22-18"
+  },
+  "releaseValidation": {
+    "pythonTestsPassed": 1004,
+    "fuzzTestsPassed": 8,
+    "coveragePercent": 92.35,
+    "frontendTestsPassed": 2,
+    "frontendTypecheck": "passed",
+    "frontendProductionBuild": "passed",
+    "npmAuditModerateOrHigher": 0,
+    "fullHistoryCommitsScanned": 55,
+    "credentialLeaksFound": 0,
+    "exportParityPositions": 12,
+    "exportParity": "exact logits, value, and greedy action"
+  }
+}

@@ -14,6 +14,17 @@
 
 ---
 
+## PRACTICE MODE — SCOPE AMENDMENT
+
+The project objective has changed from ablation science to PPO practice. Suspend the Stage-A and
+Stage-B requirements and all multi-seed requirements while Practice mode is active, and replace
+§19 Tier 2 with: **one full-budget run completes with clean instrumentation.** This amendment
+supersedes any conflicting acceptance language below. The scope reduction does not relax these
+integrity requirements: fixed transition budgets, zero illegal-action counters, determinism,
+resume, and randomized evaluation openings.
+
+---
+
 ## CHANGELOG v1.0 → v2.0 (what was wrong, and where it is fixed)
 
 | # | v1.0 defect | Fix |

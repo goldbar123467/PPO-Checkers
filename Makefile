@@ -6,11 +6,17 @@ TRAIN_PY := $(LAB)/.venv-train/bin/python
 TRAIN_BIN := $(LAB)/.venv-train/bin
 VLLM_BIN := $(LAB)/.venv-vllm/bin
 CHECKERS_LINT_PATHS := src/checkers tests/test_phase0_scaffold.py tests/test_checkpoint.py \
-	tests/test_logging_wandb.py tests/test_metric_history.py tests/rules tests/env tests/agents \
+	tests/test_logging_wandb.py tests/test_metric_history.py tests/test_recovery.py \
+	tests/test_monitor.py tests/test_practice_preflight.py tests/test_run_runtime.py \
+	tests/test_system_metrics.py \
+	tests/rules tests/env tests/agents tests/web \
 	tests/rl tests/eval tests/property tests/metamorphic tests/integration tests/golden \
 	scripts/build_published_transcripts.py scripts/differential_rules.py \
 	scripts/run_rule_mutation_challenges.py scripts/fuzz_environment.py \
-	scripts/evaluate_baselines.py scripts/train.py
+	scripts/evaluate_baselines.py scripts/generate_ballots.py scripts/preflight_practice.py \
+	scripts/train.py scripts/build_checkers_release_report.py \
+	scripts/export_checkers_policy.py scripts/serve_checkers_web.py \
+	scripts/recover_checkers_run.py scripts/audit_recovery_smoke.py scripts/monitor_run.py
 MODEL ?=
 PORT ?= 8000
 export PYTHONPATH := $(LAB)/src

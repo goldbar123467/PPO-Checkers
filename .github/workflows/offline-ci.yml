@@ -29,9 +29,28 @@ jobs:
         run: |
           sudo ip netns add checkers-offline
           sudo ip netns exec checkers-offline ip link set lo up
+          sudo ip netns exec checkers-offline iptables -A OUTPUT -o lo -j ACCEPT
           sudo ip netns exec checkers-offline iptables -P OUTPUT DROP
           sudo ip netns exec checkers-offline env \
             PATH="$PATH" PYTHONPATH="$GITHUB_WORKSPACE/src" WANDB_MODE=offline make check
       - name: Remove isolated namespace
         if: always()
         run: sudo ip netns delete checkers-offline || true
+
+  web:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web/checkers
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/checkers/package-lock.json
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build

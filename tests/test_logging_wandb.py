@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+import json
+import random
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
+import numpy as np
 import pytest
+import torch
 
 from checkers.config import RunConfig
 from checkers.logging_wandb import (
@@ -15,6 +19,7 @@ from checkers.logging_wandb import (
     PROJECT_NAME,
     RunMetadata,
     WandbLogger,
+    collect_run_metadata,
     create_wandb_logger,
     game_table,
     payoff_matrix_table,
@@ -45,12 +50,30 @@ class FakeRun:
         self.artifacts.append(artifact)
 
 
+class FailingRun(FakeRun):
+    def log(self, data: dict[str, object], *, step: int, commit: bool) -> None:
+        del data, step, commit
+        random.random()
+        np.random.random()
+        torch.rand(1)
+        raise ConnectionError("simulated network failure")
+
+    def finish(self, *, exit_code: int = 0) -> None:
+        del exit_code
+        raise ConnectionError("simulated finish failure")
+
+    def log_artifact(self, artifact: object) -> None:
+        del artifact
+        raise ConnectionError("simulated artifact failure")
+
+
 def _config() -> RunConfig:
     return RunConfig(
         experiment_id="wandb-unit",
         seed=23,
         device="cpu",
-        total_timesteps=2,
+        total_updates=1,
+        schedule_horizon_updates=1,
         duration_seconds=None,
         num_envs=1,
         num_steps=2,
@@ -116,6 +139,30 @@ def test_w1_initialization_uses_exact_name_tags_config_and_provenance() -> None:
     assert state.wandb_run_id == "offline-id"
 
 
+def test_environment_can_force_online_config_through_unchanged_offline_path(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("WANDB_MODE", "offline")
+    captured: dict[str, object] = {}
+
+    def factory(**kwargs: object) -> FakeRun:
+        captured.update(kwargs)
+        return FakeRun()
+
+    create_wandb_logger(
+        config=RunConfig(**{**asdict(_config()), "wandb_mode": "online"}),
+        state=TrainerState(),
+        metadata=_metadata(),
+        stamp="override",
+        directory=tmp_path,
+        run_factory=factory,
+    )
+
+    assert captured["mode"] == "offline"
+    assert "api_key" not in captured
+
+
 def test_w1_resume_uses_saved_id_and_monotonic_explicit_logging_steps() -> None:
     config = _config()
     state = TrainerState(wandb_run_id="saved-id", logging_step=7)
@@ -144,6 +191,34 @@ def test_w1_resume_uses_saved_id_and_monotonic_explicit_logging_steps() -> None:
     with pytest.raises(ValueError, match="logging step"):
         state.logging_step = 8
         logger.log({"train/entropy": 0.1}, state=state)
+
+
+def test_w1_recovery_summary_is_namespaced_and_does_not_change_run_config() -> None:
+    config = _config()
+    state = TrainerState(wandb_run_id="source-id")
+    captured: dict[str, Any] = {}
+    fake = FakeRun(run_id="source-id")
+
+    def factory(**kwargs: object) -> FakeRun:
+        captured.update(kwargs)
+        return fake
+
+    create_wandb_logger(
+        config=config,
+        state=state,
+        metadata=_metadata(),
+        stamp="recovery",
+        run_factory=factory,
+        additional_summary={
+            "recovery/is_recovery": True,
+            "recovery/checkpoint_sha256": "a" * 64,
+        },
+    )
+
+    assert captured["config"] == asdict(config)
+    assert captured["id"] == "source-id"
+    assert fake.summary["recovery/is_recovery"] is True
+    assert fake.summary["recovery/checkpoint_sha256"] == "a" * 64
 
 
 def test_w1_completeness_audit_fails_closed_then_accepts_exact_inventory() -> None:
@@ -262,3 +337,228 @@ def test_w1_versioned_artifact_contains_declared_local_files(tmp_path: Path) -> 
     assert artifact.name == "checkpoint-unit-update-000010"
     assert artifact.type == "model"
     assert len(artifact.manifest.entries) == ARTIFACT_FILE_COUNT
+
+
+def test_wandb_init_failure_records_locally_and_returns_a_noop_logger(tmp_path: Path) -> None:
+    state = TrainerState()
+
+    def fail_init(**_kwargs: object) -> object:
+        raise ConnectionError("simulated init failure")
+
+    logger = create_wandb_logger(
+        config=_config(),
+        state=state,
+        metadata=_metadata(),
+        stamp="failure",
+        directory=tmp_path,
+        run_factory=fail_init,
+    )
+    logger.log({"train/policy_loss": 1.0}, state=state)
+    logger.finish(exit_code=0)
+
+    records = [
+        json.loads(line)
+        for line in (tmp_path / "wandb_failures.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert [record["operation"] for record in records] == ["init"]
+    assert records[0]["error_type"] == "ConnectionError"
+    assert state.wandb_run_id.startswith("local-")
+    assert state.logging_step == 1
+
+
+def test_wandb_failures_never_propagate_and_logging_restores_all_global_rngs(
+    tmp_path: Path,
+) -> None:
+    random.seed(11)
+    np.random.seed(13)
+    torch.manual_seed(17)
+    python_before = random.getstate()
+    numpy_before = cast(tuple[Any, ...], np.random.get_state())
+    torch_before = torch.get_rng_state().clone()
+    state = TrainerState()
+    logger = WandbLogger(
+        run=FailingRun(),
+        initial_logging_step=0,
+        failure_path=tmp_path / "wandb_failures.jsonl",
+    )
+    artifact_file = tmp_path / "checkpoint.pt"
+    artifact_file.write_bytes(b"checkpoint")
+
+    logger.log({"train/policy_loss": 1.0}, state=state)
+    logger.log_artifact(
+        name="failed-artifact",
+        artifact_type="model",
+        files=(artifact_file,),
+        metadata={"update_idx": 1},
+    )
+    logger.finish(exit_code=0)
+
+    assert random.getstate() == python_before
+    numpy_after = cast(tuple[Any, ...], np.random.get_state())
+    assert numpy_after[0] == numpy_before[0]
+    assert np.array_equal(numpy_after[1], numpy_before[1])
+    assert numpy_after[2:] == numpy_before[2:]
+    assert torch.equal(torch.get_rng_state(), torch_before)
+    assert state.logging_step == 1
+    records = [
+        json.loads(line)
+        for line in (tmp_path / "wandb_failures.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert [record["operation"] for record in records] == ["log", "artifact", "finish"]
+
+
+def test_wandb_logger_rejects_invalid_local_contract_inputs(tmp_path: Path) -> None:
+    with pytest.raises(TypeError, match="run"):
+        WandbLogger(run=object(), initial_logging_step=0)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="initial_logging_step"):
+        WandbLogger(run=None, initial_logging_step=True)
+    with pytest.raises(ValueError, match="non-negative"):
+        WandbLogger(run=None, initial_logging_step=-1)
+    with pytest.raises(TypeError, match="failure_path"):
+        WandbLogger(run=None, initial_logging_step=0, failure_path="bad")  # type: ignore[arg-type]
+
+    logger = WandbLogger(run=None, initial_logging_step=0)
+    state = TrainerState()
+    with pytest.raises(TypeError, match="mapping"):
+        logger.log([], state=state)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="TrainerState"):
+        logger.log({"metric": 1.0}, state=object())  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="empty"):
+        logger.log({}, state=state)
+    with pytest.raises(TypeError, match="metric names"):
+        logger.log(cast(dict[str, object], {1: 1.0}), state=state)
+    logger.log({"metric": 1.0}, state=state)
+    state.logging_step = 0
+    with pytest.raises(ValueError, match="monotonic"):
+        logger.log({"metric": 2.0}, state=state)
+
+    with pytest.raises(TypeError, match="summary values"):
+        logger.update_summary([])  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="summary keys"):
+        logger.update_summary(cast(dict[str, object], {1: 1.0}))
+    logger.update_summary({"valid": 1.0})
+    with pytest.raises(TypeError, match="required_keys"):
+        logger.assert_complete(cast(frozenset[str], {"bad"}))
+    with pytest.raises(TypeError, match="required_keys"):
+        logger.assert_complete(cast(frozenset[str], frozenset({""})))
+
+    artifact = tmp_path / "artifact"
+    artifact.write_bytes(b"x")
+    with pytest.raises(ValueError, match="name"):
+        logger.log_artifact(name="", artifact_type="model", files=(artifact,), metadata={})
+    with pytest.raises(ValueError, match="artifact_type"):
+        logger.log_artifact(name="name", artifact_type="", files=(artifact,), metadata={})
+    with pytest.raises(ValueError, match="non-empty tuple"):
+        logger.log_artifact(name="name", artifact_type="model", files=(), metadata={})
+    with pytest.raises(TypeError, match="metadata"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=(artifact,),
+            metadata=[],  # type: ignore[arg-type]
+        )
+    with pytest.raises(TypeError, match="Paths"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=cast(tuple[Path, ...], ("bad",)),
+            metadata={},
+        )
+    with pytest.raises(ValueError, match="does not exist"):
+        logger.log_artifact(
+            name="name",
+            artifact_type="model",
+            files=(tmp_path / "missing",),
+            metadata={},
+        )
+    logger.log_artifact(name="name", artifact_type="model", files=(artifact,), metadata={})
+    with pytest.raises(TypeError, match="exit_code"):
+        logger.finish(exit_code=True)
+    logger.finish(exit_code=0)
+
+
+def test_wandb_summary_failure_and_missing_failure_path_fall_back_to_stderr(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    class FailingSummary(dict[str, object]):
+        def update(self, *args: object, **kwargs: object) -> None:
+            del args, kwargs
+            raise ConnectionError("summary failure")
+
+    run = FakeRun()
+    run.summary = FailingSummary()
+    logger = WandbLogger(run=run, initial_logging_step=0)
+
+    logger.update_summary({"metric": 1.0})
+
+    assert "wandb_failure operation=summary error_type=ConnectionError" in capsys.readouterr().err
+
+
+def test_create_wandb_logger_validates_boundaries_and_malformed_init_results(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    valid = {
+        "config": _config(),
+        "state": TrainerState(),
+        "metadata": _metadata(),
+        "stamp": "valid",
+        "directory": tmp_path,
+        "run_factory": lambda **_kwargs: FakeRun(),
+    }
+    invalid_cases: tuple[tuple[dict[str, object], type[Exception], str], ...] = (
+        ({"config": object()}, TypeError, "config"),
+        ({"state": object()}, TypeError, "state"),
+        ({"metadata": object()}, TypeError, "metadata"),
+        ({"stamp": ""}, ValueError, "stamp"),
+        ({"directory": "bad"}, TypeError, "directory"),
+        ({"additional_summary": []}, TypeError, "additional_summary"),
+        (
+            {"additional_summary": cast(dict[str, object], {1: 1.0})},
+            TypeError,
+            "summary keys",
+        ),
+    )
+    for overrides, error_type, message in invalid_cases:
+        with pytest.raises(error_type, match=message):
+            create_wandb_logger(**{**valid, **overrides})  # type: ignore[arg-type]
+
+    monkeypatch.setenv("WANDB_MODE", "invalid")
+    with pytest.raises(ValueError, match="WANDB_MODE"):
+        create_wandb_logger(**valid)  # type: ignore[arg-type]
+    monkeypatch.delenv("WANDB_MODE")
+
+    for factory in (
+        lambda **_kwargs: None,
+        lambda **_kwargs: FakeRun(run_id=""),
+    ):
+        state = TrainerState()
+        logger = create_wandb_logger(
+            config=_config(),
+            state=state,
+            metadata=_metadata(),
+            stamp="malformed",
+            directory=tmp_path,
+            run_factory=factory,
+        )
+        assert state.wandb_run_id.startswith("local-")
+        logger.finish(exit_code=0)
+
+
+def test_tables_metadata_and_scanner_reject_invalid_boundaries(tmp_path: Path) -> None:
+    with pytest.raises(TypeError, match="tuple"):
+        payoff_matrix_table([])  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="must not be empty"):
+        payoff_matrix_table(())
+    with pytest.raises(TypeError, match="mappings"):
+        payoff_matrix_table(cast(tuple[dict[str, object], ...], (object(),)))
+    with pytest.raises(ValueError, match="fields"):
+        payoff_matrix_table(({"wrong": 1},))
+    with pytest.raises(TypeError, match="config"):
+        collect_run_metadata(config=object(), repository=tmp_path)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="repository"):
+        collect_run_metadata(config=_config(), repository="bad")  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="Path"):
+        scan_repository_for_credentials("bad")  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="directory"):
+        scan_repository_for_credentials(tmp_path / "missing")

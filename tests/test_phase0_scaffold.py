@@ -9,7 +9,7 @@ import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-GOAL_SHA256 = "dab54331c088a201c1e43e0743866e1780aa84e3b0868b0b7cce34271c17660f"
+GOAL_SHA256 = "12d971a8b6c048e9d57d45886c3ad420b8ddc54afb785844bdf2f6542d2aa040"
 
 
 def test_phase_0_goal_is_canonical_and_unchanged() -> None:

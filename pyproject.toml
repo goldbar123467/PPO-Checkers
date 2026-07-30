@@ -69,6 +69,9 @@ extend-exclude = [".venv-train", ".venv-vllm", "cache", "models", "runs"]
 [tool.ruff.lint]
 select = ["ANN", "ARG", "B", "E", "ERA", "F", "I", "N", "PL", "PTH", "RET", "SIM", "UP", "W"]
 
+[tool.ruff.lint.isort]
+known-third-party = ["wandb"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = [".", "src"]

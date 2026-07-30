@@ -10,11 +10,11 @@ import yaml
 
 UINT64_MAX = (1 << 64) - 1
 PHASE = 7
-STAGES = frozenset({"A", "B", "C"})
+STAGES = frozenset({"A", "B", "C", "practice"})
 ARMS = frozenset({"A0", "A1", "A2", "A3"})
 DEVICES = frozenset({"cpu", "cuda"})
 AMP_DTYPES = frozenset({"float32", "bfloat16"})
-WANDB_MODES = frozenset({"offline", "disabled"})
+WANDB_MODES = frozenset({"offline", "online", "disabled"})
 MIN_POOL_CAPACITY = 2
 
 
@@ -91,7 +91,8 @@ class RunConfig:
     arm: str = "A0"
     device: str = "cuda"
     deterministic: bool = True
-    total_timesteps: int = 50_331_648
+    total_updates: int = 6_144
+    schedule_horizon_updates: int = 6_144
     duration_seconds: float | None = 1_800.0
     num_envs: int = 64
     num_steps: int = 128
@@ -112,10 +113,10 @@ class RunConfig:
     repetition_draws: bool = True
     snapshot_every: int = 20
     pool_capacity: int = 20
-    eval_every: int = 10
+    periodic_every: int = 10
     checkpoint_every: int = 10
     eval_games: int = 364
-    periodic_eval_games: int = 2
+    periodic_games: int = 2
     exploitability_train_games: int = 16
     amp_dtype: str = "float32"
     include_opponent_value_loss: bool = False
@@ -137,10 +138,16 @@ class RunConfig:
         return self.batch_size // self.num_minibatches
 
     @property
-    def total_updates(self) -> int:
-        """Return the configured whole-rollout update budget."""
+    def total_timesteps(self) -> int:
+        """Return the exact transition budget implied by updates and rollout size."""
 
-        return self.total_timesteps // self.batch_size
+        return self.total_updates * self.batch_size
+
+    @property
+    def schedule_horizon_timesteps(self) -> int:
+        """Return the independent LR/entropy schedule horizon in transitions."""
+
+        return self.schedule_horizon_updates * self.batch_size
 
     def validate(self) -> Self:  # noqa: PLR0912, PLR0915
         """Validate every field and return this unchanged immutable object.
@@ -164,17 +171,18 @@ class RunConfig:
         _choice(self.device, "device", DEVICES)
         if not isinstance(self.deterministic, bool):
             raise TypeError("deterministic must be bool")
-        total_timesteps = _positive_integer(self.total_timesteps, "total_timesteps")
+        _positive_integer(self.total_updates, "total_updates")
+        _positive_integer(self.schedule_horizon_updates, "schedule_horizon_updates")
         if self.duration_seconds is not None:
             _positive(self.duration_seconds, "duration_seconds")
+        if self.stage == "practice" and self.duration_seconds is not None:
+            raise ValueError("practice runs must terminate on total_updates, not duration_seconds")
         _positive_integer(self.num_envs, "num_envs")
         _positive_integer(self.num_steps, "num_steps")
         minibatches = _positive_integer(self.num_minibatches, "num_minibatches")
         _positive_integer(self.update_epochs, "update_epochs")
         if self.batch_size % minibatches:
             raise ValueError("batch_size must be divisible by num_minibatches")
-        if total_timesteps % self.batch_size:
-            raise ValueError("total_timesteps must contain a whole rollout count")
         _positive(self.learning_rate, "learning_rate")
         _unit_interval(self.gamma, "gamma")
         _unit_interval(self.gae_lambda, "gae_lambda")
@@ -194,14 +202,14 @@ class RunConfig:
         _positive_integer(self.snapshot_every, "snapshot_every")
         if _positive_integer(self.pool_capacity, "pool_capacity") < MIN_POOL_CAPACITY:
             raise ValueError(f"pool_capacity must be at least {MIN_POOL_CAPACITY}")
-        _positive_integer(self.eval_every, "eval_every")
+        _positive_integer(self.periodic_every, "periodic_every")
         _positive_integer(self.checkpoint_every, "checkpoint_every")
         eval_games = _positive_integer(self.eval_games, "eval_games")
         if eval_games % 2:
             raise ValueError("eval_games must be even for colour balance")
-        periodic_eval_games = _positive_integer(self.periodic_eval_games, "periodic_eval_games")
-        if periodic_eval_games % 2:
-            raise ValueError("periodic_eval_games must be even for colour balance")
+        periodic_games = _positive_integer(self.periodic_games, "periodic_games")
+        if periodic_games % 2:
+            raise ValueError("periodic_games must be even for colour balance")
         exploitability_train_games = _positive_integer(
             self.exploitability_train_games, "exploitability_train_games"
         )

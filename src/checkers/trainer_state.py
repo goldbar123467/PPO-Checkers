@@ -71,7 +71,7 @@ class TrainerState:
         self.global_step += config.batch_size
         self.update_idx += 1
         self.elapsed_training_seconds += checked_elapsed
-        self.schedule_phase = min(1.0, self.global_step / config.total_timesteps)
+        self.schedule_phase = min(1.0, self.global_step / config.schedule_horizon_timesteps)
 
     def advance_logging_step(self) -> None:
         """Increment the monotonic W&B/history logging step by one."""

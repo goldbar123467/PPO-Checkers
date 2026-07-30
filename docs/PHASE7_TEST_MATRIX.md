@@ -43,11 +43,11 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 
 | ID | Immutable evidence | Gate condition | Status |
 |---|---|---|---|
-| G1 | Three seed run manifests and W&B-offline directories | each records at least 1,800 training seconds with deterministic mode enabled | Pending |
-| G2 | Metric-completeness audit over all three histories | every §13.2 key logged; all three masking fault counters exactly zero | Pending |
-| G3 | Three 364-game colour-balanced random matches | each score at least 0.90 with W/D/L, game count, and 95% interval reported | Pending |
-| G4 | Load validation and resume transcript | final checkpoints load/use; R2/R3 exact-resume evidence remains green | Pending |
-| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | PRELIMINARY GREEN — rerun after timed seeds/report |
+| G1 | Three seed run manifests and W&B-offline directories | each records at least 1,800 training seconds with deterministic mode enabled | GREEN |
+| G2 | Metric-completeness audit over all three histories | every §13.2 key logged; all three masking fault counters exactly zero | GREEN |
+| G3 | Three 364-game colour-balanced random matches | each score at least 0.90 with W/D/L, game count, and 95% interval reported | GREEN |
+| G4 | Load validation and resume transcript | final checkpoints load/use; R2/R3 exact-resume evidence remains green | GREEN |
+| G5 | Consolidated `make check` | static gates, coverage, and all repository tests green | GREEN |
 
 ## Primary implementation sources
 
@@ -71,6 +71,36 @@ the timed gate rows require immutable real-run artifacts and cannot be satisfied
 - Logging ratio-of-means normalized entropy must fail M1's heterogeneous-`k` oracle.
 - Any shortened seed, missing metric, nonzero mask counter, or underpowered/odd-colour arena cannot
   satisfy the timed gate.
+
+## Interrupted Seed 0 recovery matrix
+
+| ID | Evidence | Acceptance rule | Status |
+|---|---|---|---|
+| RC1 | Exact update-170 fixture plus two later records | both orphans preserved verbatim; active prefix ends at logging step 186 | GREEN |
+| RC2 | No-orphan and seven-orphan fixtures | idempotent preparation; every later record preserved | GREEN |
+| RC3 | Ambiguous, malformed, and hash-drift fixtures | fail before final destination; source bytes unchanged | GREEN |
+| RC4 | Interrupted partial destination fixture | stale partial detected and recreated atomically; decision recorded | GREEN |
+| RC5 | One-update CPU continuation/audit | update/logging steps contiguous, no duplicates, full reload and RNG restore | GREEN |
+| RC6 | Read-only monitor fixtures | partial-tail tolerance, diagnostic labels, lifecycle distinctions, source hashes unchanged | GREEN |
+| RC7 | One-update RTX 5070 recovery smoke | optimizer/device, collector, league, RNG, masks, telemetry, time counters pass | GREEN |
+| RC8 | Production Seed 0 recovery | 1,800 seconds, powered final evaluation, reload, artifacts, reconciliation | GREEN |
+
+The recovery design and commands are frozen in `docs/PHASE7_RECOVERY.md`. RC1–RC6 are engineering
+evidence only; they make no policy-strength claim and do not satisfy G1–G5.
+
+RC7 uses the independently prepared `phase7-a0-seed0-c8207ca-recovery-smoke-002` directory at
+commit `dd6abcde9e3b1078d627b6456eed23a293f4ac45`. The one-update run reached update 171 and global
+step 1,400,832 with contiguous logging step 188. The live monitor observed `RUNNING` and terminal
+`FINISHED`; the post-run audit records 66 CUDA parameters, 132 CUDA Adam moments, 66 finite CPU
+scalar steps, restored RNG/full state, stable W&B ID, finite telemetry/metrics, and zero mask
+faults. It remains bounded setup evidence only.
+
+RC8 uses the separately prepared `phase7-a0-seed0-c8207ca-recovery-001` run at training commit
+`7c9f4dcc0780dece342406fc645b53d4ebd10419`. It completed update 264, 2,162,688 transitions,
+1,804.556 measured training seconds, 291 contiguous records, a digest-verified/full-state-reloaded
+checkpoint, six 364-game final match groups, measured best response, W&B offline artifact, and zero
+aggregate legality/oracle faults. The original source hashes remain unchanged. Seeds 1 and 2 are
+complete and audited in `reports/phase7_gate_analysis.md`; G1–G5 are green.
 
 ## Foundation evidence
 
@@ -122,3 +152,10 @@ and labels the setup checkpoint as predating the final exploitability config fie
 post-implementation `make check` passes
 format, Ruff, strict mypy, 889 tests with no skips/xfails, 93.88% total line/branch coverage, and the
 eight-property fuzz target (`000119`).
+
+Recovery engineering after the interrupted Seed 0 run first passed all 901 tests but failed the
+unchanged coverage gate at 90.58%. The adversarial branch audit then closed recovery, lifecycle,
+monitor, and telemetry paths. The clean pre-CUDA-smoke `make check` passes formatting, Ruff, strict
+mypy, 925 tests, 92.40% total line/branch coverage, and all eight property/fuzz tests. This is setup
+validation only; RC7 and the timed Gate 7 evidence were still pending at that checkpoint
+(`logs/iterations/000029.md`).

@@ -1,0 +1,33 @@
+{
+	admin off
+	log {
+		format json
+	}
+	servers {
+		protocols h1 h2
+	}
+}
+
+checkers.upsidedownatlas.com {
+	encode zstd gzip
+
+	request_body {
+		max_size 16KB
+	}
+
+	reverse_proxy 127.0.0.1:8765
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		-Server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
+
+upsidedownatlas.com {
+	redir https://checkers.upsidedownatlas.com{uri} permanent
+}

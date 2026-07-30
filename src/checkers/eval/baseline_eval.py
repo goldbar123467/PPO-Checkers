@@ -454,7 +454,7 @@ def match_result_record(match: MatchResult) -> dict[str, object]:
     }
 
 
-def _parse_game(value: object) -> GameRecord:
+def _parse_game(value: object, *, initial_state: State) -> GameRecord:
     root = _mapping(value, "game")
     outcome_root = _mapping(_required(root, "outcome"), "outcome")
     winner_value = _required(outcome_root, "winner")
@@ -465,6 +465,7 @@ def _parse_game(value: object) -> GameRecord:
         red_seed=_seed(_required(root, "red_seed"), "red_seed"),
         white_seed=_seed(_required(root, "white_seed"), "white_seed"),
         environment_seed=_seed(_required(root, "environment_seed"), "environment_seed"),
+        initial_state=initial_state,
         outcome=Outcome(
             winner=winner,
             reason=TerminationReason(_string(_required(outcome_root, "reason"), "reason")),
@@ -491,15 +492,19 @@ def parse_match_result_record(value: object) -> MatchResult:
     """
 
     root = _mapping(value, "match record")
+    initial_state = _parse_state(_required(root, "initial_state"))
     return MatchResult(
         first_agent=_string(_required(root, "first_agent"), "first_agent"),
         second_agent=_string(_required(root, "second_agent"), "second_agent"),
         seed=_seed(_required(root, "seed")),
-        initial_state=_parse_state(_required(root, "initial_state")),
+        initial_state=initial_state,
         max_plies=_positive_integer(_required(root, "max_plies"), "max_plies"),
         repetition_draws=_boolean(_required(root, "repetition_draws"), "repetition_draws"),
         confidence=_open_probability(_required(root, "confidence"), "confidence"),
-        records=tuple(_parse_game(game) for game in _list(_required(root, "games"), "games")),
+        records=tuple(
+            _parse_game(game, initial_state=initial_state)
+            for game in _list(_required(root, "games"), "games")
+        ),
         score=_parse_score(_required(root, "score")),
     )
 

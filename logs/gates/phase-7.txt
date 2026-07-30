@@ -1,0 +1,20 @@
+Phase 7 consolidated gate
+Date: 2026-07-28
+Command: make check
+Exit code: 0
+
+Formatting: PASS
+Ruff: PASS
+Strict mypy: PASS
+Pytest: 930 passed, 0 failed, 0 skipped/xfailed
+Total line/branch coverage: 92.27% (threshold: 92%)
+Property/fuzz target: 8 passed
+
+Timed evidence:
+- Seed 0: 1,804.556 seconds; random score 0.997253; full reload PASS
+- Seed 1: 1,801.904 seconds; random score 0.998626; full reload PASS
+- Seed 2: 1,800.139 seconds; random score 0.997253; full reload PASS
+- All three: 364 random games, 182 per colour, all required metrics, zero mask faults
+
+Gate rows: G1 PASS, G2 PASS, G3 PASS, G4 PASS, G5 PASS
+Conclusion: Phase 7 GREEN

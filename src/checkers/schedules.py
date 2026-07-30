@@ -29,7 +29,7 @@ def schedule_progress(config: RunConfig, state: TrainerState) -> float:
     """
 
     checked_config, checked_state = _inputs(config, state)
-    return min(1.0, checked_state.global_step / checked_config.total_timesteps)
+    return min(1.0, checked_state.global_step / checked_config.schedule_horizon_timesteps)
 
 
 def current_lr(config: RunConfig, state: TrainerState) -> float:

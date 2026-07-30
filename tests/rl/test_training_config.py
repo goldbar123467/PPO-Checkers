@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import FrozenInstanceError, asdict, replace
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -24,6 +25,14 @@ MINIBATCH_SIZE = 8
 TOTAL_UPDATES = 10
 QUARTER_PROGRESS = 0.25
 UPDATE_SECONDS = 1.25
+PRACTICE_UPDATES = 6_144
+PRACTICE_PERIODIC_GAMES = 432
+PRACTICE_TRANSITIONS = 50_331_648
+PRACTICE_ENVS = 64
+PRACTICE_STEPS = 128
+PRACTICE_BATCH_SIZE = 8_192
+PRACTICE_PERIODIC_EVERY = 96
+PRACTICE_CHECKPOINT_EVERY = 256
 
 
 def _config(**overrides: object) -> RunConfig:
@@ -31,14 +40,15 @@ def _config(**overrides: object) -> RunConfig:
         "experiment_id": "phase7-unit",
         "seed": 7,
         "device": "cpu",
-        "total_timesteps": TOTAL_TIMESTEPS,
+        "total_updates": TOTAL_UPDATES,
+        "schedule_horizon_updates": TOTAL_UPDATES,
         "duration_seconds": None,
         "num_envs": 4,
         "num_steps": 8,
         "num_minibatches": 4,
         "update_epochs": 2,
         "eval_games": 364,
-        "periodic_eval_games": 2,
+        "periodic_games": 2,
         "exploitability_train_games": 16,
     }
     values.update(overrides)
@@ -68,9 +78,14 @@ def test_c1_run_config_is_frozen_typed_and_derives_exact_batch_sizes() -> None:
         ({"arm": "A4"}, ValueError, "arm"),
         ({"device": "tpu"}, ValueError, "device"),
         ({"deterministic": 1}, TypeError, "deterministic"),
-        ({"total_timesteps": 0}, ValueError, "total_timesteps"),
-        ({"total_timesteps": 321}, ValueError, "whole rollout"),
+        ({"total_updates": 0}, ValueError, "total_updates"),
+        ({"schedule_horizon_updates": 0}, ValueError, "schedule_horizon_updates"),
         ({"duration_seconds": 0.0}, ValueError, "duration_seconds"),
+        (
+            {"stage": "practice", "duration_seconds": 1.0},
+            ValueError,
+            "total_updates",
+        ),
         ({"num_envs": 0}, ValueError, "num_envs"),
         ({"num_steps": 0}, ValueError, "num_steps"),
         ({"num_minibatches": 3}, ValueError, "num_minibatches"),
@@ -92,14 +107,14 @@ def test_c1_run_config_is_frozen_typed_and_derives_exact_batch_sizes() -> None:
         ({"repetition_draws": 1}, TypeError, "repetition_draws"),
         ({"snapshot_every": 0}, ValueError, "snapshot_every"),
         ({"pool_capacity": 1}, ValueError, "pool_capacity"),
-        ({"eval_every": 0}, ValueError, "eval_every"),
+        ({"periodic_every": 0}, ValueError, "periodic_every"),
         ({"checkpoint_every": 0}, ValueError, "checkpoint_every"),
         ({"eval_games": 363}, ValueError, "eval_games"),
-        ({"periodic_eval_games": 3}, ValueError, "periodic_eval_games"),
+        ({"periodic_games": 3}, ValueError, "periodic_games"),
         ({"exploitability_train_games": 3}, ValueError, "exploitability_train_games"),
         ({"amp_dtype": "float16"}, ValueError, "amp_dtype"),
         ({"include_opponent_value_loss": 1}, TypeError, "include_opponent_value_loss"),
-        ({"wandb_mode": "online"}, ValueError, "wandb_mode"),
+        ({"wandb_mode": "shared"}, ValueError, "wandb_mode"),
     ],
 )
 def test_c1_invalid_run_configuration_raises(
@@ -128,6 +143,37 @@ def test_c1_load_run_config_rejects_unknown_or_missing_yaml_fields() -> None:
         load_run_config(1)  # type: ignore[arg-type]
     with pytest.raises(ValueError, match="invalid"):
         load_run_config("root: [unterminated")
+
+
+def test_practice_profile_has_exact_update_schedule_eval_and_checkpoint_contract() -> None:
+    config = load_run_config(Path("configs/checkers-practice.yaml").read_text(encoding="utf-8"))
+
+    assert config.stage == "practice"
+    assert config.seed == 0
+    assert config.total_updates == PRACTICE_UPDATES
+    assert config.schedule_horizon_updates == PRACTICE_UPDATES
+    assert config.total_timesteps == PRACTICE_TRANSITIONS
+    assert config.duration_seconds is None
+    assert config.num_envs == PRACTICE_ENVS
+    assert config.num_steps == PRACTICE_STEPS
+    assert config.batch_size == PRACTICE_BATCH_SIZE
+    assert config.periodic_every == PRACTICE_PERIODIC_EVERY
+    assert config.periodic_games == PRACTICE_PERIODIC_GAMES
+    assert config.checkpoint_every == PRACTICE_CHECKPOINT_EVERY
+    assert config.wandb_mode == "online"
+
+
+@pytest.mark.parametrize("mode", ("disabled", "offline", "online"))
+def test_wandb_modes_preserve_offline_and_allow_online(mode: str) -> None:
+    assert _config(wandb_mode=mode).wandb_mode == mode
+
+
+def test_schedule_horizon_is_independent_of_a_short_invocation_limit() -> None:
+    config = _config(total_updates=20, schedule_horizon_updates=PRACTICE_UPDATES)
+    state = TrainerState(global_step=20 * config.batch_size, update_idx=20)
+
+    assert schedule_progress(config, state) == pytest.approx(20 / PRACTICE_UPDATES)
+    assert current_lr(config, state) == pytest.approx(3e-4 * (1.0 - 20 / PRACTICE_UPDATES))
 
 
 def test_c2_schedules_hit_hand_computed_endpoints_without_mutating_config() -> None:
@@ -185,7 +231,7 @@ def test_trainer_state_advances_only_by_complete_rollouts() -> None:
 
 
 def test_trainer_state_rejects_update_after_budget_exhaustion() -> None:
-    config = _config(total_timesteps=BATCH_SIZE)
+    config = _config(total_updates=1)
     state = TrainerState()
     state.advance_update(config, elapsed_seconds=0.0)
     with pytest.raises(OverflowError, match="exhausted"):
