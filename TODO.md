@@ -36,7 +36,7 @@ Live: <https://checkers.upsidedownatlas.com>
 - [x] Deploy the immutable publication commit and record its image/source/model manifest.
 - [x] Exercise an image rollback and roll forward, including model checksum and legal-move smoke tests.
 - [x] Create `checkers-policy-v1`, attach the bundle/sidecar/model card/deployment manifest, download it cleanly, verify its hash, load it, and select a legal action.
-- [ ] Confirm the public GitHub Actions run is green.
+- [x] Confirm the public GitHub Actions run is green.
 
 ## Known limitations (accepted, not hidden)
 
