@@ -10,6 +10,9 @@ const REASONS: Record<string, string> = {
 
 interface MatchLedgerProps {
   game: GameSnapshot;
+}
+
+interface GameStatusProps extends MatchLedgerProps {
   busy: boolean;
 }
 
@@ -25,19 +28,25 @@ function statusText(game: GameSnapshot, busy: boolean): string {
   return game.isHumanTurn ? "Your move. Select a ringed piece." : "Model turn.";
 }
 
-export function MatchLedger({ game, busy }: MatchLedgerProps) {
+export function GameStatus({ game, busy }: GameStatusProps) {
   return (
-    <section className="panel ledger" aria-labelledby="ledger-heading">
-      <div className="turn-card" aria-live="polite">
+    <section className="panel game-status" aria-labelledby="game-status-heading">
+      <div className="turn-card" role="status" aria-live="polite" aria-atomic="true">
         <p className="eyebrow">Position · ply {game.ply} · seed {game.seed}</p>
-        <h2>{statusText(game, busy)}</h2>
+        <h2 id="game-status-heading">{statusText(game, busy)}</h2>
         <p>
           You are <strong>{game.humanColor}</strong>. The trained neural policy plays{" "}
           {game.modelColor} in{" "}
           {game.policyMode === "greedy" ? "deterministic greedy" : "seeded sampled"} mode.
         </p>
       </div>
+    </section>
+  );
+}
 
+export function MatchLedger({ game }: MatchLedgerProps) {
+  return (
+    <section className="panel ledger" aria-labelledby="ledger-heading">
       <div className="ledger-heading">
         <h3 id="ledger-heading">Move ledger</h3>
         <span>{game.moves.length} moves</span>

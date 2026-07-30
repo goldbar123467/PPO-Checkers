@@ -8,20 +8,28 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
-    "typecheck": "tsc -b --pretty false"
+    "test:e2e": "playwright test",
+    "test:e2e:responsive": "playwright test e2e/responsive.spec.ts",
+    "test:e2e:touch": "playwright test e2e/touch.spec.ts --project=touch-chromium",
+    "test:e2e:a11y": "playwright test e2e/accessibility.spec.ts",
+    "test:e2e:visual": "playwright test e2e/visual.spec.ts --project=chromium",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.e2e.json --pretty false"
   },
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "4.7.0",
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.1.0",
     "@types/node": "22.10.5",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
+    "@vitejs/plugin-react": "4.7.0",
     "jsdom": "25.0.1",
+    "playwright-core": "1.61.1",
     "typescript": "5.7.3",
     "vite": "6.4.3",
     "vitest": "3.2.7"
