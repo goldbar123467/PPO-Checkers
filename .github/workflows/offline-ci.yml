@@ -29,6 +29,7 @@ jobs:
         run: |
           sudo ip netns add checkers-offline
           sudo ip netns exec checkers-offline ip link set lo up
+          sudo ip netns exec checkers-offline iptables -A OUTPUT -o lo -j ACCEPT
           sudo ip netns exec checkers-offline iptables -P OUTPUT DROP
           sudo ip netns exec checkers-offline env \
             PATH="$PATH" PYTHONPATH="$GITHUB_WORKSPACE/src" WANDB_MODE=offline make check
