@@ -20,8 +20,8 @@ from typing import Protocol, cast
 
 import numpy as np
 import torch
-
 import wandb
+
 from checkers.config import WANDB_MODES, RunConfig
 from checkers.metrics import REQUIRED_METRIC_KEYS
 from checkers.trainer_state import TrainerState

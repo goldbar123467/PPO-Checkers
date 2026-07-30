@@ -32,10 +32,10 @@ Live: <https://checkers.upsidedownatlas.com>
 
 - [x] Run the complete Python and frontend gates after the documentation/release edits.
 - [x] Run tracked-tree and full-history credential scans; verify ignored secrets and model/run artifacts remain untracked.
-- [ ] Commit and publish the intentional repository state.
+- [x] Commit and publish the intentional repository state.
 - [x] Deploy the immutable publication commit and record its image/source/model manifest.
 - [x] Exercise an image rollback and roll forward, including model checksum and legal-move smoke tests.
-- [ ] Create `checkers-policy-v1`, attach the bundle/sidecar/model card/deployment manifest, download it cleanly, verify its hash, load it, and select a legal action.
+- [x] Create `checkers-policy-v1`, attach the bundle/sidecar/model card/deployment manifest, download it cleanly, verify its hash, load it, and select a legal action.
 - [ ] Confirm the public GitHub Actions run is green.
 
 ## Known limitations (accepted, not hidden)
