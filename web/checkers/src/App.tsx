@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createGame, fetchModel, submitMove } from "./api";
 import { Board } from "./components/Board";
 import { GameControls } from "./components/GameControls";
-import { MatchLedger } from "./components/MatchLedger";
+import { GameStatus, MatchLedger } from "./components/MatchLedger";
 import type { Color, GameSnapshot, ModelInfo, PolicyMode } from "./types";
 
 function randomMatchSeed(): number {
@@ -16,6 +16,7 @@ export default function App() {
   const [policyMode, setPolicyMode] = useState<PolicyMode>("greedy");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const tableStageRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let active = true;
@@ -33,12 +34,19 @@ export default function App() {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (game) {
+      tableStageRef.current?.scrollIntoView?.({ block: "start" });
+    }
+  }, [game?.id]);
+
   async function startGame() {
     const seed = randomMatchSeed();
     setBusy(true);
     setError(null);
     try {
-      setGame(await createGame(humanColor, policyMode, seed));
+      const nextGame = await createGame(humanColor, policyMode, seed);
+      setGame(nextGame);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "The game could not be created.");
     } finally {
@@ -60,7 +68,7 @@ export default function App() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={game ? "app-shell app-shell--playing" : "app-shell"}>
       <header className="masthead">
         <a className="brand" href="#top" aria-label="Red House checkers home">
           <span className="brand-mark" aria-hidden="true">
@@ -105,7 +113,7 @@ export default function App() {
           </div>
         </section>
       ) : (
-        <div className="workspace">
+        <div className={game ? "workspace workspace--active" : "workspace"}>
           <GameControls
             model={model}
             humanColor={humanColor}
@@ -118,7 +126,7 @@ export default function App() {
             onStart={startGame}
           />
 
-          <section className="table-stage" aria-label="Game table">
+          <section className="table-stage" aria-label="Game table" ref={tableStageRef}>
             {game ? (
               <Board game={game} busy={busy} onMove={move} />
             ) : (
@@ -130,7 +138,10 @@ export default function App() {
           </section>
 
           {game ? (
-            <MatchLedger game={game} busy={busy} />
+            <aside className="side-rail" aria-label="Match information">
+              <GameStatus game={game} busy={busy} />
+              <MatchLedger game={game} />
+            </aside>
           ) : (
             <section className="panel rules-note">
               <p className="eyebrow">Table rules</p>

@@ -74,6 +74,10 @@ Open `http://127.0.0.1:8765`. The Python process refuses non-loopback bind confi
 - Sampled mode uses the same trained neural policy with temperature-one sampling. A fresh random 32-bit seed is generated automatically for every game and displayed read-only, making that game's samples reproducible.
 - Minimax-2 was an evaluation opponent for measuring the trained checkpoint and is not loaded by the web harness.
 - Select a ringed piece, then a gold destination. Forced multi-jumps keep the required piece selected.
+- Touch and pen input use the same pointer pathway as mouse input. A press must end on the square
+  where it began; cancellation or release outside the board cannot move a piece.
+- Keyboard play uses one board tab stop. Use the arrow keys to move between dark squares, Enter or
+  Space to select/confirm, and Escape (or the visible Clear selection action) to cancel a selection.
 - A new match discards the current in-memory game. Restarting the server discards all games.
 
 ## Verification
@@ -85,7 +89,18 @@ npm --prefix web/checkers audit --audit-level=moderate
 npm --prefix web/checkers run test
 npm --prefix web/checkers run typecheck
 npm --prefix web/checkers run build
+npm --prefix web/checkers run test:e2e:responsive
+npm --prefix web/checkers run test:e2e:touch
+npm --prefix web/checkers run test:e2e:a11y
+npm --prefix web/checkers run test:e2e:visual
 ```
+
+The Playwright suite covers Chromium at the eleven required viewport sizes from 320×568 through
+1920×1080 plus two foldable aspect ratios, Chromium touch and pen emulation, keyboard play, Axe
+WCAG A/AA checks, 200% reflow, 2× user page scaling, enlarged text, reduced motion, 4× CPU
+throttling, Firefox/WebKit smoke tests, and reviewed visual baselines. Install its local browser
+binaries once with `npm --prefix web/checkers exec -- playwright install chromium firefox webkit`;
+minimal Linux hosts may also require the OS packages printed by `playwright install-deps`.
 
 The focused pytest command disables the repository-wide coverage threshold because it intentionally selects only `tests/web`; the final project gate remains the full repository test suite with its configured 92% branch threshold.
 

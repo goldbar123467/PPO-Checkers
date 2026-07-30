@@ -26,7 +26,8 @@ const board = Array.from({ length: 64 }, (_, index) => {
   const row = Math.floor(index / 8);
   const column = index % 8;
   const playable = (row + column) % 2 === 0;
-  return { row, column, playable, square: playable ? Math.floor(index / 2) : null };
+  const square = row * 4 + Math.floor((6 + (row % 2) - column) / 2);
+  return { row, column, playable, square: playable ? square : null };
 });
 
 const game: GameSnapshot = {

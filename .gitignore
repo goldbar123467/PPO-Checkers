@@ -42,6 +42,8 @@ web/checkers/dist/
 web/checkers/*.tsbuildinfo
 web/checkers/vite.config.js
 web/checkers/vite.config.d.ts
+web/checkers/test-results/
+web/checkers/playwright-report/
 
 # Runtime state and editor files
 .DS_Store
