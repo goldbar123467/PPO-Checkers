@@ -4,7 +4,7 @@ This Vite + React + TypeScript client plays American checkers against the reposi
 
 ## Prerequisites
 
-- The repository `.venv-train` environment created by the ML Lab setup.
+- The repository `.venv` environment created by `uv sync --locked --all-groups`.
 - Node.js 22 and npm.
 - The released model-only `update-004608.pt` bundle and its `.sha256` sidecar at the paths below.
 - Loopback ports 8765 and 5173 available for development.
@@ -28,7 +28,7 @@ test "$(sha256sum "$policy" | cut -d ' ' -f1)" = "$(tr -d '\n' < "$policy.sha256
 From the repository root:
 
 ```bash
-.venv-train/bin/python scripts/export_checkers_policy.py \
+.venv/bin/python scripts/export_checkers_policy.py \
   --config configs/checkers-practice.yaml \
   --checkpoint runs/checkers-practice-seed0-495ff82/checkpoints/update-004608.pt \
   --output models/checkers/policies/checkers-practice-update-004608.pt
@@ -41,7 +41,7 @@ The exporter validates the full checkpoint and sidecar, extracts only `CheckersN
 Terminal 1, from the repository root:
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/serve_checkers_web.py \
+PYTHONPATH=src .venv/bin/python scripts/serve_checkers_web.py \
   --bundle models/checkers/policies/checkers-practice-update-004608.pt \
   --port 8765
 ```
@@ -59,7 +59,7 @@ Open `http://127.0.0.1:5173`. Vite proxies `/api` to `http://127.0.0.1:8765`. To
 
 ```bash
 npm --prefix web/checkers run build
-PYTHONPATH=src .venv-train/bin/python scripts/serve_checkers_web.py \
+PYTHONPATH=src .venv/bin/python scripts/serve_checkers_web.py \
   --bundle models/checkers/policies/checkers-practice-update-004608.pt \
   --static-dir web/checkers/dist \
   --port 8765
@@ -79,8 +79,8 @@ Open `http://127.0.0.1:8765`. The Python process refuses non-loopback bind confi
 ## Verification
 
 ```bash
-.venv-train/bin/ruff check src/checkers/web scripts/export_checkers_policy.py scripts/serve_checkers_web.py tests/web
-.venv-train/bin/pytest -q tests/web --no-cov
+.venv/bin/ruff check src/checkers/web scripts/export_checkers_policy.py scripts/serve_checkers_web.py tests/web
+.venv/bin/pytest -q tests/web --no-cov
 npm --prefix web/checkers audit --audit-level=moderate
 npm --prefix web/checkers run test
 npm --prefix web/checkers run typecheck

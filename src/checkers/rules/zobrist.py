@@ -70,9 +70,9 @@ def _validate_state(state: State) -> None:
 def state_key(state: State) -> int:
     """Recompute the frozen 64-bit key for the complete transition state.
 
-    Unlike the incomplete explicit list in GOAL.md §5.3 (BLOCK-005), this key includes
-    `sequence_origin`, both terminal counters, and `ply`. Those fields alter future complete states
-    or terminal transitions and therefore belong to a Markov-state cache key.
+    The key includes `sequence_origin`, both terminal counters, and `ply`. Those fields alter
+    future complete states or terminal transitions and therefore belong to a Markov-state cache
+    key.
 
     Args:
         state: Complete immutable state.

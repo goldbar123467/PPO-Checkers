@@ -1,9 +1,0 @@
-........................................................................ [ 75%]
-.......................                                                  [100%]
-=============================== warnings summary ===============================
-tests/env/test_serialization.py:237
-  /home/thecl/ml-lab/tests/env/test_serialization.py:237: SyntaxWarning: invalid escape sequence '\['
-    "\[0, 31\]",
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-95 passed, 1 warning in 0.27s

@@ -64,8 +64,8 @@ Python HTTP adapter -> GameService -> CheckersEnv / legal_action_map
 The work is complete only when all applicable commands pass and their observed outputs are recorded in the implementation report:
 
 ```bash
-.venv-train/bin/ruff check src/checkers/web scripts tests/web
-.venv-train/bin/pytest -q tests/web
+.venv/bin/ruff check src/checkers/web scripts tests/web
+.venv/bin/pytest -q tests/web
 npm --prefix web/checkers run test
 npm --prefix web/checkers run typecheck
 npm --prefix web/checkers run build

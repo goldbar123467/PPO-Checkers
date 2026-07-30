@@ -1,4 +1,4 @@
-"""Prove that permanent rule tests kill the five mutations required by GOAL.md.
+"""Prove that permanent rule tests kill five high-risk checkers-rule mutations.
 
 Each challenge runs in a fresh temporary source tree. A challenge counts as killed only when the
 unmodified baseline passes and the named pytest node reports a genuine test failure (exit code 1).

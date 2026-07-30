@@ -13,10 +13,10 @@ from checkers.eval.suites import load_dev_tactical_suite, replay_tactical_case
 from scripts.generate_dev_tactics import GenerationConfig, generate_cases
 
 EXPECTED_CASES_SHA256 = "cf0bf4040185dfb229099f9780f988b9650425833c36390f2427c181729ffd01"
-EXPECTED_FILE_SHA256 = "a17ac33b914a863f7b00b302d3cb77edd7fcef5c44a4018ae6edb0c1f104b689"
+EXPECTED_FILE_SHA256 = "12a343d3ae9d186c0ad91bc0cf852b38d7d83725bc81be029b827c3bb0f1899f"
 TACTICAL_PATH = Path("src/checkers/eval/data/dev_tactics_v1.json")
 GENERATOR_PATH = Path("scripts/generate_dev_tactics.py")
-GOAL_PATH = Path("GOAL.md")
+CONTRACT_PATH = Path("docs/experiment-contract.md")
 
 
 def _file_sha256(path: Path) -> str:
@@ -54,12 +54,12 @@ def test_packaged_tactical_data_and_case_digests_are_pinned() -> None:
     assert _file_sha256(TACTICAL_PATH) == EXPECTED_FILE_SHA256
 
 
-def test_manifest_source_hashes_match_current_generator_rules_and_goal() -> None:
+def test_manifest_source_hashes_match_current_generator_rules_and_contract() -> None:
     manifest = load_dev_tactical_suite().manifest
 
     assert manifest.generator_source_sha256 == _file_sha256(GENERATOR_PATH)
     assert manifest.rules_source_sha256 == _rules_sha256()
-    assert manifest.goal_sha256 == _file_sha256(GOAL_PATH)
+    assert manifest.goal_sha256 == _file_sha256(CONTRACT_PATH)
 
 
 @pytest.mark.parametrize(

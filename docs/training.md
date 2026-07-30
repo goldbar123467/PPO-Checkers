@@ -56,7 +56,7 @@ The mandatory practice preflight performs online/offline W&B equivalence, exact 
 read -rsp 'W&B API key: ' WANDB_API_KEY && printf '\n'
 export WANDB_API_KEY
 
-PYTHONPATH=src .venv-train/bin/python scripts/preflight_practice.py \
+PYTHONPATH=src .venv/bin/python scripts/preflight_practice.py \
   --config configs/checkers-practice.yaml \
   --output-dir runs/practice-preflight-reproduction
 ```
@@ -68,7 +68,7 @@ Do not begin the long run unless `preflight_report.json` says `accepted: 1`, the
 ```bash
 run_dir=runs/checkers-practice-seed0-reproduction
 
-PYTHONPATH=src .venv-train/bin/python scripts/train.py \
+PYTHONPATH=src .venv/bin/python scripts/train.py \
   --config configs/checkers-practice.yaml \
   --output-dir "$run_dir"
 ```
@@ -76,7 +76,7 @@ PYTHONPATH=src .venv-train/bin/python scripts/train.py \
 The process deliberately exits at update 1,024 with `status: paused_for_approval`. Review the evaluation, resource metrics, mask counters, checkpoint sidecar, W&B status, and free disk. Resume only the same directory and checkpoint:
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/train.py \
+PYTHONPATH=src .venv/bin/python scripts/train.py \
   --config configs/checkers-practice.yaml \
   --output-dir "$run_dir" \
   --resume "$run_dir/checkpoints/update-001024.pt"
@@ -89,7 +89,7 @@ Resume validation rejects changed configuration, incompatible Git provenance, no
 Because checkpoints are saved every 256 updates and evaluations every 96, only their intersections are eligible for evidence-backed selection. For the accepted run these were updates 768, 1024, 1536, 2304, 3072, 3840, 4608, 5376, and 6144. Update 4608 had the best recorded Minimax-2 score.
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/export_checkers_policy.py \
+PYTHONPATH=src .venv/bin/python scripts/export_checkers_policy.py \
   --config configs/checkers-practice.yaml \
   --checkpoint "$run_dir/checkpoints/update-004608.pt" \
   --output models/checkers/policies/checkers-practice-update-004608.pt
@@ -100,7 +100,7 @@ The exporter validates the full checkpoint and its SHA-256 sidecar, strips optim
 To rebuild the compact public report from retained authoritative evidence:
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/build_checkers_release_report.py \
+PYTHONPATH=src .venv/bin/python scripts/build_checkers_release_report.py \
   --run-dir "$run_dir" \
   --bundle models/checkers/policies/checkers-practice-update-004608.pt \
   --output reports/checkers_practice_release_v1.json

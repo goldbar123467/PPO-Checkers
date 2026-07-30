@@ -1,4 +1,4 @@
-"""Trace every GOAL.md rule to primary authority or an explicit project classification."""
+"""Trace every project rule to primary authority or an explicit classification."""
 
 from __future__ import annotations
 

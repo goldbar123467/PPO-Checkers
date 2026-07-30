@@ -1,4 +1,4 @@
-"""Immutable complete-state tests for GOAL.md §5.1 and WCDF R1.4-R1.5."""
+"""Immutable complete-state tests for the public contract and WCDF R1.4-R1.5."""
 
 from __future__ import annotations
 

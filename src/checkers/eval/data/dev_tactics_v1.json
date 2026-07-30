@@ -5329,7 +5329,7 @@
     }
   ],
   "manifest": {
-    "author": "ml-lab project deterministic generator",
+    "author": "PPO Checkers deterministic generator",
     "case_count": 50,
     "cases_sha256": "cf0bf4040185dfb229099f9780f988b9650425833c36390f2427c181729ffd01",
     "creation_method": "scripts/generate_dev_tactics.py; exact terminal-only AND/OR labels; depth-3 membership check; 180-degree colour-swap symmetry deduplication",
@@ -5338,15 +5338,15 @@
     "difficulty": "forced_win_within_three_completed_moves",
     "games_scanned": 236,
     "generator_seed": 20260728,
-    "generator_source_sha256": "2db9546461974020746edca3726e7242c2da24bf8d27963c0e32dc33e71f4e29",
-    "goal_sha256": "12d971a8b6c048e9d57d45886c3ad420b8ddc54afb785844bdf2f6542d2aa040",
+    "generator_source_sha256": "9300600e03d29a214199199aeab7b128ad393c3f6355ac1d4b537278aa687fd2",
+    "goal_sha256": "5be137e5af8a79680aa9079ac073e21e91afd951a0a7a024e76cc74d64396357",
     "grade_band": "not_applicable_game_state",
     "horizon_completed_moves": 3,
     "license": "CC0-1.0",
     "name": "checkers_dev_tactics_v1",
     "provenance": "Positions are exact completed-move states reached by seeded uniform-random legal play from State.initial(); replay_actions proves each prefix.",
     "review_status": "programmatically_verified_pending_human_review",
-    "rules_source_sha256": "f3fe18406be7282304a2d12b41c433d6498798e2e0856fff5fe6465bdeb3ccae",
+    "rules_source_sha256": "f9cc7209795ceb2f2b5c3cc4e25fbfb847fcc8eca95cb9f975395849146f1048",
     "safety_categories": [
       "none"
     ],

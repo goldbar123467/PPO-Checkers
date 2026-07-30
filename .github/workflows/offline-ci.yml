@@ -12,7 +12,6 @@ jobs:
   check:
     runs-on: ubuntu-24.04
     env:
-      UV_PROJECT_ENVIRONMENT: .venv-train
       WANDB_MODE: offline
     steps:
       - uses: actions/checkout@v4

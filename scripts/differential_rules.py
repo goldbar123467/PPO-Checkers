@@ -71,8 +71,8 @@ def _gpu_name() -> str | None:
     return ", ".join(names) if names else None
 
 
-def _goal_hash() -> str:
-    return sha256(Path("GOAL.md").read_bytes()).hexdigest()
+def _contract_hash() -> str:
+    return sha256(Path("docs/experiment-contract.md").read_bytes()).hexdigest()
 
 
 def _metadata() -> dict[str, object]:
@@ -80,11 +80,11 @@ def _metadata() -> dict[str, object]:
     return {
         "git_sha": _git("rev-parse", "HEAD"),
         "git_dirty": bool(_git("status", "--porcelain")),
-        "goal_sha256": _goal_hash(),
+        "goal_sha256": _contract_hash(),
         "python": platform.python_version(),
         "packages": {
             "hypothesis": version("hypothesis"),
-            "ml-lab": version("ml-lab"),
+            "ppo-checkers": version("ppo-checkers"),
             "pytest": version("pytest"),
         },
         "hardware": {

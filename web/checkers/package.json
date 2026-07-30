@@ -1,5 +1,5 @@
 {
-  "name": "ml-lab-checkers-harness",
+  "name": "ppo-checkers-web",
   "private": true,
   "version": "0.1.0",
   "type": "module",

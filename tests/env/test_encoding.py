@@ -1,4 +1,4 @@
-"""Canonical eight-plane observation tests for GOAL.md §6.2."""
+"""Canonical eight-plane observation tests for the public experiment contract."""
 
 from __future__ import annotations
 

@@ -1,10 +1,10 @@
-# Red House — PPO Checkers
+# PPO Checkers
 
-[![Offline checkers gate](https://github.com/goldbar123467/ml-lab/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/ml-lab/actions/workflows/offline-ci.yml)
+[![Offline checkers gate](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/play-live-bb2f3b)](https://checkers.upsidedownatlas.com)
 
-A complete, reproducible machine-learning system for American checkers: symbolic rules, a Gym-style environment, PPO self-play, checkpoint recovery, powered evaluation, a model-only export, a React game client, and a hardened CPU deployment.
+A complete, reproducible machine-learning system for American checkers: symbolic rules, a Gym-style environment, PPO self-play, checkpoint recovery, powered evaluation, a model-only export, a React game client, and a hardened CPU deployment. The playable interface is branded **Red House**.
 
 **[Play the trained neural policy](https://checkers.upsidedownatlas.com)**
 
@@ -68,8 +68,8 @@ The network takes an `8 × 8 × 8` actor-canonical observation, passes it throug
 Prerequisites are Linux/WSL2, Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 22, and npm. A GPU is not required to play.
 
 ```bash
-git clone https://github.com/goldbar123467/ml-lab.git
-cd ml-lab
+git clone https://github.com/goldbar123467/PPO-Checkers.git
+cd PPO-Checkers
 uv sync --locked --all-groups
 npm --prefix web/checkers ci
 
@@ -85,7 +85,7 @@ test "$(sha256sum "$policy" | cut -d ' ' -f1)" = "$(tr -d '\n' < "$policy.sha256
 Terminal 1:
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/serve_checkers_web.py \
+PYTHONPATH=src .venv/bin/python scripts/serve_checkers_web.py \
   --bundle models/checkers/policies/checkers-practice-update-004608.pt \
   --port 8765
 ```
@@ -106,12 +106,12 @@ Training is a substantial CUDA experiment, not part of local play. The accepted 
 read -rsp 'W&B API key: ' WANDB_API_KEY && printf '\n'
 export WANDB_API_KEY
 
-PYTHONPATH=src .venv-train/bin/python scripts/preflight_practice.py \
+PYTHONPATH=src .venv/bin/python scripts/preflight_practice.py \
   --config configs/checkers-practice.yaml \
   --output-dir runs/practice-preflight-reproduction
 
 run_dir=runs/checkers-practice-seed0-reproduction
-PYTHONPATH=src .venv-train/bin/python scripts/train.py \
+PYTHONPATH=src .venv/bin/python scripts/train.py \
   --config configs/checkers-practice.yaml \
   --output-dir "$run_dir"
 ```
@@ -119,7 +119,7 @@ PYTHONPATH=src .venv-train/bin/python scripts/train.py \
 The first invocation deliberately pauses after update 1024. Inspect its manifest, evaluation, metrics, and resource headroom; then resume the same run:
 
 ```bash
-PYTHONPATH=src .venv-train/bin/python scripts/train.py \
+PYTHONPATH=src .venv/bin/python scripts/train.py \
   --config configs/checkers-practice.yaml \
   --output-dir "$run_dir" \
   --resume "$run_dir/checkpoints/update-001024.pt"
@@ -166,12 +166,14 @@ Full checkpoints, optimizer state, run histories, credentials, caches, and model
 ## Documentation
 
 - [Architecture](docs/architecture.md)
+- [Experiment contract](docs/experiment-contract.md)
 - [Training and exact reproduction](docs/training.md)
 - [Evaluation methodology](docs/evaluation.md)
 - [Results and limitations](docs/results.md)
 - [Deployment, operations, and rollback](docs/deployment.md)
 - [Model card](docs/model-card.md)
 - [American-checkers rule traceability](docs/RULES.md)
+- [PPO implementation decisions](docs/PPO_CHECKLIST.md)
 - [Web-harness acceptance contract](docs/CHECKERS_WEB_HARNESS_CONTRACT.md)
 - [Clean-room UI reference study](reports/checkers_web_reference_study.md)
 

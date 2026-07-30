@@ -236,7 +236,7 @@ def build_suite(result: GenerationResult, *, script_path: Path) -> TacticalSuite
             "play from State.initial(); replay_actions proves each prefix."
         ),
         license="CC0-1.0",
-        author="ml-lab project deterministic generator",
+        author="PPO Checkers deterministic generator",
         creation_method=(
             "scripts/generate_dev_tactics.py; exact terminal-only AND/OR labels; depth-3 "
             "membership check; 180-degree colour-swap symmetry deduplication"
@@ -250,7 +250,9 @@ def build_suite(result: GenerationResult, *, script_path: Path) -> TacticalSuite
         cases_sha256=tactical_cases_sha256(result.cases),
         generator_source_sha256=hashlib.sha256(script_path.read_bytes()).hexdigest(),
         rules_source_sha256=_sha256_files(rules_paths, repository=repository),
-        goal_sha256=hashlib.sha256((repository / "GOAL.md").read_bytes()).hexdigest(),
+        goal_sha256=hashlib.sha256(
+            (repository / "docs/experiment-contract.md").read_bytes()
+        ).hexdigest(),
     )
     return TacticalSuite(manifest=manifest, cases=result.cases)
 

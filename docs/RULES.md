@@ -1,8 +1,8 @@
 # American Checkers Rules, Authority, and Test Traceability
 
-This document is the build-time rules record required by `GOAL.md` §§3.1, 4, and 14. It
-paraphrases the primary publication instead of copying it wholesale. Rule clauses are Tier A;
-project extensions and engine variants are labelled explicitly.
+This document is the public rules record for the project. It paraphrases the primary publication
+instead of copying it wholesale. Rule clauses are primary authority; project extensions and engine
+variants are labelled explicitly.
 
 ## Primary Source Provenance
 
@@ -49,8 +49,8 @@ PDN by Bob Murr. The pinned archive is
 The 20 scores contain 515 completed moves, expanding to 561 step-wise environment transitions.
 Every move has exactly one legal interpretation; this is external correctness evidence for move
 legality. The records contain 11 `0-1` and nine `1-0` source results, but all stop while legal moves
-remain (resignation or published analysis cutoff). Those result tags are preserved exactly, not
-misrepresented as board-derived outcomes; BLOCK-004 records the Gate 2 wording conflict.
+remain (resignation or published analysis cutoff). Those result tags are preserved exactly and are
+not misrepresented as board-derived outcomes.
 
 ## External Perft Provenance
 
@@ -70,10 +70,9 @@ steps remain one move. All eight counts match exactly: `1, 7, 49, 302, 1469, 736
 
 Terminal losses follow WCDF 1.30. Automatic no-progress, optional automatic repetition, and the
 512-step cap are the declared R6.3–R6.5 ENGINE VARIANTS above. R6.6 is also labelled ENGINE VARIANT
-in implementation and documentation because autonomous agents cannot negotiate, although the
-read-only goal omitted that label (BLOCK-001). If a loss and an engine-variant draw boundary
-coincide, the loss is evaluated first; this prevents a side with no pieces or no move from escaping
-WCDF 1.30 through a training rule.
+because autonomous agents cannot negotiate. If a loss and an engine-variant draw boundary coincide,
+the loss is evaluated first; this prevents a side with no pieces or no move from escaping WCDF 1.30
+through a training rule.
 
 The Zobrist construction follows Albert L. Zobrist's University of Wisconsin Technical Report 88,
 [*A New Hashing Method With Application for Game
@@ -84,8 +83,8 @@ initial keys are permanent tests.
 
 `position_key` follows the narrow §5.3 repetition contract: placement plus side, and only at a move
 boundary. The complete `state_key` additionally includes capture state, `sequence_origin`, both
-`no_progress` counters, and `ply`. The latter three correct BLOCK-005: omitting counter 40 or ply
-512 would give identical cache keys to states with different terminal transitions.
+`no_progress` counters, and `ply`. Omitting counter 40 or ply 512 would give identical cache keys
+to states with different terminal transitions.
 
 ## FROZEN ACF 1–32 orientation
 
@@ -124,21 +123,19 @@ clause: jumped pieces remain physically present until the complete move ends. Th
 occupy their squares and cannot be jumped again. This interpretation is implemented as
 `captured_pending` and tested against the complete mid-sequence state.
 
-The narrower claim in `GOAL.md` that a marked piece can block a later *landing* is geometrically
-impossible for American Checkers. Every short jump changes row and column by ±2, so the moving
+The idea that a marked piece can block a later *landing* is geometrically impossible for American
+Checkers. Every short jump changes row and column by ±2, so the moving
 piece stays in one coordinate-parity class for its whole sequence. Every jumped midpoint belongs
 to the opposite class. A midpoint can never be a later landing. If a captured piece is removed
 immediately it is not jumpable; if retained and marked, WCDF 1.20 forbids jumping it again. Hence
 removal timing changes the required mid-sequence state and observation, but cannot change the
-legal continuation set when the no-repeat rule is honored. BLOCK-002 records the contradiction
-between this proof fallback in R4.5 and later gate language demanding a divergence fixture.
+legal continuation set when the no-repeat rule is honored.
 
 ### Draw departures
 
 WCDF 1.32, 1.32.1, and 1.32.2 use agreement or a player's demonstration to a referee. Autonomous
 self-play has neither negotiation nor a referee, so R6.3–R6.6 are engine rules, not claims about
-WCDF play. R6.6 was not labelled as a variant in `GOAL.md`; `BLOCKERS.md` BLOCK-001 records that
-specification defect. Code and documentation conservatively label it ENGINE VARIANT.
+WCDF play. Code and documentation label them ENGINE VARIANT.
 
 ### Project-only contracts
 
@@ -150,8 +147,7 @@ over-the-board WCDF rules. They are marked PROJECT CONTRACT rather than attribut
 The valid nontrivial game symmetry is 180° rotation *combined with* Red/White identity swap.
 Horizontal and vertical mirrors map playable squares to light squares; diagonal mirrors map king
 rows to columns. Colour-only and rotation-only transforms reverse man direction without applying
-the corresponding player-role change. BLOCK-003 records why §12.4 D's separate symmetry wording
-cannot be implemented truthfully.
+the corresponding player-role change.
 
 ## Rule-to-Source-to-Test Matrix
 
@@ -175,7 +171,7 @@ not a claim that the test already passes; gate evidence records actual execution
 | R4.3.1 | WCDF 1.21 — king captures forward or backward | `tests/rules/test_captures.py::test_r4_3_1_king_jumps_forward_and_backward` Phase 2 |
 | R4.3.2 | WCDF 1.18 and 1.25.4 — uncrowned man never captures backward | `tests/rules/test_captures.py::test_r4_3_2_man_never_jumps_backward` Phase 2 |
 | R4.4 | WCDF 1.19–1.20 — same-piece continuation through the final jump | `tests/rules/test_captures.py::test_r4_4_continuation_is_mandatory_for_the_same_piece` Phase 2 |
-| R4.5 | WCDF 1.19–1.20 — sequence-end removal and no repeat jump; BLOCK-002 parity correction | `tests/rules/test_captures.py::test_r4_5_marked_piece_remains_occupied_and_cannot_be_jumped_twice` Phase 2 |
+| R4.5 | WCDF 1.19–1.20 — sequence-end removal and no repeat jump | `tests/rules/test_captures.py::test_r4_5_marked_piece_remains_occupied_and_cannot_be_jumped_twice` Phase 2 |
 | R4.6 | WCDF 1.20 — player may choose any available jump route | `tests/rules/test_captures.py::test_r4_6_no_majority_capture_rule` Phase 2 |
 | R5.1 | WCDF 1.16 — man crowns on reaching the far row and turn completes | `tests/rules/test_promotion.py::test_r5_1_man_promotes_at_a_completed_move` Phase 2 |
 | R5.2 | WCDF 1.16, 1.19, and 1.25.7 — crowning ends capture turn | `tests/rules/test_promotion.py::test_r5_2_promotion_ends_jump_sequence_before_a_new_king_jump` Phase 2 |
@@ -222,7 +218,7 @@ otherwise legal games; it is not merely a defensive assertion.
 - WCDF primary text: VERIFIED and hash-pinned.
 - R1.1–R7.3 source/classification rows: complete.
 - R6.7 arithmetic: executable in `tests/rules/test_rule_traceability.py`.
-- BLOCK-001 remains open because only a human can amend the read-only `GOAL.md`; downstream code
-  follows the conservative source-correct ENGINE VARIANT label.
-- The Phase 4 software mapping from these rules to observations, actions, rewards, masks, and
-  snapshots is separately sourced and traced in `docs/ENVIRONMENT.md`.
+- Engine-specific draw behavior is explicitly labelled and does not claim to be an over-the-board
+  WCDF rule.
+- The software mapping from these rules to observations, actions, rewards, masks, and snapshots is
+  documented in `docs/architecture.md` and `docs/experiment-contract.md`.

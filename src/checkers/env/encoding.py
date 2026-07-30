@@ -49,7 +49,7 @@ def encode_observation(
         max_plies: Declared R6.5 terminal-ply limit used to normalize plane 7.
 
     Returns:
-        A float32 array with shape ``(8, 8, 8)`` following GOAL.md section 6.2.
+        A float32 array with shape ``(8, 8, 8)`` following the public experiment contract.
 
     Raises:
         TypeError: If ``state`` is not a ``State`` or ``max_plies`` is not an integer.
