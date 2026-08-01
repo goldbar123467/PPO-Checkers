@@ -137,7 +137,7 @@ def test_security_headers_and_static_cache_policy(
     try:
         status, _body, headers = _get(root)
         assert status == HTTPStatus.OK
-        assert headers["Cache-Control"] == "no-store"
+        assert headers["Cache-Control"] == "no-store, no-transform"
         assert headers["X-Frame-Options"] == "DENY"
         assert headers["Referrer-Policy"] == "no-referrer"
         assert "frame-ancestors 'none'" in headers["Content-Security-Policy"]
@@ -150,7 +150,7 @@ def test_security_headers_and_static_cache_policy(
         assert head_status == HTTPStatus.OK
         assert head_body == b""
         assert head_headers["Content-Length"] == str(len(b"<h1>checkers</h1>"))
-        assert head_headers["Cache-Control"] == "no-store"
+        assert head_headers["Cache-Control"] == "no-store, no-transform"
 
         _status, _body, asset_headers = _get(f"{root}/assets/index-abcdef12.js")
         assert asset_headers["Cache-Control"] == "public, max-age=31536000, immutable"

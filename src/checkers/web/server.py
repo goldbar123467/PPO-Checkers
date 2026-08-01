@@ -231,7 +231,8 @@ class CheckersRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", content_type or "application/octet-stream")
         self.send_header("Content-Length", str(len(payload)))
         if candidate.name == "index.html":
-            cache_control = "no-store"
+            # Keep intermediaries from injecting scripts into the student interface.
+            cache_control = "no-store, no-transform"
         elif HASHED_ASSET_PATTERN.search(candidate.name):
             cache_control = "public, max-age=31536000, immutable"
         else:
