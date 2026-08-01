@@ -16,7 +16,7 @@ import pytest
 
 from checkers.web.game import GameService
 from checkers.web.policy_bundle import LoadedPolicy
-from checkers.web.server import WebServerConfig, create_server
+from checkers.web.server import CheckersRequestHandler, WebServerConfig, create_server
 
 LOOPBACK_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
@@ -56,6 +56,12 @@ def _json_request(url: str, payload: dict[str, object] | None = None) -> tuple[i
 
 def _get(url: str) -> tuple[int, bytes, dict[str, str]]:
     with LOOPBACK_OPENER.open(url, timeout=3) as response:
+        return response.status, response.read(), dict(response.headers.items())
+
+
+def _head(url: str) -> tuple[int, bytes, dict[str, str]]:
+    request = urllib.request.Request(url, method="HEAD")
+    with LOOPBACK_OPENER.open(request, timeout=3) as response:
         return response.status, response.read(), dict(response.headers.items())
 
 
@@ -135,6 +141,16 @@ def test_security_headers_and_static_cache_policy(
         assert headers["X-Frame-Options"] == "DENY"
         assert headers["Referrer-Policy"] == "no-referrer"
         assert "frame-ancestors 'none'" in headers["Content-Security-Policy"]
+        assert "script-src 'self'" in headers["Content-Security-Policy"]
+        assert "font-src 'self' data:" in headers["Content-Security-Policy"]
+        assert "style-src 'self'" in headers["Content-Security-Policy"]
+        assert "'unsafe-inline'" not in headers["Content-Security-Policy"]
+
+        head_status, head_body, head_headers = _head(root)
+        assert head_status == HTTPStatus.OK
+        assert head_body == b""
+        assert head_headers["Content-Length"] == str(len(b"<h1>checkers</h1>"))
+        assert head_headers["Cache-Control"] == "no-store"
 
         _status, _body, asset_headers = _get(f"{root}/assets/index-abcdef12.js")
         assert asset_headers["Cache-Control"] == "public, max-age=31536000, immutable"
@@ -182,6 +198,25 @@ def test_server_constructor_rejects_wrong_dependency_types(loaded_policy: Loaded
         create_server(cast(Any, object()), service)
     with pytest.raises(TypeError, match="service"):
         create_server(WebServerConfig(port=0), cast(Any, object()))
+
+
+def test_response_writer_handles_head_and_client_disconnects() -> None:
+    """HEAD bodies stay empty and a navigated-away browser does not emit a traceback."""
+
+    class DisconnectingWriter:
+        def write(self, payload: bytes) -> None:
+            _ = payload
+            raise BrokenPipeError
+
+    handler = cast(Any, object.__new__(CheckersRequestHandler))
+    handler.command = "HEAD"
+    handler.wfile = DisconnectingWriter()
+    handler._write_payload(b"not transferred")
+
+    handler.command = "GET"
+    handler.close_connection = False
+    handler._write_payload(b"client left")
+    assert handler.close_connection is True
 
 
 def test_malformed_requests_and_missing_frontend_are_structured(

@@ -1,23 +1,35 @@
-# PPO Checkers
+# IMSA West Tiger Bot · PPO Checkers Learning Lab
 
 [![Offline checkers gate](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/play-live-bb2f3b)](https://checkers.upsidedownatlas.com)
 
-A complete, reproducible machine-learning system for American checkers: symbolic rules, a Gym-style environment, PPO self-play, checkpoint recovery, powered evaluation, a model-only export, a React game client, and a hardened CPU deployment. The playable interface is branded **Red House**.
+A complete, reproducible machine-learning system for American checkers with a focused IMSA West game interface. Students can challenge the real saved policy first, then read a concise explanation of representation, self-play, PPO, and checkpoint testing.
+
+**Engineering objective:** make the trained policy simple and inviting to play without replacing it with a scripted game or hiding the project’s experimental caveats.
 
 **[Play the trained neural policy](https://checkers.upsidedownatlas.com)**
 
-![Red House desktop game](docs/assets/checkers-live-desktop.png)
+The game-first product goals, fact map, accessibility target, and explicit non-goals are recorded in [the IMSA West student experience contract](docs/EDUCATIONAL_EXPERIENCE.md). The original web harness's server-authority and API boundaries remain intact.
+
+## Student experience
+
+- The supplied IMSA West logo and exact blue, light-blue, orange, and white palette define a custom school identity without generated artwork.
+- The real playable board is the primary experience; side choice and one Start button replace advanced setup controls.
+- Deterministic mode exposes highest-probability legal-action play without asking students to choose inference settings.
+- The tiger-themed orange/white board preserves legal-move, selection, forced-jump, last-move, touch, and keyboard cues.
+- Four short explanations connect the board to representation, self-play, PPO, and controlled checkpoint evaluation.
+- The learning layer collects no student data and does not run training in the browser.
 
 ## What this project proves
 
 The browser opponent is a real neural network trained by PPO self-play. It is not Minimax wearing a neural label. The Python rules engine still owns legal moves, mandatory captures, multi-jumps, promotion, repetition, and terminal results; the network only scores the 128 fixed action slots and estimates position value.
 
-Two play modes expose the same saved policy:
+The student interface exposes one mode:
 
 - **Neural · Greedy** selects the highest-logit legal action deterministically.
-- **Neural · Sampled** samples from the masked neural distribution. Every match receives a fresh cryptographically generated 32-bit seed, displayed read-only for replay/debugging.
+
+The programmatic game API also supports seeded **Neural · Sampled** selection from the masked distribution. The browser creates a fresh cryptographically generated 32-bit game seed; explicit replay/debugging seeds are an API capability, not a visible setup control.
 
 Minimax-2 appears only as a controlled evaluation baseline. It is not used for web play.
 
@@ -38,7 +50,7 @@ The final update 6144 regressed to 0.8611 against Minimax-2. That adverse result
 |---|---:|
 | Network parameters | 470,410 |
 | Model-only bundle | 1,905,669 bytes (1.82 MiB) |
-| Training transitions | 50,331,648 |
+| Full practice-run transitions | 50,331,648 |
 | Measured rollout/optimization time | 77,845 s (21 h 37 m) |
 | Total invocation wall counters | 82,171 s (22 h 49 m) |
 | Peak recorded GPU memory | 11,923 MiB |
@@ -65,7 +77,7 @@ The network takes an `8 × 8 × 8` actor-canonical observation, passes it throug
 
 ## Run it locally
 
-Prerequisites are Linux/WSL2, Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 22, and npm. A GPU is not required to play.
+Prerequisites are Linux/WSL2, Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 20 or newer, and npm. A GPU is not required to play.
 
 ```bash
 git clone https://github.com/goldbar123467/PPO-Checkers.git
@@ -179,6 +191,6 @@ Full checkpoints, optimizer state, run histories, credentials, caches, and model
 
 ## License and roadmap
 
-Code and the `checkers-policy-v1` PyTorch bundle are released under the [MIT License](LICENSE). The generated table background is original project output; its provenance is recorded in the web-harness contract.
+Code and the `checkers-policy-v1` PyTorch bundle are released under the [MIT License](LICENSE). The current public interface uses the project-owner-supplied IMSA West logo and contains no generated artwork.
 
 The next model-delivery milestone is an ONNX/browser-native export with PyTorch-to-ONNX action parity. Per the project licensing decision, that future Hugging Face ONNX release will be Apache-2.0 and clearly separated from this MIT release. Longer-term work includes search-guided policy/value play, stronger sealed evaluation, physical-board vision, and robot manipulation.

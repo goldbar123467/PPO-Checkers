@@ -38,7 +38,7 @@ The loader verifies the sidecar before `torch.load(weights_only=True)`, validate
 
 ## Limitations
 
-One full-budget seed was used for this artifact. Its evaluation baseline is internal and shallow. Training and selection used fixed ballots, no sealed external test was run, and human performance is unknown. Web sampled mode adds stochastic action selection but does not create a different or weaker calibrated model.
+One full-budget seed was used for this artifact. Its evaluation baseline is internal and shallow. Training and selection used fixed ballots, no sealed external test was run, and human performance is unknown. The game API's sampled mode adds stochastic action selection but does not create a different or weaker calibrated model; the simplified student interface uses greedy selection only.
 
 ## Future ONNX release
 

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 4,
+  "measuredAt": "2026-08-01T16:55:49.520Z",
+  "context": {
+    "browser": "149.0.7827.55",
+    "cpu": "4x Chromium CPU slowdown",
+    "network": "local loopback with 40 ms latency, 10 Mbps down, 5 Mbps up",
+    "url": "http://127.0.0.1:8765/",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  "budgets": {
+    "boardReadyMsMaximum": 1000,
+    "clsMaximum": 0.05,
+    "imageBytesMaximum": 65536,
+    "interactionEventLatencyMsMaximum": 200,
+    "lcpMsMaximum": 2500,
+    "policyRoundTripMsMaximum": 1000,
+    "retainedHeapGrowthBytesMaximum": 10485760,
+    "totalInitialBytesMaximum": 384000
+  },
+  "measurements": {
+    "boardReadyMs": 137.1,
+    "cls": 0.0001,
+    "heapGrowthBytes": 257344,
+    "heapSamples": [
+      {
+        "game": 1,
+        "usedBytes": 4051036
+      },
+      {
+        "game": 2,
+        "usedBytes": 4117628
+      },
+      {
+        "game": 3,
+        "usedBytes": 4188560
+      },
+      {
+        "game": 4,
+        "usedBytes": 4217972
+      },
+      {
+        "game": 5,
+        "usedBytes": 4244956
+      },
+      {
+        "game": 6,
+        "usedBytes": 4308380
+      }
+    ],
+    "imageBytes": 30330,
+    "interactionEventLatencyMs": 40,
+    "lcpMs": 508,
+    "navigationMs": 419.2,
+    "policyRoundTripMs": 114.7,
+    "totalInitialBytes": 328956
+  },
+  "resources": [
+    {
+      "bytes": 278886,
+      "durationMs": 275.4,
+      "kind": "script",
+      "url": "http://127.0.0.1:8765/assets/index-WFwTkRx6.js",
+      "sha256": "2bd875c9c3e7421e463434876fcc197f1526106b35aed20fbdd4138c220b497e"
+    },
+    {
+      "bytes": 30330,
+      "durationMs": 67.7,
+      "kind": "img",
+      "url": "http://127.0.0.1:8765/assets/imsa-west-logo.png",
+      "sha256": "e989471e7211928ad751dd560194c75fc7fa6ac9738881e735b476b69444c05b"
+    },
+    {
+      "bytes": 19133,
+      "durationMs": 72,
+      "kind": "link",
+      "url": "http://127.0.0.1:8765/assets/index-peqIIDB7.css",
+      "sha256": "6dd44ca6b1fa72cfc31116b584df5004665a2a435449c5d52488bf14b76f80d7"
+    },
+    {
+      "bytes": 607,
+      "durationMs": 46.3,
+      "kind": "fetch",
+      "url": "http://127.0.0.1:8765/api/model",
+      "sha256": "dd6312cc2e35cfbe57f556cee9e79f259c75d35ca9baed6696c8bf20bcc9c18d"
+    }
+  ],
+  "passed": true
+}

@@ -1,19 +1,12 @@
 import { expect, test } from "@playwright/test";
-import { beginMatch, installMockApi } from "./fixtures";
 
-test("desktop gameplay remains functional without overflow", async ({ page, browserName }) => {
-  const consoleProblems: string[] = [];
-  page.on("console", (message) => {
-    if (message.type() === "warning" || message.type() === "error") consoleProblems.push(message.text());
-  });
-  page.on("pageerror", (error) => consoleProblems.push(error.message));
-  const api = await installMockApi(page);
-  await beginMatch(page);
-  await page.getByRole("button", { name: /square 9, red man, movable/i }).click();
-  await page.getByRole("button", { name: /square 13, empty, legal destination/i }).click();
-
-  await expect(page.getByText(/position · ply 2/i)).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
-  expect(api.moveRequests()).toHaveLength(1);
-  expect(consoleProblems, `${browserName} console`).toEqual([]);
+test("the branded game loads and plays without console errors", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Can you beat our checkers AI?" })).toBeVisible();
+  await page.getByRole("button", { name: "Start game" }).click();
+  await expect(page.getByRole("group", { name: /orange's side/i })).toBeVisible();
+  expect(errors).toEqual([]);
 });

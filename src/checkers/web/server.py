@@ -154,6 +154,11 @@ class CheckersRequestHandler(BaseHTTPRequestHandler):
         except GameError as error:
             self._error(error.status, error.code, str(error))
 
+    def do_HEAD(self) -> None:  # noqa: N802
+        """Return GET-equivalent headers without transferring a response body."""
+
+        self.do_GET()
+
     def do_POST(self) -> None:  # noqa: N802
         """Create a game or apply a human step."""
 
@@ -234,7 +239,7 @@ class CheckersRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", cache_control)
         self._security_headers()
         self.end_headers()
-        self.wfile.write(payload)
+        self._write_payload(payload)
 
     def _json(self, status: int, payload: dict[str, object]) -> None:
         encoded = json.dumps(payload, separators=(",", ":")).encode()
@@ -244,7 +249,17 @@ class CheckersRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self._security_headers()
         self.end_headers()
-        self.wfile.write(encoded)
+        self._write_payload(encoded)
+
+    def _write_payload(self, payload: bytes) -> None:
+        """Write a body unless this is HEAD, tolerating a browser that has navigated away."""
+
+        if self.command == "HEAD":
+            return
+        try:
+            self.wfile.write(payload)
+        except (BrokenPipeError, ConnectionResetError):
+            self.close_connection = True
 
     def _error(self, status: int, code: str, message: str) -> None:
         self._error_code = code
@@ -259,7 +274,8 @@ class CheckersRequestHandler(BaseHTTPRequestHandler):
         self.send_header(
             "Content-Security-Policy",
             "default-src 'self'; img-src 'self' data:; "
-            "style-src 'self'; script-src 'self'; object-src 'none'; "
+            "font-src 'self' data:; style-src 'self'; "
+            "script-src 'self'; object-src 'none'; "
             "base-uri 'none'; frame-ancestors 'none'",
         )
 

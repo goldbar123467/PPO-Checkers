@@ -27,11 +27,15 @@ function cellKey(cell: BoardCell): string {
 }
 
 function pieceName(piece: Piece): string {
-  return `${piece.color} ${piece.kind}`;
+  return `${piece.color === "red" ? "orange" : "white"} ${piece.kind}`;
 }
 
 export function Board({ game, busy, onMove }: BoardProps) {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selection, setSelection] = useState<{
+    gameId: string;
+    ply: number;
+    square: number | null;
+  } | null>(null);
   const [focusedSquare, setFocusedSquare] = useState<number | null>(null);
   const [feedback, setFeedback] = useState("Use arrow keys to move between dark squares.");
   const buttonRefs = useRef(new Map<number, HTMLButtonElement>());
@@ -43,6 +47,12 @@ export function Board({ game, busy, onMove }: BoardProps) {
   const legalOrigins = useMemo(
     () => new Set(game.legalMoves.map((move) => move.origin)),
     [game.legalMoves],
+  );
+  const selected = game.forcedSquare ?? (
+    selection?.gameId === game.id && selection.ply === game.ply &&
+    selection.square !== null && legalOrigins.has(selection.square)
+      ? selection.square
+      : null
   );
   const destinations = useMemo(
     () =>
@@ -70,17 +80,12 @@ export function Board({ game, busy, onMove }: BoardProps) {
   );
   const defaultFocusedSquare =
     game.forcedSquare ?? legalOrigins.values().next().value ?? playableSquares[0] ?? null;
-  const rovingSquare = focusedSquare ?? defaultFocusedSquare;
-  const locked = busy || !game.isHumanTurn || Boolean(game.outcome) || moveDispatchedRef.current;
+  const rovingSquare = game.forcedSquare ?? focusedSquare ?? defaultFocusedSquare;
+  const inputDisabled = busy || !game.isHumanTurn || Boolean(game.outcome);
 
-  useEffect(() => {
-    if (game.forcedSquare !== null) {
-      setSelected(game.forcedSquare);
-      setFocusedSquare(game.forcedSquare);
-    } else if (selected !== null && !legalOrigins.has(selected)) {
-      setSelected(null);
-    }
-  }, [game.forcedSquare, legalOrigins, selected]);
+  function setSelected(square: number | null) {
+    setSelection({ gameId: game.id, ply: game.ply, square });
+  }
 
   useEffect(() => {
     moveDispatchedRef.current = false;
@@ -92,6 +97,13 @@ export function Board({ game, busy, onMove }: BoardProps) {
     previousBusyRef.current = busy;
   }, [busy]);
 
+  function dispatchMove(origin: number, destination: number) {
+    if (busy || moveDispatchedRef.current || !game.isHumanTurn || game.outcome) return;
+    moveDispatchedRef.current = true;
+    setFeedback(`Moving from square ${origin + 1} to square ${destination + 1}.`);
+    onMove(origin, destination);
+  }
+
   function chooseSquare(square: number) {
     if (busy || moveDispatchedRef.current) {
       setFeedback("Please wait for the current move to finish.");
@@ -102,15 +114,13 @@ export function Board({ game, busy, onMove }: BoardProps) {
       return;
     }
     if (!game.isHumanTurn) {
-      setFeedback("Please wait for the neural policy to finish its turn.");
+      setFeedback("Please wait for the policy server to finish its turn.");
       return;
     }
 
     const destination = destinations.get(square);
     if (selected !== null && destination) {
-      moveDispatchedRef.current = true;
-      setFeedback(`Moving from square ${selected + 1} to square ${square + 1}.`);
-      onMove(selected, destination.destination);
+      dispatchMove(selected, destination.destination);
       return;
     }
 
@@ -175,7 +185,12 @@ export function Board({ game, busy, onMove }: BoardProps) {
     if (event.isPrimary === false || event.button !== 0) return;
     suppressClickRef.current = null;
     const square = squareAtPointer(event);
-    const next = beginPointerPress(pressRef.current, event.pointerId, square, locked);
+    const next = beginPointerPress(
+      pressRef.current,
+      event.pointerId,
+      square,
+      inputDisabled || moveDispatchedRef.current,
+    );
     if (next !== pressRef.current) {
       pressRef.current = next;
       event.currentTarget.setPointerCapture?.(event.pointerId);
@@ -188,7 +203,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
       pressRef.current,
       event.pointerId,
       squareAtPointer(event),
-      locked,
+      inputDisabled || moveDispatchedRef.current,
     );
     pressRef.current = result.next;
     if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
@@ -272,7 +287,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
     <div className="board-shell">
       <div className="board-tools">
         <p id="board-instructions">
-          Tap a ringed piece, then a marked square. Keyboard: arrows, Enter or Space, Escape.
+          Tap a glowing piece, then a dotted square. Keyboard: arrows, Enter or Space, Escape.
         </p>
         {selected !== null && game.forcedSquare === null && (
           <button type="button" className="text-action" onClick={clearSelection}>
@@ -283,7 +298,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
       <div
         className={`board board--${game.humanColor}`}
         role="group"
-        aria-label={`Checkers board from ${game.humanColor}'s side`}
+        aria-label={`Checkers board from ${game.humanColor === "red" ? "orange" : "white"}'s side`}
         aria-describedby="board-instructions board-feedback"
         aria-busy={busy}
         onPointerDown={onPointerDown}
@@ -344,6 +359,9 @@ export function Board({ game, busy, onMove }: BoardProps) {
               </span>
               {piece && (
                 <span className={`piece piece--${piece.color} piece--${piece.kind}`}>
+                  <span className="piece__mark" aria-hidden="true">
+                    {piece.color === "red" ? "O" : "W"}
+                  </span>
                   {piece.kind === "king" && (
                     <span className="piece__crown" aria-hidden="true">
                       ♛
@@ -356,11 +374,38 @@ export function Board({ game, busy, onMove }: BoardProps) {
           );
         })}
       </div>
+      <details className="board-move-list">
+        <summary>
+          <h3 id="board-move-list-heading">Legal move list</h3>
+          <span>Keyboard-friendly buttons</span>
+        </summary>
+        <div className="board-move-list__body">
+          <p>These buttons are an equivalent way to play without navigating the board.</p>
+          {game.legalMoves.length > 0 ? (
+            <ul aria-labelledby="board-move-list-heading">
+              {game.legalMoves.map((move) => (
+                <li key={move.action}>
+                  <button
+                    type="button"
+                    disabled={inputDisabled}
+                    onClick={() => dispatchMove(move.origin, move.destination)}
+                  >
+                    <strong>ACF {move.origin + 1} {move.captured === null ? "to" : "captures to"} {move.destination + 1}</strong>
+                    <span>{move.captured === null ? "Legal step" : `Removes the piece on ACF ${move.captured + 1}`}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>{game.outcome ? "The match is complete." : "No human move is available while the policy acts."}</p>
+          )}
+        </div>
+      </details>
       <p className="sr-only" id="board-feedback" aria-live="polite" aria-atomic="true">
         {feedback}
       </p>
       <div className="board-caption" aria-hidden="true">
-        <span>{game.humanColor === "red" ? "Red house" : "White house"}</span>
+        <span>{game.humanColor === "red" ? "Orange Tigers" : "White Tigers"}</span>
         <span>American checkers · ACF 1–32</span>
       </div>
     </div>

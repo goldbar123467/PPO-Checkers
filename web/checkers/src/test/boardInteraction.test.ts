@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   beginPointerPress,
+  boardOrder,
   cancelPointerPress,
   finishPointerPress,
   pointToBoardSquare,
@@ -24,6 +25,16 @@ function boardSquare(row: number, column: number): number {
 }
 
 describe("board pointer geometry", () => {
+  it("uses one canonical ACF orientation for red and white perspectives", () => {
+    expect(boardOrder("red")).toEqual({
+      rows: [7, 6, 5, 4, 3, 2, 1, 0],
+      columns: [0, 1, 2, 3, 4, 5, 6, 7],
+    });
+    expect(boardOrder("white")).toEqual({
+      rows: [0, 1, 2, 3, 4, 5, 6, 7],
+      columns: [7, 6, 5, 4, 3, 2, 1, 0],
+    });
+  });
   it.each([
     [320, 10, 10, 296],
     [512, 20, 40, 464],

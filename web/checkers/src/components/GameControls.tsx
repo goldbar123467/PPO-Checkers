@@ -1,108 +1,61 @@
-import type { Color, ModelInfo, PolicyMode } from "../types";
+import type { Color, ModelInfo } from "../types";
 
 interface GameControlsProps {
   model: ModelInfo;
   humanColor: Color;
-  policyMode: PolicyMode;
-  currentSeed: number | null;
   busy: boolean;
   hasGame: boolean;
   onHumanColor: (value: Color) => void;
-  onPolicyMode: (value: PolicyMode) => void;
   onStart: () => void;
 }
 
 export function GameControls({
   model,
   humanColor,
-  policyMode,
-  currentSeed,
   busy,
   hasGame,
   onHumanColor,
-  onPolicyMode,
   onStart,
 }: GameControlsProps) {
   return (
-    <section className="panel setup-panel" aria-labelledby="setup-heading">
-      <div className="panel-heading">
-        <div>
-          <p className="eyebrow">Match desk</p>
-          <h2 id="setup-heading">Set the table</h2>
-        </div>
-        <span className="ready-pill">
-          <span className="ready-dot" /> neural model ready
-        </span>
-      </div>
+    <section className="simple-panel setup-panel" aria-labelledby="setup-heading">
+      <p className="panel-label">Game setup</p>
+      <h2 id="setup-heading">Choose your side</h2>
+      <p className="setup-intro">Orange moves first. White lets the AI make the opening move.</p>
 
-      <fieldset className="segmented-field">
-        <legend>Your side</legend>
-        <div className="segment-row">
-          {(["red", "white"] as const).map((color) => (
-            <button
-              key={color}
-              type="button"
-              className={humanColor === color ? "segment is-active" : "segment"}
-              aria-pressed={humanColor === color}
-              disabled={busy}
-              onClick={() => onHumanColor(color)}
-            >
-              <span className={`mini-piece mini-piece--${color}`} />
-              {color}
-            </button>
-          ))}
-        </div>
+      <fieldset className="side-picker">
+        <legend className="sr-only">Choose your checker color</legend>
+        <button
+          type="button"
+          className={humanColor === "red" ? "side-choice is-selected" : "side-choice"}
+          aria-pressed={humanColor === "red"}
+          disabled={busy}
+          onClick={() => onHumanColor("red")}
+        >
+          <span className="choice-piece choice-piece--orange" aria-hidden="true">O</span>
+          <span><strong>Orange</strong><small>You move first</small></span>
+        </button>
+        <button
+          type="button"
+          className={humanColor === "white" ? "side-choice is-selected" : "side-choice"}
+          aria-pressed={humanColor === "white"}
+          disabled={busy}
+          onClick={() => onHumanColor("white")}
+        >
+          <span className="choice-piece choice-piece--white" aria-hidden="true">W</span>
+          <span><strong>White</strong><small>AI moves first</small></span>
+        </button>
       </fieldset>
 
-      <label className="field-label" htmlFor="policy-mode">
-        Policy
-      </label>
-      <select
-        id="policy-mode"
-        value={policyMode}
-        disabled={busy}
-        onChange={(event) => onPolicyMode(event.target.value as PolicyMode)}
-      >
-        <option value="greedy">Neural policy · greedy deterministic</option>
-        <option value="sampled">Neural policy · seeded sampling</option>
-      </select>
-      <p className="field-help">
-        Both modes use trained update {model.update.toLocaleString()}. Minimax-2 was an evaluation
-        opponent and is not used here.
-      </p>
-
-      <div className="automatic-seed" aria-live="polite">
-        <span>Automatic match seed</span>
-        <strong>{currentSeed === null ? "Generated at start" : currentSeed}</strong>
-        <small>
-          A fresh random seed is created for every game. Sampled mode uses it; greedy mode ignores
-          it.
-        </small>
-      </div>
-
-      <button className="primary-action" type="button" disabled={busy} onClick={onStart}>
-        <span>{busy ? "Model is moving…" : hasGame ? "Start new match" : "Begin match"}</span>
+      <button className="start-button" type="button" disabled={busy} onClick={onStart}>
+        <span>{busy ? "AI is moving…" : hasGame ? "Start a new game" : "Start game"}</span>
         <span aria-hidden="true">→</span>
       </button>
 
-      <dl className="model-facts">
-        <div>
-          <dt>Neural checkpoint</dt>
-          <dd>update {model.update.toLocaleString()}</dd>
-        </div>
-        <div>
-          <dt>Runtime</dt>
-          <dd>{model.device.toUpperCase()} · server</dd>
-        </div>
-        <div>
-          <dt>Parameters</dt>
-          <dd>{model.parameterCount.toLocaleString()}</dd>
-        </div>
-        <div>
-          <dt>Bundle</dt>
-          <dd title={model.bundleSha256}>{model.bundleSha256.slice(0, 10)}…</dd>
-        </div>
-      </dl>
+      <div className="model-ready">
+        <span aria-hidden="true" />
+        <p><strong>Real model ready</strong><small>PPO checkpoint {model.update.toLocaleString()} · {model.parameterCount.toLocaleString()} parameters</small></p>
+      </div>
     </section>
   );
 }

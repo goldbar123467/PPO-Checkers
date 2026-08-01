@@ -4,6 +4,8 @@ Status: frozen implementation contract
 Experiment type: engineering integration and model inference validation
 Date: 2026-07-29
 
+Historical scope note: this frozen contract records the original integration harness. Its generated-background and visible sampled-mode deliverables describe that retired presentation, not the current student UI. The current IMSA West game-first release is defined by `docs/EDUCATIONAL_EXPERIENCE.md`; it preserves the server authority, API, model bundle, and accessible game behavior established here.
+
 ## Objective and falsifiable hypothesis
 
 Build a localhost-only Vite + React + TypeScript harness in which a person can start a game, choose a side, and play legal American checkers against a previously trained local policy.

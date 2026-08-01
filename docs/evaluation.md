@@ -12,7 +12,7 @@ The practice evaluation uses 216 fixed opening ballots derived from 302 source s
 - **Minimax-2** is the project's deterministic depth-two, material-based baseline. It is much stronger than the project's random/greedy hand baselines in the powered Phase 5 arena, but shallow search and horizon effects make it an imperfect strength reference.
 - **Human** evaluation has not been run systematically.
 
-Greedy versus sampled labels in the website describe action selection from the neural logits. They are not separate networks and do not correspond to Minimax depth.
+Greedy versus sampled labels in the game API describe action selection from the neural logits. They are not separate networks and do not correspond to Minimax depth. The simplified student interface uses greedy selection only.
 
 ## Checkpoint selection
 
