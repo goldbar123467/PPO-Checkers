@@ -1,6 +1,8 @@
 # PPO Checkers — web app
 
-A static Vite + React + TypeScript site where you play American checkers against the repository's trained PPO policy. The rules engine and the neural network both run in the browser, so the build is plain static files (deployed on Vercel).
+A static Vite + React + TypeScript site where you play American checkers against the repository's trained PPO policy. The rules engine and the neural network both run in the browser, so the build is plain static files deployed on Vercel.
+
+**Live:** [ppo-checkers.vercel.app](https://ppo-checkers.vercel.app)
 
 ## How it is put together
 
