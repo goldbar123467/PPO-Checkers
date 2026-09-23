@@ -16,7 +16,7 @@ CHECKERS_LINT_PATHS := src/checkers \
 	scripts/evaluate_baselines.py scripts/generate_ballots.py \
 	scripts/generate_dev_tactics.py scripts/preflight_practice.py scripts/train.py \
 	scripts/build_checkers_release_report.py scripts/export_checkers_policy.py \
-	scripts/serve_checkers_web.py scripts/recover_checkers_run.py \
+	scripts/export_browser_policy.py scripts/recover_checkers_run.py \
 	scripts/audit_recovery_smoke.py scripts/monitor_run.py
 
 export PYTHONPATH := $(PROJECT_ROOT)/src

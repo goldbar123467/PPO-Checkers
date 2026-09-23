@@ -42,9 +42,13 @@ The self-play run took 77,845.005 measured training seconds. The pause-at-1024 a
 
 The bundle strictly reloaded and matched the source checkpoint's logits, value, and masked greedy action exactly on 12 fixed positions.
 
-## Production measurements
+## Browser runtime
 
-On a one-vCPU, 2 GB x86-64 Hetzner server, the app image is 307,862,430 bytes. The running app used about 155–160 MiB RSS, a real human-move plus neural reply completed in 7 ms at the origin, and 32 health requests at concurrency eight all returned HTTP 200. A container restart returned ready in 2.381 seconds; the pre-restart game correctly returned 404 because sessions are explicitly ephemeral.
+| Artifact | Size | SHA-256 |
+|---|---:|---|
+| Browser weights (`web/checkers/src/model/policy.bin`, float32) | 1,881,640 bytes | `f6f08b60da6df59540f4238083fc4de10a9da6e74b61c2e765d5428764f14c6f` |
+
+The browser weights reload into `CheckersNetwork` with bit-identical tensors. The TypeScript engine replays all 43 recorded parity games with identical legal-action lists, notation, final states, and outcomes (covering all five termination rules), matches PyTorch logits and values within 1e-4 on 36 recorded positions, reproduces every recorded greedy decision (250+), and matches Bik's published perft counts through depth 6. One forward pass takes roughly 25–45 ms on a desktop CPU in Node.js or a Chromium Web Worker.
 
 ## Honest interpretation
 

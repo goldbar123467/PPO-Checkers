@@ -25,12 +25,12 @@ function boardSquare(row: number, column: number): number {
 }
 
 describe("board pointer geometry", () => {
-  it("uses one canonical ACF orientation for red and white perspectives", () => {
+  it("uses one canonical ACF orientation for red and black perspectives", () => {
     expect(boardOrder("red")).toEqual({
       rows: [7, 6, 5, 4, 3, 2, 1, 0],
       columns: [0, 1, 2, 3, 4, 5, 6, 7],
     });
-    expect(boardOrder("white")).toEqual({
+    expect(boardOrder("black")).toEqual({
       rows: [0, 1, 2, 3, 4, 5, 6, 7],
       columns: [7, 6, 5, 4, 3, 2, 1, 0],
     });
@@ -42,30 +42,30 @@ describe("board pointer geometry", () => {
   ])("maps the centers of playable cells at a %ipx board size", (size, left, top, width) => {
     const bounds = { left, top, width, height: width };
     const cell = width / 8;
-    expect(pointToBoardSquare(left + cell * 1.5, top + cell / 2, bounds, board, "white")).toBe(0);
-    expect(pointToBoardSquare(left + cell / 2, top + cell * 7.5, bounds, board, "white")).toBe(28);
+    expect(pointToBoardSquare(left + cell * 1.5, top + cell / 2, bounds, board, "black")).toBe(0);
+    expect(pointToBoardSquare(left + cell / 2, top + cell * 7.5, bounds, board, "black")).toBe(28);
     expect(pointToBoardSquare(left + cell * 1.5, top + cell / 2, bounds, board, "red")).toBe(31);
   });
 
   it("uses the destination side of an exact internal square boundary", () => {
     const bounds = { left: 0, top: 0, width: 320, height: 320 };
-    expect(pointToBoardSquare(39.999, 0, bounds, board, "white")).toBeNull();
-    expect(pointToBoardSquare(40, 0, bounds, board, "white")).toBe(0);
+    expect(pointToBoardSquare(39.999, 0, bounds, board, "black")).toBeNull();
+    expect(pointToBoardSquare(40, 0, bounds, board, "black")).toBe(0);
   });
 
   it("accepts coordinates just inside the board edges and rejects every outside edge", () => {
     const bounds = { left: 10, top: 20, width: 320, height: 320 };
-    expect(pointToBoardSquare(50, 20, bounds, board, "white")).toBe(0);
-    expect(pointToBoardSquare(10, 339.999, bounds, board, "white")).toBe(28);
-    expect(pointToBoardSquare(9.999, 20, bounds, board, "white")).toBeNull();
-    expect(pointToBoardSquare(10, 19.999, bounds, board, "white")).toBeNull();
-    expect(pointToBoardSquare(330, 20, bounds, board, "white")).toBeNull();
-    expect(pointToBoardSquare(10, 340, bounds, board, "white")).toBeNull();
+    expect(pointToBoardSquare(50, 20, bounds, board, "black")).toBe(0);
+    expect(pointToBoardSquare(10, 339.999, bounds, board, "black")).toBe(28);
+    expect(pointToBoardSquare(9.999, 20, bounds, board, "black")).toBeNull();
+    expect(pointToBoardSquare(10, 19.999, bounds, board, "black")).toBeNull();
+    expect(pointToBoardSquare(330, 20, bounds, board, "black")).toBeNull();
+    expect(pointToBoardSquare(10, 340, bounds, board, "black")).toBeNull();
   });
 
   it("rejects light, non-playable cells", () => {
     expect(
-      pointToBoardSquare(20, 20, { left: 0, top: 0, width: 320, height: 320 }, board, "white"),
+      pointToBoardSquare(20, 20, { left: 0, top: 0, width: 320, height: 320 }, board, "black"),
     ).toBeNull();
   });
 });

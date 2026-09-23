@@ -18,7 +18,7 @@ The local harness will independently use semantic button cells, a CSS grid that 
 
 - No source code, class names, layout measurements, selectors, algorithms, dependencies, or state structures were copied.
 - No `black_piece.png`, `red_piece.png`, `crown.png`, favicon, or other bundled art was copied.
-- No client-side rule or AI implementation was reused. The repository's existing `CheckersEnv`, move generator, notation, action encoding, and trained `PolicyAgent` remain authoritative.
+- No client-side rule or AI implementation was reused. The site's TypeScript engine is a port of this repository's own `CheckersEnv`, move generator, notation, action encoding, and `PolicyAgent`, parity-tested against them.
 - Local-storage games, editable player names, score calculation, modal implementation, routing, and the reference's explicit “Make move” interaction are outside this harness's frozen scope.
 
 The result therefore draws only on ordinary interface patterns observed in a permissively licensed project and remains a new implementation tied to this repository's tested rules engine.

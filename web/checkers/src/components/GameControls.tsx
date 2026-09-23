@@ -1,7 +1,10 @@
-import type { Color, ModelInfo } from "../types";
+import { MODEL_INFO } from "@/lib/model";
+import type { Color } from "@/types";
+
+import type { PolicyStatus } from "@/hooks/useCheckers";
 
 interface GameControlsProps {
-  model: ModelInfo;
+  status: PolicyStatus["state"];
   humanColor: Color;
   busy: boolean;
   hasGame: boolean;
@@ -9,19 +12,27 @@ interface GameControlsProps {
   onStart: () => void;
 }
 
+function startLabel(status: PolicyStatus["state"], busy: boolean, hasGame: boolean): string {
+  if (status === "loading") return "Loading model…";
+  if (status === "error") return "Model unavailable";
+  if (busy) return "AI is moving…";
+  return hasGame ? "Start a new game" : "Start game";
+}
+
 export function GameControls({
-  model,
+  status,
   humanColor,
   busy,
   hasGame,
   onHumanColor,
   onStart,
 }: GameControlsProps) {
+  const ready = status === "ready";
   return (
-    <section className="simple-panel setup-panel" aria-labelledby="setup-heading">
-      <p className="panel-label">Game setup</p>
+    <section className="panel setup-panel" aria-labelledby="setup-heading">
+      <p className="panel-label">New game</p>
       <h2 id="setup-heading">Choose your side</h2>
-      <p className="setup-intro">Orange moves first. White lets the AI make the opening move.</p>
+      <p className="setup-intro">Red moves first. Pick Black to let the AI open.</p>
 
       <fieldset className="side-picker">
         <legend className="sr-only">Choose your checker color</legend>
@@ -32,29 +43,34 @@ export function GameControls({
           disabled={busy}
           onClick={() => onHumanColor("red")}
         >
-          <span className="choice-piece choice-piece--orange" aria-hidden="true">O</span>
-          <span><strong>Orange</strong><small>You move first</small></span>
+          <span className="choice-piece choice-piece--red" aria-hidden="true" />
+          <span><strong>Red</strong><small>You move first</small></span>
         </button>
         <button
           type="button"
-          className={humanColor === "white" ? "side-choice is-selected" : "side-choice"}
-          aria-pressed={humanColor === "white"}
+          className={humanColor === "black" ? "side-choice is-selected" : "side-choice"}
+          aria-pressed={humanColor === "black"}
           disabled={busy}
-          onClick={() => onHumanColor("white")}
+          onClick={() => onHumanColor("black")}
         >
-          <span className="choice-piece choice-piece--white" aria-hidden="true">W</span>
-          <span><strong>White</strong><small>AI moves first</small></span>
+          <span className="choice-piece choice-piece--black" aria-hidden="true" />
+          <span><strong>Black</strong><small>AI moves first</small></span>
         </button>
       </fieldset>
 
-      <button className="start-button" type="button" disabled={busy} onClick={onStart}>
-        <span>{busy ? "AI is moving…" : hasGame ? "Start a new game" : "Start game"}</span>
+      <button className="start-button" type="button" disabled={!ready || busy} onClick={onStart}>
+        <span>{startLabel(status, busy, hasGame)}</span>
         <span aria-hidden="true">→</span>
       </button>
 
-      <div className="model-ready">
+      <div className={`model-status model-status--${status}`} role="status">
         <span aria-hidden="true" />
-        <p><strong>Real model ready</strong><small>PPO checkpoint {model.update.toLocaleString()} · {model.parameterCount.toLocaleString()} parameters</small></p>
+        <p>
+          <strong>{ready ? "Model ready" : status === "loading" ? "Loading model" : "Model failed to load"}</strong>
+          <small>
+            PPO update {MODEL_INFO.update.toLocaleString()} · {MODEL_INFO.parameterCount.toLocaleString()} parameters
+          </small>
+        </p>
       </div>
     </section>
   );

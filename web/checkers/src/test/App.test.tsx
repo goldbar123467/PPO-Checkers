@@ -1,100 +1,118 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 import App from "@/App";
-import { AppProviders } from "@/app/AppProviders";
-import { createGame, fetchModel, submitMove } from "@/lib/api/checkers";
-import type { BoardCell, GameSnapshot, ModelInfo } from "@/types";
+import type { PolicyRunner } from "@/lib/policyRunner";
 
-vi.mock("@/lib/api/checkers", () => ({
-  createGame: vi.fn(),
-  fetchModel: vi.fn(),
-  submitMove: vi.fn(),
-}));
-
-const model: ModelInfo = {
-  ready: true,
-  bundleId: "practice-update-4608",
-  experimentId: "checkers-practice",
-  update: 4608,
-  globalStep: 37_748_736,
-  sourceCheckpoint: "checkpoint-004608.pt",
-  sourceCheckpointSha256: "a".repeat(64),
-  bundleSha256: "b".repeat(64),
-  bundleSizeBytes: 1_905_669,
-  gitSha: "1234567",
-  gitDirty: false,
-  device: "cpu",
-  actionCount: 128,
-  maxPlies: 512,
-  repetitionDraws: true,
-  parameterCount: 470_410,
-};
-
-const board: BoardCell[] = Array.from({ length: 64 }, (_, index) => {
-  const row = Math.floor(index / 8);
-  const column = index % 8;
-  const playable = (row + column) % 2 === 0;
-  return { row, column, playable, square: playable ? row * 4 + Math.floor(column / 2) : null };
-});
-
-function game(humanColor: "red" | "white" = "red"): GameSnapshot {
+function fakeRunner(overrides: Partial<PolicyRunner> = {}): PolicyRunner {
   return {
-    id: "game-1",
-    humanColor,
-    modelColor: humanColor === "red" ? "white" : "red",
-    policyMode: "greedy",
-    seed: 123,
-    sideToMove: humanColor,
-    isHumanTurn: true,
-    captureInProgress: false,
-    forcedSquare: null,
-    ply: 0,
-    board,
-    pieces: [{ square: 8, row: 2, column: 0, color: humanColor, kind: "man" }],
-    legalMoves: [{ action: 32, origin: 8, destination: 12, captured: null }],
-    lastStep: null,
-    moves: [],
-    outcome: null,
+    evaluate: vi.fn(async () => ({ logits: new Float32Array(128), value: 0.4, inferenceMs: 3.2 })),
+    dispose: vi.fn(),
+    ...overrides,
   };
 }
 
-describe("IMSA West game-first application", () => {
-  beforeEach(() => {
-    vi.mocked(fetchModel).mockResolvedValue(model);
-    vi.mocked(createGame).mockResolvedValue(game());
-    vi.mocked(submitMove).mockResolvedValue(game());
-  });
+function renderApp(createRunner: () => Promise<PolicyRunner>) {
+  return render(<App moveDelayMs={0} createRunner={createRunner} />);
+}
 
-  it("shows the supplied school identity, real evidence, and simple game setup", async () => {
-    render(<AppProviders><App /></AppProviders>);
+async function playFirstLegalMove() {
+  fireEvent.click(screen.getByText("Legal move list"));
+  const list = screen.getByRole("list", { name: "Legal move list" });
+  fireEvent.click(within(list).getAllByRole("button")[0]);
+}
 
-    expect(await screen.findByText("Policy update 4,608 ready")).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Indiana Math and Science Academy West logo" })).toHaveAttribute(
-      "src",
-      "/assets/imsa-west-logo.png",
+describe("PPO Checkers application", () => {
+  it("presents the project, its evidence, and a ready game setup", async () => {
+    const createRunner = vi.fn(async () => fakeRunner());
+    renderApp(createRunner);
+
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Play checkers against a neural network trained by self-play.",
     );
-    expect(screen.getByRole("heading", { name: "Can you beat our checkers AI?" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Loading model…" })).toBeDisabled();
+    expect(await screen.findByRole("button", { name: "Start game" })).toBeEnabled();
+    expect(screen.getByText("Model ready")).toBeInTheDocument();
     expect(screen.getByText("354–70–8")).toBeInTheDocument();
-    expect(screen.getByText("37.7M")).toBeInTheDocument();
-    expect(screen.getByText(/trained through 37,748,736 self-play transitions/i)).toBeInTheDocument();
-    expect(screen.getByText(/These are project evaluation results, not a human skill rating/i)).toBeInTheDocument();
-    expect(screen.getByText(/Eight actor-centered number layers/)).toBeInTheDocument();
-    expect(screen.getByText(/separate 128-slot mask marks legal actions/)).toBeInTheDocument();
-    expect(screen.getAllByRole("button", { name: "Start game" })).toHaveLength(1);
-    expect(screen.getByRole("button", { name: "Start game" })).toBeEnabled();
+    expect(screen.getByText(/not a human skill rating/i)).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "GitHub" })[0]).toHaveAttribute(
+      "href",
+      "https://github.com/goldbar123467/PPO-Checkers",
+    );
+    expect(createRunner).toHaveBeenCalled();
   });
 
-  it("starts deterministic play with the selected side and renders the accessible board", async () => {
-    vi.mocked(createGame).mockResolvedValue(game("white"));
-    render(<AppProviders><App /></AppProviders>);
+  it("lets the AI open as Red when the player picks Black, then shows its evaluation", async () => {
+    const runner = fakeRunner();
+    renderApp(async () => runner);
 
-    await screen.findByText("Policy update 4,608 ready");
-    fireEvent.click(screen.getByRole("button", { name: /White AI moves first/i }));
+    fireEvent.click(await screen.findByRole("button", { name: /Black AI moves first/i }));
     fireEvent.click(screen.getByRole("button", { name: "Start game" }));
 
-    await waitFor(() => expect(createGame).toHaveBeenCalledWith("white", "greedy", expect.any(Number)));
-    expect(await screen.findByRole("group", { name: /white's side/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Your turn/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /Your turn/i })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: /black's side/i })).toBeInTheDocument();
+    expect(screen.getByText("1 move")).toBeInTheDocument();
+    expect(screen.getByRole("meter", { name: "Value-head position estimate" })).toHaveAttribute(
+      "aria-valuenow",
+      "0.4",
+    );
+    expect(screen.getByText(/favors the AI/)).toBeInTheDocument();
+    expect(screen.getByText("3 ms")).toBeInTheDocument();
+    expect(runner.evaluate).toHaveBeenCalledOnce();
+  });
+
+  it("applies a human move and the AI's reply", async () => {
+    const runner = fakeRunner();
+    renderApp(async () => runner);
+
+    fireEvent.click(await screen.findByRole("button", { name: "Start game" }));
+    expect(await screen.findByRole("group", { name: /red's side/i })).toBeInTheDocument();
+    expect(runner.evaluate).not.toHaveBeenCalled();
+    await playFirstLegalMove();
+
+    expect(await screen.findByText("2 moves")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /Your turn/i })).toBeInTheDocument();
+    expect(runner.evaluate).toHaveBeenCalledOnce();
+    fireEvent.click(screen.getByRole("button", { name: "Start a new game" }));
+    expect(await screen.findByText("0 moves")).toBeInTheDocument();
+  });
+
+  it("recovers from a failed model download", async () => {
+    const createRunner = vi
+      .fn<() => Promise<PolicyRunner>>()
+      .mockRejectedValueOnce(new Error("Weights test failure."))
+      .mockResolvedValue(fakeRunner());
+    renderApp(createRunner);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Weights test failure.");
+    expect(screen.getByText("Model failed to load")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    expect(await screen.findByRole("button", { name: "Start game" })).toBeEnabled();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("reports an interrupted AI turn and resumes it on retry", async () => {
+    const evaluate = vi
+      .fn<PolicyRunner["evaluate"]>()
+      .mockRejectedValueOnce(new Error("Inference test failure."))
+      .mockResolvedValue({ logits: new Float32Array(128), value: -0.6, inferenceMs: 0.2 });
+    renderApp(async () => fakeRunner({ evaluate }));
+
+    fireEvent.click(await screen.findByRole("button", { name: /Black AI moves first/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Start game" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Inference test failure.");
+
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    await waitFor(() => expect(screen.queryByRole("alert")).not.toBeInTheDocument());
+    expect(await screen.findByText(/favors you/)).toBeInTheDocument();
+    expect(screen.getByText("1 ms")).toBeInTheDocument();
+  });
+
+  it("toggles the high-contrast board", async () => {
+    renderApp(async () => fakeRunner());
+    const toggle = screen.getByRole("checkbox", { name: "High-contrast board" });
+    fireEvent.click(toggle);
+    expect(document.querySelector(".site-shell")).toHaveClass("board-high-contrast");
+    await screen.findByText("Model ready");
   });
 });

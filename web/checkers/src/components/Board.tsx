@@ -13,8 +13,8 @@ import {
   finishPointerPress,
   pointToBoardSquare,
   type PointerPress,
-} from "../boardInteraction";
-import type { BoardCell, GameSnapshot, Piece } from "../types";
+} from "@/boardInteraction";
+import type { BoardCell, GameSnapshot, Piece } from "@/types";
 
 interface BoardProps {
   game: GameSnapshot;
@@ -27,7 +27,7 @@ function cellKey(cell: BoardCell): string {
 }
 
 function pieceName(piece: Piece): string {
-  return `${piece.color === "red" ? "orange" : "white"} ${piece.kind}`;
+  return `${piece.color} ${piece.kind}`;
 }
 
 export function Board({ game, busy, onMove }: BoardProps) {
@@ -114,7 +114,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
       return;
     }
     if (!game.isHumanTurn) {
-      setFeedback("Please wait for the policy server to finish its turn.");
+      setFeedback("Please wait for the AI to finish its turn.");
       return;
     }
 
@@ -287,7 +287,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
     <div className="board-shell">
       <div className="board-tools">
         <p id="board-instructions">
-          Tap a glowing piece, then a dotted square. Keyboard: arrows, Enter or Space, Escape.
+          Tap a highlighted piece, then a dotted square. Keyboard: arrows, Enter or Space, Escape.
         </p>
         {selected !== null && game.forcedSquare === null && (
           <button type="button" className="text-action" onClick={clearSelection}>
@@ -298,7 +298,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
       <div
         className={`board board--${game.humanColor}`}
         role="group"
-        aria-label={`Checkers board from ${game.humanColor === "red" ? "orange" : "white"}'s side`}
+        aria-label={`Checkers board from ${game.humanColor}'s side`}
         aria-describedby="board-instructions board-feedback"
         aria-busy={busy}
         onPointerDown={onPointerDown}
@@ -359,9 +359,6 @@ export function Board({ game, busy, onMove }: BoardProps) {
               </span>
               {piece && (
                 <span className={`piece piece--${piece.color} piece--${piece.kind}`}>
-                  <span className="piece__mark" aria-hidden="true">
-                    {piece.color === "red" ? "O" : "W"}
-                  </span>
                   {piece.kind === "king" && (
                     <span className="piece__crown" aria-hidden="true">
                       ♛
@@ -397,7 +394,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
               ))}
             </ul>
           ) : (
-            <p>{game.outcome ? "The match is complete." : "No human move is available while the policy acts."}</p>
+            <p>{game.outcome ? "The game is over." : "No move is available while the AI plays."}</p>
           )}
         </div>
       </details>
@@ -405,7 +402,7 @@ export function Board({ game, busy, onMove }: BoardProps) {
         {feedback}
       </p>
       <div className="board-caption" aria-hidden="true">
-        <span>{game.humanColor === "red" ? "Orange Tigers" : "White Tigers"}</span>
+        <span>You play {game.humanColor === "red" ? "Red" : "Black"}</span>
         <span>American checkers · ACF 1–32</span>
       </div>
     </div>

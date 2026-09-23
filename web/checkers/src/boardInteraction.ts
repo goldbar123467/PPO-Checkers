@@ -1,4 +1,4 @@
-import type { BoardCell, Color } from "./types";
+import type { BoardCell, Color } from "@/types";
 
 export interface BoardBounds {
   left: number;

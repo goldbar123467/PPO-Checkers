@@ -1,97 +1,64 @@
-# Deployment and operations
+# Deployment on Vercel
 
-## Current topology
+The website is a static build of `web/checkers`. The policy network and the rules engine run in the visitor's browser, so there is no server process, database, or model host to operate.
 
-The live service is [checkers.upsidedownatlas.com](https://checkers.upsidedownatlas.com).
-The HTTPS apex, `upsidedownatlas.com`, has its own origin certificate and permanently
-redirects to the checkers hostname while preserving the request path.
+## First deployment
 
-```text
-browser
-  -> Cloudflare proxy, edge TLS/DDoS controls/cache
-  -> Hetzner firewall (80/443 accepted only from Cloudflare networks)
-  -> Caddy 2.10.2, automatic origin certificate, security headers
-  -> 127.0.0.1:8765 Python policy/game service
-```
+1. Push the repository to GitHub.
+2. In Vercel, choose **Add New → Project** and import the repository (or use the **Deploy with Vercel** button in the README).
+3. Keep **Root Directory** at the repository root and leave the build settings on their defaults. [`vercel.json`](../vercel.json) supplies them:
 
-The origin is an x86-64 Ubuntu 26.04 LTS Hetzner instance in Germany with one vCPU, 2 GB RAM, and no GPU. Inference is CPU-only. Germany is entirely adequate for this turn-based game; the measured model work is milliseconds, so transatlantic network latency affects feel more than inference but does not justify the roughly $25 hosting premium for the current audience.
+   | Setting | Value |
+   |---|---|
+   | Framework | Vite |
+   | Install command | `npm --prefix web/checkers ci` |
+   | Build command | `npm --prefix web/checkers run build` |
+   | Output directory | `web/checkers/dist` |
 
-Cloudflare Tunnel is **not** used in this release. The available scoped token could edit DNS but lacked Tunnel Write, so deployment uses proxied DNS plus a Cloudflare-only origin firewall. This fallback is explicit and does not broaden direct web access to the origin.
+4. Deploy. Every push to the production branch redeploys, and pull requests get preview URLs.
 
-Both hostnames must remain in the Caddy configuration. Cloudflare error 525 means
-the edge could not negotiate TLS with the origin; in this deployment, an apex-only
-525 was resolved by adding the apex site block so Caddy could obtain its separate
-certificate before issuing the redirect.
+No environment variables are required. Vercel exposes `VERCEL_PROJECT_PRODUCTION_URL` during the build, and `vite.config.ts` uses it to write absolute `og:image` URLs for link previews. Set `SITE_URL` (for example `https://checkers.example.com`) to override it.
 
-## Container controls
+[`.vercelignore`](../.vercelignore) keeps the Python training code, data, and reports out of the deployment upload; only `web/checkers` is needed to build.
 
-The application image uses pinned Node and Python base-image digests, builds the Vite client, installs the hash-locked CPU-only runtime, and runs as UID/GID 10001. The container is read-only, drops all capabilities, has `no-new-privileges`, a 64-process cap, 1 GB memory and one CPU, a 16 MiB temporary filesystem, log rotation, init/reaping, graceful shutdown, and a startup health check.
-
-Caddy is independently pinned, read-only, limited to 256 MB/0.5 CPU, and retains only `NET_BIND_SERVICE`. The app model and sidecar are mounted read-only. Startup fails closed on absent, unreadable, malformed, non-finite, or checksum-mismatched weights.
-
-## Host controls
-
-- Dedicated `mlapp` operator with key-only SSH and constrained administrative membership.
-- Direct root login, passwords, and keyboard-interactive authentication disabled.
-- UFW default-deny inbound; SSH allowed, web allowed only from Cloudflare's published IPv4/IPv6 ranges.
-- Docker installed from its official apt repository and supervised by systemd.
-- App and proxy use `restart: unless-stopped`; health is checked every 30 seconds.
-- Structured application logs normalize game routes so UUIDs are not recorded.
-
-Games are deliberately ephemeral. At most 256 sessions are retained, idle sessions expire after six hours, and a process restart discards every match.
-
-## Release layout
+## What gets served
 
 ```text
-/opt/ml-lab-checkers/
-  current -> releases/<release-id>
-  releases/<release-id>/
-    deploy/checkers/
-    models/checkers/policies/
-    src/checkers/
-    web/checkers/
+index.html                         entry page (revalidated on every request)
+favicon.svg, apple-touch-icon.png  icons
+og.png                             1200×630 social preview
+assets/index-<hash>.js|css         React app
+assets/policy.worker-<hash>.js     inference worker
+assets/policy-<hash>.bin           1.88 MB float32 weights, fetched once by the worker
 ```
 
-Each production image should have an immutable release tag through `CHECKERS_RELEASE`; do not rely on `latest`.
+Vite content-hashes everything under `assets/`, and `vercel.json` serves that path with `Cache-Control: public, max-age=31536000, immutable`. A new model export therefore gets a new URL, and returning visitors download the weights only once per version.
+
+## Security headers
+
+Every response carries:
+
+- `Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'`
+- `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Cross-Origin-Opener-Policy: same-origin`, and a restrictive `Permissions-Policy`.
+
+The app loads no third-party scripts, fonts, or analytics. The worker also checks the weights' SHA-256 against the manifest before building the network, and it refuses weights whose layout, size, or values do not match.
+
+`npm --prefix web/checkers run preview` serves the production build with the same headers (read from `vercel.json`), and the Playwright suite runs against that server. A CSP regression therefore fails the end-to-end tests before it reaches Vercel. Vercel's preview-deployment toolbar loads a third-party script, which the strict CSP may block on preview URLs; production is unaffected.
+
+## Updating the model
+
+1. Download the release bundle and run `scripts/export_browser_policy.py` (see the README).
+2. Run `make check` and the web gate. Both test suites replay the regenerated parity fixture.
+3. Commit `web/checkers/src/model/*` and `web/checkers/src/test/fixtures/parity.json`, then push. Vercel redeploys, and the new weights get a new hashed URL.
+
+## Verify a deployment
 
 ```bash
-release_id=$(date -u +%Y%m%dT%H%M%SZ)
-export CHECKERS_RELEASE="$release_id"
-docker compose -f deploy/checkers/compose.yaml build --pull checkers-web
-docker compose -f deploy/checkers/compose.yaml up -d --wait
-curl --fail http://127.0.0.1:8765/api/health
+curl -sI https://<your-domain>/ | grep -i content-security-policy
 ```
 
-Never copy `.secrets`, `.git`, full checkpoints, run state, CUDA environments, or credentials to the host. Model files must be mode `0444` (or otherwise readable by UID 10001 but not writable). The first deployment caught this boundary when a preserved local `0600` mode correctly caused startup to fail.
-
-## Verification checklist
-
-```bash
-docker compose -f deploy/checkers/compose.yaml ps
-docker stats --no-stream checkers-web checkers-caddy
-curl --fail https://checkers.upsidedownatlas.com/api/health
-curl --fail https://checkers.upsidedownatlas.com/api/model
-```
-
-Also verify a complete human/model exchange, invalid JSON/content type/illegal move responses, mobile layout, security headers, static cache HIT, API/HTML `no-store`, direct-origin timeout, root SSH rejection, container restart, and session loss after restart.
+Then open the site and confirm that "Model ready" appears, that a game starts from both sides, and that the browser console is clean.
 
 ## Rollback
 
-Keep the previous release directory and image tag until the new release passes external smoke tests.
-
-```bash
-cd /opt/ml-lab-checkers
-sudo ln -sfn "releases/<previous-release>" current
-cd current
-export CHECKERS_RELEASE='<previous-image-tag>'
-docker compose -f deploy/checkers/compose.yaml up -d --no-build --force-recreate --wait
-curl --fail http://127.0.0.1:8765/api/health
-```
-
-To roll forward, point `current` back to the new release and repeat with its immutable image tag. A rollback is not proven merely by changing the symlink; the container must be recreated, pass health, expose the expected model checksum, and complete a legal move.
-
-## Observability and known limits
-
-Docker health/restart policy, structured JSON logs, bounded log files, resource ceilings, Cloudflare analytics, and host disk checks provide basic operational coverage. There is no account system, persistent game database, external pager, or automated billing alert. The service has concurrency/body/session bounds and Cloudflare DDoS protection, but no per-user application rate limiter. Add one only with a trusted client-IP design if traffic warrants it.
-
-Secrets remain only in ignored local storage and provider credential stores. Cloudflare/API tokens and private SSH keys must never be copied into release directories, environment files, image layers, logs, issues, or GitHub Actions.
+Use **Instant Rollback** on a previous production deployment in the Vercel dashboard, or revert the commit and push. Deployments are immutable, so a rollback restores the exact earlier build, weights included.

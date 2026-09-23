@@ -1,13 +1,12 @@
-"""Local-only browser harness for a trained checkers policy."""
+"""Policy export for the browser-native checkers website."""
 
-from checkers.web.game import GameError, GameRetention, GameService
+from checkers.web.browser_export import load_browser_policy, write_browser_policy
 from checkers.web.policy_bundle import LoadedPolicy, PolicyBundleMetadata, load_policy_bundle
 
 __all__ = [
-    "GameError",
-    "GameRetention",
-    "GameService",
     "LoadedPolicy",
     "PolicyBundleMetadata",
+    "load_browser_policy",
     "load_policy_bundle",
+    "write_browser_policy",
 ]

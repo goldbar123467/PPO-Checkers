@@ -1,64 +1,66 @@
-# IMSA West Checkers AI
+# PPO Checkers — web app
 
-This is a deliberately simple, game-first React interface for the repository's trained PPO checkers policy. The supplied IMSA West logo and its official blue, light-blue, orange, and white palette define the visual system. No generated artwork is loaded or copied into the production build.
+A static Vite + React + TypeScript site where you play American checkers against the repository's trained PPO policy. The rules engine and the neural network both run in the browser, so the build is plain static files (deployed on Vercel).
 
-## Student experience
+## How it is put together
 
-- Choose Orange to move first or White to let the policy open.
-- Press one Start button; deterministic play is the only visible policy mode.
-- Select an outlined piece and then a dotted destination.
-- Play with mouse, touch, the board's keyboard controls, or the equivalent legal-move buttons.
-- Read four short steps explaining representation, self-play, PPO, and checkpoint testing.
-- Inspect honest project results with an explicit warning that they are not a human skill rating.
-
-The internal API still calls the first side `red`; the interface calls those pieces Orange to match IMSA West. The browser never decides legality or runs inference. `GameService`, `CheckersEnv`, the action mask, and the loaded update-4,608 policy remain authoritative.
-
-## Run locally
-
-From the repository root:
-
-```bash
-npm --prefix web/checkers ci
-npm --prefix web/checkers run build
-PYTHONPATH=src .venv-checkers/bin/python scripts/serve_checkers_web.py \
-  --bundle models/checkers/policies/checkers-practice-update-004608.pt \
-  --static-dir web/checkers/dist \
-  --port 8765
+```text
+src/
+  engine/            framework-free game and model code
+    rules.ts         bitboard rules: legal steps, captures, promotion, terminal outcomes
+    encoding.ts      8×8×8 actor-canonical observation and the 128-slot action space
+    game.ts          step-wise environment with ACF notation and repetition counting
+    network.ts       GroupNorm ResNet forward pass over raw float32 weights
+    policy.ts        masked greedy / sampled action selection
+  lib/
+    session.ts       one human-vs-policy game, rendered as immutable snapshots
+    policy.worker.ts Web Worker that loads the weights and runs inference
+    policyRunner.ts  worker client (falls back to the page thread if workers are unavailable)
+    loadPolicy.ts    downloads and SHA-256-verifies the weights
+  hooks/useCheckers.ts  React state for the model, the game, and the AI's turns
+  components/        board, setup panel, status, network insight, move history
+  model/             policy.bin (1.88 MB float32) + policy.json manifest
 ```
 
-Open `http://127.0.0.1:8765/`.
+Each file in `src/engine` is a port of the matching Python module in `src/checkers` (`rules/moves.py`, `rules/terminal.py`, `env/encoding.py`, `env/masking.py`, `env/checkers_env.py`, `rl/networks.py`, `agents/policy_agent.py`). Player 0 is Red and moves first. The Python engine calls player 1 White; the site shows those pieces as Black.
 
-For development, run the Python server without `--static-dir`, then run `npm --prefix web/checkers run dev`; Vite proxies `/api` to port 8765.
+The AI always plays its highest-logit legal move. After each move the sidebar shows the value head's estimate from the AI's perspective, the softmax probability of the chosen move among the legal moves, and the on-device inference time. The value is the raw network output, not a calibrated win probability.
 
-## Controls
+## Parity with Python and PyTorch
 
-- Pointer/touch: choose an outlined checker, then a dotted square.
-- Keyboard board: arrow keys navigate dark squares; Enter or Space selects; Escape clears.
-- Keyboard alternative: open “Legal move list” and use its standard buttons.
-- Stronger board contrast is available beside the game.
-- Mandatory captures and multi-jumps are enforced by the Python rules engine.
+`scripts/export_browser_policy.py` (repository root) writes the weights, the manifest, and `src/test/fixtures/parity.json`. The fixture holds 43 games (random, greedy, and sampled agents; all five termination rules) plus 36 positions with PyTorch logits and values. `src/test/engine.parity.test.ts` requires the TypeScript engine to:
 
-Games live only in the server's bounded in-memory store and disappear after expiry or restart. Undo, accounts, analytics, browser-side training, fabricated probabilities, and Minimax web play are intentionally absent.
+- match Bik's published completed-move perft counts through depth 6;
+- replay every fixture game with identical legal-action lists, notation, final states, and outcomes;
+- encode identical observations and legal actions;
+- match PyTorch logits and values within 1e-4 and reproduce every recorded greedy decision.
 
-## Verification
+On the Python side, `tests/web/test_browser_export.py` replays the same fixture through the Python engine and the committed weights, so neither side can drift.
 
-```bash
-npm --prefix web/checkers run lint
-npm --prefix web/checkers run typecheck
-npm --prefix web/checkers run test:coverage
-npm --prefix web/checkers run build
-npm --prefix web/checkers run test:e2e:a11y
-npm --prefix web/checkers run test:e2e:responsive
-npm --prefix web/checkers run test:e2e:touch
-npm --prefix web/checkers run test:e2e:visual
-npm --prefix web/checkers audit --audit-level=moderate
-```
-
-The complete Python regression remains the source of truth for rules, environment behavior, policy loading, and the HTTP service:
+## Develop
 
 ```bash
-.venv-checkers/bin/ruff check src/checkers/web tests/web scripts/serve_checkers_web.py
-.venv-checkers/bin/pytest -q
+npm ci
+npm run dev        # http://127.0.0.1:5173
+npm run build
+npm run preview    # production build with the vercel.json headers, http://127.0.0.1:4173
 ```
 
-See [`docs/IMSA_GAME_FIRST_RELEASE.md`](../../docs/IMSA_GAME_FIRST_RELEASE.md) for the observed release results and [`docs/CHECKERS_WEB_HARNESS_CONTRACT.md`](../../docs/CHECKERS_WEB_HARNESS_CONTRACT.md) for the backend contract.
+## Controls and accessibility
+
+- Pointer or touch: tap a highlighted piece, then a dotted square.
+- Keyboard: arrow keys move between dark squares, Enter or Space selects, and Escape clears.
+- "Legal move list" offers every legal move as a standard button.
+- High-contrast board toggle, visible focus, skip link, live turn announcements, reduced-motion and forced-colors support.
+
+## Verify
+
+```bash
+npm run lint
+npm run typecheck
+npm run test:coverage   # unit, UI, and parity tests
+npm run test:e2e        # Playwright: gameplay, keyboard, touch, axe WCAG, viewports, CSP, recovery
+npm audit --audit-level=moderate
+```
+
+Playwright runs against `npm run build && npm run preview`, so it exercises the real Web Worker, the real weights, and the production Content-Security-Policy. If Playwright's own browser download is unavailable, point it at a local Chromium with `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/path/to/chrome`. Visual baselines in `e2e/visual.spec.ts-snapshots` are rendered on Linux Chromium.

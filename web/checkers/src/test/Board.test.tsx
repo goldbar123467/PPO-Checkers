@@ -18,7 +18,7 @@ function snapshot(overrides: Partial<GameSnapshot> = {}): GameSnapshot {
   return {
     id: "game-1",
     humanColor: "red",
-    modelColor: "white",
+    modelColor: "black",
     policyMode: "greedy",
     seed: 123,
     sideToMove: "red",
@@ -29,7 +29,7 @@ function snapshot(overrides: Partial<GameSnapshot> = {}): GameSnapshot {
     board,
     pieces: [
       { square: 8, row: 2, column: 6, color: "red", kind: "man" },
-      { square: 20, row: 5, column: 6, color: "white", kind: "man" },
+      { square: 20, row: 5, column: 6, color: "black", kind: "man" },
     ],
     legalMoves: [{ action: 32, origin: 8, destination: 12, captured: null }],
     lastStep: null,
@@ -76,7 +76,7 @@ describe("Board interaction", () => {
           pieces: [
             { square: 8, row: 2, column: 6, color: "red", kind: "man" },
             { square: 9, row: 2, column: 4, color: "red", kind: "man" },
-            { square: 20, row: 5, column: 6, color: "white", kind: "man" },
+            { square: 20, row: 5, column: 6, color: "black", kind: "man" },
           ],
           legalMoves: [
             { action: 32, origin: 8, destination: 12, captured: null },
@@ -88,20 +88,20 @@ describe("Board interaction", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /square 21, white man/i }));
+    fireEvent.click(screen.getByRole("button", { name: /square 21, black man/i }));
     expect(onMove).not.toHaveBeenCalled();
     expect(screen.getByText("Square 21 cannot move in this position.")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /square 9, orange man, movable/i }));
-    expect(screen.getByRole("button", { name: /square 9, orange man, selected/i })).toHaveAttribute(
+    fireEvent.click(screen.getByRole("button", { name: /square 9, red man, movable/i }));
+    expect(screen.getByRole("button", { name: /square 9, red man, selected/i })).toHaveAttribute(
       "aria-pressed",
       "true",
     );
     fireEvent.click(screen.getByRole("button", { name: /square 14, empty/i }));
     expect(onMove).not.toHaveBeenCalled();
 
-    fireEvent.click(screen.getByRole("button", { name: /square 10, orange man, movable/i }));
-    expect(screen.getByRole("button", { name: /square 10, orange man, selected/i })).toHaveAttribute(
+    fireEvent.click(screen.getByRole("button", { name: /square 10, red man, movable/i }));
+    expect(screen.getByRole("button", { name: /square 10, red man, selected/i })).toHaveAttribute(
       "aria-pressed",
       "true",
     );
@@ -109,7 +109,7 @@ describe("Board interaction", () => {
     fireEvent.click(screen.getByRole("button", { name: /clear selection/i }));
     expect(screen.queryByRole("button", { name: /clear selection/i })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /square 9, orange man, movable/i }));
+    fireEvent.click(screen.getByRole("button", { name: /square 9, red man, movable/i }));
     fireEvent.click(screen.getByRole("button", { name: /square 13, empty, legal destination/i }));
     expect(onMove).toHaveBeenCalledOnce();
     expect(onMove).toHaveBeenCalledWith(8, 12);
@@ -125,7 +125,7 @@ describe("Board interaction", () => {
     });
     const { rerender } = render(<Board game={forced} busy={false} onMove={onMove} />);
 
-    const forcedPiece = screen.getByRole("button", { name: /square 13, orange man, selected/i });
+    const forcedPiece = screen.getByRole("button", { name: /square 13, red man, selected/i });
     fireEvent.click(forcedPiece);
     expect(forcedPiece).toHaveAttribute("aria-pressed", "true");
     expect(screen.queryByRole("button", { name: /clear selection/i })).not.toBeInTheDocument();
@@ -146,7 +146,7 @@ describe("Board interaction", () => {
         onMove={onMove}
       />,
     );
-    expect(screen.getByRole("button", { name: /square 22, orange man, selected/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /square 22, red man, selected/i })).toBeInTheDocument();
   });
 
   it("exposes promotion, turn lock, and game-over lock without accepting input", () => {
@@ -161,32 +161,32 @@ describe("Board interaction", () => {
         onMove={onMove}
       />,
     );
-    expect(screen.getByRole("button", { name: /square 29, orange king, movable/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /square 29, red king, movable/i })).toBeInTheDocument();
 
     rerender(
       <Board
-        game={snapshot({ isHumanTurn: false, sideToMove: "white" })}
+        game={snapshot({ isHumanTurn: false, sideToMove: "black" })}
         busy={false}
         onMove={onMove}
       />,
     );
-    expect(screen.getByRole("button", { name: /square 9, orange man, movable/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /square 9, red man, movable/i })).toBeDisabled();
 
     rerender(
       <Board
-        game={snapshot({ outcome: { winner: "red", reason: "no_moves", isDraw: false } })}
+        game={snapshot({ outcome: { winner: "red", reason: "no_legal_move", isDraw: false } })}
         busy={false}
         onMove={onMove}
       />,
     );
-    expect(screen.getByRole("button", { name: /square 9, orange man, movable/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /square 9, red man, movable/i })).toBeDisabled();
     expect(onMove).not.toHaveBeenCalled();
   });
 
   it("supports roving keyboard focus, selection, move confirmation, and Escape", () => {
     const onMove = vi.fn();
     render(<Board game={snapshot()} busy={false} onMove={onMove} />);
-    const origin = screen.getByRole("button", { name: /square 9, orange man, movable/i });
+    const origin = screen.getByRole("button", { name: /square 9, red man, movable/i });
     origin.focus();
     fireEvent.keyDown(origin, { key: "Home" });
     expect(document.activeElement).toHaveAttribute("data-square-index", "31");
@@ -210,7 +210,7 @@ describe("Board interaction", () => {
   it("rejects pointer cancellation, outside release, and the synthetic click after a valid tap", () => {
     const onMove = vi.fn();
     render(<Board game={snapshot()} busy={false} onMove={onMove} />);
-    const group = screen.getByRole("group", { name: /orange's side/i });
+    const group = screen.getByRole("group", { name: /red's side/i });
     vi.spyOn(group, "getBoundingClientRect").mockReturnValue({
       x: 0,
       y: 0,
@@ -226,11 +226,11 @@ describe("Board interaction", () => {
     pointer(group, "pointerdown", { pointerId: 1, clientX: 260, clientY: 220 });
     pointer(group, "pointercancel", { pointerId: 1 });
     pointer(group, "pointerup", { pointerId: 1, clientX: 260, clientY: 220 });
-    expect(screen.queryByRole("button", { name: /square 9, orange man, selected/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /square 9, red man, selected/i })).not.toBeInTheDocument();
 
     pointer(group, "pointerdown", { pointerId: 2, clientX: 260, clientY: 220 });
     pointer(group, "pointerup", { pointerId: 2, clientX: -1, clientY: 220 });
-    expect(screen.queryByRole("button", { name: /square 9, orange man, selected/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /square 9, red man, selected/i })).not.toBeInTheDocument();
 
     pointer(group, "pointerdown", { pointerId: 3, clientX: 260, clientY: 220 });
     pointer(group, "pointerup", { pointerId: 3, clientX: 260, clientY: 220 });
@@ -244,7 +244,7 @@ describe("Board interaction", () => {
   it("rejects pointer activation while the board is busy", () => {
     const onMove = vi.fn();
     render(<Board game={snapshot()} busy onMove={onMove} />);
-    const group = screen.getByRole("group", { name: /orange's side/i });
+    const group = screen.getByRole("group", { name: /red's side/i });
     vi.spyOn(group, "getBoundingClientRect").mockReturnValue({
       x: 0,
       y: 0,
@@ -264,7 +264,7 @@ describe("Board interaction", () => {
   it("rejects a stale pointer press after the position advances", () => {
     const onMove = vi.fn();
     const { rerender } = render(<Board game={snapshot()} busy={false} onMove={onMove} />);
-    const group = screen.getByRole("group", { name: /orange's side/i });
+    const group = screen.getByRole("group", { name: /red's side/i });
     vi.spyOn(group, "getBoundingClientRect").mockReturnValue({
       x: 0,
       y: 0,
@@ -281,7 +281,7 @@ describe("Board interaction", () => {
     rerender(<Board game={snapshot({ ply: 2 })} busy={false} onMove={onMove} />);
     pointer(group, "pointerup", { pointerId: 11, clientX: 260, clientY: 220 });
 
-    expect(screen.queryByRole("button", { name: /square 9, orange man, selected/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /square 9, red man, selected/i })).not.toBeInTheDocument();
     expect(onMove).not.toHaveBeenCalled();
   });
 });

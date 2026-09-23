@@ -38,8 +38,8 @@ The loader verifies the sidecar before `torch.load(weights_only=True)`, validate
 
 ## Limitations
 
-One full-budget seed was used for this artifact. Its evaluation baseline is internal and shallow. Training and selection used fixed ballots, no sealed external test was run, and human performance is unknown. The game API's sampled mode adds stochastic action selection but does not create a different or weaker calibrated model; the simplified student interface uses greedy selection only.
+One full-budget seed was used for this artifact. Its evaluation baseline is internal and shallow. Training and selection used fixed ballots, no sealed external test was run, and human performance is unknown. Sampled action selection adds stochasticity but does not create a different or weaker calibrated model; the website uses greedy selection only.
 
-## Future ONNX release
+## Browser export and future ONNX release
 
-ONNX/WebAssembly export is intentionally deferred until action/value parity and browser rules conformance are tested. That future Hugging Face artifact will be released separately under Apache-2.0; it is not part of this MIT PyTorch bundle.
+The website uses a browser-native export of this same bundle: raw float32 weights plus a manifest, evaluated by a TypeScript forward pass whose logits, values, and greedy actions are parity-tested against PyTorch. An ONNX artifact for other runtimes remains future work; if published on Hugging Face it will be released separately under Apache-2.0 and is not part of this MIT PyTorch bundle.
