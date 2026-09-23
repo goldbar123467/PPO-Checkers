@@ -41,7 +41,12 @@ FIXTURE_PATH = WEB_ROOT / "src" / "test" / "fixtures" / "parity.json"
 RELEASE_BUNDLE_SHA256 = "5d6c5c8392f7fb6897a596f5eb204f7d958f6f828d1cf56cfce98b3fcfec34fe"
 DEPLOYED_UPDATE = 4608
 PARAMETER_COUNT = 470_410
-LOGIT_TOLERANCE = 1e-5
+# Float32 convolutions take different kernel paths on different CPUs (oneDNN on or off, SIMD
+# width, batch shape), which moves logits of magnitude ~20 by up to ~1e-4. The exact guards are the
+# greedy-action checks; these tolerances only bound numeric drift.
+LOGIT_ATOL = 1e-4
+LOGIT_RTOL = 1e-5
+VALUE_ATOL = 1e-4
 MAX_PLIES = 512
 MIN_GREEDY_DECISIONS = 100
 TERMINATION_REASONS = {"no_pieces", "no_legal_move", "no_progress", "repetition", "ply_cap"}
@@ -142,10 +147,10 @@ def test_committed_fixture_matches_browser_network_outputs() -> None:
         observation = torch.as_tensor(observation_record_to_array(case["observation"]))
         with torch.inference_mode():
             output = network(observation.unsqueeze(0))
-        assert torch.allclose(
-            output.logits[0], torch.tensor(case["logits"]), atol=LOGIT_TOLERANCE, rtol=0
+        torch.testing.assert_close(
+            output.logits[0], torch.tensor(case["logits"]), atol=LOGIT_ATOL, rtol=LOGIT_RTOL
         )
-        assert float(output.value[0]) == pytest.approx(case["value"], abs=LOGIT_TOLERANCE)
+        assert float(output.value[0]) == pytest.approx(case["value"], abs=VALUE_ATOL)
         assert list(legal_action_map(state)) == case["legal"]
         greedy = PolicyAgent(network=network, mode="greedy", seed=0).select_action(state)
         assert greedy == case["greedy"]
