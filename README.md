@@ -2,13 +2,14 @@
 
 **A checkers AI trained from scratch with Proximal Policy Optimization, playable in your browser.**
 
+[![Play now](https://img.shields.io/badge/play%20now-ppo--checkers.vercel.app-e11d2e?style=for-the-badge)](https://ppo-checkers.vercel.app)
+
 [![CI](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-e11d2e.svg)](LICENSE)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgoldbar123467%2FPPO-Checkers&project-name=ppo-checkers&repository-name=ppo-checkers)
 
-![Playing against the PPO policy in the browser](docs/assets/screenshot-desktop.png)
+[![Playing against the PPO policy in the browser](docs/assets/screenshot-desktop.png)](https://ppo-checkers.vercel.app)
 
-This repository is a complete, reproducible reinforcement-learning system for American checkers: a bitboard rules engine, a vectorized self-play environment, a PPO trainer with exact resume, a color-balanced evaluation harness, and a static website where anyone can play the trained network.
+This repository is a complete, reproducible reinforcement-learning system for American checkers: a bitboard rules engine, a vectorized self-play environment, a PPO trainer with exact resume, a color-balanced evaluation harness, and a [static website](https://ppo-checkers.vercel.app) where anyone can play the trained network.
 
 The opponent on the website is the real 470,410-parameter policy/value network, not a scripted engine. It runs **entirely in the browser**. The trained PyTorch bundle is exported to raw float32 weights, and a dependency-free TypeScript forward pass evaluates positions in a Web Worker. The site needs no inference server, so it deploys to Vercel as plain static files.
 
@@ -78,7 +79,11 @@ Open `http://127.0.0.1:5173`. `npm --prefix web/checkers run build && npm --pref
 
 ## Deploy to Vercel
 
-The repository is configured by [vercel.json](vercel.json). Import it at [vercel.com/new](https://vercel.com/new) (or use the button above) and keep the defaults. Leave **Root Directory** at the repository root: `vercel.json` sets the install command, build command, output directory, security headers (including a strict Content-Security-Policy), and immutable caching for hashed assets. Social-preview URLs pick up the production domain automatically. Details are in [docs/deployment.md](docs/deployment.md).
+The live site, [ppo-checkers.vercel.app](https://ppo-checkers.vercel.app), deploys automatically from `main`.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgoldbar123467%2FPPO-Checkers&project-name=ppo-checkers&repository-name=ppo-checkers)
+
+To host your own copy, the repository is configured by [vercel.json](vercel.json). Import it at [vercel.com/new](https://vercel.com/new) (or use the button) and keep the defaults. Leave **Root Directory** at the repository root: `vercel.json` sets the install command, build command, output directory, security headers (including a strict Content-Security-Policy), and immutable caching for hashed assets. Social-preview URLs pick up the production domain automatically. Details are in [docs/deployment.md](docs/deployment.md).
 
 ## Re-export the model
 

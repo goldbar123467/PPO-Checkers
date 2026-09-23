@@ -1,5 +1,7 @@
 # Deployment on Vercel
 
+**Production:** [ppo-checkers.vercel.app](https://ppo-checkers.vercel.app), deployed automatically from `main`.
+
 The website is a static build of `web/checkers`. The policy network and the rules engine run in the visitor's browser, so there is no server process, database, or model host to operate.
 
 ## First deployment
@@ -54,7 +56,7 @@ The app loads no third-party scripts, fonts, or analytics. The worker also check
 ## Verify a deployment
 
 ```bash
-curl -sI https://<your-domain>/ | grep -i content-security-policy
+curl -sI https://ppo-checkers.vercel.app/ | grep -i content-security-policy
 ```
 
 Then open the site and confirm that "Model ready" appears, that a game starts from both sides, and that the browser console is clean.
