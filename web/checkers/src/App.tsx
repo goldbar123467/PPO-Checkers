@@ -1,223 +1,207 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLayoutEffect, useRef, useState } from "react";
 
 import { Board } from "@/components/Board";
 import { GameControls } from "@/components/GameControls";
+import { LogoMark } from "@/components/LogoMark";
 import { GameStatus, MatchLedger } from "@/components/MatchLedger";
-import { createGame, fetchModel, submitMove } from "@/lib/api/checkers";
-import { ApiError } from "@/lib/api/client";
-import type { Color, GameSnapshot } from "@/lib/api/schemas";
+import { ModelInsight } from "@/components/ModelInsight";
+import { useCheckers, type UseCheckersOptions } from "@/hooks/useCheckers";
+import { MODEL_INFO } from "@/lib/model";
+import type { Color } from "@/types";
 
-function randomMatchSeed(): number {
-  return crypto.getRandomValues(new Uint32Array(1))[0];
-}
+export const REPOSITORY_URL = "https://github.com/goldbar123467/PPO-Checkers";
 
-function App() {
-  const model = useQuery({
-    queryKey: ["policy-model"],
-    queryFn: fetchModel,
-    staleTime: Infinity,
-  });
-  const [game, setGame] = useState<GameSnapshot | null>(null);
+const megabytes = (MODEL_INFO.weightsSizeBytes / (1024 * 1024)).toFixed(1);
+
+function App(options: UseCheckersOptions) {
+  const { status, game, thinking, insight, error, startGame, move, retry } = useCheckers(options);
   const [humanColor, setHumanColor] = useState<Color>("red");
   const [highContrast, setHighContrast] = useState(false);
   const tableRef = useRef<HTMLElement>(null);
-  const start = useMutation({
-    mutationFn: () => createGame(humanColor, "greedy", randomMatchSeed()),
-    onSuccess: setGame,
-  });
-  const move = useMutation({
-    mutationFn: ({ origin, destination }: { origin: number; destination: number }) => {
-      if (!game) throw new Error("Start a game before making a move.");
-      return submitMove(game.id, origin, destination);
-    },
-    onSuccess: setGame,
-  });
   const gameId = game?.id;
-  const busy = start.isPending || move.isPending;
-  const error = model.error ?? start.error ?? move.error;
+  const ready = status.state === "ready";
+  const alert = status.state === "error" ? status.message : error;
 
   useLayoutEffect(() => {
-    if (gameId) tableRef.current?.focus({ preventScroll: true });
+    const table = tableRef.current;
+    if (!gameId || !table) return;
+    table.focus({ preventScroll: true });
+    const bounds = table.getBoundingClientRect();
+    if (bounds.top < 0 || bounds.bottom > window.innerHeight) table.scrollIntoView?.({ block: "start" });
   }, [gameId]);
-
-  function startNewGame() {
-    move.reset();
-    start.reset();
-    setGame(null);
-    start.mutate();
-  }
-
-  function recoverFromError() {
-    if (model.isError) {
-      void model.refetch();
-      return;
-    }
-    if (start.isError) {
-      startNewGame();
-      return;
-    }
-    move.reset();
-  }
 
   return (
     <div className={highContrast ? "site-shell board-high-contrast" : "site-shell"}>
-      <a className="skip-link" href="#play-table">
+      <a className="skip-link" href="#play">
         Skip to the checkers game
       </a>
 
       <header className="site-header">
-        <a className="school-brand" href="#top" aria-label="IMSA West Checkers AI home">
-          <img
-            src="/assets/imsa-west-logo.png"
-            width="447"
-            height="447"
-            alt="Indiana Math and Science Academy West logo"
-          />
-          <span>
-            <strong>IMSA West</strong>
-            <small>Checkers AI</small>
-          </span>
+        <a className="brand" href="#top" aria-label="PPO Checkers home">
+          <LogoMark />
+          <span>PPO Checkers</span>
         </a>
         <nav aria-label="Page navigation">
-          <a href="#play-table">Play</a>
-          <a href="#how-it-learns">How it learns</a>
-          <a href="#real-results">Results</a>
+          <a href="#play">Play</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#results">Results</a>
+          <a className="nav-github" href={REPOSITORY_URL} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
         </nav>
       </header>
 
       <main id="top">
-        <section className="game-intro" aria-labelledby="page-title">
-          <div>
-            <p className="kicker">Built at IMSA West · powered by a real PPO policy</p>
-            <h1 id="page-title">Can you beat our checkers AI?</h1>
-            <p>
-              Pick a side, start the game, then tap an outlined piece and a dotted square.
-              The same Python rules engine used during training checks every move.
+        <section className="hero" aria-labelledby="page-title">
+          <div className="hero__copy">
+            <p className="kicker">Reinforcement learning · runs in your browser</p>
+            <h1 id="page-title">
+              Play checkers against a neural network <em>trained by self-play.</em>
+            </h1>
+            <p className="hero__lede">
+              A {MODEL_INFO.parameterCount.toLocaleString()}-parameter policy/value network learned
+              American checkers with Proximal Policy Optimization. The model and the rules engine run
+              entirely on your device: no server, no account, no tracking.
             </p>
+            <div className="hero__actions">
+              <a className="button button--primary" href="#play">Play now</a>
+              <a className="button button--ghost" href={REPOSITORY_URL} target="_blank" rel="noreferrer">
+                View the source
+              </a>
+            </div>
           </div>
-          <div className="policy-online" role="status">
-            <span aria-hidden="true" />
-            {model.data ? `Policy update ${model.data.update.toLocaleString()} ready` : "Loading the saved policy…"}
-          </div>
+          <dl className="hero__stats" aria-label="Model at a glance">
+            <div><dt>Parameters</dt><dd>470K</dd></div>
+            <div><dt>Self-play transitions</dt><dd>37.7M</dd></div>
+            <div><dt>Score vs Minimax-2</dt><dd>90%</dd></div>
+          </dl>
         </section>
 
-        {error ? (
-          <section className="error-message" role="alert">
+        {alert ? (
+          <section className="alert" role="alert">
             <div>
-              <strong>The game server needs attention.</strong>
-              <p>{error instanceof Error ? error.message : "The saved policy could not be reached."}</p>
-              {error instanceof ApiError ? <small>Error code: {error.code}</small> : null}
+              <strong>{status.state === "error" ? "The model could not be loaded." : "Something interrupted the game."}</strong>
+              <p>{alert}</p>
             </div>
-            <button type="button" onClick={recoverFromError}>Try again</button>
+            <button type="button" onClick={retry}>Try again</button>
           </section>
         ) : null}
 
-        {model.isPending ? (
-          <section className="loading-state" aria-live="polite">
-            <span className="loading-piece" aria-hidden="true" />
-            <div>
-              <strong>Setting up the board…</strong>
-              <p>The server is loading and checking the trained policy.</p>
-            </div>
-          </section>
-        ) : null}
+        <section className="workspace" id="play" aria-label="Play checkers">
+          <GameControls
+            status={status.state}
+            humanColor={humanColor}
+            busy={thinking}
+            hasGame={Boolean(game)}
+            onHumanColor={setHumanColor}
+            onStart={() => startGame(humanColor)}
+          />
 
-        {model.data ? (
-          <section className="game-workspace" id="play-table" aria-label="Play checkers">
-            <GameControls
-              model={model.data}
-              humanColor={humanColor}
-              busy={busy}
-              hasGame={Boolean(game)}
-              onHumanColor={setHumanColor}
-              onStart={startNewGame}
-            />
-
-            <section className="board-stage" aria-label="Checkers game table" ref={tableRef} tabIndex={-1}>
-              {game ? (
-                <Board
-                  game={game}
-                  busy={busy}
-                  onMove={(origin, destination) => move.mutate({ origin, destination })}
-                />
-              ) : (
-                <div className="board-placeholder">
-                  <div className="mini-board" aria-hidden="true">
-                    {Array.from({ length: 16 }, (_, index) => <span key={index} />)}
-                  </div>
-                  <strong>Your board is ready.</strong>
-                  <p>Choose orange or white, then press Start game.</p>
+          <section className="board-stage" aria-label="Checkers game table" ref={tableRef} tabIndex={-1}>
+            {game ? (
+              <Board game={game} busy={thinking} onMove={move} />
+            ) : (
+              <div className="board-placeholder" aria-live="polite">
+                <div className="mini-board" aria-hidden="true">
+                  {Array.from({ length: 16 }, (_, index) => <span key={index} />)}
                 </div>
-              )}
-            </section>
-
-            <aside className="game-sidebar" aria-label="Game help and move history">
-              {game ? <GameStatus game={game} busy={busy} /> : (
-                <section className="simple-panel quick-guide">
-                  <p className="panel-label">Three quick rules</p>
-                  <ol>
-                    <li><span>1</span>Move diagonally on blue squares.</li>
-                    <li><span>2</span>If you can jump, you must jump.</li>
-                    <li><span>3</span>Reach the far side to become a king.</li>
-                  </ol>
-                </section>
-              )}
-              <section className="simple-panel display-option">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={highContrast}
-                    onChange={(event) => setHighContrast(event.target.checked)}
-                  />
-                  Stronger board contrast
-                </label>
-              </section>
-              {game ? <MatchLedger game={game} /> : null}
-            </aside>
+                <strong>{ready ? "Your board is ready." : "Loading the trained policy…"}</strong>
+                <p>
+                  {ready
+                    ? "Choose Red or Black, then press Start game."
+                    : `Downloading ${megabytes} MB of network weights. This happens once.`}
+                </p>
+              </div>
+            )}
           </section>
-        ) : null}
 
-        <section className="learning-section" id="how-it-learns" aria-labelledby="learning-heading">
+          <aside className="sidebar" aria-label="Game status and move history">
+            {game ? <GameStatus game={game} busy={thinking} /> : (
+              <section className="panel quick-guide">
+                <p className="panel-label">Three quick rules</p>
+                <ol>
+                  <li><span>1</span>Pieces move diagonally forward on dark squares.</li>
+                  <li><span>2</span>If you can jump, you must jump.</li>
+                  <li><span>3</span>Reach the far row to crown a king.</li>
+                </ol>
+              </section>
+            )}
+            {game ? <ModelInsight insight={insight} thinking={thinking} /> : null}
+            {game ? <MatchLedger game={game} /> : null}
+            <section className="panel display-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={highContrast}
+                  onChange={(event) => setHighContrast(event.target.checked)}
+                />
+                High-contrast board
+              </label>
+            </section>
+          </aside>
+        </section>
+
+        <section className="section" id="how-it-works" aria-labelledby="how-heading">
           <div className="section-heading">
-            <p className="kicker">Behind the board</p>
-            <h2 id="learning-heading">How did the AI learn to play?</h2>
+            <p className="kicker">How it works</p>
+            <h2 id="how-heading">From random moves to a policy that plays.</h2>
             <p>
-              It was not given a list of perfect moves. It practiced against copies of itself and
-              used PPO to adjust which legal moves were more likely.
+              The network was never shown expert games. It played millions of moves against copies of
+              itself, and PPO nudged it toward the legal moves that led to wins.
             </p>
           </div>
-          <ol className="learning-path">
+          <ol className="steps">
             <li>
-              <span>01</span>
-              <div><strong>Read the board</strong><p>Eight actor-centered number layers describe pieces, kings, capture continuation, and game counters. A separate 128-slot mask marks legal actions.</p></div>
+              <span className="steps__index">01</span>
+              <strong>Encode the board</strong>
+              <p>Eight 8×8 planes from the mover's perspective: men, kings, pending captures, the forced piece, and game counters.</p>
             </li>
             <li>
-              <span>02</span>
-              <div><strong>Play itself</strong><p>Self-play produces complete games—wins, losses, draws, captures, and quiet moves.</p></div>
+              <span className="steps__index">02</span>
+              <strong>Play itself</strong>
+              <p>Vectorized self-play against current and past versions of the policy produces complete games: captures, kings, draws, and losses.</p>
             </li>
             <li>
-              <span>03</span>
-              <div><strong>Update with PPO</strong><p>PPO compares the new policy with the policy that collected each move and limits oversized changes.</p></div>
+              <span className="steps__index">03</span>
+              <strong>Update with PPO</strong>
+              <p>Clipped policy updates with GAE advantages improve the policy while limiting how far each update can move it.</p>
             </li>
             <li>
-              <span>04</span>
-              <div><strong>Test saved versions</strong><p>Later training was not always better, so checkpoints were tested with the same fixed match protocol.</p></div>
+              <span className="steps__index">04</span>
+              <strong>Pick a checkpoint</strong>
+              <p>Later was not always better. Saved checkpoints played a fixed match protocol, and update 4,608 beat the final one.</p>
             </li>
           </ol>
+          <div className="architecture" aria-label="Network architecture">
+            <div><small>Input</small><strong>8 × 8 × 8</strong></div>
+            <span aria-hidden="true">→</span>
+            <div><small>Stem</small><strong>3×3 conv · 64</strong></div>
+            <span aria-hidden="true">→</span>
+            <div><small>Trunk</small><strong>6 residual blocks</strong></div>
+            <span aria-hidden="true">→</span>
+            <div className="architecture__heads">
+              <div><small>Policy head</small><strong>128 action logits</strong></div>
+              <div><small>Value head</small><strong>tanh value</strong></div>
+            </div>
+          </div>
+          <p className="section-note">
+            Illegal moves never reach the network's choice: the rules engine builds a 128-slot legal-action
+            mask, and the policy picks only among the moves it allows.
+          </p>
         </section>
 
-        <section className="results-section" id="real-results" aria-labelledby="results-heading">
-          <div className="results-copy">
-            <p className="kicker">Real project evidence</p>
+        <section className="section results" id="results" aria-labelledby="results-heading">
+          <div className="results__copy">
+            <p className="kicker">Results</p>
             <h2 id="results-heading">The model on this page is update 4,608.</h2>
             <p>
-              That checkpoint was selected from the saved practice run. It uses a 470,410-parameter
-              policy network trained through 37,748,736 self-play transitions.
+              It was selected from a 6,144-update practice run as the best fully evaluated checkpoint. It
+              had trained on 37,748,736 self-play transitions. Each score below comes from 216 fixed
+              openings, played from both colors.
             </p>
-            <p className="results-caveat">
-              These are project evaluation results, not a human skill rating. The same evaluation
-              set helped select the checkpoint, and Minimax-2 is a shallow project baseline.
+            <p className="caveat">
+              These are project evaluation results, not a human skill rating. The same openings helped
+              select the checkpoint, and Minimax-2 is a shallow internal baseline.
             </p>
           </div>
           <dl className="scoreboard" aria-label="Selected checkpoint evaluation results">
@@ -230,29 +214,41 @@ function App() {
               <dd><strong>354–70–8</strong><small>wins · draws · losses</small></dd>
             </div>
             <div>
-              <dt>To this checkpoint</dt>
+              <dt>Training to this checkpoint</dt>
               <dd><strong>37.7M</strong><small>self-play transitions</small></dd>
             </div>
           </dl>
         </section>
 
-        <section className="teacher-note" aria-labelledby="teacher-note-heading">
-          <div className="teacher-note__mark" aria-hidden="true">MK</div>
-          <div>
-            <p className="kicker">Mr. Kitchen’s note</p>
-            <h2 id="teacher-note-heading">The AI chooses moves. The rules engine keeps the game honest.</h2>
-            <p>
-              The neural network scores possible actions, but illegal moves are masked out before
-              selection. It does not think or understand the board—it maps numbers to action scores.
-            </p>
+        <section className="section in-browser" aria-labelledby="browser-heading">
+          <div className="section-heading">
+            <p className="kicker">Under the hood</p>
+            <h2 id="browser-heading">The same model, no server.</h2>
+          </div>
+          <div className="feature-grid">
+            <article>
+              <strong>Exported from PyTorch</strong>
+              <p>The trained bundle is converted to {megabytes} MB of raw float32 weights with a checksummed manifest, then evaluated by a dependency-free TypeScript forward pass in a Web Worker.</p>
+            </article>
+            <article>
+              <strong>Parity-tested</strong>
+              <p>The TypeScript rules engine and network are checked against the Python engine and PyTorch: 43 recorded games, 250+ greedy decisions, and published perft counts.</p>
+            </article>
+            <article>
+              <strong>Honest by design</strong>
+              <p>The AI always plays its highest-scoring legal move. The evaluation shown during play is the raw value-head output, not a calibrated win probability.</p>
+            </article>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <img src="/assets/imsa-west-logo.png" width="447" height="447" alt="" />
-        <p><strong>IMSA West Checkers AI</strong><br />A real student-facing machine-learning project.</p>
-        <a href="#top">Back to top ↑</a>
+        <a className="brand" href="#top" aria-label="Back to top">
+          <LogoMark />
+          <span>PPO Checkers</span>
+        </a>
+        <p>PyTorch · PPO self-play · React · Vite. Open source under the MIT License.</p>
+        <a href={REPOSITORY_URL} target="_blank" rel="noreferrer">GitHub</a>
       </footer>
     </div>
   );

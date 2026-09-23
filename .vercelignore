@@ -1,0 +1,20 @@
+# The website is built from web/checkers only; keep Python training code out of the upload.
+# Patterns are anchored with a leading slash so they never match web/checkers/src and friends.
+/.venv/
+/configs/
+/data/
+/docs/
+/models/
+/reports/
+/runs/
+/scripts/
+/src/
+/tests/
+/pyproject.toml
+/uv.lock
+/.python-version
+/web/checkers/node_modules/
+/web/checkers/dist/
+/web/checkers/e2e/
+/web/checkers/test-results/
+/web/checkers/coverage/

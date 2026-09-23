@@ -1,4 +1,4 @@
-name: Offline checkers gate
+name: CI
 
 on:
   push:
@@ -50,6 +50,30 @@ jobs:
           cache-dependency-path: web/checkers/package-lock.json
       - run: npm ci
       - run: npm audit --audit-level=moderate
-      - run: npm test
+      - run: npm run lint
       - run: npm run typecheck
+      - run: npm run test:coverage
       - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web/checkers
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/checkers/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # Visual baselines are rendered locally; CI checks behavior, accessibility, and the CSP.
+      - run: npx playwright test --project=chromium --project=touch-chromium --ignore-snapshots
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-results
+          path: web/checkers/test-results
+          retention-days: 7

@@ -35,6 +35,8 @@ wandb/
 *.pt
 *.pth
 *.gguf
+# The browser export of the published policy bundle is small and required to build the site.
+!web/checkers/src/model/policy.bin
 
 # Local web dependency and build output
 web/checkers/node_modules/

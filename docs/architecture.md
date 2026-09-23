@@ -2,7 +2,7 @@
 
 ## Engineering objective
 
-Build one checkers implementation that can train a policy, evaluate saved checkpoints, serve the selected model on CPU, and let a browser user play without duplicating game rules in TypeScript.
+Build one checkers implementation that can train a policy, evaluate saved checkpoints, and let anyone play the selected model in a browser. The Python engine is the reference; the website runs a TypeScript port of the rules and network that is parity-tested against it, so the site can be hosted as static files with no inference server.
 
 ```mermaid
 flowchart TD
@@ -19,9 +19,10 @@ flowchart TD
     U --> C[Full checkpoint]
     C --> X[Model-only exporter]
     X --> Q[Checksum + 12-position parity]
-    Q --> S[Loopback HTTP service]
-    M --> S
-    S --> V[Vite / React client]
+    Q --> W[Browser export: float32 weights + manifest]
+    W --> P[Parity fixtures: games, logits, greedy moves]
+    P --> V[TypeScript rules + network in a Web Worker]
+    V --> Z[Static React site on Vercel]
 ```
 
 ## Symbolic and learned responsibilities
@@ -31,10 +32,10 @@ flowchart TD
 | Board state, side to move, captures, promotion, continuation | `src/checkers/rules` |
 | Legal 128-action mask and action decoding | `src/checkers/env` |
 | Action logits and actor-relative value | `CheckersNetwork` |
-| Greedy or seeded sampled selection among legal actions | `PolicyAgent` / web game service |
-| Browser selection and rendering | `web/checkers` |
+| Greedy or seeded sampled selection among legal actions | `PolicyAgent` |
+| Browser rules, encoding, inference, and rendering | `web/checkers/src/engine`, `web/checkers/src` |
 
-The browser receives a board snapshot and explicit legal human moves. It cannot submit an arbitrary model action, update the board locally, or override a forced continuation. The server applies every step through the same environment used by training.
+The TypeScript engine in `web/checkers/src/engine` is a direct port of the Python rules, observation encoder, action encoding, and network forward pass. It is not an independent implementation that is trusted on its own: `scripts/export_browser_policy.py` records parity fixtures from the Python engine and PyTorch, and both the Python and TypeScript test suites replay them. The browser applies every human and model step through the ported environment, so a human can only submit moves from the current legal-action list.
 
 ## Observation and action spaces
 
@@ -55,10 +56,10 @@ GroupNorm was chosen so behavior does not depend on batch-statistic state during
 
 Training checkpoints are full recovery artifacts: network, Adam state, schedules, counters, collector lanes, league snapshots, Python/NumPy/Torch/CUDA RNG state, AMP state, configuration, and provenance. They are large and never published in Git.
 
-The public bundle contains only CPU network tensors and immutable provenance. Startup verifies its SHA-256 sidecar, uses `torch.load(..., weights_only=True)`, checks every field/tensor shape/dtype/finite value, loads strictly, and refuses to listen if any check fails.
+The public bundle contains only CPU network tensors and immutable provenance. Loading verifies its SHA-256 sidecar, uses `torch.load(..., weights_only=True)`, checks every field/tensor shape/dtype/finite value, and loads strictly.
 
-## Serving boundary
+## Browser boundary
 
-The Python service loads the policy once and binds only to `127.0.0.1:8765`. It serves the built frontend and four JSON operations: health, model metadata, create game, and apply move. Sessions are in-memory, capped at 256 active games, expire after six idle hours, and intentionally disappear on restart. Eight bounded request workers, a 15-second socket timeout, a 16 KiB ingress body limit, structured route-normalized logs, and container resource limits bound abuse.
+`scripts/export_browser_policy.py` converts the verified bundle into `web/checkers/src/model/policy.bin` (470,410 little-endian float32 values, 1.88 MB) and `policy.json`, a manifest with tensor names, shapes, offsets, the weight SHA-256, and the source bundle's provenance. The exporter reloads the file into `CheckersNetwork` and requires bit-identical tensors before it writes fixtures.
 
-The public path is Cloudflare proxy → Caddy TLS → loopback Python. The origin firewall accepts ports 80/443 only from current Cloudflare networks.
+In the browser, a Web Worker downloads the weights once, verifies their SHA-256 against the manifest, validates the tensor layout, and evaluates positions with a dependency-free forward pass (roughly 25–45 ms per position on a desktop CPU). The page thread keeps the game state and never blocks on inference. Games live only in memory; there are no accounts, cookies, analytics, or network calls after the weights load.

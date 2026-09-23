@@ -1,118 +1,105 @@
-# IMSA West Tiger Bot · PPO Checkers Learning Lab
+# PPO Checkers
 
-[![Offline checkers gate](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live demo](https://img.shields.io/badge/play-live-bb2f3b)](https://checkers.upsidedownatlas.com)
+**A checkers AI trained from scratch with Proximal Policy Optimization, playable in your browser.**
 
-A complete, reproducible machine-learning system for American checkers with a focused IMSA West game interface. Students can challenge the real saved policy first, then read a concise explanation of representation, self-play, PPO, and checkpoint testing.
+[![CI](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/goldbar123467/PPO-Checkers/actions/workflows/offline-ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-e11d2e.svg)](LICENSE)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgoldbar123467%2FPPO-Checkers&project-name=ppo-checkers&repository-name=ppo-checkers)
 
-**Engineering objective:** make the trained policy simple and inviting to play without replacing it with a scripted game or hiding the project’s experimental caveats.
+![Playing against the PPO policy in the browser](docs/assets/screenshot-desktop.png)
 
-**[Play the trained neural policy](https://checkers.upsidedownatlas.com)**
+This repository is a complete, reproducible reinforcement-learning system for American checkers: a bitboard rules engine, a vectorized self-play environment, a PPO trainer with exact resume, a color-balanced evaluation harness, and a static website where anyone can play the trained network.
 
-The game-first product goals, fact map, accessibility target, and explicit non-goals are recorded in [the IMSA West student experience contract](docs/EDUCATIONAL_EXPERIENCE.md). The original web harness's server-authority and API boundaries remain intact.
+The opponent on the website is the real 470,410-parameter policy/value network, not a scripted engine. It runs **entirely in the browser**. The trained PyTorch bundle is exported to raw float32 weights, and a dependency-free TypeScript forward pass evaluates positions in a Web Worker. The site needs no inference server, so it deploys to Vercel as plain static files.
 
-## Student experience
+## Highlights
 
-- The supplied IMSA West logo and exact blue, light-blue, orange, and white palette define a custom school identity without generated artwork.
-- The real playable board is the primary experience; side choice and one Start button replace advanced setup controls.
-- Deterministic mode exposes highest-probability legal-action play without asking students to choose inference settings.
-- The tiger-themed orange/white board preserves legal-move, selection, forced-jump, last-move, touch, and keyboard cues.
-- Four short explanations connect the board to representation, self-play, PPO, and controlled checkpoint evaluation.
-- The learning layer collects no student data and does not run training in the browser.
+- **Self-play PPO from zero knowledge.** Clipped PPO with signed two-player GAE, a snapshot league of past policies, and a 128-slot legal-action mask. No expert games, no search.
+- **Rules you can trust.** Mandatory captures, multi-jumps, promotion, the 40-move rule, and threefold repetition are symbolic, checked by an independent oracle, property tests, and [published perft counts](tests/golden/data/external_perft.json).
+- **Honest evaluation.** 216 fixed openings played from both colors, confidence intervals, and adverse checkpoints kept rather than hidden.
+- **Browser-native inference with proven parity.** The TypeScript rules engine and network replay 43 recorded games move-for-move against the Python engine and match PyTorch logits within 1e-4, including every recorded greedy decision.
+- **Private by construction.** No accounts, cookies, analytics, or network calls after the 1.9 MB of weights load.
 
-## What this project proves
+<p align="center">
+  <img src="docs/assets/screenshot-mobile.png" alt="The game on a phone" width="320" />
+</p>
 
-The browser opponent is a real neural network trained by PPO self-play. It is not Minimax wearing a neural label. The Python rules engine still owns legal moves, mandatory captures, multi-jumps, promotion, repetition, and terminal results; the network only scores the 128 fixed action slots and estimates position value.
+## Results
 
-The student interface exposes one mode:
-
-- **Neural · Greedy** selects the highest-logit legal action deterministically.
-
-The programmatic game API also supports seeded **Neural · Sampled** selection from the masked distribution. The browser creates a fresh cryptographically generated 32-bit game seed; explicit replay/debugging seeds are an API capability, not a visible setup control.
-
-Minimax-2 appears only as a controlled evaluation baseline. It is not used for web play.
-
-PPO was chosen because the engineering question was whether a policy/value network could learn from self-play and survive the whole train–evaluate–export–serve lifecycle. Minimax would be a simpler way to make a competent checkers opponent, but it would answer a different question. Keeping Minimax as an evaluation anchor makes that distinction testable.
-
-## Headline evidence
-
-The deployed policy is update 4608, selected as the highest-scoring persisted checkpoint that had a full ballot evaluation. On 216 fixed openings, played from both colors:
+The deployed policy is update 4,608, selected as the highest-scoring persisted checkpoint that had a full ballot evaluation. On 216 fixed openings, played from both colors:
 
 | Opponent | Games | W / D / L | Score | Approx. 95% interval |
 |---|---:|---:|---:|---:|
 | Random | 432 | 432 / 0 / 0 | 1.0000 | 0.9912–1.0000 |
 | Project Minimax-2 | 432 | 354 / 70 / 8 | 0.9005 | 0.8686–0.9253 |
 
-The final update 6144 regressed to 0.8611 against Minimax-2. That adverse result is retained rather than hidden. This is one practice-run seed, the checkpoint-selection suite was reused, and Minimax-2 is a shallow internal proxy—not an expert rating. Human strength and sealed-test performance are **not evaluated**.
+The final update, 6,144, regressed to 0.8611 against Minimax-2. That adverse result is kept. This is one practice-run seed, the checkpoint-selection suite was reused, and Minimax-2 is a shallow internal proxy, not an expert rating. Human strength and sealed-test performance are **not evaluated**.
 
-| Artifact fact | Measured value |
+| Fact | Value |
 |---|---:|
 | Network parameters | 470,410 |
-| Model-only bundle | 1,905,669 bytes (1.82 MiB) |
+| Browser weights (float32) | 1,881,640 bytes |
+| Self-play transitions to update 4,608 | 37,748,736 |
 | Full practice-run transitions | 50,331,648 |
 | Measured rollout/optimization time | 77,845 s (21 h 37 m) |
-| Total invocation wall counters | 82,171 s (22 h 49 m) |
 | Peak recorded GPU memory | 11,923 MiB |
-| Deployment steady RSS | about 160 MiB |
-| Deployment neural reply at origin | 7 ms in the recorded smoke |
+| In-browser inference per position | ~25–45 ms on a desktop CPU |
 
-The compact machine-readable evidence is [reports/checkers_practice_release_v1.json](reports/checkers_practice_release_v1.json); the production image, runtime, and exercised rollback are recorded in [reports/checkers_deployment_v1.json](reports/checkers_deployment_v1.json). Methodology and caveats are in [docs/evaluation.md](docs/evaluation.md) and [docs/results.md](docs/results.md).
+Machine-readable evidence is in [reports/checkers_practice_release_v1.json](reports/checkers_practice_release_v1.json). Methodology and caveats are in [docs/evaluation.md](docs/evaluation.md) and [docs/results.md](docs/results.md).
 
-## System shape
+## How it works
 
 ```mermaid
 flowchart LR
-    R[Symbolic rules] --> E[Vector checkers environment]
-    E --> P[PPO self-play]
-    P --> C[Full resumable checkpoints]
-    C --> X[Model-only export + parity check]
-    X --> A[Loopback Python API]
-    A --> W[Vite / React / TypeScript board]
-    A --> F[Legal-action mask]
-    F --> X
+    R[Symbolic rules] --> E[Vectorized environment]
+    E --> P[PPO self-play + snapshot league]
+    P --> C[Resumable checkpoints]
+    C --> X[Model-only bundle + parity check]
+    X --> W[Browser export: float32 weights + manifest]
+    W --> F[Parity fixtures from Python and PyTorch]
+    F --> T[TypeScript rules + network in a Web Worker]
+    T --> S[Static React site on Vercel]
 ```
 
-The network takes an `8 × 8 × 8` actor-canonical observation, passes it through a 64-channel stem and six GroupNorm residual blocks, then branches into a 128-logit policy head and a bounded scalar value head. See [docs/architecture.md](docs/architecture.md).
+The network reads an `8 × 8 × 8` observation from the mover's perspective (own and opposing men and kings, pending captures, the forced piece, and two game counters). A 64-channel `3 × 3` convolution stem and six GroupNorm residual blocks feed two heads: 128 policy logits (one per origin square and direction) and a `tanh` value. Illegal actions are masked before selection, so the network ranks moves but never decides legality. See [docs/architecture.md](docs/architecture.md).
 
-## Run it locally
+## Run the website locally
 
-Prerequisites are Linux/WSL2, Python 3.12, [uv](https://docs.astral.sh/uv/), Node.js 20 or newer, and npm. A GPU is not required to play.
+Requires Node.js 20 or newer. The browser weights are committed, so no model download or Python is needed.
 
 ```bash
 git clone https://github.com/goldbar123467/PPO-Checkers.git
 cd PPO-Checkers
-uv sync --locked --all-groups
 npm --prefix web/checkers ci
+npm --prefix web/checkers run dev
+```
 
+Open `http://127.0.0.1:5173`. `npm --prefix web/checkers run build && npm --prefix web/checkers run preview` serves the production build with the same security headers as Vercel.
+
+## Deploy to Vercel
+
+The repository is configured by [vercel.json](vercel.json). Import it at [vercel.com/new](https://vercel.com/new) (or use the button above) and keep the defaults. Leave **Root Directory** at the repository root: `vercel.json` sets the install command, build command, output directory, security headers (including a strict Content-Security-Policy), and immutable caching for hashed assets. Social-preview URLs pick up the production domain automatically. Details are in [docs/deployment.md](docs/deployment.md).
+
+## Re-export the model
+
+Weights come from the checksummed `checkers-policy-v1` GitHub Release. To regenerate the browser export and its parity fixtures from that bundle:
+
+```bash
+uv sync --locked --all-groups
 mkdir -p models/checkers/policies
 gh release download checkers-policy-v1 \
   --pattern 'checkers-practice-update-004608.pt*' \
   --dir models/checkers/policies
 
-policy=models/checkers/policies/checkers-practice-update-004608.pt
-test "$(sha256sum "$policy" | cut -d ' ' -f1)" = "$(tr -d '\n' < "$policy.sha256")"
+PYTHONPATH=src .venv/bin/python scripts/export_browser_policy.py \
+  --bundle models/checkers/policies/checkers-practice-update-004608.pt
 ```
 
-Terminal 1:
-
-```bash
-PYTHONPATH=src .venv/bin/python scripts/serve_checkers_web.py \
-  --bundle models/checkers/policies/checkers-practice-update-004608.pt \
-  --port 8765
-```
-
-Terminal 2:
-
-```bash
-npm --prefix web/checkers run dev
-```
-
-Open `http://127.0.0.1:5173`. For a single production-style local process, build the client and pass `--static-dir web/checkers/dist` to the Python command. Full instructions are in [web/checkers/README.md](web/checkers/README.md).
+The exporter verifies the bundle's SHA-256, writes `web/checkers/src/model/policy.{bin,json}`, reloads them and requires bit-identical tensors, then records the parity fixture that both test suites replay.
 
 ## Train it exactly
 
-Training is a substantial CUDA experiment, not part of local play. The accepted practice profile requires a clean Git worktree, one CUDA GPU, online W&B logging, and a mandatory manual review after update 1024.
+Training is a substantial CUDA experiment. The accepted practice profile requires a clean Git worktree, one CUDA GPU, online W&B logging, and a mandatory manual review after update 1,024.
 
 ```bash
 read -rsp 'W&B API key: ' WANDB_API_KEY && printf '\n'
@@ -128,7 +115,7 @@ PYTHONPATH=src .venv/bin/python scripts/train.py \
   --output-dir "$run_dir"
 ```
 
-The first invocation deliberately pauses after update 1024. Inspect its manifest, evaluation, metrics, and resource headroom; then resume the same run:
+The first invocation pauses after update 1,024. Inspect its manifest, evaluation, metrics, and resource headroom, then resume the same run:
 
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/train.py \
@@ -139,58 +126,60 @@ PYTHONPATH=src .venv/bin/python scripts/train.py \
 
 Do not assume the final checkpoint is best. Compare only fully evaluated persisted checkpoints before export. [docs/training.md](docs/training.md) records every hyperparameter, the pause/resume sequence, artifact validation, and the measured runtime.
 
-## Verify the repository
+## Verify
 
 ```bash
-make check
-npm --prefix web/checkers audit --audit-level=moderate
-npm --prefix web/checkers test
+make check                                   # ruff format + lint, strict mypy, pytest (92% floor), property tests
+npm --prefix web/checkers run lint
 npm --prefix web/checkers run typecheck
+npm --prefix web/checkers run test:coverage  # engine parity, perft, UI
 npm --prefix web/checkers run build
+npm --prefix web/checkers run test:e2e       # Playwright against the production build
 ```
 
-`make check` runs formatting, Ruff, strict mypy, the full pytest suite with a 92% coverage floor, and the deterministic property-test gate. CI runs that Python gate in an egress-blocked network namespace and validates the frontend independently without downloading model weights.
+CI runs the Python gate in an egress-blocked network namespace and the web gate (lint, types, unit and parity tests, build) independently.
 
 ## Repository map
 
 ```text
-src/checkers/        rules, environments, agents, PPO, evaluation, web service
+src/checkers/        rules, environments, agents, PPO, evaluation, policy export
 configs/             frozen experiment profiles
-scripts/             training, recovery, evaluation, export, and serving CLIs
-tests/               rules, properties, RL oracles, recovery, and web tests
-web/checkers/        Vite + React + TypeScript client
-deploy/checkers/     pinned CPU container and Caddy ingress
-reports/             immutable and compact experiment evidence
+scripts/             training, recovery, evaluation, and export CLIs
+tests/               rules, properties, RL oracles, recovery, and export tests
+web/checkers/        Vite + React + TypeScript site
+  src/engine/        TypeScript rules engine, encoder, and network forward pass
+  src/model/         exported browser weights and manifest
+reports/             compact experiment evidence
 docs/                architecture, training, evaluation, deployment, and rules
+vercel.json          static hosting, headers, and caching
 ```
 
-Full checkpoints, optimizer state, run histories, credentials, caches, and model weights are intentionally excluded from Git. The small model-only bundle is distributed as a checksummed GitHub Release asset.
+Full checkpoints, optimizer state, run histories, and credentials are excluded from Git. The model-only PyTorch bundle is a checksummed GitHub Release asset; only its small browser export is committed.
 
 ## Lessons learned
 
-- A policy should rank moves; it should not be trusted to invent legality. Keeping rules symbolic made forced-capture and multi-jump defects testable.
+- A policy should rank moves, not invent legality. Keeping rules symbolic made forced-capture and multi-jump defects testable.
 - PPO perspective signs, rollout chronology, CUDA device identity, and exact resume state were more failure-prone than the network itself.
 - Training loss did not answer whether the model could play. Color-balanced games, fixed openings, confidence intervals, and adverse checkpoint movement did.
-- Checkpoint selection was harder than “take the last file”: update 6144 was worse than update 4608 on the declared proxy.
-- A 470k-parameter network is cheap to serve. The full checkpoint was 735 MB because it also held optimizer, league, collector, and RNG state; the inference bundle is only 1.82 MiB.
-- Deployment exposed a real permissions failure when a `0600` model was mounted into an unprivileged container. Production now uses a read-only, checksum-verified artifact.
+- Checkpoint selection was harder than "take the last file": update 6,144 was worse than update 4,608 on the declared proxy.
+- A 470K-parameter network is cheap enough to run in a browser tab. The full training checkpoint was 735 MB because it held optimizer, league, collector, and RNG state; the inference weights are 1.9 MB.
+- Porting an engine is only safe with a referee. Recording Python games and PyTorch outputs as fixtures turned "looks right" into move-for-move parity.
 
 ## Documentation
 
 - [Architecture](docs/architecture.md)
-- [Experiment contract](docs/experiment-contract.md)
+- [Experiment contract (frozen at training time)](docs/experiment-contract.md)
 - [Training and exact reproduction](docs/training.md)
 - [Evaluation methodology](docs/evaluation.md)
 - [Results and limitations](docs/results.md)
-- [Deployment, operations, and rollback](docs/deployment.md)
+- [Deployment on Vercel](docs/deployment.md)
 - [Model card](docs/model-card.md)
 - [American-checkers rule traceability](docs/RULES.md)
 - [PPO implementation decisions](docs/PPO_CHECKLIST.md)
-- [Web-harness acceptance contract](docs/CHECKERS_WEB_HARNESS_CONTRACT.md)
-- [Clean-room UI reference study](reports/checkers_web_reference_study.md)
+- [Web app](web/checkers/README.md)
 
 ## License and roadmap
 
-Code and the `checkers-policy-v1` PyTorch bundle are released under the [MIT License](LICENSE). The current public interface uses the project-owner-supplied IMSA West logo and contains no generated artwork.
+Code and the `checkers-policy-v1` weights are released under the [MIT License](LICENSE).
 
-The next model-delivery milestone is an ONNX/browser-native export with PyTorch-to-ONNX action parity. Per the project licensing decision, that future Hugging Face ONNX release will be Apache-2.0 and clearly separated from this MIT release. Longer-term work includes search-guided policy/value play, stronger sealed evaluation, physical-board vision, and robot manipulation.
+Next steps include an ONNX export for other runtimes (to be released separately under Apache-2.0), search-guided policy/value play, stronger sealed evaluation, and multiple full-budget training seeds.
